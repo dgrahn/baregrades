@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  identifier: MyString
+  section: 1
+  description: MyText
+  pin: 1
+  student_managed: false
+  credits: 9.99
+  points_based: false
+
+two:
+  name: MyString
+  identifier: MyString
+  section: 1
+  description: MyText
+  pin: 1
+  student_managed: false
+  credits: 9.99
+  points_based: false
