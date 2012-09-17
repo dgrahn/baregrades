@@ -1,4 +1,6 @@
 BareGrades::Application.routes.draw do
+  resources :assignment_types
+
   resources :assignments
 
   resources :roles

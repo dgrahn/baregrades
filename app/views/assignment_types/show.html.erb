@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Course:</b>
+  <%= @assignment_type.course_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @assignment_type.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @assignment_type.description %>
+</p>
+
+<p>
+  <b>Worth:</b>
+  <%= @assignment_type.worth %>
+</p>
+
+
+<%= link_to 'Edit', edit_assignment_type_path(@assignment_type) %> |
+<%= link_to 'Back', assignment_types_path %>
