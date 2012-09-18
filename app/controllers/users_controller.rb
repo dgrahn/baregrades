@@ -80,4 +80,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+	# POST /users/add_role/1
+	def add_role
+		@user = User.find(params[:id])
+		@roles = Role.all
+		
+		respond_to do |format|
+			format.html
+		end
+	end
 end

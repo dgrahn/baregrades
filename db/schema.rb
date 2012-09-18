@@ -11,9 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918153837) do
+ActiveRecord::Schema.define(:version => 20120918160452) do
 
   create_table "access", :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.integer "course_id"
+  end
+
+  create_table "accesses", :force => true do |t|
     t.integer "user_id"
     t.integer "role_id"
     t.integer "course_id"

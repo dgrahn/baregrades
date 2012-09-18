@@ -1,3 +1,5 @@
+<h1>Editing user</h1>
+
 <%= form_for(@user) do |f| %>
 	<% if @user.errors.any? %>
 	<div id="error_explanation">
@@ -12,8 +14,8 @@
 	<% end %>
 
 	<div class="field">
-		<%= f.label :username %><br />
-		<%= f.text_field :username %>
+		Role:<br/>
+		<%= select(:user, :roles, options_for_select(@roles)) %>
 	</div>
 	<div class="field">
 		<%= f.label :password %><br />
@@ -39,3 +41,7 @@
 		<%= f.submit %>
 	</div>
 <% end %>
+
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>

@@ -30,6 +30,17 @@
   <%= @user.email %>
 </p>
 
+<p><b>Roles:</b></p>
+<ul>
+	<%=
+		if @user.roles.each do |role|
+			content_tag(:li, role.name)
+		end.empty?
+			content_tag(:li, "This user has no responsabilities. Maybe he should get a job.");
+		end
+	%>
+</ul>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
