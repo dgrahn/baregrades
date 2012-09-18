@@ -1,4 +1,6 @@
 BareGrades::Application.routes.draw do
+  resources :grade_scales
+
   resources :assignment_types
 
   resources :assignments

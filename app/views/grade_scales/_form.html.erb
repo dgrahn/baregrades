@@ -1,0 +1,81 @@
+<%= form_for(@grade_scale) do |f| %>
+  <% if @grade_scale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade_scale.errors.count, "error") %> prohibited this grade_scale from being saved:</h2>
+
+      <ul>
+      <% @grade_scale.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course_id %><br />
+    <%= f.number_field :course_id %>
+  </div>
+  <div class="field">
+    <%= f.label :a_plus %><br />
+    <%= f.text_field :a_plus %>
+  </div>
+  <div class="field">
+    <%= f.label :a %><br />
+    <%= f.text_field :a %>
+  </div>
+  <div class="field">
+    <%= f.label :a_minus %><br />
+    <%= f.text_field :a_minus %>
+  </div>
+  <div class="field">
+    <%= f.label :b_plus %><br />
+    <%= f.text_field :b_plus %>
+  </div>
+  <div class="field">
+    <%= f.label :b %><br />
+    <%= f.text_field :b %>
+  </div>
+  <div class="field">
+    <%= f.label :b_minus %><br />
+    <%= f.text_field :b_minus %>
+  </div>
+  <div class="field">
+    <%= f.label :c_plus %><br />
+    <%= f.text_field :c_plus %>
+  </div>
+  <div class="field">
+    <%= f.label :c %><br />
+    <%= f.text_field :c %>
+  </div>
+  <div class="field">
+    <%= f.label :c_minus %><br />
+    <%= f.text_field :c_minus %>
+  </div>
+  <div class="field">
+    <%= f.label :d_plus %><br />
+    <%= f.text_field :d_plus %>
+  </div>
+  <div class="field">
+    <%= f.label :d %><br />
+    <%= f.text_field :d %>
+  </div>
+  <div class="field">
+    <%= f.label :d_minus %><br />
+    <%= f.text_field :d_minus %>
+  </div>
+  <div class="field">
+    <%= f.label :f_plus %><br />
+    <%= f.text_field :f_plus %>
+  </div>
+  <div class="field">
+    <%= f.label :f %><br />
+    <%= f.text_field :f %>
+  </div>
+  <div class="field">
+    <%= f.label :f_minus %><br />
+    <%= f.text_field :f_minus %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

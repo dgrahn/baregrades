@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917165148) do
+ActiveRecord::Schema.define(:version => 20120918153837) do
 
   create_table "access", :force => true do |t|
     t.integer "user_id"
@@ -47,6 +47,27 @@ ActiveRecord::Schema.define(:version => 20120917165148) do
     t.boolean  "points_based"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "grade_scales", :force => true do |t|
+    t.integer  "course_id"
+    t.decimal  "a_plus"
+    t.decimal  "a"
+    t.decimal  "a_minus"
+    t.decimal  "b_plus"
+    t.decimal  "b"
+    t.decimal  "b_minus"
+    t.decimal  "c_plus"
+    t.decimal  "c"
+    t.decimal  "c_minus"
+    t.decimal  "d_plus"
+    t.decimal  "d"
+    t.decimal  "d_minus"
+    t.decimal  "f_plus"
+    t.decimal  "f"
+    t.decimal  "f_minus"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "grades", :force => true do |t|
