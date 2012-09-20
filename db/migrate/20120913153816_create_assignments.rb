@@ -4,8 +4,10 @@ class CreateAssignments < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.decimal :worth
-
-      t.timestamps
     end
+  end
+  
+  def down
+	drop_table :assignments
   end
 end

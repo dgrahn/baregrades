@@ -3,4 +3,6 @@ class Assignment < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :worth, :presence => true
+  
+  has_many :grades
 end

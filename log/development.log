@@ -1,0 +1,375 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120908192255)
+Migrating to CreateUsers (20120908192633)
+Migrating to CreateRoles (20120908192651)
+Migrating to CreateAssignments (20120913153816)
+Migrating to CreateGrades (20120913155531)
+Migrating to CreateAssignmentTypes (20120917165148)
+Migrating to CreateGradeScales (20120918153837)
+Migrating to CreateAccesses (20120918160452)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("access")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("accesses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("assignment_types")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("assignments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("grade_scales")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("grades")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("roles")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120908192255)
+Migrating to CreateUsers (20120908192633)
+Migrating to CreateRoles (20120908192651)
+Migrating to CreateAssignments (20120913153816)
+Migrating to CreateAssignmentTypes (20120917165148)
+Migrating to CreateGradeScales (20120918153837)
+Migrating to CreateAccesses (20120918160452)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("access")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("accesses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("assignment_types")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("assignments")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("grade_scales")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("grades")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("roles")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120908192255)
+Migrating to CreateUsers (20120908192633)
+Migrating to CreateRoles (20120908192651)
+Migrating to CreateAssignments (20120913153816)
+Migrating to CreateAssignmentTypes (20120917165148)
+Migrating to CreateGradeScales (20120918153837)
+Migrating to CreateAccesses (20120918160452)
+Migrating to CreateGrades (20120920144507)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "grades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "grade" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "grades" already exists: CREATE TABLE "grades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "grade" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120908192255)
+Migrating to CreateUsers (20120908192633)
+Migrating to CreateRoles (20120908192651)
+Migrating to CreateAssignments (20120913153816)
+Migrating to CreateAssignmentTypes (20120917165148)
+Migrating to CreateGradeScales (20120918153837)
+Migrating to CreateAccesses (20120918160452)
+Migrating to CreateGrades (20120920144507)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "grades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "grade" decimal, "assignment_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "grades" already exists: CREATE TABLE "grades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "grade" decimal, "assignment_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120908192255)
+Migrating to CreateUsers (20120908192633)
+Migrating to CreateRoles (20120908192651)
+Migrating to CreateAssignments (20120913153816)
+Migrating to CreateAssignmentTypes (20120917165148)
+Migrating to CreateGradeScales (20120918153837)
+Migrating to CreateAccesses (20120918160452)
+Migrating to CreateGrades (20120920144507)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "grades" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "grade" decimal, "assignment_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120920144507')[0m
+  [1m[35m (78.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("access")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("accesses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("assignment_types")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("assignments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("grade_scales")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("grades")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("roles")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-09-20 11:05:28 -0400
+Connecting to database specified by database.yml
+Served asset /rails.png - 304 Not Modified (19ms)
+
+
+Started GET "/grades" for 127.0.0.1 at 2012-09-20 11:05:30 -0400
+Processing by GradesController#index as HTML
+  [1m[36mGrade Load (0.0ms)[0m  [1mSELECT "grades".* FROM "grades" [0m
+  Rendered grades/index.html.erb within layouts/application (27.0ms)
+Compiled assignment_types.css  (31ms)  (pid 5984)
+Compiled assignments.css  (18ms)  (pid 5984)
+Compiled courses.css  (2ms)  (pid 5984)
+Compiled grade_scales.css  (2ms)  (pid 5984)
+Compiled grades.css  (1ms)  (pid 5984)
+Compiled roles.css  (1ms)  (pid 5984)
+Compiled scaffolds.css  (11ms)  (pid 5984)
+Compiled users.css  (1ms)  (pid 5984)
+Compiled application.css  (268ms)  (pid 5984)
+Compiled jquery.js  (17ms)  (pid 5984)
+Compiled jquery_ujs.js  (0ms)  (pid 5984)
+Compiled assignment_types.js  (546ms)  (pid 5984)
+Compiled assignments.js  (368ms)  (pid 5984)
+Compiled courses.js  (371ms)  (pid 5984)
+Compiled grade_scales.js  (357ms)  (pid 5984)
+Compiled grades.js  (385ms)  (pid 5984)
+Compiled roles.js  (393ms)  (pid 5984)
+Compiled users.js  (408ms)  (pid 5984)
+Compiled application.js  (3189ms)  (pid 5984)
+Completed 200 OK in 4241ms (Views: 3935.8ms | ActiveRecord: 29.0ms)
+
+
+Started GET "/assets/assignment_types.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:34 -0400
+Served asset /assignment_types.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/assignments.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:34 -0400
+Served asset /assignments.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/grade_scales.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:34 -0400
+Served asset /grade_scales.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:34 -0400
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:34 -0400
+Served asset /application.css - 304 Not Modified (24ms)
+
+
+Started GET "/assets/grades.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /grades.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/roles.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /roles.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /scaffolds.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /users.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /jquery.js - 304 Not Modified (69ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (34ms)
+
+
+Started GET "/assets/assignment_types.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /assignment_types.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignments.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grade_scales.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /grade_scales.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/grades.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /grades.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/roles.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /roles.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /users.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:35 -0400
+Served asset /application.js - 304 Not Modified (67ms)
+
+
+Started GET "/grades/new" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Processing by GradesController#new as HTML
+  Rendered grades/_form.html.erb (35.0ms)
+  Rendered grades/new.html.erb within layouts/application (63.0ms)
+Completed 200 OK in 82ms (Views: 77.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/assignment_types.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /assignment_types.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignments.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grade_scales.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /grade_scales.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grades.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /grades.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/roles.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /roles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignment_types.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /assignment_types.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignments.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grade_scales.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /grade_scales.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grades.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /grades.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/roles.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /roles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:38 -0400
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/grades" for 127.0.0.1 at 2012-09-20 11:05:40 -0400
+Processing by GradesController#index as HTML
+  [1m[35mGrade Load (0.0ms)[0m  SELECT "grades".* FROM "grades" 
+  Rendered grades/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:40 -0400
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignment_types.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /assignment_types.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignments.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /assignments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grade_scales.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /grade_scales.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grades.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /grades.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/roles.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /roles.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignment_types.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /assignment_types.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/assignments.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /assignments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grade_scales.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /grade_scales.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/grades.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /grades.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/roles.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /roles.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-20 11:05:41 -0400
+Served asset /application.js - 304 Not Modified (0ms)
