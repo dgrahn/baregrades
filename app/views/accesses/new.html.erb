@@ -1,0 +1,35 @@
+<h1>New Access</h1>
+<h2>Assign a new role to <%= @user.first_name %></h2>
+
+<%= form_for([@user, @access]) do |f| %>
+	<% if @access.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@access.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+		<ul>
+			<% @access.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.hidden_field :user_id, :value => params[:user_id] %>
+	</div>
+	<div class="field">
+		<%= f.label :role_id %><br />
+		<%= f.select :role_id, options_from_collection_for_select(@all_roles, :id, :name) %>
+	</div>
+
+	<!-- Not enabled for now
+	<div class="field">
+		<%= f.label :course_id %><br />
+		<%= f.number_field :course_id %>
+	</div>
+	-->
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

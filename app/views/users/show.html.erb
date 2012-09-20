@@ -31,16 +31,14 @@
 </p>
 
 <p><b>Roles:</b></p>
-<ul>
-	<%=
-		if @user.roles.each do |role|
-			content_tag(:li, role.name)
-		end.empty?
-			content_tag(:li, "This user has no responsabilities. Maybe he should get a job.");
-		end
-	%>
-</ul>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<table>
+	<% @user.accesses.each do |access| %>
+		<tr>
+			<td><%= access.role.name %></td>
+			<td><%= link_to "Delete", user_access_path(@user, access), :confirm => "Are you sure?", :method => :delete %></td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to "Add Role", new_user_access_path(@user) %> |
+<%= link_to "Edit", edit_user_path(@user) %> |
+<%= link_to "Back", users_path %>

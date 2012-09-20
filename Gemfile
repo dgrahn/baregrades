@@ -39,3 +39,7 @@ gem 'execjs'
 
 # To use debugger
 # gem 'debugger'
+
+group :tests do
+	gem 'shoulda'
+end
