@@ -1,7 +1,12 @@
 require 'test_helper'
+require 'shoulda'
 
 class AssignmentTypeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+	should validate_presence_of(:name)
+	should validate_presence_of(:worth)
+	
+	should validate_numericality_of(:worth)
+	
+	should belong_to(:course)
+	should have_many(:assignments)
 end
