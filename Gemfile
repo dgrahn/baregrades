@@ -46,3 +46,7 @@ gem 'execjs'
 group :tests do
 	gem 'shoulda'
 end
+
+# Add faker and populator for default sample data
+gem 'faker'
+gem 'populator'
