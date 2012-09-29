@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BareGrades</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>BareGrades</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -21,20 +21,10 @@
 <!-- [END] User Navigation -->
 
 <!-- [START] Flashes -->
-<% if flash[:success] %>
-	<div id="success" style="background: #AFA; border: 1px solid green; padding: 5px 10px;">
-		<%= flash[:success] %>
-	</div>
-<% end %>
-<% if flash[:error] %>
-	<div id="error" style="background: #FAA; border: 1px solid red; padding: 5px 10px;">
-		<%= flash[:error] %>
-	</div>
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
 <!-- [END] Flashes -->
-
-<nav id="user">
-</nav>
 
 <%= yield %>
 
