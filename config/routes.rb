@@ -1,5 +1,12 @@
 BareGrades::Application.routes.draw do
-	resources :grade_scales
+	get "register" => "users#new", :as => "register"
+	resources :users
+
+	get "login" => "sessions#new", :as => "login"
+	get "logout" => "sessions#destroy", :as => "logout"
+	resources :sessions
+
+
 	resources :grade_scales
 
 	resources :assignment_types
@@ -8,13 +15,14 @@ BareGrades::Application.routes.draw do
 
 	resources :roles
 
-	resources :users
 
 	resources :courses
 
 	resources :users do
 		resources :accesses
 	end
+
+
 	#match "/users/:id/access" => "access#index", :as => :user
 	#match "/users/:id/access/new" => "access#new", :as => :user
 

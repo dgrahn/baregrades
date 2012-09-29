@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924223955) do
+ActiveRecord::Schema.define(:version => 20120929164331) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -85,13 +85,14 @@ ActiveRecord::Schema.define(:version => 20120924223955) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.string   "password"
     t.string   "first_name"
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.text     "password_hash"
+    t.text     "password_salt"
   end
 
 end
