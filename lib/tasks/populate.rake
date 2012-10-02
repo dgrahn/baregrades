@@ -6,34 +6,12 @@ namespace :db do
 		require 'populator'
 		puts "Populating..."
 		
-		# Admin users
-		User.create(:first_name 	=> 'Daniel',
-					:middle_name 	=> 'James',
-					:last_name 		=> 'Grahn',
-					:username 		=> 'root', 
-					:password 		=> 'licorice', 
-					:email  		=> 'dgrahn@cedarville.edu')
-		
-		User.create(:first_name 	=> 'Justin',
-					:middle_name 	=> 'Tyler',
-					:last_name 		=> 'engel',
-					:username 		=> 'jengel', 
-					:password 		=> 'licorice', 
-					:email  		=> 'jengel@cedarville.edu')
-					
-		User.create(:first_name 	=> 'Matthew',
-					:middle_name 	=> '?',
-					:last_name 		=> 'Brooker',
-					:username 		=> 'matBro', 
-					:password 		=> 'licorice', 
-					:email  		=> 'mbrooker@cedarville.edu')
-		
 		# Role Sample Data
-		Role.create(:name => "Administrator")
-		Role.create(:name => "Advisor")
-		Role.create(:name => "Professor")
-		Role.create(:name => "Teachers Aid")
-		Role.create(:name => "Student")
+		Role.create(:id => 1, :name => "Administrator")
+		Role.create(:id => 2, :name => "Advisor")
+		Role.create(:id => 3, :name => "Professor")
+		Role.create(:id => 4, :name => "Teachers Aid")
+		Role.create(:id => 5, :name => "Student")
 		
 		# User Generated Sample Data
 		User.populate 100 do |u|
@@ -41,8 +19,9 @@ namespace :db do
 			u.first_name 	= Faker::Name.first_name
 			u.last_name 	= Faker::Name.last_name
 			u.middle_name 	= Faker::Name.first_name
-			u.password 		= Populator.words(1)
 			u.username 		= Populator.words(1)
+			#u.password 				= 'password'
+			#u.password_confirmation = 'password'
 		end
 		
 		# Course Generated Sample Data
@@ -121,6 +100,47 @@ namespace :db do
 		
 		[Access, Assignment, AssignmentType, Course, Grade, GradeScale, Role, User].each(&:delete_all)
 		
+		puts "Done!"
+	end
+	
+	desc "Create Default Administrators"
+	task :createAdmins => :environment do
+		puts "Creating Admins ..."
+		
+		# Admin users
+		a1 = User.create(:first_name 	=> 'Daniel',
+					:middle_name 	=> 'James',
+					:last_name 		=> 'Grahn',
+					:username 		=> 'root', 
+					:password 		=> 'licorice',
+					:password_confirmation => 'licorice',
+					:email  		=> 'dgrahn@cedarville.edu')
+		
+		a2 = User.create(:first_name 	=> 'Justin',
+					:middle_name 	=> 'Tyler',
+					:last_name 		=> 'engel',
+					:username 		=> 'jengel', 
+					:password 		=> 'password',
+					:password_confirmation => 'password',
+					:email  		=> 'jengel@cedarville.edu')
+					
+		a3 = User.create(:first_name 	=> 'Matthew',
+					:middle_name 	=> '?',
+					:last_name 		=> 'Brooker',
+					:username 		=> 'matBro', 
+					:password 		=> 'password',
+					:password_confirmation => 'password',
+					:email  		=> 'mbrooker@cedarville.edu')
+		
+		
+		Access.create(	:user_id => a1.attributes['id'],
+						:role_id => 1);
+						
+		Access.create(	:user_id => a2.attributes['id'],
+						:role_id => 1);
+		
+		Access.create(	:user_id => a3.attributes['id'],
+						:role_id => 1);
 		puts "Done!"
 	end
 end
