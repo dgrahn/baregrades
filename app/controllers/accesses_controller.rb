@@ -9,6 +9,7 @@ class AccessesController < ApplicationController
 		@user = User.find(params[:user_id])
 		@access = Access.new
 		@all_roles = Role.all
+		@all_courses = Course.all
 	end
 
 	def create

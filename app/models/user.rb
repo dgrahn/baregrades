@@ -31,4 +31,28 @@ class User < ActiveRecord::Base
 			self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
 		end
 	end
+
+	def method_missing(method_id, *args)
+		if match = matches_dynamic_role_check?(method_id)
+			tokenize_roles(match.captures.first).each do |check|
+				roles.each do |role|
+					return true if role.name.downcase == check
+				end
+			end
+
+			return false
+		else
+			super
+		end
+	end
+
+	private
+
+	def matches_dynamic_role_check?(method_id)
+		/^is_([a-zA-Z]\w*)\?$/.match(method_id.to_s)
+	end
+
+	def tokenize_roles(string_to_split)
+		string_to_split.split(/_or_/)
+	end
 end

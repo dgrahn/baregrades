@@ -22,12 +22,10 @@
 		<%= f.select :role_id, options_from_collection_for_select(@all_roles, :id, :name) %>
 	</div>
 
-	<!-- Not enabled for now
 	<div class="field">
 		<%= f.label :course_id %><br />
-		<%= f.number_field :course_id %>
+		<%= f.select :course_id, options_from_collection_for_select(@all_courses, :id, :name) %>
 	</div>
-	-->
 
 	<div class="actions">
 		<%= f.submit %>

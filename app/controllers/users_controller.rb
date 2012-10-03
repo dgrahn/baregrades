@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = @current_user
+
+		if @user.is_administrator? and params.has_key?(:id)
+			@user = User.find(params[:id])
+		end
 
 		respond_to do |format|
 			format.html
