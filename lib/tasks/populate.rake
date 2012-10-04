@@ -132,15 +132,15 @@ namespace :db do
 					:password_confirmation => 'password',
 					:email  		=> 'mbrooker@cedarville.edu')
 		
-		
+		adminId = Role.find_by_name("Administrator").id
 		Access.create(	:user_id => a1.attributes['id'],
-						:role_id => 1);
+						:role_id => adminId);
 						
 		Access.create(	:user_id => a2.attributes['id'],
-						:role_id => 1);
+						:role_id => adminId);
 		
 		Access.create(	:user_id => a3.attributes['id'],
-						:role_id => 1);
+						:role_id => adminId);
 		puts "Done!"
 	end
 end

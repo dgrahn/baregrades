@@ -2,7 +2,7 @@ BareGrades::Application.routes.draw do
 	root :to => "home#index"
 
 	get "account" => "users#show", :as => "account"
-	get "account/:id" => "users#show", :as => "account"
+	get "account/:id" => "users#show"
 	get "register" => "users#new", :as => "register"
 	resources :users
 

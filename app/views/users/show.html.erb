@@ -30,6 +30,7 @@
 	<% @user.accesses.each do |access| %>
 		<tr>
 			<td><%= access.role.name %></td>
+			<td><%= access.course.name if access.course %></td>
 			<td><%= link_to "Delete", user_access_path(@user, access), :confirm => "Are you sure?", :method => :delete %></td>
 		</tr>
 	<% end %>
