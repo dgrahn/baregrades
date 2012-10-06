@@ -15,5 +15,11 @@
   <%= @assignment.worth %>
 </p>
 
+<p>
+	<b>Grade:</b>
+	<%= @grade.grade %>
+</p>
+
+<%= manage_grade_path %> |
 <%= link_to "Edit", edit_assignment_path(@assignment) %> |
 <%= link_to "Back", assignments_path %>
