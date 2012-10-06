@@ -20,11 +20,12 @@ namespace :db do
 			u.last_name 	= Faker::Name.last_name
 			u.middle_name 	= Faker::Name.first_name
 			u.username 		= Populator.words(1)
-			#u.password 				= 'password'
+			#u.password 			 = 'password'
 			#u.password_confirmation = 'password'
 		end
 		
 		# Course Generated Sample Data
+		i = 1
 		Course.populate 200 do |cr|
 			cr.credits 			= rand(1..10) + (rand(0..1) * 0.5)
 			cr.description 		= Populator.sentences(2..10)
@@ -39,6 +40,28 @@ namespace :db do
 			cr.points_based 	= rand(0..1)
 			cr.section 			= rand(1..10)
 			cr.student_managed 	= rand(0..1)
+			
+			# GradeScale Generated Sample Data
+			gs = GradeScale.new()
+			gs.course_id = i
+			gs.a 		= rand(1..101)
+			gs.a_minus	= rand(1..101)
+			gs.a_plus 	= rand(1..101)
+			gs.b		= rand(1..101)
+			gs.b_minus	= rand(1..101)
+			gs.b_plus	= rand(1..101)
+			gs.c		= rand(1..101)
+			gs.c_minus	= rand(1..101)
+			gs.c_plus	= rand(1..101)
+			gs.d		= rand(1..101)
+			gs.d_minus	= rand(1..101)
+			gs.d_plus	= rand(1..101)
+			gs.f		= rand(1..101)
+			gs.f_minus	= rand(1..101)
+			gs.f_plus	= rand(1..101)
+			gs.save
+			
+			i = i + 1
 		end
 		
 		# Access Generated Sample Data
@@ -71,26 +94,6 @@ namespace :db do
 			gr.user_id 			= rand(1..100)
 		end
 		
-		# GradeScale Generated Sample Data
-		GradeScale.populate 200 do |gs|
-			gs.course_id 	= rand(1..200)
-			gs.a 		= rand(1..101)
-			gs.a_minus	= rand(1..101)
-			gs.a_plus 	= rand(1..101)
-			gs.b		= rand(1..101)
-			gs.b_minus	= rand(1..101)
-			gs.b_plus	= rand(1..101)
-			gs.c		= rand(1..101)
-			gs.c_minus	= rand(1..101)
-			gs.c_plus	= rand(1..101)
-			gs.d		= rand(1..101)
-			gs.d_minus	= rand(1..101)
-			gs.d_plus	= rand(1..101)
-			gs.f		= rand(1..101)
-			gs.f_minus	= rand(1..101)
-			gs.f_plus	= rand(1..101)
-		end
-		
 		puts "Done!"
 	end
 	
@@ -118,7 +121,7 @@ namespace :db do
 		
 		a2 = User.create(:first_name 	=> 'Justin',
 					:middle_name 	=> 'Tyler',
-					:last_name 		=> 'engel',
+					:last_name 		=> 'Engel',
 					:username 		=> 'jengel', 
 					:password 		=> 'password',
 					:password_confirmation => 'password',
