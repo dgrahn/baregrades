@@ -1,0 +1,6 @@
+<h1>Home</h1>
+
+<h2>Courses</h2>
+<% @user.courses.each do |course| %>
+	<%= link_to course.name, course %>
+<% end %>
