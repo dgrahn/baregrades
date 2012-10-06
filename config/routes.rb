@@ -1,10 +1,6 @@
 BareGrades::Application.routes.draw do
 	root :to => "home#index"
 
-	get "account" => "users#show", :as => "account"
-	get "account/:id" => "users#show"
-	get "register" => "users#new", :as => "register"
-	resources :users
 
 
 	get "login" => "sessions#new", :as => "login"
@@ -20,9 +16,16 @@ BareGrades::Application.routes.draw do
 
 	resources :roles
 
-
 	resources :courses
+	resources :courses do
+		resources :assignment_types
+	end
 
+
+	get "account" => "users#show", :as => "account"
+	get "account/:id" => "users#show"
+	get "register" => "users#new", :as => "register"
+	resources :users
 	resources :users do
 		resources :accesses
 	end

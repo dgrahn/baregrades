@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 
 			# TODO: Send to homepage
-			redirect_to users_path, :flash => {:success => "Logged In"}
+			redirect_to root_path, :flash => {:success => "Logged In"}
 		else
 			flash.now[:error] = "Invalid Login"
 			render "new"

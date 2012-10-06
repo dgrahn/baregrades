@@ -11,3 +11,18 @@
  *= require_self
  *= require_tree .
  */
+ 
+ table {
+	border-collapse: collapse;
+	margin-bottom: 2em;}
+	table tr {}
+		table tr:nth-child(even) {
+			background: #CCC;}
+		table th {
+			background: #666;
+			color: #FFF;
+			border-bottom: 1px solid #888;
+			padding: 0.25em 0.5em;
+			text-align: left;}
+		table td {
+			padding: 0.25em 0.5em;}

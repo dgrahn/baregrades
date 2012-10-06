@@ -4,4 +4,5 @@ class Course < ActiveRecord::Base
   has_one :grade_scale
   has_many :access
   has_many :users, :through => :access
+  has_many :assignment_types
 end

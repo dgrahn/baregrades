@@ -27,6 +27,11 @@
 
 <p><b>Roles:</b></p>
 <table>
+	<tr>
+		<th>Role</th>
+		<th>Course</th>
+		<th></th>
+	</tr>
 	<% @user.accesses.each do |access| %>
 		<tr>
 			<td><%= access.role.name %></td>
