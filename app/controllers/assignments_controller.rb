@@ -25,6 +25,7 @@ class AssignmentsController < ApplicationController
   # GET /assignments/new.json
   def new
     @assignment = Assignment.new
+    @assignment_type = AssignmentType.find(params[:assignment_type_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,14 +42,15 @@ class AssignmentsController < ApplicationController
   # POST /assignments.json
   def create
     @assignment = Assignment.new(params[:assignment])
+	@assignment.assignment_type_id = params[:assignment_type_id]
+
+	@assignment_type = AssignmentType.find(params[:assignment_type_id])
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
-        format.json { render json: @assignment, status: :created, location: @assignment }
+        format.html { redirect_to @assignment_type, notice: 'Assignment was successfully created.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
   end

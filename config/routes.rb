@@ -10,16 +10,20 @@ BareGrades::Application.routes.draw do
 
 	resources :grade_scales
 
-	resources :assignment_types
-
-	resources :assignments
-
 	resources :roles
 
-	resources :courses
 	resources :courses do
 		resources :assignment_types
 	end
+	
+	resources :assignment_types do
+		resources :assignments
+	end
+
+	resources :assignments do
+		resources :grades
+	end
+	
 
 
 	get "account" => "users#show", :as => "account"

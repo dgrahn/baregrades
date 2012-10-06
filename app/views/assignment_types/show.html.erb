@@ -20,6 +20,25 @@
   <%= @assignment_type.worth %>
 </p>
 
+<p><b>Assignment:</b></p>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Worth</th>
+		<th></th>
+	</tr>
+	<% @assignment_type.assignments.each do |assignment| %>
+		<tr>
+			<td><%= link_to assignment.name, assignment_type_assignment_path(@assignment_type, assignment) %></td>
+			<td><%= assignment.description %></td>
+			<td><%= assignment.worth %></td>
+			<td><%= link_to "Delete", assignment_type_assignment_path(assignment), :confirm => "Are you sure?", :method => :delete %></td>
+		</tr>		
+	<% end %>
+</table>
 
-<%= link_to "Edit", edit_assignment_type_path(@assignment_type) %> |
+
+<%= link_to "Add Assignment", new_assignment_type_assignment_path(@assignment_type) %>
+<%= link_to "Edit", edit_course_assignment_type_path(@assignment_type) %> |
 <%= link_to "Back", course_path(@course) %>
