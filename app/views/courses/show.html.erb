@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+	<h1><%= @course.name %></h1>
+<% end %>
+<% content_for :nav do %>
+<!-- TODO: Change these to actual links -->
+	<a href="#">Summary</a>
+	<a href="#">Analysis</a>
+	<a href="#">Calendar</a>
+	<a href="#">Actions</a>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @course.name %>
-</p>
+<p id="notice"><%= notice %></p>
 
 <p>
   <b>Identifier:</b>

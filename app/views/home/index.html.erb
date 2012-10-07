@@ -1,6 +1,15 @@
-<h1>Home</h1>
+<% content_for :head do %>
+	<h1>Home</h1>
+<% end %>
+<% content_for :nav do %>
+	<!-- TODO: Change these to actual links -->
+	<a href="#">Summary</a>
+	<a href="#">Analysis</a>
+	<a href="#">Calendar</a>
+	<a href="#">Actions</a>
+<% end %>
 
-<h2>Courses</h2>
+<h1>Courses</h1>
 <% @user.courses.each do |course| %>
 	<%= link_to course.name, course %>
 <% end %>

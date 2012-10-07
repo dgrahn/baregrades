@@ -8,26 +8,38 @@
 </head>
 <body>
 
-<!-- [START] User Navigation -->
-<nav id="user">
-	<% if current_user %>
-		Howdy <%= current_user.first_name %>! |
-		<%= link_to "Account", account_path %> |
-		<%= link_to "Log Out", logout_path %>
-	<% else %>
-		<%= link_to "Register", register_path %> |
-		<%= link_to "Log In", login_path %>
-	<% end %>
+<header id="main">
+	<div>
+		<%= render :partial => "layouts/user_menu" %>
+		<h1>BareGrades</h1>
+	</div>
+</header>
+
+<header id="content-head">
+	<div>
+		<%= yield :head %>
+	</div>
+</header>
+
+<nav id="page-nav">
+	<div>
+		<%= yield :nav %>
+	</div>
 </nav>
-<!-- [END] User Navigation -->
 
-<!-- [START] Flashes -->
-<% flash.each do |name, msg| %>
-	<%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-<!-- [END] Flashes -->
+<div>
+	<section id="sidebar">
+		<%= link_to "Join a Course", courses_path %>
+	</section>
+	<section id="content">
+		<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, :id => "flash_#{name}" %>
+		<% end %>
 
-<%= yield %>
+		<%= yield %>
+	</section>
+</div>
+
 
 </body>
 </html>
