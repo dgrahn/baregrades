@@ -27,22 +27,36 @@ namespace :db do
 			#u.password_confirmation = 'password'
 		end
 		
+		# A course that we know
+		Course.create(
+			:credits 			=> 3.0,
+			:description 		=> "Program applications that can run on more than one processor",
+			:identifier 		=> "CS-4210",
+			:name 				=> "Parallel Computing",
+			:pin 				=> 1111,
+			:points_based 		=> 0,
+			:section 			=> 01,
+			:student_managed 	=> 1 )
+		
 		# Course Generated Sample Data
-		i = 1
+		i = 2
 		Course.populate amount do |cr|
 			cr.credits 			= rand(1..10) + (rand(0..1) * 0.5)
 			cr.description 		= Populator.sentences(2..10)
-			cr.identifier 		= Populator.interpret_value("A" .. "Z").to_s +
-								  Populator.interpret_value("A" .. "Z").to_s +
-								  Populator.interpret_value("A" .. "Z").to_s +
-								  Populator.interpret_value("A" .. "Z").to_s +
-								  rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s
-								  
-			cr.name 			= Populator.words(1)
+			cr.name 			= Populator.words(1).titleize
 			cr.pin 				= rand(0..100000)
 			cr.points_based 	= rand(0..1)
 			cr.section 			= rand(1..10)
 			cr.student_managed 	= rand(0..1)
+			
+			cr.identifier 	= ''
+			charLength 		= rand(2..4)
+			charLength.times do |t|
+				cr.identifier = cr.identifier + Populator.interpret_value("A" .. "Z").to_s
+			end
+			
+			cr.identifier 	= cr.identifier + "-" +
+							  rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s
 			
 			# GradeScale Generated Sample Data
 			gs = GradeScale.new()
@@ -126,8 +140,8 @@ namespace :db do
 					:middle_name 	=> 'Tyler',
 					:last_name 		=> 'Engel',
 					:username 		=> 'jengel', 
-					:password 		=> 'password',
-					:password_confirmation => 'password',
+					:password 		=> 'accesscode',
+					:password_confirmation => 'accesscode',
 					:email  		=> 'jengel@cedarville.edu')
 					
 		a3 = User.create(:first_name 	=> 'Matthew',
