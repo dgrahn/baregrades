@@ -6,6 +6,9 @@ namespace :db do
 		require 'populator'
 		puts "Populating..."
 		
+		# Amount of data to generate
+		amount = 20
+		
 		# Role Sample Data
 		Role.create(:id => 1, :name => "Administrator")
 		Role.create(:id => 2, :name => "Advisor")
@@ -14,7 +17,7 @@ namespace :db do
 		Role.create(:id => 5, :name => "Student")
 		
 		# User Generated Sample Data
-		User.populate 100 do |u|
+		User.populate amount do |u|
 			u.email 		= Faker::Internet.email
 			u.first_name 	= Faker::Name.first_name
 			u.last_name 	= Faker::Name.last_name
@@ -26,7 +29,7 @@ namespace :db do
 		
 		# Course Generated Sample Data
 		i = 1
-		Course.populate 200 do |cr|
+		Course.populate amount do |cr|
 			cr.credits 			= rand(1..10) + (rand(0..1) * 0.5)
 			cr.description 		= Populator.sentences(2..10)
 			cr.identifier 		= Populator.interpret_value("A" .. "Z").to_s +
@@ -65,33 +68,33 @@ namespace :db do
 		end
 		
 		# Access Generated Sample Data
-		Access.populate 200 do |ac|
-			ac.user_id = rand(1..100)
+		Access.populate amount do |ac|
+			ac.user_id = rand(1..amount)
 			ac.role_id = rand(1..5)
-			ac.course_id = rand(1..200)
+			ac.course_id = rand(1..amount)
 		end
 		
 		# AssignmentType Generated Sample Data
-		AssignmentType.populate 200 do |at|
+		AssignmentType.populate amount do |at|
 			at.description 	= Populator.sentences(2..10)
 			at.name 		= Populator.words(1)
-			at.worth		= rand(1..1000000000000)
-			at.course_id 	= rand(1..200)
+			at.worth		= rand(1..100)
+			at.course_id 	= rand(1..amount)
 		end
 		
 		# Assignment Generated Sample Data
-		Assignment.populate 200 do |as|
+		Assignment.populate amount do |as|
 			as.description 	= Populator.sentences(2..10)
 			as.name 		= Populator.words(1)
 			as.worth		= rand(1..100)
-			as.assignment_type_id = rand(1..200)
+			as.assignment_type_id = rand(1..amount)
 		end
 		
 		# Grade Generated Sample Data
-		Grade.populate 200 do |gr|
+		Grade.populate amount do |gr|
 			gr.grade 			= rand(1..1000000000000)
-			gr.assignment_id	= rand(1..200)
-			gr.user_id 			= rand(1..100)
+			gr.assignment_id	= rand(1..amount)
+			gr.user_id 			= rand(1..amount)
 		end
 		
 		puts "Done!"
@@ -134,6 +137,13 @@ namespace :db do
 					:password 		=> 'password',
 					:password_confirmation => 'password',
 					:email  		=> 'mbrooker@cedarville.edu')
+		
+		# Role Sample Data
+		Role.create(:id => 1, :name => "Administrator")
+		Role.create(:id => 2, :name => "Advisor")
+		Role.create(:id => 3, :name => "Professor")
+		Role.create(:id => 4, :name => "Teachers Aid")
+		Role.create(:id => 5, :name => "Student")
 		
 		adminId = Role.find_by_name("Administrator").id
 		Access.create(	:user_id => a1.attributes['id'],
