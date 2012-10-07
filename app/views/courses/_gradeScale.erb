@@ -1,0 +1,14 @@
+<% grade_scale = course.grade_scale%>
+
+<% if !grade_scale.blank? %>
+	<% grade_scale.attributes.each do |attr_name, attr_value| %>
+		<% if !attr_value.blank? &&
+		attr_name != "course_id" &&
+		attr_name != "created_at" &&
+		attr_name != "updated_at" %>			
+			<p><%= attr_name%> = <%= attr_value%></p>
+		<% end %>
+	<% end %>
+<% else %>
+	A grade scale has not been created! <%= link_to "new Grade Scale", GradeScale.create(:course_id => course.id) %>
+<% end %>
