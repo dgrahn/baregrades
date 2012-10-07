@@ -1,4 +1,11 @@
 class AssignmentsController < ApplicationController
+	before_filter :get_variables
+
+	def get_variables
+		@assignment_type = AssignmentType.find(params[:assignment_type_id])
+		@course = @assignment_type.course
+	end	
+	
 	def index
 		@assignments = Assignment.all
 
@@ -20,7 +27,6 @@ class AssignmentsController < ApplicationController
 
 	def new
 		@assignment = Assignment.new
-		@assignment_type = AssignmentType.find(params[:assignment_type_id])
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -34,13 +40,12 @@ class AssignmentsController < ApplicationController
 
 	def create
 		@assignment = Assignment.new(params[:assignment])
-		@assignment.assignment_type_id = params[:assignment_type_id]
-
-		@assignment_type = AssignmentType.find(params[:assignment_type_id])
+		@assignment.assignment_type = @assignment_type
+		@assignment.save
 
 		respond_to do |format|
 			if @assignment.save
-				format.html { redirect_to @assignment_type, notice: 'Assignment was successfully created.' }
+				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), notice: 'Assignment was successfully created.' }
 			else
 				format.html { render action: "new" }
 			end

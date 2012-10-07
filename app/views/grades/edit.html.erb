@@ -1,4 +1,8 @@
-<h1>Editing grade</h1>
+<% content_for :head do %>
+	<h1><%= @course.name %> :: <%= @assignment_type.name %></h1>
+<% end %>
+
+<h1><%= @assignment.name %> :: Grade</h1>
 
 <%= render "form" %>
 

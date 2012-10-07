@@ -45,7 +45,7 @@ class GradesController < ApplicationController
 
 		respond_to do |format|
 			if @grade.save
-				format.html { redirect_to @assignment, notice: 'Grade was successfully created.' }
+				format.html { redirect_to assignment_type_assignment_path(@assignment_type, @assignment), notice: 'Grade was successfully created.' }
 			else
 				format.html { render action: "new" }
 			end
@@ -57,7 +57,7 @@ class GradesController < ApplicationController
 
 		respond_to do |format|
 			if @grade.update_attributes(params[:grade])
-				format.html { redirect_to @assignment, notice: 'Grade was successfully updated.' }
+				format.html { redirect_to assignment_type_assignment_path(@assignment_type, @assignment), notice: 'Grade was successfully updated.' }
 			else
 				format.html { render action: "edit" }
 			end
