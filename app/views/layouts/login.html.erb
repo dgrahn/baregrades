@@ -29,23 +29,7 @@
 </nav>
 
 <div>
-	<section id="sidebar">
-		<nav>
-			<%= link_to "Join a Course", courses_path %>
-		</nav>
-		<% if @current_user %>
-			<% @current_user.courses.each do |course| %>
-				<%= link_to course.name, course %>
-			<% end %>
-		<% end %>
-	</section>
-	<section id="content">
-		<% flash.each do |name, msg| %>
-			<%= content_tag :div, msg, :id => "flash_#{name}" %>
-		<% end %>
-
-		<%= yield %>
-	</section>
+	<%= yield %>
 </div>
 
 

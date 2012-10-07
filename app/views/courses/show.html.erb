@@ -1,7 +1,10 @@
 <% content_for :head do %>
 	<h1><%= @course.name %></h1>
+	<h2><%= @course.identifier %> &mdash; <%= "%02d" % @course.section %></h2>
 <% end %>
 <% content_for :nav do %>
+	<%= link_to "Edit", edit_course_path(@course) %>
+	<%= link_to "Leave", course_leave_path(@course) %>
 	<!-- TODO: Change these to actual links
 	<a href="#">Summary</a>
 	<a href="#">Analysis</a>
@@ -10,22 +13,7 @@
 	-->
 <% end %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Identifier:</b>
-  <%= @course.identifier %>
-</p>
-
-<p>
-  <b>Section:</b>
-  <%= @course.section %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @course.description %>
-</p>
+<p><%= @course.description %></p>
 
 <p>
   <b>Pin:</b>
@@ -76,5 +64,4 @@
 </p>
 
 <%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> |
-<%= link_to "Edit", edit_course_path(@course) %> |
 <%= link_to "Back", root_path %>

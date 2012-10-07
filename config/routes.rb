@@ -12,6 +12,8 @@ BareGrades::Application.routes.draw do
 
 	resources :roles
 
+	get "courses/:id/join" => "accesses#join", :as => "course_join"
+	get "courses/:id/leave" => "accesses#leave", :as => "course_leave"
 	resources :courses do
 		resources :assignment_types
 	end

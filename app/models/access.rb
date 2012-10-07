@@ -3,7 +3,8 @@ class Access < ActiveRecord::Base
 	
 	validates :user_id, :presence => true, :numericality => true
 	validates :role_id, :presence => true, :numericality => true
-	validates :role_id, :numericality => true
+	
+	validates_uniqueness_of :user_id, :scope => [:course_id]
 	
 	belongs_to :user
 	belongs_to :role

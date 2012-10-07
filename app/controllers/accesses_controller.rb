@@ -27,8 +27,28 @@ class AccessesController < ApplicationController
 
 	def update
 	end
+	
+	def join	
+		@course = Course.find(params[:id])
 
-	# DELETE /users/1/accesses
+		access = Access.new
+		access.role = Role.find_by_name("Student")
+		access.course = @course
+		access.user = @current_user
+		access.save
+
+		redirect_to @course
+	end
+
+	def leave
+		@course = Course.find(params[:id])
+		@access = Access.where(:course_id => @course.id, :user_id => @current_user.id).first
+		
+		if @access.destroy
+			redirect_to root_path, :flash => {:success => "You have left %s" % @course.name}
+		end
+	end
+
 	def destroy
 		@user = User.find(params[:user_id])
 		@access = Access.find(params[:id])

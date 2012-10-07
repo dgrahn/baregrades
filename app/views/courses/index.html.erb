@@ -6,32 +6,30 @@
 
 <table>
   <tr>
+	<th></th>
     <th>Name</th>
     <th>Identifier</th>
     <th>Section</th>
-    <th>Description</th>
-    <th>Pin</th>
-    <th>Student managed</th>
     <th>Credits</th>
-    <th>Points based</th>
-    <th></th>
-    <th></th>
-    <th></th>
+	<% if @current_user.is_administrator? %>
+		<th></th>
+		<th></th>
+		<th></th>
+	<% end %>
   </tr>
 
 <% @courses.each do |course| %>
   <tr>
+	<td><%= link_to "Join", course_join_path(course), :class => "button" %></td>
     <td><%= course.name %></td>
     <td><%= course.identifier %></td>
     <td><%= course.section %></td>
-    <td><%= course.description %></td>
-    <td><%= course.pin %></td>
-    <td><%= course.student_managed %></td>
     <td><%= course.credits %></td>
-    <td><%= course.points_based %></td>
-    <td><%= link_to "Show", course %></td>
-    <td><%= link_to "Edit", edit_course_path(course) %></td>
-    <td><%= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" } %></td>
+	<% if @current_user.is_administrator? %>
+		<td><%= link_to "Show", course %></td>
+		<td><%= link_to "Edit", edit_course_path(course) %></td>
+		<td><%= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" } %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
