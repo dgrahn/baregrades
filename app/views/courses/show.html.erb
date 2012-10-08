@@ -1,10 +1,15 @@
 <% content_for :head do %>
-	<h1><%= @course.name %></h1>
-	<h2><%= @course.identifier %> &mdash; <%= "%02d" % @course.section %></h2>
+	<% render "head" %>
 <% end %>
+
 <% content_for :nav do %>
+	<div class="right">
+		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+	</div>
+
 	<%= link_to "Edit", edit_course_path(@course) %>
 	<%= link_to "Leave", course_leave_path(@course) %>
+	
 	<!-- TODO: Change these to actual links
 	<a href="#">Summary</a>
 	<a href="#">Analysis</a>
@@ -16,47 +21,36 @@
 <p><%= @course.description %></p>
 
 <p>
-  <b>Pin:</b>
-  <%= @course.pin %>
-</p>
-
-<p>
-  <b>Student managed:</b>
-  <%= @course.student_managed %>
-</p>
-
-<p>
-  <b>Credits:</b>
-  <%= @course.credits %>
-</p>
-
-<p>
-  <b>Points based:</b>
-  <%= @course.points_based %>
+  <b>Pin:</b> <%= @course.pin %><br/>
+  <b>Student managed:</b> <%= @course.student_managed %><br/>
+  <b>Credits:</b> <%= @course.credits %><br/>
+  <b>Points based:</b> <%= @course.points_based %><br/>
 </p>
 
 <p><b>Assignment Types:</b></p>
 <table>
-	<tr>
-		<th>Name</th>
-		<th>Description</th>
-		<th>Worth</th>
-		<th></th>
-	</tr>
-	<% @course.assignment_types.each do |assignment_type| %>
+	<thead>
 		<tr>
-			<td><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %></td>
-			<td><%= assignment_type.description %></td>
-			<td><%= assignment_type.worth %></td>
-			<td><%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete %></td>
-		</tr>		
-	<% end %>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Grade</th>
+			<th>Worth</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @course.assignment_types.each do |assignment_type| %>
+			<% grade = assignment_type.user_grade(@current_user) %>
+			<tr>
+				<td><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %></td>
+				<td><%= assignment_type.description %></td>
+				<td><%= "%02d\%" % grade if grade %></td>
+				<td><%= "%02d\%" % assignment_type.worth %></td>
+				<td><%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete %></td>
+			</tr>		
+		<% end %>
+	</tbody>
 </table>
-
-<p>
-  <b>Number of students:</b>
-  <%= number_of_students %>
-</p>
 
 <p>
   <b>Grade Scale:</b>

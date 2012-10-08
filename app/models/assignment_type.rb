@@ -1,9 +1,25 @@
 class AssignmentType < ActiveRecord::Base
-  attr_accessible :description, :name, :worth, :course_id
-  
-  validates :name, :presence => true
-  validates :worth, :presence => true, :numericality => true
-  
-  belongs_to :course
-  has_many :assignments
+	attr_accessible :description, :name, :worth, :course_id
+
+	validates :name, :presence => true
+	validates :worth, :presence => true, :numericality => true
+
+	belongs_to :course
+	has_many :assignments
+
+	def user_grade(user)
+		totalGrade = 0
+		totalWorth = 0
+		self.assignments.each do |assignment|
+			grade = assignment.user_grade(user)
+			if grade
+				totalGrade += grade
+				totalWorth += assignment.worth
+			end
+		end
+
+		if totalWorth != 0
+			return  totalGrade / totalWorth * 100
+		end
+	end
 end

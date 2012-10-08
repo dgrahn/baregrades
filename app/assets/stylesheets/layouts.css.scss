@@ -24,7 +24,8 @@ h1, h2, h3, h4, h5, h6 {
 		line-height: 2em;
 		margin: -0.5em 0 1em;}
 	h2 {
-		font-size: 2em;}
+		font-size: 2em;
+		margin: 0 0 0.25em;}
 	h3 {}
 	h4 {}
 	h5 {}
@@ -49,8 +50,9 @@ table {
 		padding: 1em;}
 
 form {}
-	input {
+	input, textarea {
 		display: block;
+		font: normal 1em Verdana, Arial, Helvetica, sans-serif;
 		margin: 0 0 2em;
 		padding: 0.25em;}
 	label {
@@ -63,6 +65,7 @@ form {}
 	border: solid 1px #B5E710;
 	margin: 0 0 2em;
 	padding: 1em;}
+
 
 /* --- Layout --- */
 body {}
@@ -112,7 +115,7 @@ body {}
 		background-image: -moz-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -webkit-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -ms-linear-gradient(left , #180942 22%, #73166D 81%);
-		background-image: -webkit-gradient(linear, left top, right top, color-stop(0.22, #180942), color-stop(0.81, #73166D));
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #180942), color-stop(0.81, #73166D));
 		box-shadow: 0 0 20px #000 inset;
 		color: #FFF;
 		padding: 3em 0;}
@@ -123,6 +126,7 @@ body {}
 			margin: 0;}
 
 	#page-nav {
+		color: #666;
 		background: #EEE;
 		border-bottom: 1px solid #DDD;
 		margin: 0 0 4em;}
@@ -131,13 +135,20 @@ body {}
 			padding: 1em;}
 			#page-nav a:hover {
 				background: #DDD;}
+		#page-nav .right {
+			float: right;
+			padding: 1em 0;}
+		#page-nav img {
+			display: inline-block;
+			height: 1em;
+			padding: 0 0 0 0.5em;}
 
 	#sidebar {
 		float: left;
 		width: 20%;}
-		#sidebar > nav {
+		#actions {
 			margin: 0 0 2em;}
-			#sidebar > nav a {
+			#actions a {
 				background: #2A8FBD;
 				background-image: -webkit-linear-gradient(top, #2A8FBD, #195671);
 				border-radius: 0.25em;
@@ -147,6 +158,22 @@ body {}
 				display: block;
 				padding: 0.5em 0.75em;
 				text-decoration: none;}
+		#courses {}
+			#courses a {
+				display: block;
+				border: 1px solid #EEE;
+				border-radius: 0.25em;
+				padding: 1em;
+				text-decoration: none;}
+				#courses a:hover {
+					background: #EEE;}
+				#courses span.grade {
+					background: #EEE;
+					border-top-left-radius: 0.25em;
+					border-bottom-left-radius: 0.25em;
+					display: inline-block;
+					margin: -1em 0.5em -1em -1em;
+					padding: 1em;}
 
 	#content {
 		float: right;

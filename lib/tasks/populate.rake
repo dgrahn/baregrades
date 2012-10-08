@@ -26,18 +26,14 @@ namespace :db do
 			#u.password 			 = 'password'
 			#u.password_confirmation = 'password'
 		end
-		
-		# A course that we know
-		Course.create(
-			:credits 			=> 3.0,
-			:description 		=> "Program applications that can run on more than one processor",
-			:identifier 		=> "CS-4210",
-			:name 				=> "Parallel Computing",
-			:pin 				=> 1111,
-			:points_based 		=> 0,
-			:section 			=> 01,
-			:student_managed 	=> 1 )
-		
+
+		Assignment.populate amount do |as|
+			as.description 	= Populator.sentences(2..10)
+			as.name 		= Populator.words(1)
+			as.worth		= rand(1..100)
+			as.assignment_type_id = rand(1..amount)
+		end
+
 		# Course Generated Sample Data
 		i = 2
 		Course.populate amount do |cr|
@@ -121,6 +117,102 @@ namespace :db do
 		[Access, Assignment, AssignmentType, Course, Grade, GradeScale, Role, User].each(&:delete_all)
 		
 		puts "Done!"
+	end
+
+	task :parallel => :environment do
+		@parallel = Course.create(
+			:credits 			=> 3.0,
+			:description 		=> "Program applications that can run on more than one processor",
+			:identifier 		=> "CS-4210",
+			:name 				=> "Parallel Computing",
+			:pin 				=> 1111,
+			:points_based 		=> false,
+			:section 			=> 01,
+			:student_managed 	=> true)
+			
+			@homework = AssignmentType.create(
+				:name 			=> "Homework",
+				:description 	=> "The worst part of the course.",
+				:worth 			=> 15,
+				:course_id 		=> @parallel.id)
+				
+				Assignment.create(
+					:name				=> "Homework 1",
+					:description		=> "Your standard homework.",
+					:worth				=> 50,
+					:assignment_type_id => @homework.id)
+
+				Assignment.create(
+					:name				=> "Homework 2",
+					:description		=> "Your standard homework.",
+					:worth				=> 50,
+					:assignment_type_id => @homework.id)
+
+				Assignment.create(
+					:name				=> "Homework 3",
+					:description		=> "Your standard homework.",
+					:worth				=> 50,
+					:assignment_type_id => @homework.id)
+
+			@projects = AssignmentType.create(
+				:name 			=> "Projects",
+				:description 	=> "The bread and butter of the course.",
+				:worth 			=> 60,
+				:course_id 		=> @parallel.id)
+
+				Assignment.create(
+					:name 				=> "Project 1",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+					
+				Assignment.create(
+					:name 				=> "Project 2",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+					
+				Assignment.create(
+					:name 				=> "Project 3",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+					
+				Assignment.create(
+					:name 				=> "Project 4",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+					
+				Assignment.create(
+					:name 				=> "Project 5",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+				
+				Assignment.create(
+					:name 				=> "Project 6",
+					:description		=> "It's a project. Written in parallel. With analysis.",
+					:worth				=> 100,
+					:assignment_type_id => @projects.id)
+
+			@exams = AssignmentType.create(
+				:name 			=> "Exams",
+				:description 	=> "Take home and extremely long, but well done.",
+				:worth 			=> 30,
+				:course_id 		=> @parallel.id)
+
+				Assignment.create(
+					:name 				=> "Midterm",
+					:description		=> "Gallagher has great tests. You learn a lot, but it takes a long time.",
+					:worth				=> 100,
+					:assignment_type_id => @exams.id)
+
+				Assignment.create(
+					:name 				=> "Final",
+					:description		=> "Gallagher has great tests. You learn a lot, but it takes a long time.",
+					:worth				=> 100,
+					:assignment_type_id => @exams.id)
 	end
 	
 	desc "Create Default Administrators"

@@ -1,5 +1,5 @@
 <% content_for :head do %>
-	<h1><%= @course.name %> :: <%= @assignment_type.name %></h1>
+	<% render "head" %>
 <% end %>
 
 <h1><%= @assignment.name %></h1>
@@ -20,7 +20,7 @@
 
 <p>
 	<b>Grade:</b>
-	<%= @grade.grade if @grade %>
+	<%= @assignment.user_grade(@current_user) %>
 </p>
 
 <%= manage_grade_path %> |

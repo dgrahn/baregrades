@@ -30,13 +30,19 @@
 
 <div>
 	<section id="sidebar">
-		<nav>
+		<nav id="actions">
 			<%= link_to "Join a Course", courses_path %>
 		</nav>
 		<% if @current_user %>
-			<% @current_user.courses.each do |course| %>
-				<%= link_to course.name, course %>
-			<% end %>
+			<h2>Courses</h2>
+			<nav id="courses">
+				<% @current_user.courses.each do |course| %>
+					<a href="<%= course_path(course) %>">
+						<span class="grade"><%= "%02d" % course.user_grade(@current_user) %></span>
+						<%= course.name %>
+					</a>
+				<% end %>
+			</nav>
 		<% end %>
 	</section>
 	<section id="content">
