@@ -7,6 +7,7 @@
 		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
 	</div>
 
+	<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %>
 	<%= link_to "Edit", edit_course_path(@course) %>
 	<%= link_to "Leave", course_leave_path(@course) %>
 	
@@ -56,6 +57,3 @@
   <b>Grade Scale:</b>
   <%= render :partial => "gradeScale", :locals => { :course => @course} %>
 </p>
-
-<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> |
-<%= link_to "Back", root_path %>

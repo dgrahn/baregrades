@@ -1,8 +1,17 @@
 <% content_for :head do %>
 	<% render "head" %>
 <% end %>
+<% content_for :nav do %>
+	<div class="right">
+		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+	</div>
+
+	<%= manage_grade_path %>
+	<%= link_to "Edit", edit_assignment_path(@assignment) %>
+<% end %>
 
 <h1><%= @assignment.name %></h1>
+
 <p>
   <b>Name:</b>
   <%= @assignment.name %>
@@ -22,7 +31,3 @@
 	<b>Grade:</b>
 	<%= @assignment.user_grade(@current_user) %>
 </p>
-
-<%= manage_grade_path %> |
-<%= link_to "Edit", edit_assignment_path(@assignment) %> |
-<%= link_to "Back", assignments_path %>

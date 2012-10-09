@@ -237,9 +237,9 @@ namespace :db do
 					:email  		=> 'jengel@cedarville.edu')
 					
 		a3 = User.create(:first_name 	=> 'Matthew',
-					:middle_name 	=> '?',
+					:middle_name 	=> 'John',
 					:last_name 		=> 'Brooker',
-					:username 		=> 'matBro', 
+					:username 		=> 'mattbro', 
 					:password 		=> 'password',
 					:password_confirmation => 'password',
 					:email  		=> 'mbrooker@cedarville.edu')

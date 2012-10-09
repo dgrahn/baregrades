@@ -1,6 +1,15 @@
 <% content_for :head do %>
 	<% render "head" %>
 <% end %>
+<% content_for :nav do %>
+	<div class="right">
+		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+	</div>
+
+	<%= link_to "Add Assignment", new_assignment_type_assignment_path(@assignment_type) %>
+	<%= link_to "Edit", edit_course_assignment_type_path(@assignment_type) %>
+<% end %>
+
 <p>
   <b>Description:</b> <%= @assignment_type.description %><br/>
   <b>Worth:</b> <%= @assignment_type.worth %>
@@ -25,8 +34,3 @@
 		</tr>		
 	<% end %>
 </table>
-
-
-<%= link_to "Add Assignment", new_assignment_type_assignment_path(@assignment_type) %> |
-<%= link_to "Edit", edit_course_assignment_type_path(@assignment_type) %> |
-<%= link_to "Back", course_path(@course) %>

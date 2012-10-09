@@ -1,6 +1,10 @@
 <% content_for :head do %>
 	<h1>Account</h1>
 <% end %>
+<% content_for :nav do %>
+	<%= link_to "Add Role", new_user_access_path(@user) %>
+	<%= link_to "Edit", edit_user_path(@user) %>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 
@@ -44,6 +48,3 @@
 		</tr>
 	<% end %>
 </table>
-<%= link_to "Add Role", new_user_access_path(@user) %> |
-<%= link_to "Edit", edit_user_path(@user) %> |
-<%= link_to "Back", users_path %>
