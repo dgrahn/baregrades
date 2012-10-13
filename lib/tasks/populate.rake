@@ -216,18 +216,18 @@ namespace :db do
 	end
 	
 	task :themes => :environment do
-		Themes.create(:name 		=> "Goldfish",
-					  :css_class 	=> "goldfish")
-		Themes.create(:name 		=> "Snow Purple",
-					  :css_class 	=> "snowpurple")
-		Themes.create(:name 		=> "Cheer Up Emo Kid",
-					  :css_class 	=> "cheerupemokid")
-		Themes.create(:name 		=> "Wasabi Suicide",
-					  :css_class 	=> "wasabisuicide")
-		Themes.create(:name 		=> "Wordless",
-					  :css_class 	=> "wordless")
-		Themes.create(:name 		=> "Atomic Bikini",
-					  :css_class 	=> "atomicbikini")
+		Theme.create(:name 		=> "Goldfish",
+					 :css_class 	=> "goldfish")
+		Theme.create(:name 		=> "Snow Purple",
+					 :css_class 	=> "snowpurple")
+		Theme.create(:name 		=> "Cheer Up Emo Kid",
+					 :css_class 	=> "cheerupemokid")
+		Theme.create(:name 		=> "Wasabi Suicide",
+					 :css_class 	=> "wasabisuicide")
+		Theme.create(:name 		=> "Wordless",
+					 :css_class 	=> "wordless")
+		Theme.create(:name 		=> "Atomic Bikini",
+					 :css_class 	=> "atomicbikini")
 	end
 	
 	desc "Create Default Administrators"
