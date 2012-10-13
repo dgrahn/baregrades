@@ -5,6 +5,8 @@
 <% end %>
 
 <h1>Courses</h1>
-<% @user.courses.each do |course| %>
-	<%= link_to course.name, course %>
-<% end %>
+<ul>
+	<% @user.courses.each do |course| %>
+		<li><%= link_to course.name, course %></li>
+	<% end %>
+</ul>

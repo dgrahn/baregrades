@@ -1,14 +1,70 @@
 <% if !grade_scale.blank? %>
-	<%= link_to "Edit Grade Scale", edit_course_grade_scale_path(course, grade_scale) %>
-	<% grade_scale.attributes.each do |attr_name, attr_value| %>
-		<% if !attr_value.blank? &&
-		attr_name != "id" &&
-		attr_name != "course_id" &&
-		attr_name != "created_at" &&
-		attr_name != "updated_at" %>			
-			<p><%= attr_name%> = <%= attr_value%></p>
-		<% end %>
-	<% end %>
+	<table>
+		<tr>
+			<td><strong>A+</strong></td>
+			<td><%= grade_scale.a_plus %></td>
+		</tr>
+		<tr>
+			<td><strong>A</strong></td>
+			<td><%= grade_scale.a %></td>
+		</tr>
+		<tr>
+			<td><strong>A-</strong></td>
+			<td><%= grade_scale.a_minus %></td>
+		</tr>
+		
+		<tr>
+			<td><strong>B+</strong></td>
+			<td><%= grade_scale.b_plus %></td>
+		</tr>
+		<tr>
+			<td><strong>B</strong></td>
+			<td><%= grade_scale.b %></td>
+		</tr>
+		<tr>
+			<td><strong>B-</strong></td>
+			<td><%= grade_scale.b_minus %></td>
+		</tr>
+		
+		<tr>
+			<td><strong>C+</strong></td>
+			<td><%= grade_scale.c_plus %></td>
+		</tr>
+		<tr>
+			<td><strong>C</strong></td>
+			<td><%= grade_scale.c %></td>
+		</tr>
+		<tr>
+			<td><strong>C-</strong></td>
+			<td><%= grade_scale.c_minus %></td>
+		</tr>
+		
+		<tr>
+			<td><strong>D+</strong></td>
+			<td><%= grade_scale.d_plus %></td>
+		</tr>
+		<tr>
+			<td><strong>D</strong></td>
+			<td><%= grade_scale.d %></td>
+		</tr>
+		<tr>
+			<td><strong>D-</strong></td>
+			<td><%= grade_scale.d_minus %></td>
+		</tr>
+		
+		<tr>
+			<td><strong>F+</strong></td>
+			<td><%= grade_scale.f_plus %></td>
+		</tr>
+		<tr>
+			<td><strong>F</strong></td>
+			<td><%= grade_scale.f %></td>
+		</tr>
+		<tr>
+			<td><strong>F-</strong></td>
+			<td><%= grade_scale.f_minus %></td>
+		</tr>
+	</table>
 <% else %>
 	A grade scale has not been created! <%= link_to "new Grade Scale", new_course_grade_scale_path(course, grade_scale) %>
 <% end %>

@@ -35,7 +35,7 @@ class GradesController < ApplicationController
 	end
 
 	def edit
-		@grade = Grade.find(params[:id])
+		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 	end
 
 	def create

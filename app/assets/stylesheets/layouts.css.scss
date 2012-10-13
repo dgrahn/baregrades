@@ -34,6 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 p, ul, ol {
 	line-height: 2.5em;
 	margin: 0 0 2em;}
+	ul, ol {
+		margin-left: 2em;}
 	p {}
 	ul {}
 	ol {}
@@ -98,8 +100,8 @@ body {}
 				height: 100%;
 				line-height: 2.8em;}
 				nav#user a {
-					border-bottom: 0.2em solid #444;
-					color: #666;
+					border-bottom: 0.2em solid #666;
+					color: #888;
 					display: inline-block;
 					height: 2.8em;
 					margin: 0 0 0 0.5em;
@@ -110,12 +112,45 @@ body {}
 						color: #FFF;}
 
 	#content-head {
+		/* -- Snow Purple -- */
+		/*
 		background-image: linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -o-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -moz-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -webkit-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -ms-linear-gradient(left , #180942 22%, #73166D 81%);
 		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #180942), color-stop(0.81, #73166D));
+		*/
+		
+		/* -- Goldfish -- */
+		background-image: linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+		
+		/* -- Cheer up Emo Kid -- */
+		/*
+		background-image: linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -o-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -moz-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -webkit-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -ms-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.20, #4ECDC4), color-stop(0.50, #C7F464), color-stop(0.80, #FF6B6B));
+		*/
+		
+		/* -- Wasabi Suicide -- */
+		/*
+		background-image: linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -o-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -moz-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -webkit-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -ms-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #D4EE5E), color-stop(0.81, #FF4242));
+		*/
+		
+
 		box-shadow: 0 0 20px #000 inset;
 		color: #FFF;
 		padding: 3em 0;}
@@ -163,6 +198,7 @@ body {}
 				display: block;
 				border: 1px solid #EEE;
 				border-radius: 0.25em;
+				margin: 0 0 1em;
 				padding: 1em;
 				text-decoration: none;}
 				#courses a:hover {
@@ -174,6 +210,15 @@ body {}
 					display: inline-block;
 					margin: -1em 0.5em -1em -1em;
 					padding: 1em;}
+
+	.dropdown {
+		background: #F0F0F0;
+		margin: -4em 0 2em;
+		padding: 0 2em 1px;}
+		.dropdown > div {
+			padding: 4em 0 1px;}
+		.dropdown  nav {
+			margin: 0 0 1em;}
 
 	#content {
 		float: right;

@@ -39,7 +39,7 @@
 				<% @current_user.courses.each do |course| %>
 					<a href="<%= course_path(course) %>">
 						<% grade = course.user_grade(@current_user) %>
-						<span class="grade"><%= "%02d" %  grade if grade %></span>
+						<span class="grade"><%= grade ? "%02d" %  grade : "n/a" %></span>
 						<%= course.name %>
 					</a>
 				<% end %>

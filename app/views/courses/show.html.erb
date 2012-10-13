@@ -4,31 +4,39 @@
 
 <% content_for :nav do %>
 	<div class="right">
+		<a class="dropdown" href="#">Info</a>
 		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
 	</div>
 
-	<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %>
-	<%= link_to "Edit", edit_course_path(@course) %>
-	<%= link_to "Leave", course_leave_path(@course) %>
-	
-	<!-- TODO: Change these to actual links
-	<a href="#">Summary</a>
-	<a href="#">Analysis</a>
-	<a href="#">Calendar</a>
-	<a href="#">Actions</a>
-	-->
+	<%= link_to "Summary", course_path(@course) %>
+	<a href="#">//Analysis</a>
+	<a href="#">//Calendar</a>
 <% end %>
 
-<p><%= @course.description %></p>
+<section class="dropdown">
+	<div>
+		<h2>Course Info</h2>
+		
+		<nav>
+			<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> | 
+			<%= link_to "Edit", edit_course_path(@course) %> |
+			<%= link_to "Edit Grade Scale", edit_course_grade_scale_path(@course) %> |
+			<%= link_to "Leave", course_leave_path(@course) %>
+		</nav>
 
-<p>
-  <b>Pin:</b> <%= @course.pin %><br/>
-  <b>Student managed:</b> <%= @course.student_managed %><br/>
-  <b>Credits:</b> <%= @course.credits %><br/>
-  <b>Points based:</b> <%= @course.points_based %><br/>
-</p>
+		<p><%= @course.description %></p>
 
-<p><b>Assignment Types:</b></p>
+		<p>
+		  <b>Pin:</b> <%= @course.pin %><br/>
+		  <b>Student managed:</b> <%= @course.student_managed %><br/>
+		  <b>Credits:</b> <%= @course.credits %><br/>
+		  <b>Points based:</b> <%= @course.points_based %><br/>
+		</p>		
+
+		<%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>
+	</div>
+</section>
+
 <table>
 	<thead>
 		<tr>
@@ -52,8 +60,3 @@
 		<% end %>
 	</tbody>
 </table>
-
-<p>
-  <b>Grade Scale: </b>
-	<%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>
-</p>
