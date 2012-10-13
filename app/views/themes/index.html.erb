@@ -1,0 +1,26 @@
+<%= content_for :head do %>
+	<h1>Themes</h1>
+<% end %>
+<%= content_for :nav do %>
+	<%= link_to "New Theme", new_theme_path %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Class</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @themes.each do |theme| %>
+  <tr>
+    <td><%= theme.name %></td>
+    <td><%= theme.css_class %></td>
+    <td><%= link_to "Show", theme %></td>
+    <td><%= link_to "Edit", edit_theme_path(theme) %></td>
+    <td><%= link_to "Destroy", theme, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>

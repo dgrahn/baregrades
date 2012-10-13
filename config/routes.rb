@@ -1,4 +1,6 @@
 BareGrades::Application.routes.draw do
+  resources :themes
+
 	root :to => "home#index"
 
 

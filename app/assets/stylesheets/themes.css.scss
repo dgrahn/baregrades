@@ -17,12 +17,14 @@
 	}
 	
 .goldfish {
-	background-image: linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+	background-image: url(/assets/themes/goldfish.png), linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: url(/assets/themes/goldfish.png), -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: url(/assets/themes/goldfish.png), -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: url(/assets/themes/goldfish.png), -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: url(/assets/themes/goldfish.png), -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: url(/assets/themes/goldfish.png), -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+	background-position: top right;
+	background-repeat: no-repeat;
 	}
 
 .wasabisuicide {
@@ -33,3 +35,25 @@
 	background-image: -ms-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
 	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #D4EE5E), color-stop(0.81, #FF4242));
 	}
+
+.wordless {
+	background-image: linear-gradient(left , #8FBE00 22%, #1C140D 81%);
+	background-image: -o-linear-gradient(left , #8FBE00 22%, #1C140D 81%);
+	background-image: -moz-linear-gradient(left , #8FBE00 22%, #1C140D 81%);
+	background-image: -webkit-linear-gradient(left , #8FBE00 22%, #1C140D 81%);
+	background-image: -ms-linear-gradient(left , #8FBE00 22%, #1C140D 81%);
+	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #1C140D));
+	}
+
+.atomicbikini {
+	background-image: url(/assets/themes/atomicbikini.png), linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+	background-image: url(/assets/themes/atomicbikini.png), -o-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+	background-image: url(/assets/themes/atomicbikini.png), -moz-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+	background-image: url(/assets/themes/atomicbikini.png), -webkit-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+	background-image: url(/assets/themes/atomicbikini.png), -ms-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+	background-image: url(/assets/themes/atomicbikini.png), -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #AEE239));
+	background-position: center left;
+	background-repeat: no-repeat;
+	}
+	.atomicbikini h1, .atomicbikini h2 {
+		color: #222;}

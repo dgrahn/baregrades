@@ -33,6 +33,11 @@
   <%= @user.email %>
 </p>
 
+<p>
+	<b>Theme:</b>
+	<%= @user.theme ? @user.theme.name : "Not Set" %>
+<p>
+
 <p><b>Roles:</b></p>
 <table>
 	<tr>

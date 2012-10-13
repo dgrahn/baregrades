@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013183859) do
+ActiveRecord::Schema.define(:version => 20121013194904) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -85,6 +85,13 @@ ActiveRecord::Schema.define(:version => 20121013183859) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "themes", :force => true do |t|
+    t.string   "name"
+    t.string   "css_class"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "first_name"
@@ -95,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20121013183859) do
     t.datetime "updated_at",    :null => false
     t.text     "password_hash"
     t.text     "password_salt"
-    t.integer  "theme"
+    t.integer  "theme_id"
   end
 
 end

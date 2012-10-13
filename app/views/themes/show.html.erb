@@ -1,0 +1,18 @@
+<%= content_for :head do %>
+	<h1>Themes</h1>
+<% end %>
+
+<%= content_for :nav do %>
+	<%= link_to "Edit", edit_theme_path(@theme) %>
+	<%= link_to "Back", themes_path %>
+<% end %>
+
+<p>
+  <b>Name:</b>
+  <%= @theme.name %>
+</p>
+
+<p>
+  <b>Class:</b>
+  <%= @theme.css_class %>
+</p>

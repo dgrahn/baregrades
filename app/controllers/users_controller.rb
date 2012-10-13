@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		@themes = Theme.all
 
 		respond_to do |format|
 			format.html {render :layout => "login"}
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@themes = Theme.all
 	end
 
 	def create
@@ -44,6 +46,7 @@ class UsersController < ApplicationController
 				format.html { redirect_to @user, notice: 'User was successfully created.' }
 				format.json { render json: @user, status: :created, location: @user }
 			else
+				@themes = Theme.all
 				format.html { render action: "new" }
 				format.json { render json: @user.errors, status: :unprocessable_entity }
 			end
@@ -58,6 +61,7 @@ class UsersController < ApplicationController
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { head :no_content }
 			else
+				@themes = Theme.all
 				format.html { render action: "edit" }
 				format.json { render json: @user.errors, status: :unprocessable_entity }
 			end

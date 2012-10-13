@@ -4,21 +4,6 @@
 	<title>BareGrades</title>
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%
-		case @current_user.theme
-			when 1
-				theme = "goldfish"
-			when 2
-				theme = "snowpurple"
-			when 3
-				theme = "cheerupemokid"
-			when 4
-				theme = "wasabisuicide"
-			else
-				theme = "goldfish"
-		end
-	%>
-
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
@@ -33,7 +18,7 @@
 	</div>
 </header>
 
-<header id="content-head" class="<%= theme %>">
+<header id="content-head" class="<%= @current_user.theme ? @current_user.theme.css_class : "goldfish" %>">
 	<div>
 		<%= yield :head %>
 	</div>

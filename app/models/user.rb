@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :email, :first_name, :last_name, :middle_name, :username, :password, :password_confirmation, :theme
+	attr_accessible :email, :first_name, :last_name, :middle_name, :username, :password, :password_confirmation, :theme_id
 	attr_accessor :password
 
 	before_save :encrypt_password
@@ -7,13 +7,15 @@ class User < ActiveRecord::Base
 	has_many :accesses
 	has_many :courses, :through => :accesses
 	has_many :roles, :through => :accesses
-	has_many :grades
+	belongs_to :theme
 
 	validates :username,	:presence => true,	:uniqueness => true
-	validates :password,	:presence => true,	:length => {:minimum => 5}, :confirmation => true
+	validates :password,	:presence => true, :length => {:minimum => 5}, :confirmation => true, :on => "create"
 	validates :email, 		:presence => true
 	validates :first_name,	:presence => true
 	validates :last_name,	:presence => true
+	validates :theme_id,	:numericality => true
+	
 
 	def self.authenticate(username, password)
 		user = find_by_username(username)

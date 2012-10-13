@@ -39,8 +39,8 @@
 	<%= f.label :email %>
 	<%= f.text_field :email %>
 	
-	<%= f.label :theme %>
-	<%= f.number_field :theme %>
+	<%= f.label :theme_id %>
+	<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
 
 	<%= f.submit %>
 <% end %>

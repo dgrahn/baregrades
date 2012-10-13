@@ -14,20 +14,14 @@
 	</div>
 	<% end %>
 
-	<div class="field">
-		<%= f.hidden_field :user_id, :value => params[:user_id] %>
-	</div>
-	<div class="field">
-		<%= f.label :role_id %><br />
-		<%= f.select :role_id, options_from_collection_for_select(@all_roles, :id, :name) %>
-	</div>
+	
+	<%= f.hidden_field :user_id, :value => params[:user_id] %>
 
-	<div class="field">
-		<%= f.label :course_id %><br />
-		<%= f.select :course_id, options_from_collection_for_select(@all_courses, :id, :name) %>
-	</div>
+	<%= f.label :role_id %>
+	<%= f.select :role_id, options_from_collection_for_select(@all_roles, :id, :name) %>
 
-	<div class="actions">
-		<%= f.submit %>
-	</div>
+	<%= f.label :course_id %>
+	<%= f.select :course_id, options_from_collection_for_select(@all_courses, :id, :name) %>
+
+	<%= f.submit %>
 <% end %>
