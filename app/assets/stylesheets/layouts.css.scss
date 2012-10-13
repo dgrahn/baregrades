@@ -204,12 +204,14 @@ body {}
 				#courses a:hover {
 					background: #EEE;}
 				#courses span.grade {
-					background: #EEE;
 					border-top-left-radius: 0.25em;
 					border-bottom-left-radius: 0.25em;
 					display: inline-block;
+					font-weight: bold;
 					margin: -1em 0.5em -1em -1em;
-					padding: 1em;}
+					text-align: center;
+					padding: 1em;
+					width: 2em;}
 
 	.dropdown {
 		background: #F0F0F0;
@@ -223,6 +225,23 @@ body {}
 	#content {
 		float: right;
 		width: 74%;}
+
+	.grade.Aplus 	{background: #8A9B0F; color: #FFF;}
+	.grade.A 		{background: #8A9B0F; color: #FFF;}
+	.grade.Aminus	{background: #8A9B0F; color: #FFF;}
+	.grade.Bplus 	{background: #F8CA00; color: #FFF;}
+	.grade.B 		{background: #F8CA00; color: #FFF;}
+	.grade.Bminus	{background: #F8CA00; color: #FFF;}
+	.grade.Cplus 	{background: #E97F02; color: #FFF;}
+	.grade.C 		{background: #E97F02; color: #FFF;}
+	.grade.Cminus	{background: #E97F02; color: #FFF;}
+	.grade.Dplus 	{background: #BD1550; color: #FFF;}
+	.grade.D 		{background: #BD1550; color: #FFF;}
+	.grade.Dminus	{background: #BD1550; color: #FFF;}
+	.grade.Fplus 	{background: #490A3D; color: #FFF;}
+	.grade.F 		{background: #490A3D; color: #FFF;}
+	.grade.Fminus	{background: #490A3D; color: #FFF;}
+	.grade.na		{background: #EEEEEE; color: #444;}
 
 @media screen and (max-width:1200px) {
 	body > div,

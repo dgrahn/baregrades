@@ -3,6 +3,7 @@ class Assignment < ActiveRecord::Base
 
 	validates :name, :presence => true
 	validates :worth, :presence => true, :numericality => true
+	validates_length_of :description, :maximum => 144
 
 	has_many :grades
 	belongs_to :assignment_type
