@@ -54,6 +54,6 @@
 </table>
 
 <p>
-  <b>Grade Scale:</b>
-  <%= render :partial => "gradeScale", :locals => { :course => @course} %>
+  <b>Grade Scale: </b>
+	<%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>
 </p>

@@ -24,8 +24,9 @@ class GradeScalesController < ApplicationController
   # GET /grade_scales/new
   # GET /grade_scales/new.json
   def new
-    @grade_scale = GradeScale.new
-
+	@course 		= Course.find(params[:course_id])
+    @grade_scale 	= GradeScale.new
+	
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @grade_scale }
@@ -34,17 +35,20 @@ class GradeScalesController < ApplicationController
 
   # GET /grade_scales/1/edit
   def edit
-    @grade_scale = GradeScale.find(params[:id])
+	@course 		= Course.find(params[:course_id])
+    @grade_scale 	= @course.grade_scale
   end
 
   # POST /grade_scales
   # POST /grade_scales.json
   def create
-    @grade_scale = GradeScale.new(params[:grade_scale])
-
+	@course 		= Course.find(params[:course_id])
+    @grade_scale 	= GradeScale.new(params[:grade_scale])
+	@grade_scale.course_id = params[:course_id]
+	
     respond_to do |format|
       if @grade_scale.save
-        format.html { redirect_to @grade_scale, notice: 'Grade scale was successfully created.' }
+        format.html { redirect_to @course, notice: 'Grade scale was successfully created.' }
         format.json { render json: @grade_scale, status: :created, location: @grade_scale }
       else
         format.html { render action: "new" }
@@ -56,11 +60,12 @@ class GradeScalesController < ApplicationController
   # PUT /grade_scales/1
   # PUT /grade_scales/1.json
   def update
-    @grade_scale = GradeScale.find(params[:id])
+	@course 		= Course.find(params[:course_id])
+	@grade_scale 	= GradeScale.find(params[:id])
 
     respond_to do |format|
       if @grade_scale.update_attributes(params[:grade_scale])
-        format.html { redirect_to @grade_scale, notice: 'Grade scale was successfully updated.' }
+        format.html { redirect_to @course, notice: 'Grade scale was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

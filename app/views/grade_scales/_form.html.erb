@@ -1,4 +1,4 @@
-<%= form_for(@grade_scale) do |f| %>
+<%= form_for([@course, @grade_scale]) do |f| %>
   <% if @grade_scale.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@grade_scale.errors.count, "error") %> prohibited this grade_scale from being saved:</h2>
@@ -11,10 +11,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :course_id %><br />
-    <%= f.number_field :course_id %>
-  </div>
   <div class="field">
     <%= f.label :a_plus %><br />
     <%= f.text_field :a_plus %>

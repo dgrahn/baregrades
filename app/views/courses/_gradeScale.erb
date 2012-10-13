@@ -1,6 +1,5 @@
-<% grade_scale = course.grade_scale%>
-
 <% if !grade_scale.blank? %>
+	<%= link_to "Edit Grade Scale", edit_course_grade_scale_path(course, grade_scale) %>
 	<% grade_scale.attributes.each do |attr_name, attr_value| %>
 		<% if !attr_value.blank? &&
 		attr_name != "id" &&
@@ -11,5 +10,5 @@
 		<% end %>
 	<% end %>
 <% else %>
-	A grade scale has not been created! <%= link_to "new Grade Scale", GradeScale.create(:course_id => course.id) %>
+	A grade scale has not been created! <%= link_to "new Grade Scale", new_course_grade_scale_path(course, grade_scale) %>
 <% end %>
