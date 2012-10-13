@@ -12,8 +12,8 @@ class Course < ActiveRecord::Base
 		self.assignment_types.each do |type|
 			grade = type.user_grade(user)
 			if grade
-				totalGrade += grade
-				totalWorth += 100
+				totalGrade += grade * type.worth
+				totalWorth += 100 * type.worth
 			end
 		end
 
