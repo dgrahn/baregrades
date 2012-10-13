@@ -15,4 +15,15 @@ class Assignment < ActiveRecord::Base
 			return grade.grade
 		end
 	end
+	
+	def user_percentage(user)
+		assignment 	= Assignment.find(self.id)
+		worth 		= assignment.worth
+		grade 		= assignment.user_grade(user)
+		
+		if !grade.blank? && !worth.blank?
+			percent 	= (grade / worth) * 100
+			return percent
+		end
+	end
 end

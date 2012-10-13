@@ -35,6 +35,7 @@
 		<th>Description</th>
 		<th>Grade</th>
 		<th>Worth</th>
+		<th>Percent</th>
 		<th></th>
 	</tr>
 	<% @assignment_type.assignments.each do |assignment| %>
@@ -43,6 +44,7 @@
 			<td><%= assignment.description %></td>
 			<td><%= assignment.user_grade(@current_user) %></td>
 			<td><%= assignment.worth %></td>
+			<td><%= assignment.user_percentage(@current_user) %></td>
 			<td><%= link_to "Delete", assignment_type_assignment_path(assignment), :confirm => "Are you sure?", :method => :delete %></td>
 		</tr>		
 	<% end %>

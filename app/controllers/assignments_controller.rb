@@ -17,8 +17,8 @@ class AssignmentsController < ApplicationController
 
 	def show
 		@assignment = Assignment.find(params[:id])
-		@grade = user_grade()
-
+		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
+		
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @assignment }
@@ -74,10 +74,5 @@ class AssignmentsController < ApplicationController
 			format.html { redirect_to assignments_url }
 			format.json { head :no_content }
 		end
-	end
-
-
-	def user_grade
-		return Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 	end
 end
