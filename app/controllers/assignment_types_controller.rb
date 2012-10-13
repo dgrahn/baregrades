@@ -33,7 +33,7 @@ class AssignmentTypesController < ApplicationController
 
 		respond_to do |format|
 			if @assignment_type.save
-				format.html { redirect_to @assignment_type, notice: 'Assignment type was successfully created.' }
+				format.html { redirect_to [@assignment_type.course, @assignment_type], notice: 'Assignment type was successfully created.' }
 			else
 				format.html { render action: "new" }
 			end
