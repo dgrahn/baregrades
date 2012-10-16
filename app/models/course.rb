@@ -28,29 +28,29 @@ class Course < ActiveRecord::Base
 		if !grade_scale || !grade
 			return 'na'
 		elsif grade_scale.a_plus 	&& grade_scale.a_plus 	<= grade
-			return 'Aplus'
+			return 'a plus'
 		elsif grade_scale.a 		&& grade_scale.a 		<= grade
-			return 'A'
+			return 'a'
 		elsif grade_scale.a_minus 	&& grade_scale.a_minus 	<= grade
-			return 'Aminus'
+			return 'a minus'
 		elsif grade_scale.b_plus 	&& grade_scale.b_plus 	<= grade
-			return 'Bplus'
+			return 'b plus'
 		elsif grade_scale.b 		&& grade_scale.b 		<= grade
-			return 'B'
+			return 'b'
 		elsif grade_scale.b_minus 	&& grade_scale.b_minus 	<= grade
-			return 'Bminus'
+			return 'b minus'
 		elsif grade_scale.c_plus 	&& grade_scale.c_plus 	<= grade
-			return 'Cplus'
+			return 'c plus'
 		elsif grade_scale.c 		&& grade_scale.c 		<= grade
-			return 'C'
+			return 'c'
 		elsif grade_scale.c_minus 	&& grade_scale.c_minus 	<= grade
-			return 'Cminus'
+			return 'c minus'
 		elsif grade_scale.d_plus 	&& grade_scale.d_plus 	<= grade
-			return 'Dplus'
+			return 'd plus'
 		elsif grade_scale.d 		&& grade_scale.d 		<= grade
-			return 'D'
+			return 'd'
 		elsif grade_scale.d_minus 	&& grade_scale.d_minus 	<= grade
-			return 'Dminus'
+			return 'd minus'
 		elsif grade_scale.f 		&& grade_scale.f 		<= grade
 			return 'F'
 		else

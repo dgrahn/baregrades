@@ -200,35 +200,30 @@ body {}
 	margin: 0 0 2em;}
 	.scale .grade {
 		float: left;}
+	.scale .button {
+		margin: 0.5em;
+		width: 0.9em;
+		text-align: center;}
+
 .grade {
 	border-radius: 0.25em;
 	display: block;
 	font-weight: bold;
 	text-align: center;
 	margin: 0.5em;
-	padding: 1em;}
+	padding: 0.5em;}
 	.grade .letter {
 		font: normal 2em Verdana, Arial, Helvetica, sans-serif;}
 	.grade .percentage {
-		font: normal 0.85em Verdana, Arial, Helvetica, sans-serif;}
+		font: normal 1em Verdana, Arial, Helvetica, sans-serif;}
 		.grade .percentage:after {
 			content: "%";}
 
-	.grade.Aplus 	{background: #7FAF1B; color: #FFF;}
-	.grade.A 		{background: #7FAF1B; color: #FFF;}
-	.grade.Aminus	{background: #7FAF1B; color: #FFF;}
-	.grade.Bplus 	{background: #A1DC40; color: #FFF;}
-	.grade.B 		{background: #A1DC40; color: #FFF;}
-	.grade.Bminus	{background: #A1DC40; color: #FFF;}
-	.grade.Cplus 	{background: #FBB829; color: #FFF;}
-	.grade.C 		{background: #FBB829; color: #FFF;}
-	.grade.Cminus	{background: #FBB829; color: #FFF;}
-	.grade.Dplus 	{background: #FF6600; color: #FFF;}
-	.grade.D 		{background: #FF6600; color: #FFF;}
-	.grade.Dminus	{background: #FF6600; color: #FFF;}
-	.grade.Fplus 	{background: #F02311; color: #FFF;}
-	.grade.F 		{background: #F02311; color: #FFF;}
-	.grade.Fminus	{background: #F02311; color: #FFF;}
+	.grade.a 		{background: #7FAF1B; color: #FFF;}
+	.grade.b 		{background: #A1DC40; color: #FFF;}
+	.grade.c 		{background: #FBB829; color: #FFF;}
+	.grade.d 		{background: #FF6600; color: #FFF;}
+	.grade.f 		{background: #F02311; color: #FFF;}
 	.grade.na		{background: #222222; color: #FFF;}
 
 @media screen and (max-width:1200px) {
