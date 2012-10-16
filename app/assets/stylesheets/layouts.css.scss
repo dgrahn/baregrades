@@ -160,7 +160,7 @@ body {}
 		#courses {}
 			#courses a {
 				display: block;
-				border: 1px solid #EEE;
+				border: 1px solid #DDD;
 				border-radius: 0.25em;
 				margin: 0 0 1em;
 				padding: 1em;
@@ -169,17 +169,24 @@ body {}
 				text-overflow: ellipsis;
 				text-wrap: none;
 				white-space: nowrap;}
-				#courses a:hover {
-					background: #EEE;
-					overflow: visible;}
 				#courses span.grade {
-					border-top-left-radius: 0.25em;
-					border-bottom-left-radius: 0.25em;
+					border-top-right-radius: 0;
+					border-bottom-right-radius: 0;
 					display: inline-block;
 					font-weight: bold;
 					margin: -1em 0.5em -1em -1em;
 					text-align: center;
-					padding: 1em;
+					padding: 1.05em;
+					width: 2em;}
+			#courses a:hover {
+				background: #EEE;
+				overflow: visible;}
+			#courses a.assignment_type {
+				padding: 0.5em;
+				margin-left: 1em;}
+				#courses a.assignment_type span.grade {
+					margin: -0.5em 0.5em -0.5em -0.5em;
+					padding: 0.5em;
 					width: 2em;}
 
 
