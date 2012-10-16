@@ -7,6 +7,17 @@
 <h1>Courses</h1>
 <ul>
 	<% @user.courses.each do |course| %>
-		<li><%= link_to course.name, course %></li>
+		<li><%= link_to course.name, course %>
+			<ul>
+				<% course.assignments
+					.where("due_date >= ?", Date.today)
+					.order("due_date")
+					.limit(5).each do |assignment| %>
+						<% assignment.assignment_type %>
+						<li><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment)%>
+						</li>
+				<% end %>
+			</ul>
+		</li>
 	<% end %>
 </ul>

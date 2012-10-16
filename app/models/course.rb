@@ -4,7 +4,9 @@ class Course < ActiveRecord::Base
 	has_one :grade_scale
 	has_many :access
 	has_many :users, :through => :access
-	has_many :assignment_types
+	has_many :assignment_types 
+	has_many :assignments, :through => :assignment_types 
+	
 
 	def user_grade(user)
 		totalGrade = 0
