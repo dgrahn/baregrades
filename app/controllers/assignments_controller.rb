@@ -45,7 +45,7 @@ class AssignmentsController < ApplicationController
 
 		respond_to do |format|
 			if @assignment.save
-				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), notice: 'Assignment was successfully created.' }
+				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), :flash => {:success => "Assignment was successfully created."}}
 			else
 				format.html { render action: "new" }
 			end
@@ -57,7 +57,7 @@ class AssignmentsController < ApplicationController
 
 		respond_to do |format|
 			if @assignment.update_attributes(params[:assignment])
-				format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
+				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), :flash => {:success => "Assignment was successfully created."}}
 				format.json { head :no_content }
 			else
 				format.html { render action: "edit" }
