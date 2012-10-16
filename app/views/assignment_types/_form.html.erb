@@ -1,32 +1,12 @@
-<%= form_for(@assignment_type) do |f| %>
-  <% if @assignment_type.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@assignment_type.errors.count, "error") %> prohibited this assignment_type from being saved:</h2>
+<%= form_for([@course, @assignment_type]) do |f| %>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
 
-      <ul>
-      <% @assignment_type.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<%= f.label :description %><br />
+	<%= f.text_area :description %>
 
-  <div class="field">
-    <%= f.hidden_field :course_id, :value => params[:course_id] %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :worth %><br />
-    <%= f.text_field :worth %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<%= f.label :worth %><br />
+	<%= f.text_field :worth %>
+
+	<%= f.submit %>
 <% end %>

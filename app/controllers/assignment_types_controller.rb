@@ -26,6 +26,7 @@ class AssignmentTypesController < ApplicationController
 
 	def edit
 		@assignment_type = AssignmentType.find(params[:id])
+		@course = Course.find(params[:course_id])
 	end
 
 	def create
@@ -33,7 +34,7 @@ class AssignmentTypesController < ApplicationController
 
 		respond_to do |format|
 			if @assignment_type.save
-				format.html { redirect_to [@assignment_type.course, @assignment_type], notice: 'Assignment type was successfully created.' }
+				format.html { redirect_to [@assignment_type.course, @assignment_type], :flash => {:success => "Assignment type was successfully created."} }
 			else
 				format.html { render action: "new" }
 			end
@@ -42,10 +43,11 @@ class AssignmentTypesController < ApplicationController
 
 	def update
 		@assignment_type = AssignmentType.find(params[:id])
+		@course = @assignment_type.course
 
 		respond_to do |format|
 			if @assignment_type.update_attributes(params[:assignment_type])
-				format.html { redirect_to @assignment_type, notice: 'Assignment type was successfully updated.' }
+				format.html { redirect_to [@course, @assignment_type], :flash => {:success => "Assignment Type was successfully updated."}}
 			else
 				format.html { render action: "edit" }
 			end
