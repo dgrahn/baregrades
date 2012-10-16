@@ -1,5 +1,5 @@
 class Assignment < ActiveRecord::Base
-	attr_accessible :description, :name, :worth, :assignment_type_id
+	attr_accessible :description, :name, :worth, :assignment_type_id, :due_date
 
 	validates :name, :presence => true
 	validates :worth, :presence => true, :numericality => true
