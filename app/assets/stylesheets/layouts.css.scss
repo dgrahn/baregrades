@@ -161,9 +161,14 @@ body {}
 				border-radius: 0.25em;
 				margin: 0 0 1em;
 				padding: 1em;
-				text-decoration: none;}
+				text-decoration: none;				
+				overflow: hidden;
+				text-overflow: ellipsis;
+				text-wrap: none;
+				white-space: nowrap;}
 				#courses a:hover {
-					background: #EEE;}
+					background: #EEE;
+					overflow: visible;}
 				#courses span.grade {
 					border-top-left-radius: 0.25em;
 					border-bottom-left-radius: 0.25em;
