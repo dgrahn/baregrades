@@ -7,7 +7,7 @@
 	</div>
 
 	<%= manage_grade_path %>
-	<%= link_to "Edit", edit_assignment_path(@assignment) %>
+	<%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, @assignment) %>
 <% end %>
 
 <h1><%= @assignment.name %></h1>

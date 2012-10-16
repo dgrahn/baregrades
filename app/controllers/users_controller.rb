@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		@user.theme = Theme.find_by_name("Pond")
 		@themes = Theme.all
 
 		respond_to do |format|
