@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013194904) do
+ActiveRecord::Schema.define(:version => 20121016154908) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -63,9 +63,7 @@ ActiveRecord::Schema.define(:version => 20121013194904) do
     t.decimal  "d_plus"
     t.decimal  "d"
     t.decimal  "d_minus"
-    t.decimal  "f_plus"
     t.decimal  "f"
-    t.decimal  "f_minus"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.date     "due_date"
