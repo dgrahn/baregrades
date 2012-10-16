@@ -4,7 +4,7 @@
 
 <% content_for :nav do %>
 	<div class="right">
-		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+		<%= render :partial => "courses/numberOfStudents" %>
 	</div>
 
 	<%= link_to "Summary", course_path(@course) %>

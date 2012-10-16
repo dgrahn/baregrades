@@ -17,6 +17,10 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	def users
+		@course = Course.find(params[:id])
+	end
+
 	def new
 		@course = Course.new
 

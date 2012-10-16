@@ -136,7 +136,9 @@ body {}
 				background: #DDD;}
 		#page-nav .right {
 			float: right;
-			padding: 1em 0;}
+			overflow: show;}
+			#page-nav .right span {
+				padding: 1em;}
 		#page-nav img {
 			display: inline-block;
 			height: 1em;
@@ -226,7 +228,6 @@ body {}
 		font: normal 1em Verdana, Arial, Helvetica, sans-serif;}
 		.grade .percentage:after {
 			content: "%";}
-
 	.grade.a 		{background: #7FAF1B; color: #FFF;}
 	.grade.b 		{background: #A1DC40; color: #FFF;}
 	.grade.c 		{background: #FBB829; color: #FFF;}

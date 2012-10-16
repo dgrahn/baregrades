@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 			return nil
 		end
 	end
+	
+	def name
+		return "#{first_name} #{last_name}"
+	end
 
 	def encrypt_password
 		if password.present?

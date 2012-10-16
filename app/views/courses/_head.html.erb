@@ -1,2 +1,2 @@
-<h1><%= @course.name %></h1>
+<h1><%= @course.name %><%= local_assigns[:subpage] ? " :: " + subpage : "" %></h1>
 <h2><%= @course.identifier %> &mdash; <%= "%02d" % @course.section %></h2>

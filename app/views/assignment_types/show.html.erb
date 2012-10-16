@@ -1,10 +1,9 @@
 <% content_for :head do %>
-	<% render "head" %>
+	<% render "courses/head", :subpage => @assignment_type.name %>
 <% end %>
 <% content_for :nav do %>
 	<div class="right">
-		<a class="dropdown" href="#">Info</a>
-		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+		<%= render "courses/numberOfStudents" %>
 	</div>
 
 	<%= link_to "Summary", course_path(@course) %>

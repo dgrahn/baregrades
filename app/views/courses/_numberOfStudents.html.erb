@@ -1,0 +1,8 @@
+<span title="# Students in Course">
+	<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+</span>
+<%=
+	if @current_user.is_administrator?
+		link_to "View", course_users_path(@course)
+	end
+%>

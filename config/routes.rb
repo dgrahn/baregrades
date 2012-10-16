@@ -13,6 +13,7 @@ BareGrades::Application.routes.draw do
 
 	get "courses/:id/join" => "accesses#join", :as => "course_join"
 	get "courses/:id/leave" => "accesses#leave", :as => "course_leave"
+	get "courses/:id/users" => "courses#users", :as => "course_users"
 	resources :courses do
 		resources :assignment_types
 		resources :grade_scales

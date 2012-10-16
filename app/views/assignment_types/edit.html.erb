@@ -1,10 +1,10 @@
 <% content_for :head do %>
-	<% render "head" %>
+	<% render "courses/head", :subpage => "#{@assignment_type.name} :: Edit" %>
 <% end %>
 
 <h1>Editing assignment_type</h1>
 
-<%= render 'form' %>
+<%= render "form" %>
 
-<%= link_to 'Show', @assignment_type %> |
-<%= link_to 'Back', assignment_types_path %>
+<%= link_to "Show", @assignment_type %> |
+<%= link_to "Back", assignment_types_path %>
