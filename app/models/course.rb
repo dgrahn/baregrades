@@ -51,12 +51,8 @@ class Course < ActiveRecord::Base
 			return 'D'
 		elsif grade_scale.d_minus 	&& grade_scale.d_minus 	<= grade
 			return 'Dminus'
-		elsif grade_scale.f_plus 	&& grade_scale.f_plus 	<= grade
-			return 'Fplus'
 		elsif grade_scale.f 		&& grade_scale.f 		<= grade
 			return 'F'
-		elsif grade_scale.f_minus 	&& grade_scale.f_minus <= grade
-			return 'Fminus'
 		else
 			return 'na'
 		end
