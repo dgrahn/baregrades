@@ -216,6 +216,8 @@ namespace :db do
 	end
 	
 	task :themes => :environment do
+		Theme.create(:name 		=> "Pond",
+					 :css_class 	=> "pond")
 		Theme.create(:name 		=> "Goldfish",
 					 :css_class 	=> "goldfish")
 		Theme.create(:name 		=> "Snow Purple",

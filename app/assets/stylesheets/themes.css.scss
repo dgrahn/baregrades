@@ -15,6 +15,15 @@
 	background-image: -ms-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
 	background-image: -webkit-gradient(linear, left, right, color-stop(0.20, #4ECDC4), color-stop(0.50, #C7F464), color-stop(0.80, #FF6B6B));
 	}
+
+.pond {
+	background-image: linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+	}
 	
 .goldfish {
 	background-image: url(/assets/themes/goldfish.png), linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
