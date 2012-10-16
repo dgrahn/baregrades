@@ -15,13 +15,13 @@
     <td><%= assignment.name %></td>
     <td><%= assignment.description %></td>
     <td><%= assignment.worth %></td>
-    <td><%= link_to 'Show', assignment %></td>
-    <td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
-    <td><%= link_to 'Destroy', assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Show", assignment %></td>
+    <td><%= link_to "Edit", edit_assignment_path(assignment) %></td>
+    <td><%= link_to "Destroy", assignment, method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Assignment', new_assignment_path %>
+<%= link_to "New Assignment", new_assignment_path %>

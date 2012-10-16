@@ -1,69 +1,43 @@
 <%= form_for([@course, @grade_scale]) do |f| %>
-  <% if @grade_scale.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@grade_scale.errors.count, "error") %> prohibited this grade_scale from being saved:</h2>
-
-      <ul>
-      <% @grade_scale.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :a_plus %><br />
+    <%= f.label :a_plus %>
     <%= f.text_field :a_plus %>
-  </div>
-  <div class="field">
-    <%= f.label :a %><br />
+
+    <%= f.label :a %>
     <%= f.text_field :a %>
-  </div>
-  <div class="field">
-    <%= f.label :a_minus %><br />
+
+    <%= f.label :a_minus %>
     <%= f.text_field :a_minus %>
-  </div>
-  <div class="field">
-    <%= f.label :b_plus %><br />
+
+    <%= f.label :b_plus %>
     <%= f.text_field :b_plus %>
-  </div>
-  <div class="field">
-    <%= f.label :b %><br />
+
+    <%= f.label :b %>
     <%= f.text_field :b %>
-  </div>
-  <div class="field">
-    <%= f.label :b_minus %><br />
+
+    <%= f.label :b_minus %>
     <%= f.text_field :b_minus %>
-  </div>
-  <div class="field">
-    <%= f.label :c_plus %><br />
+
+    <%= f.label :c_plus %>
     <%= f.text_field :c_plus %>
-  </div>
-  <div class="field">
-    <%= f.label :c %><br />
+
+    <%= f.label :c %>
     <%= f.text_field :c %>
-  </div>
-  <div class="field">
-    <%= f.label :c_minus %><br />
+
+    <%= f.label :c_minus %>
     <%= f.text_field :c_minus %>
-  </div>
-  <div class="field">
-    <%= f.label :d_plus %><br />
+
+    <%= f.label :d_plus %>
     <%= f.text_field :d_plus %>
-  </div>
-  <div class="field">
-    <%= f.label :d %><br />
+
+    <%= f.label :d %>
     <%= f.text_field :d %>
-  </div>
-  <div class="field">
-    <%= f.label :d_minus %><br />
+
+    <%= f.label :d_minus %>
     <%= f.text_field :d_minus %>
-  </div>
-  <div class="field">
-    <%= f.label :f %><br />
+	
+	<%= f.label :f %>
     <%= f.text_field :f %>
-  </div>
-  <div class="actions">
+
     <%= f.submit %>
-  </div>
 <% end %>
+

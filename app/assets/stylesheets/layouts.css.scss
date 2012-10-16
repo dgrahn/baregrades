@@ -61,6 +61,9 @@ form {}
 		display: block;
 		margin: 0 0 0.5em;}
 
+/* -- Quick Styles -- */
+.clear {clear: both;}
+
 /* --- Flashes --- */
 #flash_notice, #flash_success {
 	background: #F7FCE6;
@@ -179,18 +182,37 @@ body {}
 					padding: 1em;
 					width: 2em;}
 
-	.dropdown {
-		background: #F0F0F0;
-		margin: -4em 0 2em;
-		padding: 0 2em 1px;}
-		.dropdown > div {
-			padding: 4em 0 1px;}
-		.dropdown  nav {
-			margin: 0 0 1em;}
 
 	#content {
 		float: right;
 		width: 74%;}
+
+.info {
+	background: #EEE;
+	border: 1px solid #DDD;
+	padding: 2em;}
+	.info header {
+		margin: 0 0 1em;}
+		
+
+/* -- Grades --*/
+.scale {
+	margin: 0 0 2em;}
+	.scale .grade {
+		float: left;}
+.grade {
+	border-radius: 0.25em;
+	display: block;
+	font-weight: bold;
+	text-align: center;
+	margin: 0.5em;
+	padding: 1em;}
+	.grade .letter {
+		font: normal 2em Verdana, Arial, Helvetica, sans-serif;}
+	.grade .percentage {
+		font: normal 0.85em Verdana, Arial, Helvetica, sans-serif;}
+		.grade .percentage:after {
+			content: "%";}
 
 	.grade.Aplus 	{background: #7FAF1B; color: #FFF;}
 	.grade.A 		{background: #7FAF1B; color: #FFF;}
@@ -207,7 +229,7 @@ body {}
 	.grade.Fplus 	{background: #F02311; color: #FFF;}
 	.grade.F 		{background: #F02311; color: #FFF;}
 	.grade.Fminus	{background: #F02311; color: #FFF;}
-	.grade.na		{background: #222222; color: #444;}
+	.grade.na		{background: #222222; color: #FFF;}
 
 @media screen and (max-width:1200px) {
 	body > div,

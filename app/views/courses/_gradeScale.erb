@@ -1,63 +1,65 @@
 <% if !grade_scale.blank? %>
-	<table>
-		<tr>
-			<td><strong>A+</strong></td>
-			<td><%= grade_scale.a_plus %></td>
-		</tr>
-		<tr>
-			<td><strong>A</strong></td>
-			<td><%= grade_scale.a %></td>
-		</tr>
-		<tr>
-			<td><strong>A-</strong></td>
-			<td><%= grade_scale.a_minus %></td>
-		</tr>
-		
-		<tr>
-			<td><strong>B+</strong></td>
-			<td><%= grade_scale.b_plus %></td>
-		</tr>
-		<tr>
-			<td><strong>B</strong></td>
-			<td><%= grade_scale.b %></td>
-		</tr>
-		<tr>
-			<td><strong>B-</strong></td>
-			<td><%= grade_scale.b_minus %></td>
-		</tr>
-		
-		<tr>
-			<td><strong>C+</strong></td>
-			<td><%= grade_scale.c_plus %></td>
-		</tr>
-		<tr>
-			<td><strong>C</strong></td>
-			<td><%= grade_scale.c %></td>
-		</tr>
-		<tr>
-			<td><strong>C-</strong></td>
-			<td><%= grade_scale.c_minus %></td>
-		</tr>
-		
-		<tr>
-			<td><strong>D+</strong></td>
-			<td><%= grade_scale.d_plus %></td>
-		</tr>
-		<tr>
-			<td><strong>D</strong></td>
-			<td><%= grade_scale.d %></td>
-		</tr>
-		<tr>
-			<td><strong>D-</strong></td>
-			<td><%= grade_scale.d_minus %></td>
-		</tr>
-		
-		<tr>
-			<td><strong>F</strong></td>
-			<td><%= grade_scale.f %></td>
-		</tr>
-		
-	</table>
-<% else %>
-	A grade scale has not been created! <%= link_to "new Grade Scale", new_course_grade_scale_path(course, grade_scale) %>
+	<div class="scale">
+		<div class="grade Aplus">
+			<div class="letter">A+</div>
+			<div class="percentage"><%= grade_scale.a_plus %></div>
+		</div>
+		<div class="grade Bplus">
+			<div class="letter">B+</div>
+			<div class="percentage"><%= grade_scale.b_plus %></div>
+		</div>
+		<div class="grade Cplus">
+			<div class="letter">C+</div>
+			<div class="percentage"><%= grade_scale.c_plus %></div>
+		</div>
+		<div class="grade Dplus">
+			<div class="letter">D+</div>
+			<div class="percentage"><%= grade_scale.d_plus %></div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="grade A">
+			<div class="letter">A</div>
+			<div class="percentage"><%= grade_scale.a %></div>
+		</div>
+		<div class="grade B">
+			<div class="letter">B</div>
+			<div class="percentage"><%= grade_scale.b %></div>
+		</div>
+		<div class="grade C">
+			<div class="letter">C</div>
+			<div class="percentage"><%= grade_scale.c %></div>
+		</div>
+		<div class="grade D">
+			<div class="letter">D</div>
+			<div class="percentage"><%= grade_scale.d %></div>
+		</div>
+		<div class="grade F">
+			<div class="letter">F</div>
+			<div class="percentage"><%= grade_scale.f %></div>
+		</div>
+
+		<div class="clear"></div>
+
+		<div class="grade Aminus">
+			<div class="letter">A-</div>
+			<div class="percentage"><%= grade_scale.a_plus %></div>
+		</div>
+		<div class="grade Bminus">
+			<div class="letter">B-</div>
+			<div class="percentage"><%= grade_scale.b_plus %></div>
+		</div>
+		<div class="grade Cminus">
+			<div class="letter">C-</div>
+			<div class="percentage"><%= grade_scale.c_plus %></div>
+		</div>
+		<div class="grade Dminus">
+			<div class="letter">D-</div>
+			<div class="percentage"><%= grade_scale.d_plus %></div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+
 <% end %>

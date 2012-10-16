@@ -2,6 +2,11 @@ class UsersController < ApplicationController
 	skip_before_filter :require_login, :only => [:new, :create]
 
 	def index
+		# This option should only be usable by the administrators
+		if not @current_user.is_administrator?
+			redirect_to root
+		end
+
 		@users = User.all
 
 		respond_to do |format|
