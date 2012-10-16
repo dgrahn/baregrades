@@ -53,17 +53,10 @@
 		</tr>
 		
 		<tr>
-			<td><strong>F+</strong></td>
-			<td><%= grade_scale.f_plus %></td>
-		</tr>
-		<tr>
 			<td><strong>F</strong></td>
 			<td><%= grade_scale.f %></td>
 		</tr>
-		<tr>
-			<td><strong>F-</strong></td>
-			<td><%= grade_scale.f_minus %></td>
-		</tr>
+		
 	</table>
 <% else %>
 	A grade scale has not been created! <%= link_to "new Grade Scale", new_course_grade_scale_path(course, grade_scale) %>
