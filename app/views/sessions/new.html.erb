@@ -2,13 +2,38 @@
 	<h1>Login</h1>
 <% end %>
 
-<%= form_tag sessions_path do %>
-	<%= label_tag :username %>
-	<%= text_field_tag :username, params[:email] %>
 
-	<%= label_tag :password %>
-	<%= password_field_tag :password, params[:password] %>
+<div class="column border-right">
+	<%= form_tag sessions_path do %>
+		<%= label_tag :username %>
+		<%= text_field_tag :username %>
+
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+		
+		<%= submit_tag "Login" %>
+	<% end %>
+</div>
+<div class="column">
+	<h2>New to BareGrades?</h2>
+	<p>We are currently in public alpha and would love to have you test out our app! Here are some of the features that we offer.</p>
 	
-	<%= submit_tag "Login" %>
-<% end %>
+	<div class="bigcolumn text-center">
+		<img src="/assets/icons/home/management.png" alt=""/>
+		<h3>Grade Management</h3>
 
+		<img src="/assets/icons/home/tracking.png" alt=""/>
+		<h3>Assignment Tracking</h3>
+	</div>
+	<div class="bigcolumn text-center">
+		<img src="/assets/icons/home/analysis.png" alt=""/>
+		<h3>Grade Analysis</h3>
+
+		<img src="/assets/icons/home/themes.png" alt=""/>
+		<h3>Themes</h3>
+	</div>
+
+	<div class="clear"></div>
+	
+	<%= link_to "Sign up now!", register_path(), :class => "button big" %>
+</div>
