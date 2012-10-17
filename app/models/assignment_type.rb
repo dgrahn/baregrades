@@ -7,6 +7,10 @@ class AssignmentType < ActiveRecord::Base
 	belongs_to :course
 	has_many :assignments
 
+	def sorted_assignments
+		return self.assignments.order("due_date")
+	end
+	
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0

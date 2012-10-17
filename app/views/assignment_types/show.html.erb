@@ -40,7 +40,7 @@
 		<th>Due Date</th>
 		<th></th>
 	</tr>
-	<% @assignment_type.assignments.each do |assignment| %>
+	<% @assignment_type.sorted_assignments.each do |assignment| %>
 		<tr>
 			<td><%= link_to assignment.name, assignment_type_assignment_path(@assignment_type, assignment) %></td>
 			<td><%= assignment.description %></td>
