@@ -35,3 +35,6 @@ end
 # Add faker and populator for default sample data
 gem 'faker'
 gem 'populator'
+
+#For Calendar
+gem "watu_table_builder", :require => "table_builder"

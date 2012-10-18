@@ -4,9 +4,11 @@ class Assignment < ActiveRecord::Base
 	validates :name, :presence => true
 	validates :worth, :presence => true, :numericality => true
 	validates_length_of :description, :maximum => 144
-
-	has_many :grades
+	
 	belongs_to :assignment_type
+	
+	has_many :grades
+	
 
 	def user_grade(user)
 		grade = Grade.where(:assignment_id => self.id, :user_id => user.id).first
@@ -26,4 +28,13 @@ class Assignment < ActiveRecord::Base
 			return percent
 		end
 	end
+	
+	def course
+		return self.assignment_type.course
+	end
+	
+	#def date
+	#	return self.due_date
+	#end
+	
 end

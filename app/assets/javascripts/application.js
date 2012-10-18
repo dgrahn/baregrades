@@ -1,5 +1,4 @@
-//= require jquery
-//= require jquery_ujs
+
 //= require_tree .
 
 
@@ -18,4 +17,6 @@ $(document).ready(function() {
 			$(this).html('-');
 		}
 	});
+	
+	$('#assignment_due_date').datepicker();
 });

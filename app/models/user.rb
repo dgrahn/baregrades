@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
 	has_many :accesses
 	has_many :courses, :through => :accesses
+	has_many :assignments, :through => :courses
 	has_many :roles, :through => :accesses
 	belongs_to :theme
 
