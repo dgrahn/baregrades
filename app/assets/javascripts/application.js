@@ -17,6 +17,6 @@ $(document).ready(function() {
 			$(this).html('-');
 		}
 	});
-	
 	$('#assignment_due_date').datepicker();
+	$('#assignment_due_date').datepicker( "option", "dateFormat", "yy-mm-dd" );
 });
