@@ -19,12 +19,11 @@ class Assignment < ActiveRecord::Base
 	end
 	
 	def user_percentage(user)
-		assignment 	= Assignment.find(self.id)
-		worth 		= assignment.worth
-		grade 		= assignment.user_grade(user)
+		worth 		= self.worth
+		grade 		= self.user_grade(user)
 		
 		if !grade.blank? && !worth.blank?
-			percent 	= (grade / worth) * 100
+			percent 	= (grade.to_f / worth.to_f) * 100
 			return percent
 		end
 	end
@@ -32,9 +31,4 @@ class Assignment < ActiveRecord::Base
 	def course
 		return self.assignment_type.course
 	end
-	
-	#def date
-	#	return self.due_date
-	#end
-	
 end

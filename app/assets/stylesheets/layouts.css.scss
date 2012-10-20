@@ -68,8 +68,10 @@ form {}
 
 /* -- Quick Styles -- */
 .border-right {border-right: 1px solid #CCC;}
+.no-border {border: 0;}
 .clear {clear: both;}
 .text-center {text-align: center;}
+.text-right {text-align: right;}
 
 .column {
 	float: left;

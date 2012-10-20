@@ -3,7 +3,7 @@
 <% end %>
 <% content_for :nav do %>
 	<div class="right">
-		<%= number_of_students %> <img src="/assets/user.png" alt="Number of Students"/>
+		<%= render "courses/numberOfStudents" %>
 	</div>
 
 	<%= manage_grade_path %>
@@ -12,27 +12,29 @@
 
 <h1><%= @assignment.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%= @assignment.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @assignment.description %>
-</p>
-
-<p>
-  <b>Worth:</b>
-  <%= @assignment.worth %>
-</p>
-
-<p>
-	<b>Grade:</b>
-	<%= @assignment.user_grade(@current_user) %>
-</p>
-
-<p>
-	<b>Due:</b>
-	<%= @assignment.due_date %>
-</p>
+<table>
+	<tr>
+		<th class="text-right no-border">Name:</th>
+		<td><%= @assignment.name %></td>
+	</tr>
+	<tr>
+		<th class="text-right no-border">Description:</th>
+		<td><%= @assignment.description %></td>
+	</tr>
+	<tr>
+		<th class="text-right no-border">Worth:</th>
+		<td><%= @assignment.worth %></td>
+	</tr>
+	<tr>
+		<th class="text-right no-border">Grade:</th>
+		<td><%= @assignment.user_grade(@current_user) %></td>
+	</tr>
+	<tr>
+		<th class="text-right no-border">Percentage:</th>
+		<td><%= @assignment.user_percentage(@current_user) %></td>
+	</tr>
+	<tr>
+		<th class="text-right no-border">Due:</th>
+		<td><%= @assignment.due_date %></td>
+	</tr>
+</table>

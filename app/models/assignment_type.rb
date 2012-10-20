@@ -23,7 +23,7 @@ class AssignmentType < ActiveRecord::Base
 		end
 
 		if totalWorth != 0
-			return  totalGrade / totalWorth * 100
+			return  totalGrade.to_f / totalWorth.to_f * 100
 		end
 	end
 end
