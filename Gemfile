@@ -7,6 +7,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'mysql2'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
