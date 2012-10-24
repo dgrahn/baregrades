@@ -7,7 +7,6 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'mysql2'
 
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
@@ -39,3 +38,8 @@ gem 'populator'
 
 #For Calendar
 gem "watu_table_builder", :require => "table_builder"
+
+#jQuery ui
+group :assets do
+  gem 'jquery-ui-rails'
+end
