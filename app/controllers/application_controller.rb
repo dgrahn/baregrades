@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 	
+
+	def rescue_with_handler(exception)
+		if current_user.is_administrator?
+			@exception = exception
+		end
+
+		render :template => "errors/500"
+	end
+	
 	before_filter :require_login
 	private
 	def require_login

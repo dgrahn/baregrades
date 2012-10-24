@@ -2,42 +2,42 @@
 	<div class="scale">
 		<div class="grade a plus">
 			<div class="letter">A+</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.a_plus %></div>
+			<div class="percentage"><%= grade_scale.a_plus ? "%02.01f" % grade_scale.a_plus : "N/A" %></div>
 		</div>
 		<div class="grade b plus">
 			<div class="letter">B+</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.b_plus %></div>
+			<div class="percentage"><%= grade_scale.b_plus ? "%02.01f" % grade_scale.b_plus : "N/A" %></div>
 		</div>
 		<div class="grade c plus">
 			<div class="letter">C+</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.c_plus %></div>
+			<div class="percentage"><%= grade_scale.c_plus ? "%02.01f" % grade_scale.c_plus : "N/A" %></div>
 		</div>
 		<div class="grade d plus">
 			<div class="letter">D+</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.d_plus %></div>
+			<div class="percentage"><%= grade_scale.d_plus ? "%02.01f" % grade_scale.d_plus : "N/A" %></div>
 		</div>
 
 		<div class="clear"></div>
 
 		<div class="grade a">
 			<div class="letter">A</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.a %></div>
+			<div class="percentage"><%= grade_scale.a ? "%02.01f" % grade_scale.a : "N/A" %></div>
 		</div>
 		<div class="grade b">
 			<div class="letter">B</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.b %></div>
+			<div class="percentage"><%= grade_scale.b ? "%02.01f" % grade_scale.b : "N/A" %></div>
 		</div>
 		<div class="grade c">
 			<div class="letter">C</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.c %></div>
+			<div class="percentage"><%= grade_scale.c ? "%02.01f" % grade_scale.c : "N/A" %></div>
 		</div>
 		<div class="grade d">
 			<div class="letter">D</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.d %></div>
+			<div class="percentage"><%= grade_scale.d ? "%02.01f" % grade_scale.d : "N/A" %></div>
 		</div>
 		<div class="grade f">
 			<div class="letter">F</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.f %></div>
+			<div class="percentage"><%= grade_scale.f ? "%02.01f" % grade_scale.f : "N/A" %></div>
 		</div>
 		
 		<a href="#" class="button">+</a>
@@ -46,19 +46,19 @@
 
 		<div class="grade a minus">
 			<div class="letter">A-</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.a_minus %></div>
+			<div class="percentage"><%= grade_scale.a_minus ? "%02.01f" % grade_scale.a_minus : "N/A" %></div>
 		</div>
 		<div class="grade b minus">
 			<div class="letter">B-</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.b_minus %></div>
+			<div class="percentage"><%= grade_scale.b_minus ? "%02.01f" % grade_scale.b_minus : "N/A" %></div>
 		</div>
 		<div class="grade c minus">
 			<div class="letter">C-</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.c_minus %></div>
+			<div class="percentage"><%= grade_scale.c_minus ? "%02.01f" % grade_scale.c_minus : "N/A" %></div>
 		</div>
 		<div class="grade d minus">
 			<div class="letter">D-</div>
-			<div class="percentage"><%= "%02.01f" % grade_scale.d_minus %></div>
+			<div class="percentage"><%= grade_scale.d_minus ? "%02.01f" % grade_scale.d_minus : "N/A" %></div>
 		</div>
 
 		<div class="clear"></div>

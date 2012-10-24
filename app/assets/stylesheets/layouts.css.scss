@@ -18,11 +18,15 @@ a {
 		font-size: 1.5em;
 		margin: 0 0 2em;}
 
+img {
+	border-top-left-radius: 1em;
+	border-bottom-right-radius: 1em;
+	}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: Lato, serif;
 	font-weight: 200;}
 	h1 {
-		border-bottom: 1px solid #CCC;
 		font-size: 3em;
 		line-height: 2em;
 		margin: -0.5em 0 1em;}
