@@ -27,21 +27,19 @@
 	<%= f.label :description %>
 	<%= f.text_area :description %>
 
+	<%= f.label :credits %>
+	<%= f.text_field :credits %>
 
+	<div class="hide">
 	<%= f.label :pin %>
 	<%= f.number_field :pin %>
-
 
 	<%= f.label :student_managed %>
 	<%= f.check_box :student_managed %>
 
-
-	<%= f.label :credits %>
-	<%= f.text_field :credits %>
-
-
 	<%= f.label :points_based %>
 	<%= f.check_box :points_based %>
+	</div>
   
 
     <%= f.submit %>
