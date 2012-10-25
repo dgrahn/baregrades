@@ -1,0 +1,42 @@
+<% content_for :head do %>
+	<% render "head" %>
+<% end %>
+
+<% content_for :nav do %>
+	<div class="right">
+		<%= render :partial => "courses/numberOfStudents" %>
+	</div>
+
+	<%= link_to "Summary", course_path(@course) %>
+	<%= link_to "Info", course_info_path(@course) %>
+	<a href="#">//Analysis</a>
+	<a href="#">//Calendar</a>
+<% end %>
+
+<header>
+	<h1>Course Info</h1>
+
+	<nav>
+		<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> | 
+		<%= link_to "Edit", edit_course_path(@course) %> |
+		<%= @course.grade_scale ? link_to("Edit Grade Scale", edit_course_grade_scale_path(@course)) :  link_to("Add Grade Scale", new_course_grade_scale_path(@course)) %> |
+		<%= link_to "Leave", course_leave_path(@course) %>
+	</nav>
+</header>
+
+
+<p><%= @course.description %></p>
+
+<p>
+	<b>Credits:</b> <%= @course.credits %><br/>
+</p>
+
+<%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>
+
+<!--
+<p>
+  <b>Pin:</b> <%= @course.pin %><br/>
+  <b>Points based:</b> <%= @course.points_based %><br/>
+</p>
+-->
+</section>

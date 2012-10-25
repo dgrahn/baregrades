@@ -58,11 +58,17 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
-	def upcoming_assignments(num_assignments)
-		return self.assignments
-					.where("due_date >= ?", Date.today)
-					.order("due_date")
-					.limit(num_assignments)
+	def upcoming_assignments(num_assignments = nil)
+		if num_assignments
+			return self.assignments
+						.where("due_date >= ?", Date.today)
+						.order("due_date")
+						.limit(num_assignments)
+		else
+			return self.assignments
+						.where("due_date >= ?", Date.today)
+						.order("due_date")
+		end
 	end
 	
 end

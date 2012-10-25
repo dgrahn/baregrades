@@ -1,53 +1,53 @@
 /* --- Typography --- */
 body {
 	font: normal 0.85em Verdana, Arial, Helvetica, sans-serif;}
+	h1, h2, h3, h4, h5, h6 {
+		color: #333;
+		font-family: Lato, serif;
+		font-weight: 800;
+		margin: 0 0 0.5em;}
+		h1 {font-size: 3em;}
+		h2 {font-size: 2.5em;}
+		h3 {font-size: 2em;}
+		h4 {font-size: 1.5em;}
+		h5 {font-size: 1em;}
+		h6 {font-size: 0.85em;}
+		p, ul, ol {
+			line-height: 2.5em;
+			margin: 0 0 2em;}
+			ul, ol {margin-left: 2em;}
+			p {}
+			ul {}
+			ol {}
 
 a {
 	color: #2A8FBD;}
-	a.button {
-		background: #2A8FBD;
-		background-image: -webkit-linear-gradient(top, #2A8FBD, #195671);
-		border-radius: 0.25em;
-		border: 1px solid #227297;
-		box-shadow: 0.1em 0.1em 0.25em #888;
-		color: #FFF;
-		display: inline-block;
-		padding: 0.5em 0.75em;
-		text-decoration: none;}
 	a.big {
 		font-size: 1.5em;
 		margin: 0 0 2em;}
+	a.button {
+		background: #F5F5F5;
+		border: 1px solid #BBB;
+		border-radius: 0.25em;
+		display: inline-block;
+		padding: 0.5em 0.75em;
+		text-decoration: none;
 
-img {
-	border-top-left-radius: 1em;
-	border-bottom-right-radius: 1em;
-	}
+		background-color: #F5F5F5;
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#E6E6E6));
+		background-image: -webkit-linear-gradient(top, #FFFFFF, #E6E6E6);
+		background-image: -o-linear-gradient(top, #FFFFFF, #E6E6E6);
+		background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+		background-image: -moz-linear-gradient(top, #FFFFFF, #E6E6E6);
+		background-repeat: repeat-x;}
+		a.button:hover {
+			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#D8D8D8));
+			background-image: -webkit-linear-gradient(top, #FFFFFF, #E0E0E0);
+			background-image: -o-linear-gradient(top, #FFFFFF, #E0E0E0);
+			background-image: linear-gradient(to bottom, #FFFFFF, #E0E0E0);
+			background-image: -moz-linear-gradient(top, #FFFFFF, #E0E0E0);}
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: Lato, serif;
-	font-weight: 200;}
-	h1 {
-		font-size: 3em;
-		line-height: 2em;
-		margin: -0.5em 0 1em;}
-	h2 {
-		font-size: 2em;
-		margin: 0 0 0.5em;}
-	h3 {
-		font-size: 1.5em;
-		margin: 0.5em 0 1.5em;}
-	h4 {}
-	h5 {}
-	h6 {}
 
-p, ul, ol {
-	line-height: 2.5em;
-	margin: 0 0 2em;}
-	ul, ol {
-		margin-left: 2em;}
-	p {}
-	ul {}
-	ol {}
 
 table {
 	margin: 0 0 2em;}
@@ -77,6 +77,7 @@ form {}
 .text-center {text-align: center;}
 .text-right {text-align: right;}
 .hide {display: none;}
+.right {float: right;}
 
 .column {
 	float: left;
@@ -89,6 +90,12 @@ form {}
 	width: 45%;
 	margin: 0 5% 2em 0;
 	padding: 5% 0 0;}
+
+.block {
+	border: 0.1em solid #BBB;
+	border-radius: 0.25em;
+	margin: 0 0 1em;
+	padding: 1em 1em 0;}
 
 /* --- Flashes --- */
 #flash_notice, #flash_success {
@@ -147,11 +154,14 @@ body {}
 		box-shadow: 0 0 20px #000 inset;
 		color: #FFF;
 		padding: 3em 0;}
-		#content-head h1 {
-			border: 0;
-			font-size: 4em;
-			line-height: 1em;
-			margin: 0;}
+		#content-head h1, #content-head h2 {
+			color: #FFF;
+			font-weight: 200;}
+			#content-head h1 {
+				border: 0;
+				font-size: 4em;
+				line-height: 1em;
+				margin: 0;}
 
 	#page-nav {
 		color: #666;
@@ -177,18 +187,12 @@ body {}
 	#sidebar {
 		float: left;
 		width: 20%;}
+		#sidebar h2 {
+			font-weight: 200;}
 		#actions {
 			margin: 0 0 2em;}
 			#actions a {
-				background: #2A8FBD;
-				background-image: -webkit-linear-gradient(top, #2A8FBD, #195671);
-				border-radius: 0.25em;
-				border: 1px solid #227297;
-				box-shadow: 0.1em 0.1em 0.25em #888;
-				color: #FFF;
-				display: block;
-				padding: 0.5em 0.75em;
-				text-decoration: none;}
+				display: block;}
 		#courses {}
 			#courses a {
 				display: block;
@@ -201,7 +205,7 @@ body {}
 				text-overflow: ellipsis;
 				text-wrap: none;
 				white-space: nowrap;}
-				#courses span.grade {
+				#courses div.grade {
 					border-top-right-radius: 0;
 					border-bottom-right-radius: 0;
 					display: inline-block;
@@ -211,12 +215,11 @@ body {}
 					padding: 1.05em;
 					width: 2em;}
 			#courses a:hover {
-				background: #EEE;
 				overflow: visible;}
 			#courses a.assignment_type {
 				padding: 0.5em;
 				margin-left: 1em;}
-				#courses a.assignment_type span.grade {
+				#courses a.assignment_type div.grade {
 					margin: -0.5em 0.5em -0.5em -0.5em;
 					padding: 0.5em;
 					width: 2em;}
@@ -247,7 +250,7 @@ body {}
 
 .grade {
 	border-radius: 0.25em;
-	display: block;
+	display: inline-block;
 	font-weight: bold;
 	text-align: center;
 	margin: 0.5em;

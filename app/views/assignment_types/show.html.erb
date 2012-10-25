@@ -39,6 +39,7 @@
 		<th>Percent</th>
 		<th>Due Date</th>
 		<th></th>
+		<th></th>
 	</tr>
 	<% @assignment_type.sorted_assignments.each do |assignment| %>
 		<tr>
@@ -48,7 +49,8 @@
 			<td><%= assignment.worth %></td>
 			<td><%= assignment.user_percentage(@current_user) %></td>
 			<td><%= assignment.due_date %></td>
-			<td><%= link_to "Delete", assignment_type_assignment_path(@assignment_type, assignment), :confirm => "Are you sure?", :method => :delete %></td>
+			<td><%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, assignment), :class => "button" %></td>
+			<td><%= link_to "Delete", assignment_type_assignment_path(@assignment_type, assignment), :confirm => "Are you sure?", :method => :delete, :class => "button" %></td>
 		</tr>		
 	<% end %>
 </table>

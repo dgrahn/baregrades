@@ -1,4 +1,10 @@
 class CoursesController < ApplicationController
+	before_filter :find_course, :except => [:index, :new, :create]
+	
+	def find_course
+		@course = Course.find(params[:id])
+	end
+
 	def index
 		@courses = Course.all
 
@@ -9,17 +15,17 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		@course = Course.find(params[:id])
-
 		respond_to do |format|
 			format.html
 			format.json { render json: @course }
 		end
 	end
 
-	def users
-		@course = Course.find(params[:id])
+	def info
 	end
+
+	def users
+	end	
 
 	def new
 		@course = Course.new
@@ -31,7 +37,6 @@ class CoursesController < ApplicationController
 	end
 
 	def edit
-		@course = Course.find(params[:id])
 	end
 
 	def create
@@ -49,8 +54,6 @@ class CoursesController < ApplicationController
 	end
 
 	def update
-		@course = Course.find(params[:id])
-
 		respond_to do |format|
 			if @course.update_attributes(params[:course])
 				format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -63,7 +66,6 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
-		@course = Course.find(params[:id])
 		@course.destroy
 
 		respond_to do |format|

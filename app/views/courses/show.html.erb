@@ -8,55 +8,33 @@
 	</div>
 
 	<%= link_to "Summary", course_path(@course) %>
+	<%= link_to "Info", course_info_path(@course) %>
 	<a href="#">//Analysis</a>
 	<a href="#">//Calendar</a>
 <% end %>
 
-<section class="info">
-	<header>
-		<h2>Course Info</h2>
+<header>
+	<h1>Summary</h1>
+</header>
 
-		<nav>
-			<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> | 
-			<%= link_to "Edit", edit_course_path(@course) %> |
-			<%= @course.grade_scale ? link_to("Edit Grade Scale", edit_course_grade_scale_path(@course)) :  link_to("Add Grade Scale", new_course_grade_scale_path(@course)) %> |
-			<%= link_to "Leave", course_leave_path(@course) %>
-		</nav>
-	</header>
+<ul>
+	<% @course.upcoming_assignments.each do |assignment| %>
+		<li><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></li>
+	<% end %>
+</ul>
 
-	<p><%= @course.description %></p>
-
-	<%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>
-
-	<!--
-	<p>
-	  <b>Pin:</b> <%= @course.pin %><br/>
-	  <b>Credits:</b> <%= @course.credits %><br/>
-	  <b>Points based:</b> <%= @course.points_based %><br/>
-	</p>
-	-->
-</section>
-
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Grade</th>
-			<th>Worth</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @course.assignment_types.each do |assignment_type| %>
-			<% grade = assignment_type.user_grade(@current_user) %>
-			<tr>
-				<td><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %></td>
-				<td><%= assignment_type.description %></td>
-				<td><%= "%02d\%" % grade if grade %></td>
-				<td><%= "%02d\%" % assignment_type.worth %></td>
-				<td><%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete %></td>
-			</tr>		
-		<% end %>
-	</tbody>
-</table>
+<% @course.assignment_types.each do |assignment_type| %>
+	<% grade = assignment_type.user_grade(@current_user) %>
+	<div class="block">
+		<div class="right">
+			<%= link_to "Edit", edit_course_assignment_type_path(@course, assignment_type), :class => "button" %>
+			<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "button" %>
+		</div>
+		<h2><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %></h2>
+		<p><%= assignment_type.description %></p>
+		<!--
+		<td><%= "%02d\%" % assignment_type.worth %></td>
+		<td><%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "button" %></td>
+		-->
+	</div>
+<% end %>
