@@ -7,7 +7,6 @@ class CoursesController < ApplicationController
 
 	def index
 		@courses = Course.all
-
 		respond_to do |format|
 			format.html
 			format.json { render json: @courses }
@@ -19,6 +18,12 @@ class CoursesController < ApplicationController
 			format.html
 			format.json { render json: @course }
 		end
+	end
+	
+	def calendar
+		@course = Course.find(params[:id])
+		@date = params[:month] ? Date.parse(params[:month]) : Date.today
+		@assignments = @course.assignments.where("due_date")
 	end
 
 	def info

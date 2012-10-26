@@ -7,10 +7,7 @@
 		<%= render :partial => "courses/numberOfStudents" %>
 	</div>
 
-	<%= link_to "Summary", course_path(@course) %>
-	<%= link_to "Info", course_info_path(@course) %>
-	<a href="#">//Analysis</a>
-	<a href="#">//Calendar</a>
+	<%= render :partial => "courses/navigation" %>
 <% end %>
 
 <header>
