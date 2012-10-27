@@ -58,28 +58,49 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
-	def upcoming_assignments(num_assignments = nil)
+	def upcoming_assignments(user, num_assignments = nil)
 		if num_assignments
 			return self.assignments
-						.where("due_date >= ? AND assignments.id NOT IN (SELECT DISTINCT(assignment_id) FROM grades)", Date.today)
+						.where("due_date >= ? AND 
+								assignments.id NOT IN (
+									SELECT DISTINCT(assignment_id) FROM grades WHERE
+										user_id = #{user.id} AND
+										grade IS NOT NULL
+								)", Date.today)
 						.order("due_date")
 						.limit(num_assignments)
 		else
 			return self.assignments
-						.where("due_date >= ? AND assignments.id NOT IN (SELECT DISTINCT(assignment_id) FROM grades)", Date.today)
+						.where("due_date >= ? AND 
+								assignments.id NOT IN (
+									SELECT DISTINCT(assignment_id) FROM grades WHERE
+										user_id = #{user.id} AND
+										grade IS NOT NULL
+								)", Date.today)
 						.order("due_date")
 		end
 	end
 
-	def past_assignments()
-		return self.assignments.where("due_date <= ? AND assignments.id NOT IN (SELECT DISTINCT(assignment_id) FROM grades)", Date.today)
+	def past_assignments(user)
+		return self.assignments
+						.where("due_date <= ? AND 
+								assignments.id NOT IN (
+									SELECT DISTINCT(assignment_id) FROM grades WHERE
+										user_id = #{user.id} AND
+										grade IS NOT NULL
+								)", Date.today)
 	end
 	
-	def graded_assignments()
-		return self.assignments.where("assignments.id IN (SELECT DISTINCT(assignment_id) FROM grades)");
+	def graded_assignments(user)
+		return self.assignments
+						.where("assignments.id IN (
+									SELECT DISTINCT(assignment_id) FROM grades WHERE
+										user_id = #{user.id} AND
+										grade IS NOT NULL
+								)")
 	end
 
-	def undated_assignments()
+	def undated_assignments(user)
 		return self.assignments.find_all_by_due_date(nil)
 	end
 end

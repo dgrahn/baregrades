@@ -14,10 +14,10 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		@upcoming 	= @course.upcoming_assignments
-		@undated 	= @course.undated_assignments
-		@past 		= @course.past_assignments
-		@graded		= @course.graded_assignments
+		@upcoming 	= @course.upcoming_assignments(@current_user)
+		@undated 	= @course.undated_assignments(@current_user)
+		@past 		= @course.past_assignments(@current_user)
+		@graded		= @course.graded_assignments(@current_user)
 		
 		# The number of uncompleted assignments
 		@num_uncompleted = @upcoming.length + @undated.length
