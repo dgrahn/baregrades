@@ -2,6 +2,7 @@ BareGrades::Application.routes.draw do
   resources :themes
 
 	root :to => "home#index"
+	get "privacy" => "home#privacy", :as => "privacy"
 
 	get "login" => "sessions#new", :as => "login"
 	get "logout" => "sessions#destroy", :as => "logout"
