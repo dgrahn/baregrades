@@ -4,21 +4,6 @@
 <% content_for :nav do %>
 <% end %>
 
-<h1>Courses</h1>
-<ul>
-	<% @user.courses.each do |course| %>
-		<li><%= link_to course.name, course %>
-			<ul>
-				<% course.upcoming_assignments(5).each do |assignment| %>
-						<% assignment.assignment_type %>
-						<li><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment)%>
-						</li>
-				<% end %>
-			</ul>
-		</li>
-	<% end %>
-</ul>
-
 <div class="calendar">  
   <h2 id="month">  
     <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  
