@@ -68,7 +68,7 @@
 			<% @graded.each_with_index do |assignment, i| %>
 				<tr>
 					<td class="no-padding">
-						<%= render "courses/gradeBlock", :grade => assignment.user_grade(@current_user), :course => @course %>
+						<%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %>
 					</td>
 					<td><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
 					<td><%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "button" %></td>
