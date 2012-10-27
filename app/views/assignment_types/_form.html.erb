@@ -5,8 +5,14 @@
 	<%= f.label :description %><br />
 	<%= f.text_area :description %>
 
-	<%= f.label :worth %><br />
-	<%= f.text_field :worth %>
-
+	<%if @course.points_based%>
+		<div class="hide">
+	<%end%>
+		<%= f.label :worth %><br />
+		<%= f.text_field :worth %>
+	<%if @course.points_based%>
+		</div>
+	<%end%>
+	
 	<%= f.submit %>
 <% end %>

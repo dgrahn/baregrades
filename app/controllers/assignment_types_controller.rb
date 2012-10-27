@@ -59,6 +59,9 @@ class AssignmentTypesController < ApplicationController
 
 	def destroy
 		@assignment_type = AssignmentType.find(params[:id])
+		@assignment_type.assignments.each do |assignment|
+			assignment.destroy
+		end
 		@assignment_type.destroy
 
 		respond_to do |format|

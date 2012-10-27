@@ -11,16 +11,26 @@ class Course < ActiveRecord::Base
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
-		self.assignment_types.each do |type|
-			grade = type.user_grade(user)
-			if grade
-				totalGrade += grade * type.worth
-				totalWorth += 100 * type.worth
+		if(self.points_based)
+			self.assignments.each do |assignment|
+				grade = assignment.user_grade(user)
+				if grade
+					totalGrade += grade * 100
+					totalWorth += assignment.worth
+				end
+			end
+		else
+			self.assignment_types.each do |type|
+				grade = type.user_grade(user)
+				if grade
+					totalGrade += grade * type.worth
+					totalWorth += type.worth
+				end
 			end
 		end
 
 		if totalWorth != 0
-			return  totalGrade / totalWorth * 100
+			return  totalGrade / totalWorth
 		end
 	end
 	
