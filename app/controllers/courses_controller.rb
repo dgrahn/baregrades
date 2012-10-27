@@ -14,6 +14,23 @@ class CoursesController < ApplicationController
 	end
 
 	def show
+		@upcoming 	= @course.upcoming_assignments
+		@undated 	= @course.undated_assignments
+		@past 		= @course.past_assignments
+		@graded		= @course.graded_assignments
+		
+		# The number of uncompleted assignments
+		@num_uncompleted = @upcoming.length + @undated.length
+		
+		if @num_uncompleted + @past.length != 0
+			@percent_completed = 100 * @past.length /
+									(@num_uncompleted + @past.length)
+		end
+
+		if @upcoming.last
+			@days_left = (@upcoming.last.due_date - Date.today).to_i;
+		end
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @course }

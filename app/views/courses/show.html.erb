@@ -10,28 +10,71 @@
 	<%= render :partial => "courses/navigation" %>
 <% end %>
 
-<header>
-	<h1>Summary</h1>
-</header>
 
-<ul>
-	<% @course.upcoming_assignments.each do |assignment| %>
-		<li><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></li>
-	<% end %>
-</ul>
+<!-- [ Gamer Boxes ] -->
+	<%= @percent_completed ? render("courses/gamerBox", :value => "#{@percent_completed}\%", :text => "Completed") : "" %>
+	<%= render "courses/gamerBox", :value => @num_uncompleted, :text => "Asgmts Left" %>
+	<%= render "courses/gamerBox", :value => @days_left, :text => "Days Left" %>
+	<div class="clear"></div>
 
-<% @course.assignment_types.each do |assignment_type| %>
-	<% grade = assignment_type.user_grade(@current_user) %>
-	<div class="block">
-		<div class="right">
-			<%= link_to "Edit", edit_course_assignment_type_path(@course, assignment_type), :class => "button" %>
-			<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "button" %>
-		</div>
-		<h2><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %></h2>
-		<p><%= assignment_type.description %></p>
-		<!--
-		<td><%= "%02d\%" % assignment_type.worth %></td>
-		<td><%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "button" %></td>
-		-->
+<!-- [ Current Assignments ] -->
+	<div class="bigcolumn">
+		<h2>Upcoming</h2>
+		<table>
+			<%
+				month = 00
+				day = 00
+			%>
+			<% @upcoming.each do |assignment| %>
+				<tr>
+					<th class="no-border text-right">
+						<%=
+							if assignment.due_date.month != month
+								month = assignment.due_date.month
+								Date::MONTHNAMES[assignment.due_date.month]
+							end
+						%>
+					</td>
+					<td class="text-center"><%= assignment.due_date.day %></td>
+					<td><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+					<td><%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "button" %></td>
+				</tr>
+			<% end %>
+			
+			<% @undated.each_with_index do |assignment, i| %>
+				<tr>
+					<th class="no-border text-right">
+						<%= (i == 0) ? "Undated" : "" %>
+					</th>
+					<td></td>
+					<td><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+					<td><%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "button" %></td>
+				</tr>
+			<% end %>
+		</table>
 	</div>
-<% end %>
+
+<!-- [ Past Assignments ] -->
+	<div class="bigcolumn">
+		<h2>Past</h2>
+		<table>
+			<% @past.each_with_index do |assignment, i| %>
+				<tr>
+					<td></td>
+					<td><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+					<td><%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "button" %></td>
+				</tr>
+			<% end %>
+			<% @graded.each_with_index do |assignment, i| %>
+				<tr>
+					<td class="no-padding">
+						<%= render "courses/gradeBlock", :grade => assignment.user_grade(@current_user), :course => @course %>
+					</td>
+					<td><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+					<td><%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "button" %></td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+
+	<div class="clear"></div>

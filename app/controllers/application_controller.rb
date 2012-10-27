@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 			@exception = exception
 		end
 
-		#render :template => "errors/500"
+		render :template => "errors/500"
 	end
 	
 	before_filter :require_login

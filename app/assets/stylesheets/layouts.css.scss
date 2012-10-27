@@ -70,14 +70,29 @@ form {}
 		display: block;
 		margin: 0 0 0.5em;}
 
+/* -- Gamer Box -- */
+.gamerbox {
+	background: #333;
+	color: #FFF;
+	display: block;
+	float: left;
+	font-size: 4em;
+	margin: 0 2% 2% 0;
+	padding: 2%;}
+	.gamerbox span {
+		display: block;
+		font-size: 0.5em;}
+
 /* -- Quick Styles -- */
 .border-right {border-right: 1px solid #CCC;}
 .no-border {border: 0;}
+.no-padding{padding: 0;}
 .clear {clear: both;}
 .text-center {text-align: center;}
 .text-right {text-align: right;}
 .hide {display: none;}
 .right {float: right;}
+.inline {display: inline-block;}
 
 .column {
 	float: left;
