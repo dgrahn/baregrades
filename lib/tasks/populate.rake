@@ -43,6 +43,7 @@ namespace :db do
 			cr.pin 				= rand(0..100000)
 			cr.points_based 	= rand(0..1)
 			cr.section 			= rand(1..10)
+			cr.professor 			= Populator.words(1).titleize
 			cr.student_managed 	= rand(0..1)
 			
 			cr.identifier 	= ''

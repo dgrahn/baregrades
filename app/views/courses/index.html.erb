@@ -10,6 +10,7 @@
     <th>Name</th>
     <th>Identifier</th>
     <th>Section</th>
+	<th>Professor</th>
     <th>Credits</th>
 	<% if @current_user.is_administrator? %>
 		<th></th>
@@ -24,6 +25,7 @@
     <td><%= course.name %></td>
     <td><%= course.identifier %></td>
     <td><%= course.section %></td>
+	<td><%= course.professor %></td>
     <td><%= course.credits %></td>
 	<% if @current_user.is_administrator? %>
 		<td><%= link_to "Show", course %></td>

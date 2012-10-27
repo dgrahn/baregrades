@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016154908) do
+ActiveRecord::Schema.define(:version => 20121027181643) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20121016154908) do
     t.boolean  "points_based"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.text     "professor"
   end
 
   create_table "grade_scales", :force => true do |t|
