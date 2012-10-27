@@ -2,7 +2,7 @@
 	<h1>Account</h1>
 <% end %>
 <% content_for :nav do %>
-	<% if @current_user.is_adminstrator? %>
+	<% if @current_user.is_administrator? %>
 		<%= link_to "Add Role", new_user_access_path(@user) %>
 	<% end %>
 	<%= link_to "Edit", edit_user_path(@user) %>
