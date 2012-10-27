@@ -70,8 +70,6 @@ namespace :db do
 			gs.d_minus	= rand(1..101)
 			gs.d_plus	= rand(1..101)
 			gs.f		= rand(1..101)
-			gs.f_minus	= rand(1..101)
-			gs.f_plus	= rand(1..101)
 			gs.save
 			
 			i = i + 1
