@@ -22,9 +22,9 @@ class CoursesController < ApplicationController
 		# The number of uncompleted assignments
 		@num_uncompleted = @upcoming.length + @undated.length
 		
-		if @num_uncompleted + @past.length != 0
-			@percent_completed = 100 * @past.length /
-									(@num_uncompleted + @past.length)
+		if @num_uncompleted + @past.length + @graded.length != 0
+			@percent_completed = 100 * (@past.length + @graded.length) /
+									(@num_uncompleted + @past.length + @graded.length)
 		end
 
 		if @upcoming.last
