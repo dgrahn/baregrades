@@ -93,4 +93,15 @@ class UsersController < ApplicationController
 			format.html
 		end
 	end
+	
+	def submitFeedback
+		@email = params[:email]
+		@topic = params[:topic]
+		@description = params[:description]
+		
+		UserMailer.feedback(@email, @topic, @description).deliver
+		respond_to do |format|
+			format.html { redirect_to @current_user, notice: 'Feedback was sent successfully!' }
+		end
+	end
 end

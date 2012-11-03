@@ -1,0 +1,17 @@
+<% content_for :head do %>
+	<h1>Register</h1>
+<% end %>
+
+<%= form_tag "submitFeedback" do |f| %>
+
+	<%= label_tag "Email" %>
+	<%= text_field_tag :email, @current_user.email %>
+	
+	<%= label_tag "Topic" %>
+	<%= text_field_tag :topic %>
+	
+	<%= label_tag "Description" %>
+	<%= text_area_tag :description %>
+
+	<%= submit_tag "Send Feedback" %>
+<% end %>

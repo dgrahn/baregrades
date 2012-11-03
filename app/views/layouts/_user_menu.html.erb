@@ -2,6 +2,7 @@
 	<% if current_user %>
 		<%= link_to "Home", root_path %>
 		<%= link_to current_user.first_name, account_path %>
+		<%= link_to "Feedback", feedback_path %>
 		<%= link_to "Log Out", logout_path %>
 	<% else %>
 		<%= link_to "Register", register_path %>

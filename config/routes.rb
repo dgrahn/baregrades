@@ -38,7 +38,9 @@ BareGrades::Application.routes.draw do
 		resources :accesses
 	end
 
-
+	get "feedback" => "users#feedback", :as => "feedback"
+	post "submitFeedback" => "users#submitFeedback", :as => "submitFeedback"
+	
 	#match "/users/:id/access" => "access#index", :as => :user
 	#match "/users/:id/access/new" => "access#new", :as => :user
 

@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 			super
 		end
 	end
-
+	
 	private
 
 	def matches_dynamic_role_check?(method_id)
