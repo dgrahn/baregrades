@@ -21,6 +21,7 @@
 				<ul>
 					<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
 					<li><a href="<%= logout_path %>"><i class="icon-hand-left"></i> Log Out</a></li>
+					<li><a href="<%= feedback_path %>"><i class="icon-eye-open"></i> Send Feedback</a></li>
 					
 					<% if @current_user.is_administrator? %>
 						<li class="divider"></li>
