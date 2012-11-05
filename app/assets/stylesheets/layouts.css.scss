@@ -1,304 +1,148 @@
-/* --- Typography --- */
+@import "bootstrap";
+
 body {
-	font: normal 0.85em Verdana, Arial, Helvetica, sans-serif;}
-	h1, h2, h3, h4, h5, h6 {
-		color: #333;
-		font-family: Lato, serif;
-		font-weight: 800;
-		margin: 0 0 0.5em;}
-		h1 {font-size: 3em;}
-		h2 {font-size: 2.5em;}
-		h3 {font-size: 2em;}
-		h4 {font-size: 1.5em;}
-		h5 {font-size: 1em;}
-		h6 {font-size: 0.85em;}
-		p, ul, ol {
-			line-height: 2.5em;
-			margin: 0 0 2em;}
-			ul, ol {margin-left: 2em;}
-			p {}
-			ul {}
-			ol {}
+	margin-top: 40px;
+	margin-bottom: 50px;}
 
-a {
-	color: #2A8FBD;}
-	a.big {
-		font-size: 1.5em;
-		margin: 0 0 2em;}
-	a.button {
-		background: #F5F5F5;
-		border: 1px solid #BBB;
-		border-radius: 0.25em;
-		display: inline-block;
-		padding: 0.5em 0.75em;
-		text-decoration: none;
+ul {
+	margin-left: 50px;}
 
-		background-color: #F5F5F5;
-		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#E6E6E6));
-		background-image: -webkit-linear-gradient(top, #FFFFFF, #E6E6E6);
-		background-image: -o-linear-gradient(top, #FFFFFF, #E6E6E6);
-		background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
-		background-image: -moz-linear-gradient(top, #FFFFFF, #E6E6E6);
-		background-repeat: repeat-x;}
-		a.button:hover {
-			background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#D8D8D8));
-			background-image: -webkit-linear-gradient(top, #FFFFFF, #E0E0E0);
-			background-image: -o-linear-gradient(top, #FFFFFF, #E0E0E0);
-			background-image: linear-gradient(to bottom, #FFFFFF, #E0E0E0);
-			background-image: -moz-linear-gradient(top, #FFFFFF, #E0E0E0);}
+.input-prepend {
+	margin-bottom: 10px;}
 
+div.dropdown-menu {
+	padding: 15px 15px 0;}
+	
+.navbar-full-width {
+	width: auto;}
+	.navbar-full-width .navbar-inner {
+		border-left: 0;
+		border-right: 0;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;}
 
-
-table {
-	margin: 0 0 2em;}
-	tr {}
-	th {
-		border-bottom: 1px solid #CCC;
-		font-weight: bold;
-		padding: 1em;
-		text-align: left;}
-	td {
-		padding: 1em;}
-
-form {}
-	input, textarea, select {
-		display: block;
-		font: normal 1em Verdana, Arial, Helvetica, sans-serif;
-		margin: 0 0 2em;
-		padding: 0.5em;}
-	label {
-		display: block;
-		margin: 0 0 0.5em;}
-
-footer {
-	clear: both;
-	margin: 0 0 2%;
-	text-align: right;}
-
-/* -- Gamer Box -- */
-.gamerbox {
-	background: #333;
+.table-middle td , .table-middle th{
+	vertical-align: middle;}
+	
+#content-head {	
+	/* box-shadow: 0 0 20px #000 inset; */
 	color: #FFF;
-	display: block;
-	float: left;
-	font-size: 4em;
-	margin: 0 2% 2% 0;
-	padding: 2%;}
-	.gamerbox span {
-		display: block;
-		font-size: 0.5em;}
-
-/* -- Quick Styles -- */
-.border-right {border-right: 1px solid #CCC;}
-.no-border {border: 0;}
-.no-padding{padding: 0;}
-.clear {clear: both;}
-.text-center {text-align: center;}
-.text-right {text-align: right;}
-.hide {display: none;}
-.right {float: right;}
-.inline {display: inline-block;}
-
-.column {
-	float: left;
-	width: auto;
-	margin: 0 5% 2em 0;
-	max-width: 50%;
-	padding: 0 5% 0 0;}
-.bigcolumn {
-	float: left;
-	width: 45%;
-	margin: 0 5% 2em 0;
-	padding: 5% 0 0;}
-
-.block {
-	border: 0.1em solid #BBB;
-	border-radius: 0.25em;
-	margin: 0 0 1em;
-	padding: 1em 1em 0;}
-
-/* --- Flashes --- */
-#flash_notice, #flash_success {
-	background: #F7FCE6;
-	border: solid 1px #B5E710;
-	margin: 0 0 2em;
-	padding: 1em;}
-
-/* -- Login -- */
-.login input[type="text"] {
-	width: 15em;}
-
-/* --- Layout --- */
-body {}
-	body > #background {
-		height: 300px;
-		width: 108%;
-		margin: 0 -4%;
-		position: absolute;
-		z-index: -1;}
-		#texture {
-			height: 100%;
-			width: 100%;}
-
-	#main {
-		background: #111;
-		box-shadow: 0 1px 10px 0 #222;}
-		#main > div {
-			color: #AAA;}
-			#main  h1 {
-				border: 0;
-				color: #666;
-				font-weight: 800;
-				font-size: 1em;
-				line-height: 3em;
-				margin: 0;
-				display: inline-block;}
-			nav#user {
-				float: right;
-				height: 3em;
-				height: 100%;
-				line-height: 2.8em;}
-				nav#user a {
-					border-bottom: 0.2em solid #666;
-					color: #888;
-					display: inline-block;
-					height: 2.8em;
-					margin: 0 0 0 0.5em;
-					padding: 0 1em;
-					text-decoration: none;}
-					nav#user a:hover {
-						border-bottom-color: #FFF;
-						color: #FFF;}
-
-	#content-head {	
-		box-shadow: 0 0 20px #000 inset;
+	padding: 30px;}
+	#content-head .hero-unit {
+		background: transparent;}
+	#content-head h1, #content-head h2 {
 		color: #FFF;
-		padding: 3em 0;}
-		#content-head h1, #content-head h2 {
-			color: #FFF;
-			font-weight: 200;}
-			#content-head h1 {
-				border: 0;
-				font-size: 4em;
-				line-height: 1em;
-				margin: 0;}
-
-	#page-nav {
-		color: #666;
-		background: #EEE;
-		border-bottom: 1px solid #CCC;
-		margin: 0 0 4em;}
-		#page-nav  a {
-			display: inline-block;
-			padding: 1em;}
-			#page-nav a:hover {
-				background: #CCC;}
-		#page-nav .right {
-			float: right;
-			overflow: show;}
-			#page-nav .right span {
-				display: inline-block;
-				padding: 1em;}
-		#page-nav img {
-			display: inline-block;
-			height: 1em;
-			padding: 0 0 0 0.5em;}
-
-	#sidebar {
-		float: left;
-		width: 20%;}
-		#sidebar h2 {
-			font-weight: 200;}
-		#actions {
-			margin: 0 0 2em;}
-			#actions a {
-				display: block;}
-		#courses {}
-			#courses a {
-				display: block;
-				border: 1px solid #CCC;
-				border-radius: 0.25em;
-				margin: 0 0 1em;
-				padding: 1em;
-				text-decoration: none;				
-				overflow: hidden;
-				text-overflow: ellipsis;
-				text-wrap: none;
-				white-space: nowrap;}
-				#courses div.grade {
-					border-top-right-radius: 0;
-					border-bottom-right-radius: 0;
-					display: inline-block;
-					font-weight: bold;
-					margin: -1em 0.5em -1em -1em;
-					text-align: center;
-					padding: 1.05em;
-					width: 2em;}
-			#courses a:hover {
-				overflow: visible;}
-			#courses a.assignment_type {
-				padding: 0.5em;
-				margin-left: 1em;}
-				#courses a.assignment_type div.grade {
-					margin: -0.5em 0.5em -0.5em -0.5em;
-					padding: 0.5em;
-					width: 2em;}
+		font-weight: 200;}
+		#content-head h1 {
+			border: 0;
+			font-size: 4em;
+			line-height: 1em;
+			margin: 0;}
 
 
-	#content {
+// ====================== Bootstrap
+#content-head {
+	> div { @extend .container; }
+}
+
+#page {
+	> div { @extend .container; }
+
+	background: #FAFAFA;
+	border-bottom: 1px solid #DDD;
+	margin-bottom: 30px;
+	
+	a {
+		display: inline-block;
+		padding: 10px 15px;
+	}
+	a:hover { background: #EEE; }
+
+	.right {
 		float: right;
-		width: 74%;}
-
-.info {
-	background: #EEE;
-	border: 1px solid #CCC;
-	margin: 0 0 2em;
-	padding: 2em 2em 0;}
-	.info header {
-		margin: 0 0 1em;}
+		overflow: show;
 		
+		span {
+			display: inline-block;
+			padding: 10px 15px;
+		}
+	}
+	img {
+		display: inline-block;
+		height: 1em;
+		margin-top: -5px;
+		padding: 0 10px;
+	}
+}
 
-/* -- Grades --*/
+#content {
+	> div { @extend .row; }
+
+	@extend .container;	
+}
+
+
+header.main {
+	> div { @extend .navbar-inner; }
+	> div > div { @extend .container; }
+	> div > div > div { @extend .btn-group, .pull-right; }
+	ul { @extend .dropdown-menu; }
+
+	@extend .navbar;
+	@extend .navbar-fixed-top;
+	@extend .navbar-inverse;	
+}
+
+ul.thumbnails {
+	margin: 0;
+}
+
+.pill-bar {
+	@extend .nav, .nav-pills;
+	a {
+	}
+}
+
+// ====================== Grades
+
 .scale {
-	margin: 0 0 2em;}
+	margin: 0 0 30px;}
 	.scale .grade {
-		float: left;}
+		float: left;
+		margin: 0 5px 5px 0;}
 	.scale .button {
 		margin: 0.5em;
 		width: 0.9em;
 		text-align: center;}
 
 .grade {
-	border-radius: 0.25em;
+	border-radius: 2px;
 	display: inline-block;
 	font-weight: bold;
 	text-align: center;
-	margin: 0.5em;
-	padding: 0.5em;}
+	padding: 10px;}
 	.grade .letter {
 		font: normal 2em Verdana, Arial, Helvetica, sans-serif;}
 	.grade .percentage {
 		font: normal 1em Verdana, Arial, Helvetica, sans-serif;}
 		.grade .percentage:after {
 			content: "%";}
-	.grade.a 		{background: #7FAF1B; color: #FFF;}
-	.grade.b 		{background: #A1DC40; color: #FFF;}
-	.grade.c 		{background: #FBB829; color: #FFF;}
-	.grade.d 		{background: #FF6600; color: #FFF;}
-	.grade.f 		{background: #F02311; color: #FFF;}
-	.grade.na		{background: #222222; color: #FFF;}
+	.grade.a	{background: #7FAF1B; color: #FFF;}
+	.grade.b 	{background: #A1DC40; color: #FFF;}
+	.grade.c 	{background: #FBB829; color: #FFF;}
+	.grade.d 	{background: #FF6600; color: #FFF;}
+	.grade.f 	{background: #F02311; color: #FFF;}
+	.grade.na	{background: #222222; color: #FFF;}
 
-@media screen and (max-width:1200px) {
-	body > div,
-	body > header > div,
-	#page-nav > div {
-		margin: 0 2em;}
-}
-
-@media screen and (min-width:1200px) {
-	body > div,
-	body > header > div,
-	#page-nav > div {
-		margin: 0 auto;
-		width: 1170px;}
-}
+.courses a {
+	display: block;
+	margin-bottom: 10px;}
+	.courses a .grade {
+		width: 20px;
+		margin-right: 10px;}
+	.courses a.assignment-type {
+		margin-left: 15px;}
+		.courses a.assignment-type .grade {
+			padding: 5px;
+			width: 15px;}

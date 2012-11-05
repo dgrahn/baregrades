@@ -1,39 +1,38 @@
 <% content_for :head do %>
-	<h1>Login</h1>
+	<div class="hero-unit">
+		<h1>New to BareGrades?</h1>
+		<p>We offer students a way to manage their grades without relying upon a professor. You can see what grade you have in each of your classes, when your assignments are due, and whether or not your grades have been improving. We are currently in public alpha and would love to have you test out our app!</p>
+		<%= link_to "Sign up for FREE!", register_path(), :class => "btn btn-primary btn-large" %>
+	</div>
 <% end %>
 
-
-<div class="column border-right">
-	<%= form_tag sessions_path do %>
-		<%= label_tag :username %>
-		<%= text_field_tag :username %>
-
-		<%= label_tag :password %>
-		<%= password_field_tag :password %>
-		
-		<%= submit_tag "Login" %>
-	<% end %>
-</div>
-<div class="column">
-	<h2>New to BareGrades?</h2>
-	<p>We are currently in public alpha and would love to have you test out our app! Here are some of the features that we offer.</p>
-	
-	<div class="bigcolumn text-center">
-		<img src="/assets/icons/home/management.png" alt=""/>
-		<h3>Grade Management</h3>
-
-		<img src="/assets/icons/home/tracking.png" alt=""/>
-		<h3>Assignment Tracking</h3>
-	</div>
-	<div class="bigcolumn text-center">
-		<img src="/assets/icons/home/analysis.png" alt=""/>
-		<h3>Grade Analysis</h3>
-
-		<img src="/assets/icons/home/themes.png" alt=""/>
-		<h3>Themes</h3>
-	</div>
-
-	<div class="clear"></div>
-	
-	<%= link_to "Sign up now!", register_path(), :class => "button big" %>
-</div>
+<ul class="thumbnails">
+	<li class="span3">
+		<div class="thumbnail">
+			<img src="/assets/icons/home/management.png"/>
+			<h3>Grades</h3>
+			<p>Post all of your grades inside of classes you create. Don't worry about the professor updating them, you control them all!</p>
+		</div>
+	</li>
+	<li class="span3">
+		<div class="thumbnail">
+			<img src="/assets/icons/home/tracking.png"/>
+			<h3>Assignments</h3>
+			<p>Stop waiting for assignments to be announced in class. Take control of your schedule with an interactive assignment calendar</p>
+		</div>
+	</li>
+	<li class="span3">
+		<div class="thumbnail">
+			<img src="/assets/icons/home/analysis.png"/>
+			<h3>Statistics</h3>
+			<p>Wonder how you are doing in a class? View your grades over time as a whole and broken up by type.</p>
+		</div>
+	</li>
+	<li class="span3">
+		<div class="thumbnail">
+			<img src="/assets/icons/home/themes.png"/>
+			<h3>Themes</h3>
+			<p>Not happy with the way that BareGrades looks by default? Take control by apply one of our crazy awesome themes!</p>
+		</div>
+	</li>
+</ul>

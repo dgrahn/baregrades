@@ -2,13 +2,8 @@
 	<% render "head", :subpage => "Users" %>
 <% end %>
 <% content_for :nav do %>
-	<div class="right">
-		<%= render :partial => "courses/numberOfStudents" %>
-	</div>
-
-	<%= link_to "Summary", course_path(@course) %>
-	<a href="#">//Analysis</a>
-	<a href="#">//Calendar</a>
+	<%= render :partial => "courses/navigation" %>
+	<%= render :partial => "courses/numberOfStudents" %>
 <% end %>
 
 <h1>Current Course Memebers</h1>

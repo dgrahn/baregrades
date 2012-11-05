@@ -12,29 +12,31 @@
 
 <h1><%= @assignment.name %></h1>
 
-<table>
-	<tr>
-		<th class="text-right no-border">Name:</th>
-		<td><%= @assignment.name %></td>
-	</tr>
-	<tr>
-		<th class="text-right no-border">Description:</th>
-		<td><%= @assignment.description %></td>
-	</tr>
-	<tr>
-		<th class="text-right no-border">Worth:</th>
-		<td><%= @assignment.worth %></td>
-	</tr>
-	<tr>
-		<th class="text-right no-border">Grade:</th>
-		<td><%= @assignment.user_grade(@current_user) %></td>
-	</tr>
-	<tr>
-		<th class="text-right no-border">Percentage:</th>
-		<td><%= @assignment.user_percentage(@current_user) %></td>
-	</tr>
-	<tr>
-		<th class="text-right no-border">Due:</th>
-		<td><%= @assignment.due_date %></td>
-	</tr>
+<table class="table">
+	<tbody>
+		<tr>
+			<th class="text-right no-border">Name:</th>
+			<td><%= @assignment.name %></td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Description:</th>
+			<td><%= @assignment.description %></td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Worth:</th>
+			<td><%= @assignment.worth %></td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Grade:</th>
+			<td><%= @assignment.user_grade(@current_user) %></td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Percentage:</th>
+			<td><%= @assignment.user_percentage(@current_user) %></td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Due:</th>
+			<td><%= @assignment.due_date %></td>
+		</tr>
+	</tbody>
 </table>

@@ -11,40 +11,57 @@
 	</div>
 	<% end %>
 
-	<div class="column">
-		<h2>Login Information</h2>
-		<%= f.label :username %>
-		<%= f.text_field :username %>
+	<div class="row">
+		<div class="span4">
+			<h2>Login</h2>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-user"></i></span>
+				<%= f.text_field :username, placeholder:"Username" %>
+			</div>
 
 
-		<%= f.label :password %>
-		<%= f.password_field :password %>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<%= f.password_field :password, placeholder:"Password" %>
+			</div>
 
-		<%= f.label :password_confirmation %>
-		<%= f.password_field :password_confirmation %>
-		
-		<%= f.label :theme_id %>
-		<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-lock"></i></span>
+				<%= f.password_field :password_confirmation, placeholder:"Confirm Password" %>
+			</div>
+				
+
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-tint"></i></span>
+				<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
+			</div>
+		</div>
+
+		<div class="span4">
+			<h2>Contact</h2>
+			
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-envelope"></i></span>
+				<%= f.text_field :email, placeholder:"Email" %>
+			</div>
+
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-hand-right"></i></span>
+				<%= f.text_field :first_name, placeholder:"First Name" %>
+			</div>
+			
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-hand-right"></i></span>
+				<%= f.text_field :middle_name, placeholder:"Middle Name" %>
+			</div>
+			
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-hand-right"></i></span>
+				<%= f.text_field :last_name, placeholder:"Last Name" %>
+			</div>
+		</div>
 	</div>
 
-	<div class="column">
-		<h2>Contact Information</h2>
-		<%= f.label :email %>
-		<%= f.text_field :email %>
-
-		<%= f.label :first_name %>
-		<%= f.text_field :first_name %>
-
-
-		<%= f.label :middle_name %>
-		<%= f.text_field :middle_name %>
-
-
-		<%= f.label :last_name %>
-		<%= f.text_field :last_name %>
-	</div>
-	
-	<div class="clear"></div>
-
-	<%= f.submit %>
+	<br/>
+	<%= f.submit "Register", class:"btn btn-primary" %>
 <% end %>

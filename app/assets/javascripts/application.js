@@ -1,13 +1,16 @@
-//= require jquery
-//= require jquery_ujs
-//= require jquery.ui.all
-//= require_tree .
+/*
+ *= require jquery
+ *= require jquery_ujs
+ *= require jquery.ui.all
+ *= require_tree .
+ *= require bootstrap
+ */
 
 
 $(document).ready(function() {
 	/* -- Grade scale expand button -- */
 	var minorGrades = $(".scale .plus, .scale .minus");
-	var gradeButton = $(".scale .button");
+	var gradeButton = $(".scale .btn");
 	minorGrades.hide();
 
 	gradeButton.click(function() {

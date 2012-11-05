@@ -2,24 +2,18 @@
 	<% render "courses/head", :subpage => @assignment_type.name %>
 <% end %>
 <% content_for :nav do %>
-	<div class="right">
-		<%= render "courses/numberOfStudents" %>
-	</div>
-
-	<%= link_to "Summary", course_path(@course) %>
-	<a href="#">//Analysis</a>
-	<a href="#">//Calendar</a>
+	<%= render :partial => "courses/navigation" %>
+	<%= render :partial => "courses/numberOfStudents" %>
 <% end %>
 
 
-<section class="info">
-	<header>
-		<h2>Assignment Type Info</h2>
-		<nav>
-			<%= link_to "Add Assignment", new_assignment_type_assignment_path(@assignment_type) %> |
-			<%= link_to "Edit", edit_course_assignment_type_path(@course, @assignment_type) %>
-		</nav>
-	</header>
+<header>
+	<h2>Assignment Type Info</h2>
+	<ul class="pill-bar">
+		<li><%= link_to "Add Assignment", new_assignment_type_assignment_path(@assignment_type) %></li>
+		<li><%= link_to "Edit", edit_course_assignment_type_path(@course, @assignment_type) %></li>
+	</ul>
+</header>
 
 	<p><%= @assignment_type.description %></p>
 
@@ -28,35 +22,33 @@
 	  <b>Worth: </b><%= @assignment_type.worth %>%
 	</p>
 	-->
-</section>
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Description</th>
-		<th>Grade</th>
-		<th>Worth</th>
-		<th>Percent</th>
-		<th>Due Date</th>
-		<th></th>
-		<th></th>
-	</tr>
-	<% @assignment_type.sorted_assignments.each do |assignment| %>
+<table class="table">
+	<thead>
 		<tr>
-			<td><%= link_to assignment.name, assignment_type_assignment_path(@assignment_type, assignment) %></td>
-			<td><%= assignment.description %></td>
-			<td><%= assignment.user_grade(@current_user) %></td>
-			<td><%= assignment.worth %></td>
-			<td><%= assignment.user_percentage(@current_user) %></td>
-			<td><%= assignment.due_date %></td>
-			<%if assignment.user_grade(@current_user)%>
-				<td><%= link_to "Grade", edit_assignment_grade_path(assignment), :class => "button" %></td>
-			<%else%>
-				<td><%= link_to "Grade", new_assignment_grade_path(assignment), :class => "button" %></td>
-			<%end%>
-			<td><%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, assignment), :class => "button" %></td>
-			<td><%= link_to "Delete", assignment_type_assignment_path(@assignment_type, assignment), :confirm => "Are you sure?", :method => :delete, :class => "button" %></td>
-			
-		</tr>		
-	<% end %>
+			<th>Name</th>
+			<th>Grade</th>
+			<th>Worth</th>
+			<th>Percent</th>
+			<th>Due Date</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @assignment_type.sorted_assignments.each do |assignment| %>
+			<tr>
+				<td><%= link_to assignment.name, assignment_type_assignment_path(@assignment_type, assignment) %></td>
+				<td><%= assignment.user_grade(@current_user) %></td>
+				<td><%= assignment.worth %></td>
+				<td><%= assignment.user_percentage(@current_user) %></td>
+				<td><%= assignment.due_date %></td>
+				<td>
+					<div class="btn-group">
+						<%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "btn" %>
+						<%= link_to "Grade", edit_assignment_grade_path(assignment), :class => "btn btn-primary" %>
+					</div>
+				</td>
+			</tr>		
+		<% end %>
+	</tbody>
 </table>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	
 
 	def rescue_with_handler(exception)
-		if current_user.is_administrator?
+		if current_user and current_user.is_administrator?
 			@exception = exception
 		end
 

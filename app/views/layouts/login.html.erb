@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>BareGrades</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
@@ -9,28 +11,52 @@
 </head>
 <body>
 
-<header id="main">
-	<div>
-		<%= render :partial => "layouts/user_menu" %>
-		<h1>BareGrades</h1>
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="navbar-inner">
+		<div class="container">
+			<%= link_to "BareGrades", root_path, class:"brand" %>
+			<div class="pull-right dropdown">
+				<a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+					Login
+					<span class="caret"></span>
+				</a>
+				<div class="dropdown-menu">
+					<%= form_tag(sessions_path) do %>
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-user"></i></span>
+							<%= text_field_tag :username, "", placeholder:"Username" %>
+						</div>
+
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-lock"></i></span>
+							<%= password_field_tag :password, "", placeholder:"Password" %>
+						</div>
+
+						<%= submit_tag "Login", class:"btn btn-primary btn-block" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
 </header>
-
 <header id="content-head" class="pond">
-	<div>
+	<div class="container">
 		<%= yield :head %>
 	</div>
 </header>
 
 <nav id="page-nav">
-	<div>
+	<div class="container">
 		<%= yield :nav %>
 	</div>
 </nav>
 
-<div>
+<div class="container">
 	<% flash.each do |name, msg| %>
-		<%= content_tag :div, msg, :id => "flash_#{name}" %>
+		<div class="alert alert-<%= name %>">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<%= msg %>
+		</div>
 	<% end %>
 
 	<%= yield %>
