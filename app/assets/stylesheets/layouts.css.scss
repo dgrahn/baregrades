@@ -12,15 +12,6 @@ ul {
 
 div.dropdown-menu {
 	padding: 15px 15px 0;}
-	
-.navbar-full-width {
-	width: auto;}
-	.navbar-full-width .navbar-inner {
-		border-left: 0;
-		border-right: 0;
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;}
 
 .table-middle td , .table-middle th{
 	vertical-align: middle;}
@@ -41,13 +32,19 @@ div.dropdown-menu {
 			margin: 0;}
 
 
+.container-fluid {
+	max-width: 940px;
+	margin: 0 auto;
+}
+
 // ====================== Bootstrap
+
 #content-head {
-	> div { @extend .container; }
+	> div { @extend .container-fluid; }
 }
 
 #page {
-	> div { @extend .container; }
+	> div { @extend .container-fluid; }
 
 	background: #FAFAFA;
 	border-bottom: 1px solid #DDD;
@@ -76,16 +73,28 @@ div.dropdown-menu {
 	}
 }
 
+.gamerboxes {
+	ul { @extend .thumbnails; }
+	ul > li { @extend .span4; margin: 0 5px 0 0; }
+	div { @extend .thumbnail; background: #333; }
+	li div h2 { @extend .caption; color: #FFF; font-size: 60px; font-weight: normal; margin-bottom: 0; }
+	span { display: block; font-size: 30px; line-height: 40px; }
+
+	@extend .row-fluid;
+	
+	margin: 0 0 30px 0;
+}
+
 #content {
 	> div { @extend .row; }
 
-	@extend .container;	
+	@extend .container-fluid;	
 }
 
 
 header.main {
 	> div { @extend .navbar-inner; }
-	> div > div { @extend .container; }
+	> div > div { @extend .container-fluid; }
 	> div > div > div { @extend .btn-group, .pull-right; }
 	ul { @extend .dropdown-menu; }
 
