@@ -1,0 +1,35 @@
+<% content_for :head do %>
+	<% render "courses/head", subpage:"Analysis" %>
+<% end %>
+<% content_for :nav do %>
+	<%= render :partial => "courses/navigation" %>
+<% end %>
+
+<div id="chart_div" style="width:500px; height:500px;">
+	<img src="/assets/loader.gif"/>
+</div>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Assignment', 'Grade', 'Average', 'Minimum', 'Maximum'],
+			<% @course.assignments.each do |a| %>
+				<% grade = a.user_grade(@current_user) %>
+				<% if grade %>
+					['<%= a.name %>', <%= grade %>, <%= a.average %>, <%= a.minimum %>, <%= a.maximum %>], 
+				<% end %>
+			<% end %>
+		]);
+
+		var options = {
+			title: 'Grades',
+			vAxis: {title: 'Assignment'}
+		};
+
+		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
+</script>

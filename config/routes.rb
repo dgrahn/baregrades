@@ -16,6 +16,7 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/info" => "courses#info", :as => "course_info"
 	get "courses/:id/calendar" => "courses#calendar", :as => "course_calendar"
 	resources :courses do
+		resources :analysis
 		resources :assignment_types
 		resources :grade_scales
 	end
