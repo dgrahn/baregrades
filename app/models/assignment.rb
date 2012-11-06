@@ -50,9 +50,9 @@ class Assignment < ActiveRecord::Base
 	# return the average if there are more than 2 students in
 	# the course (for privacy reasons).
 	def average
-		if course.users.length > 2
+		if course.users.length > 1
 			average = (grades.sum(:grade) / grades.length);
-			average = (average / worth) * 100;
+			average = (average.to_f / worth) * 100;
 			return average
 		end
 	end

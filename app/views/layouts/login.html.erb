@@ -52,6 +52,13 @@
 </nav>
 
 <div class="container">
+	<% flash.each do |name, msg| %>
+		<div class="alert alert-<%= name %>">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<%= msg %>
+		</div>
+	<% end %>
+
 	<%= yield %>
 </div>
 

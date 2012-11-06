@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 		@themes = Theme.all
 
 		respond_to do |format|
-			format.html {render :layout => "login"}
+			format.html {render layout:"login"}
 			format.json { render json: @user }
 		end
 	end
@@ -49,12 +49,10 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			if @user.save
-				format.html { redirect_to @user, notice: 'User was successfully created.' }
-				format.json { render json: @user, status: :created, location: @user }
+				format.html { redirect_to login_path, notice: 'User was successfully created.'}
 			else
 				@themes = Theme.all
 				format.html { render action: "new" }
-				format.json { render json: @user.errors, status: :unprocessable_entity }
 			end
 		end
 	end
