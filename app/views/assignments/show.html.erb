@@ -35,6 +35,10 @@
 			<td><%= @assignment.user_percentage(@current_user) %></td>
 		</tr>
 		<tr>
+			<th class="text-right no-border">Class Average:</th>
+			<td><%= @assignment.average %></td>
+		</tr>
+		<tr>
 			<th class="text-right no-border">Due:</th>
 			<td><%= @assignment.due_date %></td>
 		</tr>
