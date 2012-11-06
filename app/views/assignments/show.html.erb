@@ -32,11 +32,19 @@
 		</tr>
 		<tr>
 			<th class="text-right no-border">Percentage:</th>
-			<td><%= @assignment.user_percentage(@current_user) %></td>
+			<td><%= @assignment.user_percentage(@current_user) %>%</td>
 		</tr>
 		<tr>
 			<th class="text-right no-border">Class Average:</th>
-			<td><%= @assignment.average %></td>
+			<td><%= @assignment.average %>%</td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Class Maximum:</th>
+			<td><%= @assignment.maximum %>%</td>
+		</tr>
+		<tr>
+			<th class="text-right no-border">Class Minimum:</th>
+			<td><%= @assignment.minimum %>%</td>
 		</tr>
 		<tr>
 			<th class="text-right no-border">Due:</th>
