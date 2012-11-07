@@ -3,6 +3,7 @@
 body {
 	margin-top: 40px;
 	margin-bottom: 50px;}
+	aside {}
 
 ul {
 	margin-left: 50px;}
@@ -19,7 +20,8 @@ div.dropdown-menu {
 #content-head {	
 	/* box-shadow: 0 0 20px #000 inset; */
 	color: #FFF;
-	padding: 30px;}
+	padding: 40px;
+	margin-bottom: 40px;}
 	#content-head .hero-unit {
 		background: transparent;}
 	#content-head h1, #content-head h2 {
@@ -44,26 +46,26 @@ div.dropdown-menu {
 }
 
 #page {
-	> div { @extend .container-fluid; }
-
-	background: #FAFAFA;
-	border-bottom: 1px solid #DDD;
-	margin-bottom: 30px;
-	
+	> div { @extend .container-fluid; }	
 	a {
 		display: inline-block;
 		padding: 10px 15px;
 	}
-	a:hover { background: #EEE; }
-
+	a:hover {
+		border-bottom: 3px solid #DDD;
+		text-decoration: none;
+	}
+	a.active {
+		border-bottom: 3px solid $linkColor;
+	}
 	.right {
-		float: right;
-		overflow: show;
-		
 		span {
 			display: inline-block;
 			padding: 10px 15px;
 		}
+
+		float: right;
+		overflow: show;		
 	}
 	img {
 		display: inline-block;
@@ -71,8 +73,105 @@ div.dropdown-menu {
 		margin-top: -5px;
 		padding: 0 10px;
 	}
+
+	background: #EEE;
+	border-bottom: 1px solid #DDD;
+	margin-bottom: 50px;
 }
 
+.new-side {
+	a {
+		border-left: 5px solid transparent;
+		display: block;
+		padding: 6px 10px;
+		text-decoration: none;
+		
+		span {
+			float: right;
+		}
+		
+		.a	{ color: #7FAF1B; }
+		.b 	{ color: #A1DC40; }
+		.c 	{ color: #FBB829; }
+		.d 	{ color: #FF6600; }
+		.f 	{ color: #F02311; }
+		.na	{ color: #222222; }
+	}
+	.active, .active:hover {
+		border-left: 5px solid $linkColor;
+	}
+	a:hover {
+		background: #EEE;
+		border-left: 5px solid #DDD;
+	}
+	
+	.sublink {
+		color: #888;
+		margin-left: 15px;
+	}
+	
+	.sublink.active {
+		border-left: 5px solid #888;
+	}
+	
+	margin-bottom: 30px;
+}
+
+.table {
+	.btn {
+		opacity: 0;
+	}
+	tr:hover .btn {
+		opacity: 1;
+	}
+}
+
+aside h2 {
+	color: #666;
+	font-size: 18px;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+// ============================ Courses
+.courses {
+	a {
+		margin-bottom: 10px;
+		display: block;
+	}
+	a:hover {
+		background: #EEE;
+		text-decoration: none;
+	}
+
+	.grade {
+		margin-right: 10px;
+		width: 20px;
+	}
+	.assignment-type {
+		margin-left: 8px;
+		
+		.grade {
+			padding: 5px;
+			width: 22px;
+		}
+	}
+}
+
+// ============================ Action Menu
+.action-menu {
+	ul {
+		@extend .nav;
+		@extend .nav-list;
+	}
+
+	@extend .well;
+	@extend .pull-right;
+	
+	padding: 8px 0 0;
+}
+
+// ============================ Gamerboxes
 .gamerboxes {
 	ul { @extend .thumbnails; }
 	ul > li { @extend .span4; margin: 0 5px 0 0; }
@@ -91,7 +190,6 @@ div.dropdown-menu {
 	@extend .container-fluid;	
 }
 
-
 header.main {
 	> div { @extend .navbar-inner; }
 	> div > div { @extend .container-fluid; }
@@ -109,8 +207,6 @@ ul.thumbnails {
 
 .pill-bar {
 	@extend .nav, .nav-pills;
-	a {
-	}
 }
 
 // ====================== Grades
@@ -143,15 +239,3 @@ ul.thumbnails {
 	.grade.d 	{background: #FF6600; color: #FFF;}
 	.grade.f 	{background: #F02311; color: #FFF;}
 	.grade.na	{background: #222222; color: #FFF;}
-
-.courses a {
-	display: block;
-	margin-bottom: 10px;}
-	.courses a .grade {
-		width: 20px;
-		margin-right: 10px;}
-	.courses a.assignment-type {
-		margin-left: 15px;}
-		.courses a.assignment-type .grade {
-			padding: 5px;
-			width: 15px;}

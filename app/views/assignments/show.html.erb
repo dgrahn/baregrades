@@ -2,10 +2,6 @@
 	<% render "head" %>
 <% end %>
 <% content_for :nav do %>
-	<div class="right">
-		<%= render "courses/numberOfStudents" %>
-	</div>
-
 	<%= manage_grade_path %>
 	<%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, @assignment) %>
 <% end %>

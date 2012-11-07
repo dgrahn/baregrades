@@ -2,21 +2,21 @@
 	<% render "head" %>
 <% end %>
 <% content_for :nav do %>
-	<%= render :partial => "courses/navigation" %>
-	<%= render :partial => "courses/numberOfStudents" %>
+	<%= render :partial => "courses/navigation", active:"summary" %>
 <% end %>
 
 <header>
+	<div class="action-menu">
+		<ul>
+			<li class="nav-header">Action</li>
+			<li><%= link_to "Edit", edit_course_path(@course) %></li>
+			<li><%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %></li>
+			<li><%= @course.grade_scale ? link_to("Edit Grade Scale", edit_course_grade_scale_path(@course)) :  link_to("Add Grade Scale", new_course_grade_scale_path(@course)) %></li>
+			<li><%= link_to "Leave", course_leave_path(@course) %></li>
+		</ul>
+	</div>
 	<h1>Course Info</h1>
-
-	<nav>
-		<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %> | 
-		<%= link_to "Edit", edit_course_path(@course) %> |
-		<%= @course.grade_scale ? link_to("Edit Grade Scale", edit_course_grade_scale_path(@course)) :  link_to("Add Grade Scale", new_course_grade_scale_path(@course)) %> |
-		<%= link_to "Leave", course_leave_path(@course) %>
-	</nav>
 </header>
-
 
 <p><%= @course.description %></p>
 
@@ -47,8 +47,9 @@
 					<h3><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %> <small><%= "%02d\%" % assignment_type.worth %></small></h3>
 					<p><%= assignment_type.description %></p>
 
+					
 					<%= link_to "Edit", edit_course_assignment_type_path(@course, assignment_type), :class => "btn btn-primary" %>
-					<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "btn" %>
+					<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" %>
 				</div>
 			</div>
 		</li>
