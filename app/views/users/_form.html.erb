@@ -14,51 +14,18 @@
 	<div class="row">
 		<div class="span4">
 			<h2>Login</h2>
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-user"></i></span>
-				<%= f.text_field :username, placeholder:"Username" %>
-			</div>
-
-
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-lock"></i></span>
-				<%= f.password_field :password, placeholder:"Password" %>
-			</div>
-
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-lock"></i></span>
-				<%= f.password_field :password_confirmation, placeholder:"Confirm Password" %>
-			</div>
-				
-
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-tint"></i></span>
-				<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
-			</div>
+			<%= f.text_field :username, popover("Username", "The name which you will use to sign in. This is not visible to anyone else.", ["cbartlet", "frankyc"]) %>
+			<%= f.password_field :password, popover("Password", "A standard password. Make this secure by adding in capitals, numbers, and symbols.", ["TheWalkingDead2010", "TheHobbit2012"]) %>
+			<%= f.password_field :password_confirmation, popover("Password Confirmation", "The same password as above, to make sure you type it correctly") %>
+			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
 		</div>
 
 		<div class="span4">
 			<h2>Contact</h2>
-			
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-envelope"></i></span>
-				<%= f.text_field :email, placeholder:"Email" %>
-			</div>
-
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-hand-right"></i></span>
-				<%= f.text_field :first_name, placeholder:"First Name" %>
-			</div>
-			
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-hand-right"></i></span>
-				<%= f.text_field :middle_name, placeholder:"Middle Name" %>
-			</div>
-			
-			<div class="input-prepend">
-				<span class="add-on"><i class="icon-hand-right"></i></span>
-				<%= f.text_field :last_name, placeholder:"Last Name" %>
-			</div>
+			<%= f.text_field :email, placeholder:"Email" %>
+			<%= f.text_field :first_name, placeholder:"First Name" %>
+			<%= f.text_field :middle_name, placeholder:"Middle Name" %>
+			<%= f.text_field :last_name, placeholder:"Last Name" %>
 		</div>
 	</div>
 

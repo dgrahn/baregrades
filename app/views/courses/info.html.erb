@@ -2,19 +2,10 @@
 	<% render "head" %>
 <% end %>
 <% content_for :nav do %>
-	<%= render :partial => "courses/navigation", active:"summary" %>
+	<%= render partial:"courses/navigation", :locals => {subpage:"info"} %>
 <% end %>
 
 <header>
-	<div class="action-menu">
-		<ul>
-			<li class="nav-header">Action</li>
-			<li><%= link_to "Edit", edit_course_path(@course) %></li>
-			<li><%= link_to "Add Assignment Type", new_course_assignment_type_path(@course) %></li>
-			<li><%= @course.grade_scale ? link_to("Edit Grade Scale", edit_course_grade_scale_path(@course)) :  link_to("Add Grade Scale", new_course_grade_scale_path(@course)) %></li>
-			<li><%= link_to "Leave", course_leave_path(@course) %></li>
-		</ul>
-	</div>
 	<h1>Course Info</h1>
 </header>
 

@@ -1,10 +1,10 @@
 <% content_for :head do %>
-	<% render "head", :subpage => "Edit" %>
+	<% render "head" %>
+<% end %>
+<% content_for :nav do %>
+	<%= render partial:"courses/navigation", :locals => {subpage:"info"} %>
 <% end %>
 
-<h1>Edit</h1>
+<h1>Course Info <small>Edit</small></h1>
 
 <%= render "form" %>
-
-<%= link_to "Show", @course %> |
-<%= link_to "Back", courses_path %>

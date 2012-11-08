@@ -39,47 +39,39 @@ div.dropdown-menu {
 	margin: 0 auto;
 }
 
+.hide {
+	display: none;
+}
+
+input[type="submit"] {
+	display: block;
+	@extend .btn;
+	@extend .btn-primary;
+}
+
 // ====================== Bootstrap
 
 #content-head {
 	> div { @extend .container-fluid; }
 }
 
-#page {
-	> div { @extend .container-fluid; }	
-	a {
-		display: inline-block;
-		padding: 10px 15px;
-	}
-	a:hover {
-		border-bottom: 3px solid #DDD;
-		text-decoration: none;
-	}
-	a.active {
-		border-bottom: 3px solid $linkColor;
-	}
-	.right {
-		span {
-			display: inline-block;
-			padding: 10px 15px;
-		}
-
-		float: right;
-		overflow: show;		
-	}
-	img {
-		display: inline-block;
-		height: 1em;
-		margin-top: -5px;
-		padding: 0 10px;
-	}
-
-	background: #EEE;
-	border-bottom: 1px solid #DDD;
-	margin-bottom: 50px;
+textarea {
+	height: 75px;
+	width: 300px;
 }
 
-.new-side {
+form input[rel="popover"] {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.popover span {
+	display: block;
+	font-size: 12px;
+	font-style: italic;
+}
+
+aside nav {
 	a {
 		border-left: 5px solid transparent;
 		display: block;
@@ -87,7 +79,7 @@ div.dropdown-menu {
 		text-decoration: none;
 		
 		span {
-			float: right;
+			@extend .pull-right;
 		}
 		
 		.a	{ color: #7FAF1B; }
@@ -233,9 +225,9 @@ ul.thumbnails {
 		font: normal 1em Verdana, Arial, Helvetica, sans-serif;}
 		.grade .percentage:after {
 			content: "%";}
-	.grade.a	{background: #7FAF1B; color: #FFF;}
-	.grade.b 	{background: #A1DC40; color: #FFF;}
-	.grade.c 	{background: #FBB829; color: #FFF;}
-	.grade.d 	{background: #FF6600; color: #FFF;}
-	.grade.f 	{background: #F02311; color: #FFF;}
-	.grade.na	{background: #222222; color: #FFF;}
+	.grade.a	{ background: #7FAF1B; color: #FFF;}
+	.grade.b 	{ background: #A1DC40; color: #FFF;}
+	.grade.c 	{ background: #FBB829; color: #FFF;}
+	.grade.d 	{ background: #FF6600; color: #FFF;}
+	.grade.f 	{ background: #F02311; color: #FFF;}
+	.grade.na	{ background: #222222; color: #FFF;}

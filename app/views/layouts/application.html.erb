@@ -46,20 +46,13 @@
 	<div>
 		<aside class="span3">
 			<h2>Actions</h2>
-			<nav class="new-side">
+			<nav>
 				<%= yield :nav %>
 			</nav>
-
-			<!--
-			<nav class="nav nav-tabs nav-stacked">
-				<li><%= link_to "Join a Course", courses_path %></li>
-				<li><%= link_to "Create a Course", new_course_path %></li>
-			</nav>
-			-->
-			
+		
 			<h2>Courses</h2>
 			<% if @current_user %>
-				<nav class="courses new-side">
+				<nav>
 					<% @current_user.courses.each do |course| %>
 						<a href="<%= course_path(course) %>" class="<%= cp(course_path(course)) %>">
 							<% grade = course.user_grade(@current_user) %>

@@ -24,4 +24,8 @@ $(document).ready(function() {
 	});
 
 	$('#assignment_due_date').datepicker({dateFormat: "yy-mm-dd"});
+	
+	$("input[rel*=popover]").popover({'trigger':'focus'});
+	$("textarea[rel*=popover]").popover({'trigger':'focus'});
+	$("select[rel*=popover]").popover({'trigger':'focus'});
 });
