@@ -50,7 +50,7 @@ class Assignment < ActiveRecord::Base
 	# return the average if there are more than 2 students in
 	# the course (for privacy reasons).
 	def average
-		if course.users.length > 2
+		if course.users.length > 2 and grades.length > 0 and worth > 0
 			average = (grades.sum(:grade) / grades.length);
 			average = (average.to_f / worth) * 100;
 			return average
@@ -61,7 +61,7 @@ class Assignment < ActiveRecord::Base
 	# This will only return the maximum if there are more than
 	# two students in the course (privacy reasons).
 	def maximum
-		if course.users.length > 2
+		if course.users.length > 2 and worth > 0
 			return (grades.maximum(:grade).to_f / worth) * 100
 		end
 	end
@@ -70,7 +70,7 @@ class Assignment < ActiveRecord::Base
 	# This will only return the minimum if there are more than
 	# two students in the course (privacy reasons).
 	def minimum
-		if course.users.length > 2
+		if course.users.length > 2 and worth > 0
 			return (grades.minimum(:grade).to_f / worth) * 100
 		end
 	end
