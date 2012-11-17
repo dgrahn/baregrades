@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
-	has_many :accesses
+	has_many :accesses, :dependent => :destroy
 	has_many :courses, :through => :accesses
 	has_many :assignments, :through => :courses
-	has_many :roles, :through => :accesses
+	has_many :roles, :through => :accesses, :dependent => :destroy
 	belongs_to :theme
 
 	validates :username,	:presence => true,	:uniqueness => true

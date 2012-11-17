@@ -88,6 +88,10 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
+		if not @current_user.is_administrator?
+			redirect_to root_path
+		end
+		
 		@course.destroy
 
 		respond_to do |format|

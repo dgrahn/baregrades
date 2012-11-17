@@ -39,8 +39,13 @@ BareGrades::Application.routes.draw do
 		resources :accesses
 	end
 
-	get "feedback" => "users#feedback", :as => "feedback"
-	post "submitFeedback" => "users#submitFeedback", :as => "submitFeedback"
+	# Routes the user to the Form web page
+	get "feedback" => "user_mailer#feedback", :as => "feedback"
+	get "forgotPassword" => "user_mailer#forgotPassword", :as => "forgotPassword"
+	
+	# Routes to the user_mailer controller
+	post "submitFeedback" => "user_mailer#submitFeedback", :as => "submitFeedback"
+	post "resetPassword" => "user_mailer#resetPassword", :as => "resetPassword"
 	
 	#match "/users/:id/access" => "access#index", :as => :user
 	#match "/users/:id/access/new" => "access#new", :as => :user

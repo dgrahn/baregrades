@@ -17,7 +17,7 @@ class Assignment < ActiveRecord::Base
 	
 	belongs_to :assignment_type
 	
-	has_many :grades
+	has_many :grades, :dependent => :destroy
 	
 
 	# Get the current users grade for the assignment (points)

@@ -59,9 +59,12 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-
+		
 		respond_to do |format|
-			if @user.update_attributes(params[:user])
+			if (not @current_user.id == @user.id) && (not @current_user.is_administrator?)
+				format.html {redirect_to root_path, notice: 'Access Denied.'}
+				
+			elsif @user.update_attributes(params[:user])
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { head :no_content }
 			else
@@ -73,6 +76,10 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
+		if not @current_user.is_administrator?
+			redirect_to root_path
+		end
+		
 		@user = User.find(params[:id])
 		@user.destroy
 
@@ -89,17 +96,6 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			format.html
-		end
-	end
-	
-	def submitFeedback
-		@email = params[:email]
-		@topic = params[:topic]
-		@description = params[:description]
-		
-		UserMailer.feedback(@email, @topic, @description).deliver
-		respond_to do |format|
-			format.html { redirect_to @current_user, notice: 'Feedback was sent successfully!' }
 		end
 	end
 end

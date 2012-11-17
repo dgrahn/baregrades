@@ -5,7 +5,7 @@ class AssignmentType < ActiveRecord::Base
 	validates :worth, :numericality => true, :allow_nil => true
 
 	belongs_to :course
-	has_many :assignments
+	has_many :assignments, :dependent => :destroy
 
 	def sorted_assignments
 		return self.assignments.order("due_date")
