@@ -1,13 +1,20 @@
 class UserMailer < ActionMailer::Base
-	default :to => "admin@baregrades.com"
-			
+	default from: "admin@baregrades.com"
 	
 	def feedback(email, topic, description)
+		mail(from: 		email,
+			 to: 		"admin@baregrades.com",
+			 cc: 		["jengel@cedarville.edu"],
+			 subject: 	"[BareGrades Feedback] " + topic,
+			 body: 		["From: " + email + " - " + description])
+	end
 	
-		mail(:to 		=> "admin@baregrades.com",
-			 :cc 		=> ["jengel@cedarville.edu", "dgrahn@cedarville.edu", "mbrooker@cedarville.edu"],
-			 :from 		=> email,
-			 :subject 	=> "[BareGrades Feedback] " + topic,
-			 :body 		=> description)
+	def resetPassword(email, name, password)
+		@users_name = name
+		@password = password
+		
+		mail(to: 		email,
+			 from: 		"admin@baregrades.com",
+			 subject: 	"BareGrades Reset Password")
 	end
 end
