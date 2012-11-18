@@ -30,7 +30,7 @@
 	<% if @current_user.is_administrator? %>
 		<td><%= link_to "Show", course, class:"btn btn-primary" %></td>
 		<td><%= link_to "Edit", edit_course_path(course), class:"btn btn-primary" %></td>
-		<td><%= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" } ), :class => "btn btn-danger" %></td>
+		<td><%= link_to "Destroy", course), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" %></td>
 	<% end %>
   </tr>
 <% end %>
