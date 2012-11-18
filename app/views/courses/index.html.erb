@@ -21,16 +21,16 @@
 
 <% @courses.each do |course| %>
   <tr>
-	<td><%= link_to "Join", course_join_path(course), :class => "button" %></td>
+	<td><%= link_to "Join", course_join_path(course), class:"btn btn-primary" %></td>
     <td><%= course.name %></td>
     <td><%= course.identifier %></td>
     <td><%= course.section %></td>
 	<td><%= course.professor %></td>
     <td><%= course.credits %></td>
 	<% if @current_user.is_administrator? %>
-		<td><%= link_to "Show", course %></td>
-		<td><%= link_to "Edit", edit_course_path(course) %></td>
-		<td><%= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" } %></td>
+		<td><%= link_to "Show", course, class:"btn btn-primary" %></td>
+		<td><%= link_to "Edit", edit_course_path(course), class:"btn btn-primary" %></td>
+		<td><%= link_to "Destroy", course, method: :delete, data: { confirm: "Are you sure?" } ), :class => "btn btn-danger" %></td>
 	<% end %>
   </tr>
 <% end %>
