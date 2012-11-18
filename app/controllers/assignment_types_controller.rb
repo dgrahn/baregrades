@@ -1,12 +1,4 @@
 class AssignmentTypesController < ApplicationController
-	def index
-		@assignment_types = AssignmentType.all
-
-		respond_to do |format|
-			format.html
-		end
-	end
-
 	def show
 		@assignment_type = AssignmentType.find(params[:id])
 		@course = @assignment_type.course
