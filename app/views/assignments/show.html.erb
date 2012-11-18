@@ -2,7 +2,7 @@
 	<% render "head" %>
 <% end %>
 <% content_for :nav do %>
-	<%= manage_grade_path %>
+	<%= manage_grade_path(@assignment, "") %>
 	<%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, @assignment) %>
 <% end %>
 
