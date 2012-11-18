@@ -15,6 +15,6 @@ class UserMailer < ActionMailer::Base
 		
 		mail(to: 		email,
 			 from: 		"admin@baregrades.com",
-			 subject: 	"BareGrades Reset Password")
+			 subject: 	"[BareGrades] Reset Password")
 	end
 end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
-
+	
 	def rescue_with_handler(exception)
 		if current_user and current_user.is_administrator?
 			return

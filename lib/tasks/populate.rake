@@ -16,6 +16,13 @@ namespace :db do
 		Role.create(:id => 4, :name => "Teachers Aid")
 		Role.create(:id => 5, :name => "Student")
 		
+		# Access Generated Sample Data
+		Access.populate amount do |ac|
+			ac.user_id = rand(1..amount)
+			ac.role_id = rand(2..5)
+			ac.course_id = rand(1..amount)
+		end
+		
 		# User Generated Sample Data
 		User.populate amount do |u|
 			u.email 		= Faker::Internet.email
@@ -38,7 +45,7 @@ namespace :db do
 		i = 2
 		Course.populate amount do |cr|
 			cr.credits 			= rand(1..10) + (rand(0..1) * 0.5)
-			cr.description 		= Populator.sentences(2..10)
+			cr.description 		= Populator.sentences(2)
 			cr.name 			= Populator.words(1).titleize
 			cr.pin 				= rand(0..100000)
 			cr.points_based 	= rand(0..1)
@@ -74,13 +81,6 @@ namespace :db do
 			gs.save
 			
 			i = i + 1
-		end
-		
-		# Access Generated Sample Data
-		Access.populate amount do |ac|
-			ac.user_id = rand(1..amount)
-			ac.role_id = rand(1..5)
-			ac.course_id = rand(1..amount)
 		end
 		
 		# AssignmentType Generated Sample Data
@@ -256,8 +256,8 @@ namespace :db do
 					:middle_name 	=> 'John',
 					:last_name 		=> 'Brooker',
 					:username 		=> 'mattbro', 
-					:password 		=> 'password',
-					:password_confirmation => 'password',
+					:password 		=> 'pass1word',
+					:password_confirmation => 'pass1word',
 					:email  		=> 'mbrooker@cedarville.edu')
 		
 		# Role Sample Data

@@ -29,18 +29,23 @@ class UserMailerController < ApplicationController
 	
 	# Receives the Form Post, Delivers the email, and redirects the user
 	def resetPassword
+		user = User.find_by_email(params[:email])
+		
 		respond_to do |format|
-			@user = User.find_by_email(params[:email])
-			
-			if @user.blank?
+			if user.blank?
 				format.html { redirect_to root_path, notice: 'Invalid Email.'}
 			else
-				password = ('0'..'z').to_a.shuffle.first(8).join
-				@user.password = password
-				@user.password_confirmation = password
+				chars = ("a".."z").to_a + ("A".."Z").to_a
+				password = chars[rand(chars.size-1)]
+				chars += ("0".."9").to_a
+				15.times do |i|
+					password += chars[rand(chars.size-1)]
+				end
 				
-				if @user.save
-					UserMailer.resetPassword(@user.email, @user.first_name, password).deliver
+				user.password = password
+				user.password_confirmation = password
+				
+				if user.save && UserMailer.resetPassword(user.email, user.first_name, password).deliver
 					format.html { redirect_to root_path, notice: 'Your password was reset.'}
 				else
 					format.html { redirect_to root_path, notice: 'There was a problem with resetting your password.'}
