@@ -1,12 +1,13 @@
-# The program creates a way for students to manage and post
-# their grades from various classes. Students can collaborate
-# on classes and view course averages.
+#   File: assignment.rb
+#  Class: Assignment
+#   Type: Model
+# Author: Dan Grahn, Matt Brooker, Justin Engel
 #
-# Author:: Dan Grahn, Matt Brooker, Justin Engel
-#
+# Description:
 # This class is the model for assignments. It accesses and 
 # manipulates the data to give grades, percentages, and
 # averages.
+# -----------------------------------------------------------
 
 class Assignment < ActiveRecord::Base
 	attr_accessible :description, :name, :worth, :assignment_type_id, :due_date
