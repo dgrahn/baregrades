@@ -37,8 +37,6 @@ class Course < ActiveRecord::Base
 	def grade_letter_class(grade)		
 		if !grade_scale || !grade
 			return 'na'
-		elsif grade_scale.a_plus 	&& grade_scale.a_plus 	<= grade
-			return 'a plus'
 		elsif grade_scale.a 		&& grade_scale.a 		<= grade
 			return 'a'
 		elsif grade_scale.a_minus 	&& grade_scale.a_minus 	<= grade
