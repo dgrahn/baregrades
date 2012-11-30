@@ -15,17 +15,17 @@
 		<div class="span4">
 			<h2>Login</h2>
 			<%= f.text_field :username, popover("Username", "The name which you will use to sign in. This is not visible to anyone else.", ["cbartlet", "frankyc"]) %>
-			<%= f.password_field :password, popover("Password", "A standard password. Make this secure by adding in capitals, numbers, and symbols.", ["TheWalkingDead2010", "TheHobbit2012"]) %>
+			<%= f.password_field :password, popover("Password", "A standard password that should be at least 8 characters long. Make this secure by adding in capitals, numbers, and symbols.", ["Gj6%HjS2Lj", "Ai7AsOh0h1BA2VdD"]) %>
 			<%= f.password_field :password_confirmation, popover("Password Confirmation", "The same password as above, to make sure you type it correctly") %>
-			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id) %>
+			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id), popover("Themes", "Change the appearance of BareGrades", ["Goldfish", "Snow Purple"]) %>
 		</div>
 
 		<div class="span4">
 			<h2>Contact</h2>
-			<%= f.text_field :email, placeholder:"Email" %>
-			<%= f.text_field :first_name, placeholder:"First Name" %>
-			<%= f.text_field :middle_name, placeholder:"Middle Name" %>
-			<%= f.text_field :last_name, placeholder:"Last Name" %>
+			<%= f.text_field :email, popover("Email", "Giving BareGrades a correct email address allows you to reset your password, give us feedback, and receive important notifications.", ["BareGrades@gmail.com", "student@BareGrades.com"]) %>
+			<%= f.text_field :first_name, popover("First Name", "Your first name. BareGrades uses first names to help users know who is logged on.", ["John", "Jane"]) %>
+			<%= f.text_field :middle_name, popover("Middle Name", "Your middle name or middle initial.", ["Leonard", "Marie"]) %>
+			<%= f.text_field :last_name, popover("Last Name", "Your last name.", ["Smith", "Doe"]) %>
 		</div>
 	</div>
 
