@@ -44,7 +44,7 @@ module ApplicationHelper
 			link_to "Add Grade", new_assignment_grade_path(assignment), :class => clas
 		else
 			link_to "Edit Grade", edit_assignment_grade_path(assignment), :class => clas 
-			link_to "Delete Grade", delete_assignment_grade_path(assignment), :class => clas
+			link_to "Delete Grade", assignment_grade_path(assignment), :confirm => 'Are you sure you want to delete your grade?', method: :delete %>
 		end
 	end
 end
