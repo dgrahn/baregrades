@@ -17,7 +17,7 @@
 		var data = google.visualization.arrayToDataTable([
 			['Assignment', 'Grade', 'Average', 'Minimum', 'Maximum'],
 			<% @course.assignments.each do |a| %>
-				<% grade = a.user_grade(@current_user) %>
+				<% grade = a.user_percentage(@current_user) %>
 				<% if grade %>
 					['<%= a.name %>', <%= grade %>, <%= a.average %>, <%= a.minimum %>, <%= a.maximum %>], 
 				<% end %>
