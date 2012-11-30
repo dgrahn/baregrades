@@ -65,11 +65,11 @@ class GradesController < ApplicationController
 	end
 
 	def destroy
-		@grade = Grade.find(params[:id])
-		@grade.destroy
+		grade = Grade.find_by_assignment_id_and_user_id(params[:id], @current_user.id)
+		grade.destroy
 
 		respond_to do |format|
-			format.html { redirect_to grades_url }
+			format.html { redirect_to assignment_type_assignment_path(@assignment_type, @assignment), notice: 'Grade was successfully destroyed.' }
 			format.json { head :no_content }
 		end
 	end

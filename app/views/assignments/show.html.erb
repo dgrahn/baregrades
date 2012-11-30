@@ -3,6 +3,7 @@
 <% end %>
 <% content_for :nav do %>
 	<%= manage_grade_path(@assignment, "") %>
+	<%= delete_grade_path(@assignment, "") %>
 	<%= link_to "Edit", edit_assignment_type_assignment_path(@assignment_type, @assignment) %>
 <% end %>
 
