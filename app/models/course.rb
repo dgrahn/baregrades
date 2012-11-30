@@ -1,3 +1,14 @@
+#   File: course.rb
+#  Class: Course
+#   Type: Model
+# Author: Dan Grahn, Matt Brooker, Justin Engel
+#
+# Description:
+# This class holds all the information for a single course.
+# This includes credits, description, identifier, name,
+# professor, pin, etc.
+# -----------------------------------------------------------
+
 class Course < ActiveRecord::Base
 	attr_accessible :credits, :description, :identifier, :name, :professor, :pin, :points_based, :section, :student_managed
 
@@ -7,7 +18,7 @@ class Course < ActiveRecord::Base
 	has_many :assignment_types, :dependent => :destroy
 	has_many :assignments, :through => :assignment_types, :dependent => :destroy
 	
-
+	# Get the user's grade for a specific assignment type.
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
@@ -34,6 +45,7 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
+	# Get the CSS class for the grade letter.
 	def grade_letter_class(grade)		
 		if !grade_scale || !grade
 			return 'na'
@@ -66,6 +78,7 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
+	# Get upcoming assignments.
 	def upcoming_assignments(user, num_assignments = nil)
 		if num_assignments
 			return self.assignments
@@ -89,6 +102,7 @@ class Course < ActiveRecord::Base
 		end
 	end
 
+	# Get past assignments
 	def past_assignments(user)
 		return self.assignments
 						.where("due_date <= ? AND 
@@ -99,6 +113,7 @@ class Course < ActiveRecord::Base
 								)", Date.today)
 	end
 	
+	# Get graded assignments
 	def graded_assignments(user)
 		return self.assignments
 						.where("assignments.id IN (
@@ -108,6 +123,7 @@ class Course < ActiveRecord::Base
 								)")
 	end
 
+	# Get undated assignments
 	def undated_assignments(user)
 		return self.assignments.find_all_by_due_date(nil)
 	end

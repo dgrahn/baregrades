@@ -1,3 +1,13 @@
+#   File: grade.rb
+#  Class: Grade
+#   Type: Model
+# Author: Dan Grahn, Matt Brooker, Justin Engel
+#
+# Description:
+# This class holds the grade for a single assignment type for
+# a single user.
+# -----------------------------------------------------------
+
 class User < ActiveRecord::Base
 	attr_accessible :email, :first_name, :last_name, :middle_name, :username, :password, :password_confirmation, :theme_id
 	attr_accessor :password
@@ -16,7 +26,7 @@ class User < ActiveRecord::Base
 	validates :first_name,	:presence => true
 	validates :last_name,	:presence => true
 	
-
+	# "Login" a user
 	def self.authenticate(username, password)
 		user = find_by_username(username)
 		
@@ -31,6 +41,7 @@ class User < ActiveRecord::Base
 		return "#{first_name} #{last_name}"
 	end
 
+	# Encrypt a password
 	def encrypt_password
 		if password.present?
 			self.password_salt = BCrypt::Engine.generate_salt()
@@ -38,6 +49,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	# Dynamically create is_role? methods
 	def method_missing(method_id, *args)
 		if match = matches_dynamic_role_check?(method_id)
 			tokenize_roles(match.captures.first).each do |check|
@@ -54,10 +66,12 @@ class User < ActiveRecord::Base
 	
 	private
 
+	# Helper method to check if the string matches the is_role? type
 	def matches_dynamic_role_check?(method_id)
 		/^is_([a-zA-Z]\w*)\?$/.match(method_id.to_s)
 	end
 
+	# Tokenize strings for is_role_or_role?
 	def tokenize_roles(string_to_split)
 		string_to_split.split(/_or_/)
 	end
