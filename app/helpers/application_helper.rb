@@ -46,4 +46,10 @@ module ApplicationHelper
 			link_to "Edit Grade", edit_assignment_grade_path(assignment), :class => clas 
 		end
 	end
+	
+	def delete_grade_path(assignment)
+		if assignment.user_grade(@current_user).blank?
+			link_to "Delete Grade", delete_assignment_grade_path(assignment)
+		end
+	end
 end
