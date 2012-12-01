@@ -1,2 +1,3 @@
 <h1><%= @course.name %> :: <%= @assignment_type.name %></h1>
-<h2><%= @course.identifier %> &mdash; <%= "%02d" % @course.section %></h2>
+
+<h2><%= @course.identifier %> <% if @course.section %>&mdash; <%= "%02d" % @course.section %> <% end %></h2>
