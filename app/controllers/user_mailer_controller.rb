@@ -21,7 +21,13 @@ class UserMailerController < ApplicationController
 		@topic = params[:topic]
 		@description = params[:description]
 		
-		UserMailer.feedback(@email, @topic, @description).deliver
+		begin
+			UserMailer.feedback(@email, @topic, @description).deliver
+		rescue Net::SMTPFatalError # Mailer delivery error
+			@email = "admin@baregrades.com"
+			UserMailer.feedback(@email, @topic, @description).deliver
+		end
+			
 		respond_to do |format|
 			format.html { redirect_to root_path, notice: "Feedback was sent successfully!" }
 		end # respond_to
@@ -33,9 +39,11 @@ class UserMailerController < ApplicationController
 		
 		respond_to do |format|
 			if user.blank?
+				# No user for the given email
 				format.html { redirect_to login_path, notice: 'No user found for that email.'}
 				
 			else
+				# Generate a random password
 				chars = ("a".."z").to_a + ("A".."Z").to_a
 				password = chars[rand(chars.size-1)]
 				chars += ("0".."9").to_a
@@ -43,22 +51,31 @@ class UserMailerController < ApplicationController
 					password += chars[rand(chars.size-1)]
 				end
 				
-				oldPass = user.password
+				# Change the password
+				oldPass = user.password # Save the old password in case of error
 				user.password = password
 				user.password_confirmation = password
 				
 				if user.save
-					if UserMailer.resetPassword(user.email, user.first_name, password).deliver
+					# Password saved correctly
+					begin # Try catch block for mail delivery error
+						UserMailer.resetPassword(user.email, user.first_name, password).deliver # Send the email
+						
+						# Email was successfully delivered
 						format.html {redirect_to login_path, notice: "Your password was reset. Checke da email."}
-					else
+						
+					rescue Net::SMTPFatalError # Mailer delivery error
+						# Reset to the old password
 						user.password = oldPass
 						user.password_confirmation = oldPass
 						user.save
-						format.html {redirect_to login_path, notice: "There was a problem delivering the password to "}
-					end
+						
+						# Problem delivering the email
+						format.html {redirect_to login_path, notice: "There was a problem delivering the password to " + user.email}
+					end	# begin
 				else
+					# Problem saving the password
 					format.html {redirect_to login_path, notice: "There was a problem with reseting your password. I am really, seriously sorry."}
-					
 				end # if
 			end # if
 		end # respond_to

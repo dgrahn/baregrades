@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
 	def feedback(email, topic, description)
 		mail(from: 		email,
 			 to: 		"admin@baregrades.com",
-			 cc: 		["jengel@cedarville.edu"],
+			 cc: 		["jengel@cedarville.edu", "dgrahn@cedarville.edu", "mbrooker@cedarville.edu"],
 			 subject: 	"[BareGrades Feedback] " + topic,
 			 body: 		["From: " + email + " - " + description])
 	end
