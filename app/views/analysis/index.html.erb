@@ -4,7 +4,7 @@
 <% content_for :nav do %>
 	<%= render :partial => "courses/navigation" %>
 <% end %>
-<div id="warning_div" class = "alert alert-info">
+<div id="warning_div">
 </div>
 <div id="chart_div" style="width:500px; height:500px;">
 	<img src="/assets/loader.gif"/>
@@ -31,8 +31,9 @@
 			vAxis: {title: 'Assignment'}
 		};
 		if(data.getNumberOfRows()==0){
-			$('#chart_div').html("")
-			$('#warning_div').html('<strong>Heads up!</strong> There are not enough students in the class for statistics. Tell your friends to get with it!')
+			$('#chart_div').html("");
+			$('#warning_div').addClass("alert alert-info");
+			$('#warning_div').html('<strong>Heads up!</strong> There are not enough students in the class for statistics. Tell your friends to get with it!');
 		}
 		else{
 			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
