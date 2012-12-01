@@ -1,5 +1,7 @@
 <% if !grade_scale.blank? %>
 	<div class="scale">
+		<div class="grade spacer">
+		</div>
 		<div class="grade b plus">
 			<div class="letter">B+</div>
 			<div class="percentage"><%= grade_scale.b_plus ? "%02.01f" % grade_scale.b_plus : "N/A" %></div>
