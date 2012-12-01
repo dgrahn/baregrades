@@ -1,6 +1,4 @@
 <%= form_for([@course, @grade_scale]) do |f| %>
-    <%= f.label :a_plus %>
-    <%= f.text_field :a_plus %>
 
     <%= f.label :a %>
     <%= f.text_field :a %>
@@ -34,9 +32,6 @@
 
     <%= f.label :d_minus %>
     <%= f.text_field :d_minus %>
-	
-	<%= f.label :f %>
-    <%= f.text_field :f %>
 
     <%= f.submit %>
 <% end %>

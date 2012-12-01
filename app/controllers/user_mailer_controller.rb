@@ -33,7 +33,8 @@ class UserMailerController < ApplicationController
 		
 		respond_to do |format|
 			if user.blank?
-				format.html { redirect_to root_path, notice: 'Invalid Email.'}
+				format.html { redirect_to login_path, notice: 'No user found for that email.'}
+				
 			else
 				chars = ("a".."z").to_a + ("A".."Z").to_a
 				password = chars[rand(chars.size-1)]
@@ -42,13 +43,22 @@ class UserMailerController < ApplicationController
 					password += chars[rand(chars.size-1)]
 				end
 				
+				oldPass = user.password
 				user.password = password
 				user.password_confirmation = password
 				
-				if user.save && UserMailer.resetPassword(user.email, user.first_name, password).deliver
-					format.html { redirect_to root_path, notice: 'Your password was reset.'}
+				if user.save
+					if UserMailer.resetPassword(user.email, user.first_name, password).deliver
+						format.html {redirect_to login_path, notice: "Your password was reset. Checke da email."}
+					else
+						user.password = oldPass
+						user.password_confirmation = oldPass
+						user.save
+						format.html {redirect_to login_path, notice: "There was a problem delivering the password to "}
+					end
 				else
-					format.html { redirect_to root_path, notice: 'There was a problem with resetting your password.'}
+					format.html {redirect_to login_path, notice: "There was a problem with reseting your password. I am really, seriously sorry."}
+					
 				end # if
 			end # if
 		end # respond_to

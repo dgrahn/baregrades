@@ -1,9 +1,5 @@
 <% if !grade_scale.blank? %>
 	<div class="scale">
-		<div class="grade a plus">
-			<div class="letter">A+</div>
-			<div class="percentage"><%= grade_scale.a_plus ? "%02.01f" % grade_scale.a_plus : "N/A" %></div>
-		</div>
 		<div class="grade b plus">
 			<div class="letter">B+</div>
 			<div class="percentage"><%= grade_scale.b_plus ? "%02.01f" % grade_scale.b_plus : "N/A" %></div>
@@ -34,10 +30,6 @@
 		<div class="grade d">
 			<div class="letter">D</div>
 			<div class="percentage"><%= grade_scale.d ? "%02.01f" % grade_scale.d : "N/A" %></div>
-		</div>
-		<div class="grade f">
-			<div class="letter">F</div>
-			<div class="percentage"><%= grade_scale.f ? "%02.01f" % grade_scale.f : "N/A" %></div>
 		</div>
 		
 		<a href="#" class="btn btn-primary">+</a>

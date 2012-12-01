@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Course</th>
-    <th>A plus</th>
     <th>A</th>
     <th>A minus</th>
     <th>B plus</th>
@@ -15,7 +14,6 @@
     <th>D plus</th>
     <th>D</th>
     <th>D minus</th>
-    <th>F</th>
     <th></th>
     <th></th>
     <th></th>
@@ -24,7 +22,6 @@
 <% @grade_scales.each do |grade_scale| %>
   <tr>
     <td><%= grade_scale.course_id %></td>
-    <td><%= grade_scale.a_plus %></td>
     <td><%= grade_scale.a %></td>
     <td><%= grade_scale.a_minus %></td>
     <td><%= grade_scale.b_plus %></td>
@@ -36,7 +33,6 @@
     <td><%= grade_scale.d_plus %></td>
     <td><%= grade_scale.d %></td>
     <td><%= grade_scale.d_minus %></td>
-    <td><%= grade_scale.f %></td>
     <td><%= link_to 'Show', grade_scale %></td>
     <td><%= link_to 'Edit', edit_grade_scale_path(grade_scale) %></td>
     <td><%= link_to 'Destroy', grade_scale, method: :delete, data: { confirm: 'Are you sure?' } %></td>

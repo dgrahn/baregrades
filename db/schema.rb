@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121027184451) do
+ActiveRecord::Schema.define(:version => 20121031130034) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(:version => 20121027184451) do
 
   create_table "grade_scales", :force => true do |t|
     t.integer  "course_id"
-    t.decimal  "a_plus"
     t.decimal  "a"
     t.decimal  "a_minus"
     t.decimal  "b_plus"
@@ -64,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20121027184451) do
     t.decimal  "d_plus"
     t.decimal  "d"
     t.decimal  "d_minus"
-    t.decimal  "f"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.date     "due_date"
