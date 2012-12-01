@@ -28,4 +28,18 @@ $(document).ready(function() {
 	$("input[rel*=popover]").popover({'trigger':'focus'});
 	$("textarea[rel*=popover]").popover({'trigger':'focus'});
 	$("select[rel*=popover]").popover({'trigger':'focus'});
+	
+	
+	$(".question .expand").hide();
+	$(".question button").click(function() {
+		value = $(this).html();
+		
+		if(value == "No") {
+			$(this).parent().parent().children(".expand").slideUp();
+			$(this).siblings('input').attr('value', false);
+		} else {
+			$(this).parent().parent().children(".expand").slideDown();
+			$(this).siblings('input').attr('value', true);
+		}
+	});
 });

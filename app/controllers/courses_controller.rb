@@ -51,6 +51,7 @@ class CoursesController < ApplicationController
 
 	def new
 		@course = Course.new
+		@common_types = ["homework", "projects", "quizzes", "exams", "papers"]
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -62,16 +63,51 @@ class CoursesController < ApplicationController
 	end
 
 	def create
+		types = ["homework", "projects", "quizzes", "exams", "papers"]
+
 		@course = Course.new(params[:course])
 
-		respond_to do |format|
-			if @course.save
-				format.html { redirect_to @course, notice: 'Course was successfully created.' }
-				format.json { render json: @course, status: :created, location: @course }
-			else
+		if not @course.save
+			respond_to do |format|
 				format.html { render action: "new" }
 				format.json { render json: @course.errors, status: :unprocessable_entity }
 			end
+		end	
+
+		gs = GradeScale.new(course_id: @course.id)
+		gs.save!
+		
+		types.each do |type|
+			hash = params[type]
+
+			if hash[:active] == 'true'
+				at = AssignmentType.create(
+						 name: type.titleize,
+						worth: hash[:total].to_f,
+					course_id: @course.id
+					)
+
+				if at.save
+					puts "#{type} successfully saved"
+				end
+
+				numberOfAssignments = hash[:number].to_f
+				(1..numberOfAssignments).each do |i|
+					a = Assignment.new()
+					a.name = "#{type.titleize} #{i}"
+					a.worth = hash[:worth].to_f
+					a.assignment_type = at
+					
+					if a.save
+						puts "#{a.name} successfully saved"
+					end
+				end
+			end
+		end
+		
+		respond_to do |format|
+			format.html { redirect_to @course, notice: 'Course was successfully created.' }
+			format.json { render json: @course, status: :created, location: @course }
 		end
 	end
 

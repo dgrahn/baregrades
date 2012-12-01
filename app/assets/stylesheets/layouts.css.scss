@@ -49,6 +49,34 @@ input[type="submit"] {
 	@extend .btn-primary;
 }
 
+
+// ====================== Questions/Expand
+div.question {
+	.answer {
+		display: inline-block;
+		margin: 0 15px 0 0;
+	}
+
+	.expand {
+		clear: left;
+		display: block;
+		margin-bottom: 10px;
+		margin-left: 20px;
+	}
+
+	p {
+		display: inline-block;
+		margin-bottom: 20px;
+	}
+
+	clear: left;
+}
+
+.clear-left {
+	clear: left;
+}
+
+
 // ====================== Bootstrap
 
 #content-head {
@@ -58,11 +86,21 @@ input[type="submit"] {
 textarea {
 	height: 75px;
 	width: 300px;
+	margin-bottom: 20px;
 }
 
 form input[rel="popover"] {
 	display: block;
 	margin-bottom: 20px;
+}
+
+form input[type="submit"] {
+	clear: left;
+	margin-top: 15px;
+}
+
+input.small {
+	width: 50px;
 }
 
 .popover span {

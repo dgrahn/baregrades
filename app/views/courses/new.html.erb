@@ -2,6 +2,48 @@
 	<h1>New Course</h1>
 <% end %>
 
-<%= render "form" %>
+<%= form_for(@course) do |f| %>	
+	<%= f.text_field :name, popover("Title", "The full human-readable name for the course.", ["Introduction to Humanities", "General Physics I"]) %>
+	<%= f.text_field :identifier, popover("Identifier", "The name the registrar uses for the course.", ["CS-1210", "LIT-2030"]) %>
+	<%= f.number_field :section, popover("Section", "The numerical section for your class. (Often used to distinguish between times and labs)", ["1", "5"]) %>
+	<%= f.text_field :professor, popover("Professor", "The full name for your professor.", ["Charles Clevenger", "Stephen Golmer"]) %>
+	<%= f.text_field :credits, popover("Credits", "The number of credits you receive for the course.", ["3.0", "4.5"]) %>
+	<%= f.text_area :description, popover("Description", "A brief description of the class. Keep this relevant, helpful, and concise.") %>
+	
+	<% @common_types.each do |t| %>
+		<div class="question">
+			<div class="answer btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn">Yes</button>
+				<button type="button" class="btn active">No</button>
+				<%= hidden_field(t, "active", value:"No") %>
+			</div>
+			<p>Does this course have <strong><%= t %></strong>?</p>
+			
+			<div class="expand">
+				<div class="question">
+					<div class="answer">
+						<%= number_field(t, "number", class:"small") %>
+					</div>
+					<p>How many?</p>
+				</div>
+				
+				<div class="question">
+					<div class="answer">
+						<%= number_field(t, "total", class:"small") %>
+					</div>
+					<p>How much is the category worth?</p>
+				</div>
 
-<%= link_to "Back", courses_path %>
+				<div class="question">
+					<div class="answer">
+						<%= number_field(t, "worth", class:"small") %>
+					</div>
+					<p>How many points is each worth?</p>
+				</div>
+			</div>
+		</div>
+	<% end %>
+	
+	
+	<%= f.submit "Create Course", class:"clear-left" %>
+<% end %>
