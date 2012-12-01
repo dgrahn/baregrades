@@ -65,8 +65,8 @@ class CoursesController < ApplicationController
 	def create
 		types = ["homework", "projects", "quizzes", "exams", "papers"]
 
+		# Create and save course
 		@course = Course.new(params[:course])
-
 		if not @course.save
 			respond_to do |format|
 				format.html { render action: "new" }
@@ -74,36 +74,43 @@ class CoursesController < ApplicationController
 			end
 		end	
 
+		# Create grade scale
 		gs = GradeScale.new(course_id: @course.id)
 		gs.save!
 		
+
 		types.each do |type|
+			# Grab the hash from the params
 			hash = params[type]
 
 			if hash[:active] == 'true'
+				# Create the assignment type
 				at = AssignmentType.create(
 						 name: type.titleize,
 						worth: hash[:total].to_f,
 					course_id: @course.id
 					)
 
-				if at.save
-					puts "#{type} successfully saved"
-				end
+				at.save!
 
+				# Create the assignments
 				numberOfAssignments = hash[:number].to_f
 				(1..numberOfAssignments).each do |i|
 					a = Assignment.new()
 					a.name = "#{type.titleize} #{i}"
 					a.worth = hash[:worth].to_f
 					a.assignment_type = at
-					
-					if a.save
-						puts "#{a.name} successfully saved"
-					end
-				end
-			end
-		end
+					a.save!
+				end #assignments
+			end #if active
+		end #assignment types
+		
+		# Have the user join the course
+		access = Access.new()
+		access.role = Role.find_by_name("Student")
+		access.course = @course
+		access.user = @current_user
+		access.save
 		
 		respond_to do |format|
 			format.html { redirect_to @course, notice: 'Course was successfully created.' }
