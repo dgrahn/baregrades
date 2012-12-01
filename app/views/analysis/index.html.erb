@@ -20,7 +20,7 @@
 			['Assignment', 'Grade', 'Average', 'Minimum', 'Maximum'],
 			<% @course.assignments.each do |a| %>
 				<% grade = a.user_percentage(@current_user) %>
-				<% if grade %>
+				<% if grade && a.average %>
 					['<%= a.name %>', <%= grade %>, <%= a.average %>, <%= a.minimum %>, <%= a.maximum %>], 
 				<% end %>
 			<% end %>
