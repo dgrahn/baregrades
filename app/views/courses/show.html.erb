@@ -39,10 +39,10 @@
 							%>
 						</td>
 						<td><%= assignment.due_date.day %></td>
-						<td class="span5"><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
 							<div class="btn-group">
-								<%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "btn" %>
+								<%= link_to "Edit", edit_assignment_path(assignment), :class => "btn" %>
 								<%= manage_grade_path(assignment, "btn btn-primary") %>
 							</div>
 						</td>
@@ -53,10 +53,10 @@
 					<tr>
 						<th class="span1"><%= (i == 0) ? "Undated" : "" %></th>
 						<td></td>
-						<td class="span5"><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+						<td class="span5"><%= link_to assignment.name,assignment_path(assignment) %></td>
 						<td>
 							<div class="btn-group">
-								<%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "btn" %>
+								<%= link_to "Edit", edit_assignment_path(assignment), :class => "btn" %>
 								<%= manage_grade_path(assignment, "btn btn-primary") %>
 							</div>
 						</td>
@@ -71,10 +71,10 @@
 				<% @past.each_with_index do |assignment, i| %>
 					<tr>
 						<td></td>
-						<td class="span5"><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
 							<div class="btn-group">
-								<%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "btn" %>
+								<%= link_to "Edit", edit_assignment_path(assignment), :class => "btn" %>
 								<%= manage_grade_path(assignment, "btn btn-primary") %>
 							</div>
 						</td>
@@ -83,10 +83,10 @@
 				<% @graded.each_with_index do |assignment, i| %>
 					<tr>
 						<td class="span1"><%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %></td>
-						<td class="span5"><%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment) %></td>
+						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
 							<div class="btn-group">
-								<%= link_to "Edit", edit_assignment_type_assignment_path(assignment.assignment_type, assignment), :class => "btn" %>
+								<%= link_to "Edit", edit_assignment_path(assignment), :class => "btn" %>
 								<%= manage_grade_path(assignment, "btn btn-primary") %>
 							</div>
 						</td>

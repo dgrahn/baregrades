@@ -1,11 +1,4 @@
 class AssignmentsController < ApplicationController
-	before_filter :get_variables
-
-	def get_variables
-		@assignment_type = AssignmentType.find(params[:assignment_type_id])
-		@course = @assignment_type.course
-	end	
-	
 	def index
 		@assignments = Assignment.all
 
@@ -17,6 +10,7 @@ class AssignmentsController < ApplicationController
 
 	def show
 		@assignment = Assignment.find(params[:id])
+		@course = @assignment.course
 		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 		
 		respond_to do |format|
@@ -26,7 +20,9 @@ class AssignmentsController < ApplicationController
 	end
 
 	def new
+		@course = Course.find(params[:id])
 		@assignment = Assignment.new
+		@assignment_types = @course.assignment_types
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -36,16 +32,17 @@ class AssignmentsController < ApplicationController
 
 	def edit
 		@assignment = Assignment.find(params[:id])
+		@course = @assignment.course
+		@assignment_types = @course.assignment_types
 	end
 
 	def create
 		@assignment = Assignment.new(params[:assignment])
-		@assignment.assignment_type = @assignment_type
-		@assignment.save
+		@course = @assignment.course
 
 		respond_to do |format|
 			if @assignment.save
-				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), :flash => {:success => "Assignment was successfully created."}}
+				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully created."}}
 			else
 				format.html { render action: "new" }
 			end
@@ -54,10 +51,11 @@ class AssignmentsController < ApplicationController
 
 	def update
 		@assignment = Assignment.find(params[:id])
+		@course = @assignment.course
 
 		respond_to do |format|
 			if @assignment.update_attributes(params[:assignment])
-				format.html { redirect_to course_assignment_type_path(@course, @assignment_type), :flash => {:success => "Assignment was successfully updated."}}
+				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully updated."}}
 				format.json { head :no_content }
 			else
 				format.html { render action: "edit" }

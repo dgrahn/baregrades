@@ -17,7 +17,7 @@
 			<%= f.text_field :username, popover("Username", "The name which you will use to sign in. This is not visible to anyone else.", ["cbartlet", "frankyc"]) %>
 			<%= f.password_field :password, popover("Password", "A standard password that should be at least 8 characters long. Make this secure by adding in capitals, numbers, and symbols.", ["Gj6%HjS2Lj", "Ai7AsOh0h1BA2VdD"]) %>
 			<%= f.password_field :password_confirmation, popover("Password Confirmation", "The same password as above, to make sure you type it correctly") %>
-			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id), popover("Themes", "Use themse to change the appearance of BareGrades", ["Goldfish", "Snow Purple"]) %>
+			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id), popover("Themes", "Use themes to change the appearance of BareGrades", ["Goldfish", "Snow Purple"]) %>
 		</div>
 
 		<div class="span4">

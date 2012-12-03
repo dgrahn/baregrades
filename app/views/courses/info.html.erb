@@ -28,22 +28,30 @@
 </p>
 -->
 
-<div class="row-fluid">
-	<ul class="thumnails">
-	<% @course.assignment_types.each do |assignment_type| %>
-		<% grade = assignment_type.user_grade(@current_user) %>
-		<li class="span6">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3><%= link_to assignment_type.name, course_assignment_type_path(@course, assignment_type) %> <small><%= "%02d\%" % assignment_type.worth %></small></h3>
-					<p><%= assignment_type.description %></p>
-
-					
-					<%= link_to "Edit", edit_course_assignment_type_path(@course, assignment_type), :class => "btn btn-primary" %>
-					<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" %>
-				</div>
-			</div>
-		</li>
-	<% end %>
-	</ul>
-</div>
+<h2>Assignment Types</h2>
+<table class="table table-middle">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Weighting</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @course.assignment_types.each do |assignment_type| %>
+			<% grade = assignment_type.user_grade(@current_user) %>	
+			
+			<tr>
+				<td><%= assignment_type.name %></td>
+				<td><%= assignment_type.worth %></td>
+				<td>
+					<div class="btn-group pull-right">
+						<%= link_to "Edit", edit_course_assignment_type_path(@course, assignment_type), :class => "btn btn-primary" %>
+						<%= link_to "Delete", course_assignment_type_path(@course, assignment_type), :confirm => "Are you sure?", :method => :delete, :class => "btn btn-danger" %>
+					</div>
+				</td>
+			</tr>
+			
+		<% end %>
+	</tbody>
+</table>

@@ -5,6 +5,7 @@
 <% if local_assigns[:subpage] and subpage.downcase == "info" %>
 	<%= link_to "Edit", edit_course_path(@course), class:"sublink" %>
 	<%= link_to "Add Assignment Type", new_course_assignment_type_path(@course), class:"sublink" %>
+	<%= link_to "Add Assignment", new_assignment_path(@course), class:"sublink" %>
 	
 	<% if @course.grade_scale %>
 		<%= link_to "Edit Grade Scale", edit_course_grade_scale_path(@course), class:"sublink" %>
