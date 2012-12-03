@@ -110,11 +110,10 @@ input.small {
 }
 
 aside nav {
-	a {
+	.sublink, a {
 		border-left: 5px solid transparent;
 		display: block;
 		padding: 6px 10px;
-		text-decoration: none;
 		
 		span {
 			@extend .pull-right;
@@ -127,21 +126,20 @@ aside nav {
 		.f 	{ color: #F02311; }
 		.na	{ color: #222222; }
 	}
-	.active, .active:hover {
-		border-left: 5px solid $linkColor;
-	}
-	a:hover {
-		background: #EEE;
-		border-left: 5px solid #DDD;
-	}
 	
 	.sublink {
 		color: #888;
 		margin-left: 15px;
 	}
-	
-	.sublink.active {
-		border-left: 5px solid #888;
+
+	.active, .active:hover {
+		border-left: 5px solid $linkColor;
+	}
+
+	a:hover {
+		background: #EEE;
+		border-left: 5px solid #DDD;
+		text-decoration: none;
 	}
 	
 	margin-bottom: 30px;

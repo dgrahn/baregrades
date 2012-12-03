@@ -1,13 +1,4 @@
 class AssignmentTypesController < ApplicationController
-	def show
-		@assignment_type = AssignmentType.find(params[:id])
-		@course = @assignment_type.course
-
-		respond_to do |format|
-			format.html
-		end
-	end
-
 	def new
 		@course = Course.find(params[:course_id])
 		@assignment_type = AssignmentType.new
