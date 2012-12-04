@@ -17,7 +17,7 @@
 			<ul>
 				<% for assignment in assignments %>
 					<li>
-						<%= assignment.course.name %>: <%= link_to assignment.name, assignment_type_assignment_path(assignment.assignment_type, assignment)%>
+						<%= assignment.course.name %>: <%= link_to assignment.name, assignment_path(assignment)%>
 					</li>
 				<% end %>
 			</ul>
