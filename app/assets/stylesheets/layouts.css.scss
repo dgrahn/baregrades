@@ -145,10 +145,11 @@ aside nav {
 	margin-bottom: 30px;
 }
 
-.table {
+.table-hover {
 	.btn {
 		opacity: 0;
 	}
+
 	tr:hover .btn {
 		opacity: 1;
 	}

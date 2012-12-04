@@ -6,7 +6,6 @@
  *= require bootstrap
  */
 
-
 $(document).ready(function() {
 	/* -- Grade scale expand button -- */
 	var minorGrades = $(".scale .plus, .scale .minus");
