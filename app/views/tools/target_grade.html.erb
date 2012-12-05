@@ -22,11 +22,11 @@
 		</tr>
 		<tr>
 			<th>Highest Possible Grade:</th>
-			<td><%= @highest_possible %>%</td>
+			<td><%= "%.02f" % @highest_possible %>%</td>
 		</tr>
 		<tr>
 			<th>Lowest Possible Grade:</th>
-			<td><%= @lowest_possible %>%</td>
+			<td><%= "%.02f" % @lowest_possible %>%</td>
 		</tr>
 	</tbody>
 </table>
@@ -46,7 +46,7 @@
 		} else if(needed < 0) {
 			$("#needed").html("You can't fail that hard!");
 		} else {
-			$("#needed").html(needed + "%");
+			$("#needed").html(needed.toFixed(2) + "%");
 		}
 	}
 
