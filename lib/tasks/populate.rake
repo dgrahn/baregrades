@@ -229,6 +229,10 @@ namespace :db do
 					 :css_class 	=> "wordless")
 		Theme.create(:name 		=> "Atomic Bikini",
 					 :css_class 	=> "atomicbikini")
+		Theme.create(:name 		=> "Condensed Milk",
+					:css_class 	=> "condensed")
+		Theme.create(:name 		=> "Whiteness",
+					:css_class 	=> "whiteness")
 	end
 	
 	desc "Create Default Administrators"
