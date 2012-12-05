@@ -46,8 +46,8 @@ class Course < ActiveRecord::Base
 	end
 
 	def percent_complete(user)
-		completedWorth = 0
-		totalWorth = 0
+		completedWorth = 0.0
+		totalWorth = 0.0
 		
 		if(self.points_based)
 			self.assignments.each do |assignment|

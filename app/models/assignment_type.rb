@@ -43,8 +43,8 @@ class AssignmentType < ActiveRecord::Base
 	end
 	
 	def percent_complete(user)
-		completedWorth = 0
-		totalWorth = 0
+		completedWorth = 0.0
+		totalWorth = 0.0
 		
 		self.assignments.each do |assignment|
 			totalWorth += assignment.worth
@@ -54,6 +54,8 @@ class AssignmentType < ActiveRecord::Base
 			end
 		end
 		
-		return completedWorth / totalWorth
+		if totalWorth != 0
+			return completedWorth / totalWorth
+		end
 	end
 end
