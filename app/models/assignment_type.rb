@@ -41,4 +41,19 @@ class AssignmentType < ActiveRecord::Base
 			return  totalGrade.to_f / totalWorth.to_f * 100
 		end
 	end
+	
+	def percent_complete(user)
+		completedWorth = 0
+		totalWorth = 0
+		
+		self.assignments.each do |assignment|
+			totalWorth += assignment.worth
+			
+			if assignment.user_grade(user)
+				completedWorth += assignment.worth
+			end
+		end
+		
+		return completedWorth / totalWorth
+	end
 end

@@ -3,17 +3,18 @@ BareGrades::Application.routes.draw do
 
 	root :to => "home#index"
 
-	get "privacy" 						=> "home#privacy", 		as:"privacy"
-	get "login" 						=> "sessions#new", 		as:"login"
-	get "logout" 						=> "sessions#destroy",	as:"logout"
-	get "courses/:id/join" 				=> "accesses#join", 	as:"course_join"
-	get "courses/:id/leave" 			=> "accesses#leave", 	as:"course_leave"
-	get "courses/:id/users" 			=> "courses#users", 	as:"course_users"
-	get "courses/:id/info" 				=> "courses#info", 		as:"course_info"
-	get "courses/:id/calendar" 			=> "courses#calendar", 	as:"course_calendar"
-	get "courses/:id/assignment/new" 	=> "assignments#new", 	as:"new_assignment"
-	get "courses/:id/analysis" 			=> "analysis#index", 	as:"course_analysis"
-	get "courses/:course_id/edit_scale" => "grade_scales#edit", as:"edit_grade_scale"
+	get "privacy" 						=> "home#privacy", 			as:"privacy"
+	get "login" 						=> "sessions#new", 			as:"login"
+	get "logout" 						=> "sessions#destroy",		as:"logout"
+	get "courses/:id/join" 				=> "accesses#join", 		as:"course_join"
+	get "courses/:id/leave" 			=> "accesses#leave", 		as:"course_leave"
+	get "courses/:id/users" 			=> "courses#users", 		as:"course_users"
+	get "courses/:id/info" 				=> "courses#info", 			as:"course_info"
+	get "courses/:id/calendar" 			=> "courses#calendar", 		as:"course_calendar"
+	get "courses/:id/assignment/new" 	=> "assignments#new", 		as:"new_assignment"
+	get "courses/:id/analysis" 			=> "analysis#index", 		as:"course_analysis"
+	get "courses/:id/edit_scale" 		=> "grade_scales#edit", 	as:"edit_grade_scale"
+	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
 
 	resources :sessions
 	resources :roles

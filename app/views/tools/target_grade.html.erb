@@ -1,0 +1,60 @@
+<%
+	content_for :head do
+		render "courses/head"
+	end
+
+	render partial:"courses/navigation"
+%>
+
+<h1>Target Grade</h1>
+
+<table class="table table-middle well auto-size">
+	<tbody>
+		<tr>
+			<th>Target:</th>
+			<td>
+				<input type="number" name="target" id="target" value="<%= @course.grade_scale.a_minus %>"/>
+			</td>
+		</tr>
+		<tr>
+			<th>Required Grade:</th>
+			<td id="needed"></td>
+		</tr>
+		<tr>
+			<th>Highest Possible Grade:</th>
+			<td><%= @highest_possible %>%</td>
+		</tr>
+		<tr>
+			<th>Lowest Possible Grade:</th>
+			<td><%= @lowest_possible %>%</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>This tool will allow you to calculate the grade you need on the remaining assignments in order to reach the a certain target. The highest possible grade shows the grade you would receive if you scored a 100% on the remaining assignments. The lowest possible grade shows the grade you would receive if you scored a 0% on the remaining assignments.</p>
+
+<script type="text/javascript">
+	completed = <%= @percent_completed %>
+	grade     = <%= @grade %>
+	
+	function calculateTarget() {
+		target = $("#target").attr('value')
+		needed = (target - grade * completed) / (1 - completed);
+		
+		if(100 < needed) {
+			$("#needed").html("Sorry! You can't reach this grade.");
+		} else if(needed < 0) {
+			$("#needed").html("You can't fail that hard!");
+		} else {
+			$("#needed").html(needed + "%");
+		}
+	}
+
+	$(document).ready(function() {
+		$("#target").change(function() {
+			calculateTarget()
+		});
+		
+		calculateTarget();
+	});
+</script>

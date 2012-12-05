@@ -44,6 +44,31 @@ class Course < ActiveRecord::Base
 			return  totalGrade / totalWorth
 		end
 	end
+
+	def percent_complete(user)
+		completedWorth = 0
+		totalWorth = 0
+		
+		if(self.points_based)
+			self.assignments.each do |assignment|
+				totalWorth += assignment.worth
+				
+				if assignment.user_grade(user)
+					completedWorth += assignment.worth
+				end
+			end
+		else
+			self.assignment_types.each do |type|
+				completed = type.percent_complete(user)
+				completedWorth += completed * type.worth
+				totalWorth += type.worth
+			end
+		end
+		
+		if totalWorth != 0
+			return completedWorth / totalWorth
+		end
+	end
 	
 	# Get the CSS class for the grade letter.
 	def grade_letter_class(grade)		

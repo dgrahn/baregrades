@@ -7,6 +7,7 @@
 
 	content_for :tools do
 		concat li_to "Analysis", course_analysis_path(@course)
+		concat li_to "Target Grade", target_grade_path(@course)
 	end
 	
 	content_for :actions do

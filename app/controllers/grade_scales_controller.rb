@@ -35,7 +35,7 @@ class GradeScalesController < ApplicationController
 
   # GET /grade_scales/1/edit
   def edit
-	@course 		= Course.find(params[:course_id])
+	@course 		= Course.find(params[:id])
     @grade_scale 	= @course.grade_scale
   end
 

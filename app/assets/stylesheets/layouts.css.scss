@@ -8,6 +8,10 @@ body {
 ul {
 	margin-left: 50px;}
 
+p {
+	line-height: 1.85em;
+}
+
 .input-prepend {
 	margin-bottom: 10px;}
 
@@ -85,6 +89,10 @@ form input[type="submit"] {
 	margin-top: 15px;
 }
 
+td > input[type="number"] {
+	margin-bottom: 0;
+}
+
 input.small {
 	width: 50px;
 }
@@ -98,6 +106,14 @@ input.small {
 .nav .subtext {
 	padding: 3px 0 3px 15px;
 	color: #888;
+}
+
+.auto-size {
+	width: auto;
+}
+
+tbody tr th:first-child {
+	text-align: right;
 }
 
 .nav span {
