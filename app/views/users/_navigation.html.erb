@@ -1,0 +1,10 @@
+<%
+	content_for :actions do
+		if @current_user.is_administrator?
+			concat li_to "Add Role", new_user_access_path(@user)
+		end
+		
+		concat li_to "Send Feedback", feedback_path()		
+		concat li_to "Edit User Info", edit_user_path(@user)
+	end
+%>
