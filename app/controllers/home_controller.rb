@@ -7,4 +7,7 @@ class HomeController < ApplicationController
 
 	def privacy
 	end
+	
+	def changeLog
+	end
 end

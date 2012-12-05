@@ -4,6 +4,7 @@ BareGrades::Application.routes.draw do
 	root :to => "home#index"
 
 	get "privacy" 						=> "home#privacy", 			as:"privacy"
+	get "changeLog"						=> "home#changeLog",			as:"changeLog"
 	get "login" 						=> "sessions#new", 			as:"login"
 	get "logout" 						=> "sessions#destroy",		as:"logout"
 	get "courses/:id/join" 				=> "accesses#join", 		as:"course_join"
@@ -40,8 +41,8 @@ BareGrades::Application.routes.draw do
 	end
 
 	# Routes the user to the Form web page
-	get "feedback" => "user_mailer#feedback", as:"feedback"
-	get "forgotPassword" => "user_mailer#forgotPassword", as:"forgotPassword"
+	get "feedback" 			=> "user_mailer#feedback", as:"feedback"
+	get "forgotPassword"	=> "user_mailer#forgotPassword", as:"forgotPassword"
 	
 	# Routes to the user_mailer controller
 	post "submitFeedback" => "user_mailer#submitFeedback", as:"submitFeedback"
