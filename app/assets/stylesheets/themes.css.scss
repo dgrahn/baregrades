@@ -66,3 +66,17 @@
 	}
 	#content-head.atomicbikini h1, #content-head.atomicbikini h2 {
 		color: #333;}
+
+#content-head.condensed {
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+	padding: 0;}
+
+#content-head.whiteness {
+	background: inherit;
+	margin-bottom: 0;}
+	#content-head.whiteness h1 {
+		color: #333;}
+	#content-head.whiteness h2 {
+		color: #AAA;}
