@@ -79,6 +79,8 @@
 			<%= side_menu("Pages", yield(:pages)) %>
 			<%= side_menu("Tools", yield(:tools)) %>
 			<%= side_menu("Actions", yield(:actions)) %>
+
+			<%= link_to "Add Course", courses_path(), class:"btn" %>
 		</aside>
 		<div class="span8 offset1">
 			<% flash.each do |name, msg| %>
