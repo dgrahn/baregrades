@@ -224,6 +224,7 @@ header.main {
 	ul { @extend .dropdown-menu; }
 	ul a { padding: 3px 13px; }
 	ul a i { margin-right: 7px; }
+	.version { color: #666; font-size: 12px; margin-top: 2px; margin-bottom: -2px; }
 
 	@extend .navbar;
 	@extend .navbar-fixed-top;
@@ -282,3 +283,45 @@ $na-color: #222222;
 	.d 	{ color: $d-color; }
 	.f 	{ color: $f-color; }
 	.na	{ color: $na-color; }
+
+// ====================== Grade Report
+.report {
+	h1 { font-size: 20px; margin-bottom: 0; margin-top: 50px; }
+	h2 { font-size: 15px; margin: 0 0 0 50px; }
+	ul { list-style-type: none; margin: 0 0 15px 100px; }
+
+	h1:first-child { margin-top: 0; }
+	h1 span { @extend .grade; font-size: 15px; float: left; line-height: 1em; margin-top: 3px; margin-right: 10px; padding: 10px; }
+	h2 span, ul span { display: inline-block; width: 20px; }	
+}
+
+
+// ====================== Printable CSS
+@media print {
+	body { margin: 0; }
+	aside, header.main { display: none; }
+	#content, #content-head div { max-width: 100%; padding: 0; }
+	#content div { margin-left: 0; }
+	header#content-head {
+		h1 { color: #333; }
+		h2 { color: #AAA; }
+
+		background: $white;
+		margin-bottom: 0;
+		padding: 0 0 20px;
+	}
+
+	.report {
+		h1 { margin-top: 25px; }
+		ul { margin-bottom: 5px; margin-left: 140px; }
+		h2 { margin-left: 75px; }
+		h2 span { width: 50px; }
+		ul span { width: 45px; }
+	}
+
+	.a:after { content: " (A)"; }
+	.b:after { content: " (B)"; }
+	.c:after { content: " (C)"; }
+	.d:after { content: " (D)"; }
+	.f:after { content: " (F)"; }
+}

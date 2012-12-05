@@ -2,6 +2,8 @@
 	<h1>Home</h1>
 <% end %>
 
+<%= render "home/navigation" %>
+
 <div class="calendar">  
   <h2 id="month">  
     <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>  

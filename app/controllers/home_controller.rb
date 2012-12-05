@@ -8,6 +8,6 @@ class HomeController < ApplicationController
 	def privacy
 	end
 	
-	def changeLog
+	def changelog
 	end
 end

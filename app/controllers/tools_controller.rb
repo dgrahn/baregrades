@@ -6,6 +6,12 @@ class ToolsController < ApplicationController
 
 		@lowest_possible = @percent_completed * @grade
 		@highest_possible = @percent_completed * @grade + 100 * (1 - @percent_completed)
+	end
+
+	def grade_report
+		@courses = @current_user.courses
 		
+		# TODO: Optimize preloading
+		ActiveRecord::Associations::Preloader.new(@courses, [:assignment_types]).run
 	end
 end

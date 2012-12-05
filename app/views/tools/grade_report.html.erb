@@ -1,0 +1,32 @@
+<%
+	content_for :head do
+		concat content_tag(:h1, "Grade Report")
+		concat content_tag(:h2, "#{@current_user.name} - #{DateTime.now.strftime("%d %b %y")}")
+	end
+
+	render "home/navigation"
+%>
+
+<div class="report">
+	<% @courses.each do |course| %>
+		<h1>
+			<%= grade_span(course.user_grade(@current_user), course) %>
+			<%= course.name %>
+		</h1>
+		<% course.assignment_types.each do|assignment_type| %>
+			<h2>
+				<%= grade_span(assignment_type.user_grade(@current_user), course) %>
+				<%= assignment_type.name %>
+			</h2>
+			
+			<ul>
+			<% assignment_type.assignments.each do |assignment| %>
+				<li>
+					<%= grade_span(assignment.user_percentage(@current_user), course) %>
+					<%= assignment.name %>
+				</li>
+			<% end %>
+			</ul>
+		<% end %>
+	<% end %>
+</div>

@@ -29,16 +29,13 @@ class AssignmentType < ActiveRecord::Base
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
-		self.assignments.each do |assignment|
-			grade = assignment.user_grade(user)
-			if grade
-				totalGrade += grade
-				totalWorth += assignment.worth
-			end
-		end
 
-		if totalWorth != 0
-			return  totalGrade.to_f / totalWorth.to_f * 100
+		grades = Grade.joins(:assignment).where('assignments.assignment_type_id' => self.id, :user_id => user)
+		grade = grades.sum(:grade).to_f
+		worth = grades.sum(:worth).to_f
+
+		if worth != 0
+			return (grade / worth) * 100
 		end
 	end
 	
