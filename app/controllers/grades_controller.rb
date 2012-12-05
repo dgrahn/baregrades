@@ -44,7 +44,10 @@ class GradesController < ApplicationController
 		@grade.user_id = @current_user.id
 
 		respond_to do |format|
-			if @grade.save
+			# For fast grades (:commit == "Save") redirect to the course page
+			if params[:commit] == "Save" && @grade.save
+					format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully created.' }
+			elsif @grade.save
 				format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully created.' }
 			else
 				format.html { render action: "new" }
@@ -56,7 +59,10 @@ class GradesController < ApplicationController
 		@grade = Grade.find(params[:id])
 
 		respond_to do |format|
-			if @grade.update_attributes(params[:grade])
+			# For fast grades (:commit == "Save") redirect to the course page
+			if params[:commit] == "Save" && @grade.update_attributes(params[:grade])
+				format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully updated.' }
+			elsif @grade.update_attributes(params[:grade])
 				format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully updated.' }
 			else
 				format.html { render action: "edit" }
@@ -65,12 +71,16 @@ class GradesController < ApplicationController
 	end
 
 	def destroy
-		grade = Grade.find_by_assignment_id_and_user_id(params[:id], @current_user.id)
+		grade = Grade.find_by_assignment_id_and_user_id(params[:assignment_id], @current_user.id)
 		grade.destroy
 
 		respond_to do |format|
-			format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully destroyed.' }
-			format.json { head :no_content }
+			if params[:page] == "Course"
+				format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully destroyed.' }
+			else
+				format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully destroyed.' }
+				format.json { head :no_content }
+			end
 		end
 	end
 end

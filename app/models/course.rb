@@ -148,6 +148,12 @@ class Course < ActiveRecord::Base
 
 	# Get undated assignments
 	def undated_assignments(user)
-		return self.assignments.find_all_by_due_date(nil)
+		return self.assignments
+						.where("due_date IS NULL AND 
+								assignments.id NOT IN (
+									SELECT DISTINCT(assignment_id) FROM grades WHERE
+										user_id = #{user.id} AND
+										grade IS NOT NULL
+								)")
 	end
 end

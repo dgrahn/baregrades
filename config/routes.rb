@@ -17,7 +17,7 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/analysis" 			=> "analysis#index", 		as:"course_analysis"
 	get "courses/:id/edit_scale" 		=> "grade_scales#edit", 	as:"edit_grade_scale"
 	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
-
+	
 	resources :sessions
 	resources :roles
 	resources :assignments
@@ -27,6 +27,7 @@ BareGrades::Application.routes.draw do
 		resources :grade_scales
 	end	
 
+	post "fast_grade"					=> "grades#fast_grade",		as:"fast_grade"
 	resources :assignments do
 		resources :grades
 	end

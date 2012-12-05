@@ -32,6 +32,12 @@ class Assignment < ActiveRecord::Base
 	
 	def user_grade_class(user)
 		grade = Grade.where(:assignment_id => self.id, :user_id => user.id).first
+		
+		if grade.blank?
+			grade = Grade.new
+		end
+		
+		return grade
 	end
 	
 	# Get the current users percentage for the assignment.
