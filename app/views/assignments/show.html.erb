@@ -1,11 +1,8 @@
 <% content_for :head do %>
-	<% render "head" %>
+	<% render "courses/head" %>
 <% end %>
-<% content_for :nav do %>
-	<%= manage_grade_path(@assignment, "") %>
-	<%= delete_grade_path(@assignment, "") %>
-	<%= link_to "Edit", edit_assignment_path(@assignment) %>
-<% end %>
+
+<%= render "assignments/navigation" %>
 
 <h1><%= @assignment.name %></h1>
 

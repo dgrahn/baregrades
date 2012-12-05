@@ -49,25 +49,11 @@ input[type="submit"] {
 	@extend .btn-primary;
 }
 
-
 // ====================== Questions/Expand
-div.question {
-	.answer {
-		display: inline-block;
-		margin: 0 15px 0 0;
-	}
-
-	.expand {
-		clear: left;
-		display: block;
-		margin-bottom: 10px;
-		margin-left: 20px;
-	}
-
-	p {
-		display: inline-block;
-		margin-bottom: 20px;
-	}
+.question {
+	.answer { display: inline-block; margin: 0 15px 0 0; }
+	.expand { clear: left; display: block; margin-bottom: 10px; margin-left: 20px; }
+	p { display: inline-block; margin-bottom: 20px; }
 
 	clear: left;
 }
@@ -109,40 +95,50 @@ input.small {
 	font-style: italic;
 }
 
-aside nav {
-	.sublink, a {
-		border-left: 5px solid transparent;
-		display: block;
-		padding: 6px 10px;
-		
-		span {
-			@extend .pull-right;
-		}
-		
-		.a	{ color: #7FAF1B; }
-		.b 	{ color: #A1DC40; }
-		.c 	{ color: #FBB829; }
-		.d 	{ color: #FF6600; }
-		.f 	{ color: #F02311; }
-		.na	{ color: #222222; }
-	}
+.nav .subtext {
+	padding: 3px 0 3px 15px;
+	color: #888;
+}
+
+.nav span {
+	@extend .pull-right;
+}
+
+aside > ul {
+	@extend .nav;
+	@extend .nav-list;
 	
-	.sublink {
-		color: #888;
-		margin-left: 15px;
-	}
-
-	.active, .active:hover {
-		border-left: 5px solid $linkColor;
-	}
-
-	a:hover {
+	li:first-child {
+		@extend .nav-header;
+		
 		background: #EEE;
-		border-left: 5px solid #DDD;
-		text-decoration: none;
+		border-bottom: 1px solid $tableBorder;
+		margin-bottom: 5px;
+		text-shadow: none;
+	}
+
+	.active > a {
+		background-color: inherit;
+		color: $blue;
+		font-weight: bold;
+		text-shadow: none;
 	}
 	
-	margin-bottom: 30px;
+	.active > a:hover {
+		background-color: #EEE;
+		color: #005580;
+		text-shadow: none;
+	}
+
+	background: 0;
+	border: 1px solid $tableBorder;
+	border-radius: 4px;
+	margin-bottom: $gridGutterWidth768;
+	padding-bottom: 5px;
+}
+
+aside .courses .active {
+	font-weight: inherit;
 }
 
 .table-hover {
@@ -160,31 +156,6 @@ aside h2 {
 	font-size: 18px;
 	margin: 0;
 	text-transform: uppercase;
-}
-
-// ============================ Courses
-.courses {
-	a {
-		margin-bottom: 10px;
-		display: block;
-	}
-	a:hover {
-		background: #EEE;
-		text-decoration: none;
-	}
-
-	.grade {
-		margin-right: 10px;
-		width: 20px;
-	}
-	.assignment-type {
-		margin-left: 8px;
-		
-		.grade {
-			padding: 5px;
-			width: 22px;
-		}
-	}
 }
 
 // ============================ Action Menu
@@ -224,6 +195,8 @@ header.main {
 	> div > div { @extend .container-fluid; }
 	> div > div > div { @extend .btn-group, .pull-right; }
 	ul { @extend .dropdown-menu; }
+	ul a { padding: 3px 13px; }
+	ul a i { margin-right: 7px; }
 
 	@extend .navbar;
 	@extend .navbar-fixed-top;
@@ -239,6 +212,12 @@ ul.thumbnails {
 }
 
 // ====================== Grades
+$a-color: #7FAF1B;
+$b-color: #A1DC40;
+$c-color: #FBB829;
+$d-color: #FF6600;
+$f-color: #F02311;
+$na-color: #222222;
 
 .scale {
 	margin: 0 0 30px;}
@@ -262,10 +241,17 @@ ul.thumbnails {
 		font: normal 1em Verdana, Arial, Helvetica, sans-serif;}
 		.grade .percentage:after {
 			content: "%";}
-	.grade.a	{ background: #7FAF1B; color: #FFF;}
-	.grade.b 	{ background: #A1DC40; color: #FFF;}
-	.grade.c 	{ background: #FBB829; color: #FFF;}
-	.grade.d 	{ background: #FF6600; color: #FFF;}
-	.grade.f 	{ background: #F02311; color: #FFF;}
-	.grade.na	{ background: #222222; color: #FFF;}
+	.grade.a	{ background: $a-color; color: #FFF;}
+	.grade.b 	{ background: $b-color; color: #FFF;}
+	.grade.c 	{ background: $c-color; color: #FFF;}
+	.grade.d 	{ background: $d-color; color: #FFF;}
+	.grade.f 	{ background: $f-color; color: #FFF;}
+	.grade.na	{ background: $na-color; color: #FFF;}
 	.grade.spacer { opacity: 0; padding: 0 33.5px;}
+	
+	.a	{ color: $a-color; }
+	.b 	{ color: $b-color; }
+	.c 	{ color: $c-color; }
+	.d 	{ color: $d-color; }
+	.f 	{ color: $f-color; }
+	.na	{ color: $na-color; }

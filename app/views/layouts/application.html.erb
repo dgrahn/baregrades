@@ -17,12 +17,13 @@
 	<div>
 		<div>
 			<%= link_to "BareGrades", root_path, class:"brand" %>
-			<div>
+			<div class="user-menu">
 				<a class="btn" href="<%= account_path %>"><i class="icon-user"></i> <%= @current_user.first_name %></a>
 				<a class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
 				<ul>
 					<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
-					<li><a href="<%= feedback_path %>"><i class="icon-eye-open"></i> Send Feedback</a></li>
+					<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
+					<li><a href="<%= privacy_path %>"><i class="icon-eye-open"></i> Privacy</a></li>
 					
 					<% if @current_user.is_administrator? %>
 						<li><a href="#"><i class="icon-briefcase"></i> Admin</a></li>
@@ -45,35 +46,39 @@
 <div id="content">
 	<div>
 		<aside class="span3">
-			<h2>Actions</h2>
-			<nav>
-				<%= yield :nav %>
-			</nav>
-		
-			<h2>Courses</h2>
-			<% if @current_user %>
-				<nav>
-					<% @current_user.courses.each do |course| %>
-						<a href="<%= course_path(course) %>" class="<%= cp(course_path(course)) %>">
-							<% grade = course.user_grade(@current_user) %>
-							<!-- <%= render "courses/gradeBlock", :grade => course.user_grade(@current_user), :course => course %> -->
-							<%= course.name %>
-							<span class="<%= course.grade_letter_class(grade) %>"><%= grade ? "%02d" % grade : "" %></span>
-						</a>
+			<%=
+				side_menu("Courses", class:"courses") do
+					if @current_user
+						@current_user.courses.each do |course|
+							grade = course.user_grade(@current_user)
 
-						<% if @course and course.id == @course.id %>	
-							<% course.assignment_types.each do |assignment_type| %>
-								<span class="sublink <%= cp(course_assignment_type_path(course, assignment_type)) %>">
-									<% grade = assignment_type.user_grade(@current_user) %>
-									<span class="<%= course.grade_letter_class(grade) %>"><%= grade ? "%02d" % grade : "" %></span>
-									<%= assignment_type.name %>
-								</span>
-							<% end %>
-						<% end %>
-					<% end %>
-				</nav>
-				<%= link_to "Add a Course", courses_path, class:"btn" %>
-			<% end %>
+							concat(
+								li_to(course_path(course)) do
+									concat course.name
+									concat grade_span(grade, course)
+								end
+							)
+
+							if @course and course.id == @course.id
+								course.assignment_types.each do |assignment_type|
+									grade = assignment_type.user_grade(@current_user)
+
+									concat(
+										content_tag(:li, class:"subtext") do
+											concat assignment_type.name
+											concat grade_span(grade, course)
+										end
+									)
+								end
+							end
+						end
+					end
+				end
+			%>
+
+			<%= side_menu("Pages", yield(:pages)) %>
+			<%= side_menu("Tools", yield(:tools)) %>
+			<%= side_menu("Actions", yield(:actions)) %>
 		</aside>
 		<div class="span8 offset1">
 			<% flash.each do |name, msg| %>

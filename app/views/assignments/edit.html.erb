@@ -1,3 +1,9 @@
-<h1>Editing assignment</h1>
+<% content_for :head do %>
+	<% render "courses/head" %>
+<% end %>
+
+<%= render "assignments/navigation" %>
+
+<h1>Editing Assignment</h1>
 
 <%= render "form" %>

@@ -1,9 +1,9 @@
 <% content_for :head do %>
-	<% render "courses/head", subpage:"Analysis" %>
+	<% render "courses/head" %>
 <% end %>
-<% content_for :nav do %>
-	<%= render :partial => "courses/navigation" %>
-<% end %>
+
+<%= render "courses/navigation" %>
+
 <div id="warning_div">
 </div>
 <div id="chart_div" style="width:500px; height:500px;">

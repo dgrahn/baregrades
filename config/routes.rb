@@ -2,27 +2,27 @@ BareGrades::Application.routes.draw do
   resources :themes
 
 	root :to => "home#index"
-	get "privacy" => "home#privacy", :as => "privacy"
 
-	get "login" => "sessions#new", :as => "login"
-	get "logout" => "sessions#destroy", :as => "logout"
+	get "privacy" 						=> "home#privacy", 		as:"privacy"
+	get "login" 						=> "sessions#new", 		as:"login"
+	get "logout" 						=> "sessions#destroy",	as:"logout"
+	get "courses/:id/join" 				=> "accesses#join", 	as:"course_join"
+	get "courses/:id/leave" 			=> "accesses#leave", 	as:"course_leave"
+	get "courses/:id/users" 			=> "courses#users", 	as:"course_users"
+	get "courses/:id/info" 				=> "courses#info", 		as:"course_info"
+	get "courses/:id/calendar" 			=> "courses#calendar", 	as:"course_calendar"
+	get "courses/:id/assignment/new" 	=> "assignments#new", 	as:"new_assignment"
+	get "courses/:id/analysis" 			=> "analysis#index", 	as:"course_analysis"
+	get "courses/:course_id/edit_scale" => "grade_scales#edit", as:"edit_grade_scale"
+
 	resources :sessions
-
 	resources :roles
+	resources :assignments
 
-	get "courses/:id/join" => "accesses#join", :as => "course_join"
-	get "courses/:id/leave" => "accesses#leave", :as => "course_leave"
-	get "courses/:id/users" => "courses#users", :as => "course_users"
-	get "courses/:id/info" => "courses#info", :as => "course_info"
-	get "courses/:id/calendar" => "courses#calendar", :as => "course_calendar"
-	get "courses/:id/new_assignment" => "assignments#new", :as => "new_assignment"
 	resources :courses do
-		resources :analysis
 		resources :assignment_types
 		resources :grade_scales
-	end
-	
-	resources :assignments
+	end	
 
 	resources :assignments do
 		resources :grades
@@ -30,24 +30,24 @@ BareGrades::Application.routes.draw do
 	
 
 
-	get "account" => "users#show", :as => "account"
+	get "account" => "users#show", as:"account"
 	get "account/:id" => "users#show"
-	get "register" => "users#new", :as => "register"
+	get "register" => "users#new", as:"register"
 	resources :users
 	resources :users do
 		resources :accesses
 	end
 
 	# Routes the user to the Form web page
-	get "feedback" => "user_mailer#feedback", :as => "feedback"
-	get "forgotPassword" => "user_mailer#forgotPassword", :as => "forgotPassword"
+	get "feedback" => "user_mailer#feedback", as:"feedback"
+	get "forgotPassword" => "user_mailer#forgotPassword", as:"forgotPassword"
 	
 	# Routes to the user_mailer controller
-	post "submitFeedback" => "user_mailer#submitFeedback", :as => "submitFeedback"
-	post "resetPassword" => "user_mailer#resetPassword", :as => "resetPassword"
+	post "submitFeedback" => "user_mailer#submitFeedback", as:"submitFeedback"
+	post "resetPassword" => "user_mailer#resetPassword", as:"resetPassword"
 	
-	#match "/users/:id/access" => "access#index", :as => :user
-	#match "/users/:id/access/new" => "access#new", :as => :user
+	#match "/users/:id/access" => "access#index", as::user
+	#match "/users/:id/access/new" => "access#new", as::user
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
@@ -57,7 +57,7 @@ BareGrades::Application.routes.draw do
 	# Keep in mind you can assign values other than :controller and :action
 
 	# Sample of named route:
-	#   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+	#   match 'products/:id/purchase' => 'catalog#purchase', as::purchase
 	# This route can be invoked with purchase_url(:id => product.id)
 
 	# Sample resource route (maps HTTP verbs to controller actions automatically):

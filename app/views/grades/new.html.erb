@@ -1,7 +1,9 @@
 <% content_for :head do %>
-	<h1><%= @course.name %> :: <%= @assignment_type.name %></h1>
+	<% render "courses/head" %>
 <% end %>
 
-<h1><%= @assignment.name %> :: Grade</h1>
+<%= render "assignments/navigation" %>
+
+<h1><%= @assignment.name %></h1>
 
 <%= render "form" %>

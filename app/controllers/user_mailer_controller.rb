@@ -3,6 +3,8 @@ class UserMailerController < ApplicationController
 	
 	# Redirects the user to the feedback form
 	def feedback
+		@user = @current_user
+
 		respond_to do |format|
 			format.html
 		end

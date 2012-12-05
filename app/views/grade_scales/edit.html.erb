@@ -1,5 +1,9 @@
-<h1>Editing grade_scale</h1>
+<% content_for :head do %>
+	<%= render partial:"courses/head" %>
+<% end %>
+
+<%= render partial:"courses/navigation" %>
+
+<h1>Edit Grade Scale</h1>
 
 <%= render "form" %>
-
-<%= link_to "Back", @course %>
