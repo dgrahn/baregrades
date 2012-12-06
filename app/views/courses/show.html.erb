@@ -41,7 +41,6 @@
 						</th>
 						
 						<td><%= assignment.due_date.day %></td>
-						<td><%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %></td>
 							
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
@@ -54,7 +53,6 @@
 					<tr>
 						<th class="span1"><%= (i == 0) ? "Undated" : "" %></th>
 						<td></td>
-						<td><%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %></td>
 						
 						<td class="span5"><%= link_to assignment.name,assignment_path(assignment) %></td>
 						<td>
@@ -71,7 +69,6 @@
 				<% @past.each_with_index do |assignment, i| %>
 					<tr>
 						<td></td>
-						<td><%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %></td>
 						
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
@@ -82,7 +79,6 @@
 				<% @graded.each_with_index do |assignment, i| %>
 					<tr>
 						<td class="span1"><%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %></td>
-						<td><%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %></td>
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
 							<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
