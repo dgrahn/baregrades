@@ -8,6 +8,7 @@ BareGrades::Application.routes.draw do
 	get "login" 						=> "sessions#new", 			as:"login"
 	get "logout" 						=> "sessions#destroy",		as:"logout"
 	get "grade_report"					=> "tools#grade_report",	as:"grade_report"
+	get "gpa_prediction"				=> "tools#gpa_prediction",	as:"gpa_prediction"
 	get "courses/:id/join" 				=> "accesses#join", 		as:"course_join"
 	get "courses/:id/leave" 			=> "accesses#leave", 		as:"course_leave"
 	get "courses/:id/users" 			=> "courses#users", 		as:"course_users"

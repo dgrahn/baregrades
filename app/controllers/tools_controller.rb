@@ -14,4 +14,8 @@ class ToolsController < ApplicationController
 		# TODO: Optimize preloading
 		ActiveRecord::Associations::Preloader.new(@courses, [:assignment_types]).run
 	end
+
+	def gpa_prediction
+		@courses = @current_user.courses
+	end
 end

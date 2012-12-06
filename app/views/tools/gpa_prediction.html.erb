@@ -1,0 +1,50 @@
+<%
+	content_for :head do
+		concat content_tag(:h1, "GPA Prediction")
+	end
+
+	render "home/navigation"
+%>
+
+
+<table class="table table-bordered auto-size">
+	<thead>
+		<tr>
+			<th>Course</th>
+			<th>Credits</th>
+			<th>Points</th>
+			<th>GPA</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%
+			earnedPoints = 0
+			totalPoints  = 0
+
+			@courses.each do |course|
+				points = course.grade_points(@current_user)
+				coursePoints = course.credits * 4.0;
+				earnedPoints += points
+				totalPoints += coursePoints
+			%>
+			<tr>
+				<th><%= course.name %>:</th>
+				<td><%= course.credits %></td>
+				<td><%= points %></td>
+				<td><%= "%.04f" % (points / coursePoints) %></td>
+			</tr>
+		<% end %>
+		<% if totalPoints != 0 %>
+			<tr>
+				<th colspan="3">Predicted Total GPA:</th>
+				<td><%= "%.04f" % (earnedPoints / totalPoints) %></td>
+			</tr>
+		<% else %>
+			<tr>
+				<td>GPA cannot be calculated.</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<p>To evaluate scholastic standing of students, many schools assign points to grades earned. The above table displays the grade points which you have earned for each of your classes, the partial grade point average (GPA), and the total predicted GPA.</p>

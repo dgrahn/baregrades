@@ -10,6 +10,7 @@ ul {
 
 p {
 	line-height: 1.85em;
+	margin-bottom: 30px;
 }
 
 .input-prepend {
@@ -305,35 +306,6 @@ $na-color: #222222;
 }
 
 
-// ====================== Printable CSS
-@media print {
-	body { margin: 0; }
-	aside, footer, header.main { display: none; }
-	#content, #content-head div { max-width: 100%; padding: 0; }
-	#content div { margin-left: 0; }
-	header#content-head {
-		h1 { color: #333; }
-		h2 { color: #AAA; }
-
-		background: $white;
-		margin-bottom: 0;
-		padding: 0 0 20px;
-	}
-
-	.report {
-		h1 { margin-top: 25px; }
-		ul { margin-bottom: 5px; margin-left: 140px; }
-		h2 { margin-left: 75px; }
-		h2 span { width: 50px; }
-		ul span { width: 45px; }
-	}
-
-	.a:after { content: " (A)"; }
-	.b:after { content: " (B)"; }
-	.c:after { content: " (C)"; }
-	.d:after { content: " (D)"; }
-	.f:after { content: " (F)"; }
-}
 
 // ====================== Mobile CSS
 @media (max-width: 480px) {
@@ -367,4 +339,34 @@ $na-color: #222222;
 	.table-hover .btn {
 		opacity: 1;
 	}
+}
+
+// ====================== Printable CSS
+@media print {
+	body { margin: 0; }
+	#content > div > aside, footer, header.main { display: none; }
+	#content, #content-head div { max-width: 100%; padding: 0; }
+	#content div { margin-left: 0; }
+	header#content-head {
+		h1 { color: #333; }
+		h2 { color: #AAA; }
+
+		background: $white;
+		margin-bottom: 0;
+		padding: 0 0 20px;
+	}
+
+	.report {
+		h1 { margin-top: 25px; }
+		ul { margin-bottom: 5px; margin-left: 140px; }
+		h2 { margin-left: 75px; }
+		h2 span { width: 50px; }
+		ul span { width: 45px; }
+	}
+
+	.a:after { content: " (A)"; }
+	.b:after { content: " (B)"; }
+	.c:after { content: " (C)"; }
+	.d:after { content: " (D)"; }
+	.f:after { content: " (F)"; }
 }

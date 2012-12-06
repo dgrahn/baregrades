@@ -101,6 +101,29 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
+	# Get the GPA points for the grade
+	def grade_points(user)
+		grade = user_grade(user)
+		grade = grade_letter_class(grade)
+
+		letter = grade[0..0]
+		case letter
+			when 'a', points = 4.0
+			when 'b', points = 3.0
+			when 'c', points = 2.0
+			when 'd', points = 1.0
+			when 'f', points = 0.0
+		end
+		
+		if grade.include?('plus')
+			points += 0.3
+		elsif grade.include?('minus')
+			points -= 0.3
+		end
+		
+		return points
+	end
+	
 	# Get upcoming assignments.
 	def upcoming_assignments(user, num_assignments = nil)
 		if num_assignments
