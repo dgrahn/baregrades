@@ -31,7 +31,7 @@ module ApplicationHelper
 			content 	 = args[1]
 			html_options = args[2] || {}
 
-			if not content.empty?
+			if content != nil and not content.empty?
 				content_tag(:ul, html_options) do
 					concat content_tag(:li, title)
 					concat content
