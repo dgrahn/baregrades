@@ -23,6 +23,7 @@ $(document).ready(function() {
 	});
 
 	$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
+	$('a[rel="tooltip"]').tooltip({placement:"right"});
 	
 	$("input[rel*=popover]").popover({'trigger':'focus'});
 	$("textarea[rel*=popover]").popover({'trigger':'focus'});

@@ -17,6 +17,17 @@ footer {
 	margin-top: 30px;
 }
 
+.calendar {
+	ul li {
+		text-align: left;
+		white-space: nowrap;
+	}
+	
+	.tooltip {
+		color: $blue;
+	}
+}
+
 .input-prepend {
 	margin-bottom: 10px;}
 

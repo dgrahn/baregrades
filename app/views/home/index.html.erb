@@ -15,11 +15,14 @@
 		<% calendar.day(:day_method => :due_date) do |day, assignments| %>
 			<%= day.day %>
 			<ul>
-				<% for assignment in assignments %>
-					<li>
-						<%= assignment.course.name %>: <%= link_to assignment.name, assignment_path(assignment)%>
-					</li>
-				<% end %>
+				<%
+					for assignment in assignments
+						concat li_to assignment.name,
+									 assignment_path(assignment),
+									 rel:"tooltip",
+									 :title => assignment.course.name
+					end 
+				%>
 			</ul>
 		<% end %>
 	<% end %>
