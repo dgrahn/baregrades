@@ -217,7 +217,9 @@ aside h2 {
 }
 
 #content {
-	> div { @extend .row; }
+	> div { @extend .row-fluid; }
+	aside { @extend .span3; }
+	.main-content { @extend .span8, .offset1; }
 
 	@extend .container-fluid;	
 }
@@ -296,7 +298,9 @@ $na-color: #222222;
 // ====================== Grade Report
 .report {
 	h1 { font-size: 20px; margin-bottom: 0; margin-top: 50px; }
+	h1 small { font-size: 18px; @extend .pull-right; margin-top: 12px;}
 	h2 { font-size: 15px; margin: 0 0 0 50px; }
+	h2 small { font-size: 13px; @extend .pull-right; margin-top: 12px; }
 	ul { list-style-type: none; margin: 0 0 15px 100px; }
 
 	h1:first-child { margin-top: 0; }
@@ -308,7 +312,7 @@ $na-color: #222222;
 // ====================== Printable CSS
 @media print {
 	body { margin: 0; }
-	aside, header.main { display: none; }
+	aside, footer, header.main { display: none; }
 	#content, #content-head div { max-width: 100%; padding: 0; }
 	#content div { margin-left: 0; }
 	header#content-head {
@@ -333,4 +337,38 @@ $na-color: #222222;
 	.c:after { content: " (C)"; }
 	.d:after { content: " (D)"; }
 	.f:after { content: " (F)"; }
+}
+
+// ====================== Mobile CSS
+@media (max-width: 480px) {
+	#content > div {
+		aside {
+			max-width: 100%;
+			margin-bottom: 30px;
+			width: 100%;
+		}
+
+		.main-content {
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.gamerboxes ul li {
+			width: 100%;
+			
+			h2 {
+				font-size: 30px;
+				margin: 0;
+			}
+			
+			span {
+				display: inline;
+				font-size: 20px;
+			}
+		}
+	}
+	
+	.table-hover .btn {
+		opacity: 1;
+	}
 }
