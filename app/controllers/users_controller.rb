@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 	def index
 		# This option should only be usable by the administrators
 		if not @current_user.is_administrator?
-			redirect_to root
+			redirect_to root_path
+			return
 		end
 
 		@users = User.all
