@@ -217,11 +217,7 @@ aside h2 {
 }
 
 #content {
-	> div { @extend .row-fluid; }
-	aside { @extend .span3; }
-	.main-content { @extend .span8, .offset1; }
-
-	@extend .container-fluid;	
+	@extend .container-fluid;
 }
 
 header.main {

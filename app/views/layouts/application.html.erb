@@ -45,8 +45,8 @@
 </header>
 
 <div id="content">
-	<div>
-		<aside>
+	<div class="row-fluid">
+		<aside class="span3">
 			<%=
 				side_menu("Courses", class:"courses") do
 					if @current_user
@@ -83,7 +83,7 @@
 
 			<%= link_to "Add Course", courses_path(), class:"btn" %>
 		</aside>
-		<div class="main-content">
+		<div class="span8 offset1">
 			<% flash.each do |name, msg| %>
 				<div class="alert alert-<%= name %>">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
