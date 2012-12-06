@@ -27,7 +27,7 @@
 					<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
 					
 					<% if @current_user.is_administrator? %>
-						<li><a href="#"><i class="icon-briefcase"></i> Admin</a></li>
+						<li><a href="<%= admin_path %>"><i class="icon-briefcase"></i> Admin</a></li>
 					<% end %>
 
 					<li class="divider"></li>

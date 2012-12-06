@@ -7,6 +7,7 @@ BareGrades::Application.routes.draw do
 	get "changelog"						=> "home#changelog",		as:"changelog"
 	get "login" 						=> "sessions#new", 			as:"login"
 	get "logout" 						=> "sessions#destroy",		as:"logout"
+	get "admin"							=> "admin#index",			as:"admin"
 	get "grade_report"					=> "tools#grade_report",	as:"grade_report"
 	get "gpa_prediction"				=> "tools#gpa_prediction",	as:"gpa_prediction"
 	get "courses/:id/join" 				=> "accesses#join", 		as:"course_join"
