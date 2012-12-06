@@ -11,12 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-	<%= f.label :assignment_type_id %>
+    <%= f.text_field :name, popover("Name", "The name of your assignment.", ["Homework 1", "Term Paper"]) %>
+	
 	<%=
 		if @assignment.assignment_type
 			value = @assignment.assignment_type.id
@@ -24,22 +20,15 @@
 			value = @assignment.assignment_type
 		end
 		
-		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), popover("Themes", "Use themes to change the appearance of BareGrades", ["Goldfish", "Snow Purple"])
+		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), popover("Assignment Types", "Assignment types help distribute the weight of the assignments", ["Homework", "Exams"])
 	%>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :worth %>
-    <%= f.text_field :worth %>
-  </div>
-    <div class="field">
-    <%= f.label :due_date %>
-    <%= f.text_field :due_date, :class => "datepicker" %>
-  </div><br /><br />
-  <div class="actions">
+	<br></br>
+	
+    <%= f.text_area :description, popover("Description", "Information about the assignment.", ["Do problems 1,2,3 ..."]) %>
+
+    <%= f.text_field :worth, popover("Worth", "Number of points the assignment is out of.", ["10", "100"]) %>
+  
+    <%= f.text_field :due_date, :placeholder => "Due Date", :class => "datepicker" %>
+	
     <%= f.submit %>
-  </div>
 <% end %>

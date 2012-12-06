@@ -37,12 +37,16 @@ class UserMailerController < ApplicationController
 	
 	# Receives the Form Post, Delivers the email, and redirects the user
 	def resetPassword
-		user = User.find_by_email(params[:email])
+		user = User.find_by_username(params[:user])
+		
+		if user.blank?
+			user = User.find_by_email(params[:user])
+		end
 		
 		respond_to do |format|
 			if user.blank?
 				# No user for the given email
-				format.html { redirect_to login_path, notice: 'No user found for that email.'}
+				format.html { redirect_to login_path, notice: 'No user found.'}
 				
 			else
 				# Generate a random password

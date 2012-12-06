@@ -1,37 +1,37 @@
 <%= form_for([@course, @grade_scale]) do |f| %>
 
     <%= f.label :a %>
-    <%= f.text_field :a %>
+    <%= f.text_field :a, popover("A", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :a_minus %>
-    <%= f.text_field :a_minus %>
+    <%= f.text_field :a_minus, popover("A-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :b_plus %>
-    <%= f.text_field :b_plus %>
+    <%= f.text_field :b_plus, popover("B+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :b %>
-    <%= f.text_field :b %>
+    <%= f.text_field :b, popover("B", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :b_minus %>
-    <%= f.text_field :b_minus %>
+    <%= f.text_field :b_minus, popover("B-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :c_plus %>
-    <%= f.text_field :c_plus %>
+    <%= f.text_field :c_plus, popover("C+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :c %>
-    <%= f.text_field :c %>
+    <%= f.text_field :c, popover("C", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :c_minus %>
-    <%= f.text_field :c_minus %>
+    <%= f.text_field :c_minus, popover("C-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :d_plus %>
-    <%= f.text_field :d_plus %>
+    <%= f.text_field :d_plus, popover("D+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :d %>
-    <%= f.text_field :d %>
+    <%= f.text_field :d, popover("D", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.label :d_minus %>
-    <%= f.text_field :d_minus %>
+    <%= f.text_field :d_minus, popover("D-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
 
     <%= f.submit %>
 <% end %>

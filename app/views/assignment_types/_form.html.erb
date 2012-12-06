@@ -1,15 +1,13 @@
 <%= form_for([@course, @assignment_type]) do |f| %>
-	<%= f.label :name %><br />
-	<%= f.text_field :name %>
 
-	<%= f.label :description %><br />
-	<%= f.text_area :description %>
-
+	<%= f.text_field :name, popover("Name", "A way of identifying and differentiating assignment types.", ["Homework 1", "Term Paper"]) %>
+	
+	<%= f.text_area :description, popover("Description", "Information about the assignment type.", ["Projects help students practice what they have learned."]) %>
+	
 	<%if @course.points_based%>
 		<div class="hide">
 	<%end%>
-		<%= f.label :worth %><br />
-		<%= f.text_field :worth %>
+		<%= f.text_field :worth, popover("Weight", "How the value is distributed throughout the course (in percentage).", ["Exams 25", "Homework 15"]) %>
 	<%if @course.points_based%>
 		</div>
 	<%end%>

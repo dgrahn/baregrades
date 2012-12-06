@@ -25,7 +25,7 @@
 					</div>
 				<% end %>
 					<br />
-					<%= f.text_field :grade, :placeholder => "Grade" %>
+					<%= f.text_field :grade, popover("Grade", "The grade you received on this assignment", ["40", "100"]) %>
 					<%= label_tag "out of " +  assignment.worth.to_s + " points" %>
 
 				<%= submit_tag "Save", class:"btn btn-primary btn-block" %>
