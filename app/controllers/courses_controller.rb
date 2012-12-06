@@ -75,8 +75,8 @@ class CoursesController < ApplicationController
 		end	
 
 		# Create grade scale
-		gs = GradeScale.new(course_id: @course.id)
-		gs.save!
+		#gs = GradeScale.new(course_id: @course.id)
+		#gs.save!
 		
 
 		types.each do |type|

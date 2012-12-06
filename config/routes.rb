@@ -18,6 +18,7 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/assignment/new" 	=> "assignments#new", 		as:"new_assignment"
 	get "courses/:id/analysis" 			=> "analysis#index", 		as:"course_analysis"
 	get "courses/:id/edit_scale" 		=> "grade_scales#edit", 	as:"edit_grade_scale"
+	get "courses/:id/new_scale" 		=> "grade_scales#new", 		as:"new_grade_scale"
 	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
 	
 	resources :sessions

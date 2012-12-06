@@ -24,7 +24,7 @@ class GradeScalesController < ApplicationController
   # GET /grade_scales/new
   # GET /grade_scales/new.json
   def new
-	@course 		= Course.find(params[:course_id])
+	@course 		= Course.find(params[:id])
     @grade_scale 	= GradeScale.new
 	
     respond_to do |format|
