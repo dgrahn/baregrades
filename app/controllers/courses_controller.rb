@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
 	before_filter :find_course, :except => [:index, :new, :create]
 	
+	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation"]
+	
 	def find_course
 		@course = Course.find(params[:id])
 	end
@@ -51,7 +53,7 @@ class CoursesController < ApplicationController
 
 	def new
 		@course = Course.new
-		@common_types = ["homework", "projects", "quizzes", "exams", "papers"]
+		@common_types = @@common_types
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -63,7 +65,7 @@ class CoursesController < ApplicationController
 	end
 
 	def create
-		types = ["homework", "projects", "quizzes", "exams", "papers"]
+		types = @@common_types
 
 		# Create and save course
 		@course = Course.new(params[:course])
