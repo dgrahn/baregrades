@@ -25,9 +25,13 @@ class ToolsController < ApplicationController
 		@remaining = []
 
 		courses.each do |course|
-			percentage = course.percent_complete(@current_user) * 100
-			percentage = percentage.round(2)
-			@remaining.push([course.name, percentage])
+			percentage = course.percent_complete(@current_user)
+			
+			if percentage != nil
+				percentage *= 100
+				percentage = percentage.round(2)
+				@remaining.push([course.name, percentage])
+			end
 		end
 	end
 end
