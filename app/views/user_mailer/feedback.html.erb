@@ -4,11 +4,11 @@
 
 <%= render "users/navigation" %>
 
-<%= form_for "submitFeedback" do |f| %>
+<%= form_tag "submitFeedback" do |f| %>
 
 	<%= text_field_tag :email, @current_user.email, popover("Email", "We would like to know who is giving us feedback; it may help us solve your problem. If you wish to be anonymous then leave this field blank", ["", "test@baregrades.com"]) %>
-	<%= f.text_field :topic, popover("Topic", "Topic should indicate your area of concern.", ["Add Assignment"]) %>
-	<%= f.text_area :description, popover("Description", "Describe what your thinking in as much detail as you can.", ["Button doesn't work for add assignment. URL - baregrades.com/courses/# /assignment/new ..."]) %>
+	<%= text_field_tag :topic, "", popover("Topic", "Topic should indicate your area of concern.", ["Add Assignment"]) %>
+	<%= text_area_tag :description, "", popover("Description", "Describe what your thinking in as much detail as you can.", ["Button doesn't work for add assignment. URL - baregrades.com/courses/# /assignment/new ..."]) %>
 
 	<%= submit_tag "Send Feedback" %>
 <% end %>
