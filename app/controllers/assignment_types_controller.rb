@@ -29,7 +29,7 @@ class AssignmentTypesController < ApplicationController
 
 	def update
 		@assignment_type = AssignmentType.find(params[:id])
-		@course = @assignment_type.course
+		@course = Course.find(params[:course_id])
 
 		respond_to do |format|
 			if @assignment_type.update_attributes(params[:assignment_type])
