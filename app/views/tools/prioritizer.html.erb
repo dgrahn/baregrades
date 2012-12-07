@@ -1,0 +1,28 @@
+<%
+	content_for :head do
+		concat content_tag(:h1, "Prioritizer")
+	end
+
+	render "home/navigation"
+%>
+
+<div id="chart_div" style="width: 100%; height: 450px;"></div>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Course', 'Percentage Remaining'],
+			<% @remaining.each do |r| %>
+				['<%= r[0] %>', <%= r[1] %>],
+			<% end %>
+		]);
+
+		var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+		chart.draw(data, {});
+	}
+</script>
+
+<p>The above chart shows the percentage of time which you should be allocating to each of your courses. This is based upon the percentage of your grade which remains to be assigned in each class. Please understand that this value can be thrown off by ungraded, but submitted assignments.</p>

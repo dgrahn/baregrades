@@ -18,4 +18,16 @@ class ToolsController < ApplicationController
 	def gpa_prediction
 		@courses = @current_user.courses
 	end
+
+	def prioritizer
+		courses = @current_user.courses
+		
+		@remaining = []
+
+		courses.each do |course|
+			percentage = course.percent_complete(@current_user) * 100
+			percentage = percentage.round(2)
+			@remaining.push([course.name, percentage])
+		end
+	end
 end
