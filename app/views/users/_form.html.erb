@@ -20,7 +20,7 @@
 			<%= f.select :theme_id, options_from_collection_for_select(@themes, :id, :name, @user.theme_id), popover("Themes", "Use themes to change the appearance of BareGrades", ["Goldfish", "Snow Purple"]) %>
 		</div>
 
-		<div class="span4">
+		<div class="span4 offset1">
 			<h2>Contact</h2>
 			<%= f.text_field :email, popover("Email", "Giving BareGrades a correct email address allows you to reset your password, give us feedback, and receive important notifications.", ["BareGrades@gmail.com", "student@BareGrades.com"]) %>
 			<%= f.text_field :first_name, popover("First Name", "Your first name. BareGrades uses first names to help users know who is logged on.", ["John", "Jane"]) %>
