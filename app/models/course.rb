@@ -60,8 +60,11 @@ class Course < ActiveRecord::Base
 		else
 			self.assignment_types.each do |type|
 				completed = type.percent_complete(user)
-				completedWorth += completed * type.worth
-				totalWorth += type.worth
+				
+				if completed != nil
+					completedWorth += completed * type.worth
+					totalWorth += type.worth
+				end
 			end
 		end
 		
