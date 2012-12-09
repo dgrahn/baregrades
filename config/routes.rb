@@ -38,9 +38,10 @@ BareGrades::Application.routes.draw do
 	
 
 
-	get "account" => "users#show", as:"account"
-	get "account/:id" => "users#show"
-	get "register" => "users#new", as:"register"
+	get "account" 							=> "users#show", 	as:"account"
+	get "account/:id" 						=> "users#show"
+	get "register" 							=> "users#new", 	as:"register"
+	get "users/:id/confirm/:confirm" 		=> "users#confirm", as:"confirm"
 	resources :users
 	resources :users do
 		resources :accesses

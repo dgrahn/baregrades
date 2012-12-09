@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<html>
+	<% code_url = "http://baregrades.com/users/" + @user.id.to_s + "/confirm/" + @user.confirmation_code.to_s %>
+	<body>
+		<p>Dear <%= @user.name%>,</p>
+
+		<p>Thank you for registering @ BareGrades.</p>
+		<p>Please click <%= link_to code_url, code_url %> so we can verify that you are human.</p>
+
+		<p>BareGrades</p>
+	</body>
+</html>

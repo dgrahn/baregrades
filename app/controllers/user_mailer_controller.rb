@@ -1,4 +1,5 @@
 class UserMailerController < ApplicationController
+	include UsersHelper
 	skip_before_filter :require_login, :only => [:forgotPassword, :resetPassword]
 	
 	# Redirects the user to the feedback form
@@ -50,12 +51,7 @@ class UserMailerController < ApplicationController
 				
 			else
 				# Generate a random password
-				chars = ("a".."z").to_a + ("A".."Z").to_a
-				password = chars[rand(chars.size-1)]
-				chars += ("0".."9").to_a
-				15.times do |i|
-					password += chars[rand(chars.size-1)]
-				end
+				password = generate_random_password
 				
 				# Change the password
 				oldPass = user.password # Save the old password in case of error

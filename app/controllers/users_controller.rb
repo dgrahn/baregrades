@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	include UsersHelper
 	skip_before_filter :require_login, :only => [:new, :create]
 
 	def index
@@ -47,10 +48,25 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
-
+		
+		# Generate Confirmation Code
+		@user.confirmation_code = generate_random_password
+		
 		respond_to do |format|
 			if @user.save
-				format.html { redirect_to login_path, notice: 'User was successfully created.'}
+				begin
+					UserMailer.registration_confirmation(@user).deliver
+					
+					format.html { redirect_to login_path, notice: 'User was successfully created. Check your email to verify the account.'}
+				rescue Net::SMTPFatalError # Mailer delivery error
+					@user.destroy
+					@themes = Theme.all
+					
+					format.html { 
+						flash[:notice] = 'There was a problem with the email address.'
+						render action: "new", layout:"login" 
+					}
+				end
 			else
 				@themes = Theme.all
 				format.html { render action: "new", layout:"login" }
@@ -90,6 +106,28 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# GET /users/#/confirm/#
+	def confirm
+		user = User.find(params[:id])
+		confirm = params[:confirm]
+		
+		respond_to do |format|
+			if user.confirmation_code == confirm
+				user.enabled = true
+			else
+				@themes = Theme.all
+				format.html { redirect_to login_path, layout:"login", notice: 'Incorrect confirmation code.' }
+			end
+		
+			if user.save
+				format.html { redirect_to login_path, notice: 'User was successfully created. Check your email to verify the account.'}
+			else
+				@themes = Theme.all
+				format.html { redirect_to login_path, layout:"login", notice: 'Unable to save the user.' }
+			end
+		end
+	end
+	
 	# POST /users/add_role/1
 	def add_role
 		@user = User.find(params[:id])

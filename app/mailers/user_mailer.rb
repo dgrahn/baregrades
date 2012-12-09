@@ -17,4 +17,12 @@ class UserMailer < ActionMailer::Base
 			 from: 		"admin@baregrades.com",
 			 subject: 	"[BareGrades] Reset Password")
 	end
+	
+	def registration_confirmation(user)
+		@user = user
+		
+		mail(to: 		@user.email,
+			 from:		"admin@baregrades.com",
+			 subject: 	"[BareGrades] Registration Confirmation")
+	end
 end
