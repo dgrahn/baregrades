@@ -100,10 +100,12 @@ module ApplicationHelper
 	end
 
 	# Get the fonts for a specified theme (if there are any)
-	def css_theme(theme)
+	def css_font(theme)
 		case theme
 			when "snowpurple"
 				return "http://fonts.googleapis.com/css?family=Lato:300,400,700,900"
+			when "citrus"
+				return "http://fonts.googleapis.com/css?family=Permanent+Marker"
 		end
 	end
 end

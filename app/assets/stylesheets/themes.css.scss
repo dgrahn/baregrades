@@ -1,3 +1,23 @@
+.citrus {
+	#content-head {
+		background: #FA6900;
+		background-image: linear-gradient(left , #FA6900 22%, #F38630 81%);
+		background-image: -o-linear-gradient(left , #FA6900 22%, #F38630 81%);
+		background-image: -moz-linear-gradient(left , #FA6900 22%, #F38630 81%);
+		background-image: -webkit-linear-gradient(left , #FA6900 22%, #F38630 81%);
+		background-image: -ms-linear-gradient(left , #FA6900 22%, #F38630 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #FA6900), color-stop(0.81, #F38630));
+		
+		border-bottom: 10px solid #FAE500;
+		margin-bottom: 30px;
+		
+		h1, h2 { font-family: Permanent Marker; }
+	}
+
+	//aside > ul li:first-child { background: #7FAF1B; color: #FFF; }
+	//.gamerboxes div { background: #7FAF1B; }
+}
+
 .darkwood {
 	#content-head {
 		background-image: url(/assets/themes/darkwood.jpg);
@@ -44,6 +64,7 @@
 	}
 }
 
+/*
 .pond {
 	#content-head {
 		background: #69D2E7;
@@ -55,6 +76,7 @@
 		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
 	}
 }
+*/
 
 .goldfish {
 	#content-head {
