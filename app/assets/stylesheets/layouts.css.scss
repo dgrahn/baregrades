@@ -1,6 +1,7 @@
 @import "bootstrap";
 
 body {
+	margin-top: 40px;
 	margin-bottom: 50px;}
 	aside {}
 
@@ -236,34 +237,17 @@ aside h2 {
 }
 
 header.main {
-	//> div { @extend .navbar-inner; }
+	> div { @extend .navbar-inner; }
 	> div > div { @extend .container-fluid; }
 	> div > div > div { @extend .btn-group, .pull-right; }
 	ul { @extend .dropdown-menu; }
 	ul a { padding: 3px 13px; }
 	ul a i { margin-right: 7px; }
+	.version { color: #666; font-size: 12px; margin-top: 2px; margin-bottom: -2px; }
 
-	//@extend .navbar;
-	
-	.brand {
-		display: block;
-		float: left;
-		padding: 15px 20px;
-		margin-left: -20px;
-		font-size: 20px;
-		font-weight: 200;
-		color: #555;
-	}
-	.version {
-		color: #666;
-		font-size: 12px;
-		margin-top: 2px;
-		margin-bottom: -2px;
-	}
-	
-	.user-menu {
-		margin: 10px;
-	}
+	@extend .navbar;
+	@extend .navbar-fixed-top;
+	@extend .navbar-inverse;	
 }
 
 ul.thumbnails {
