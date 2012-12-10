@@ -122,7 +122,7 @@ class UsersController < ApplicationController
 			end
 		
 			if user.save
-				format.html { redirect_to login_path, notice: 'User was enabled.'}
+				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
 			else
 				@themes = Theme.all
 				format.html { redirect_to login_path, layout:"login", notice: 'Unable to save the user.' }
