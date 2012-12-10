@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	include UsersHelper
-	skip_before_filter :require_login, :only => [:new, :create]
+	skip_before_filter :require_login, :only => [:new, :create, :confirm]
 
 	def index
 		# This option should only be usable by the administrators
@@ -114,6 +114,7 @@ class UsersController < ApplicationController
 		
 		respond_to do |format|
 			if user.confirmation_code == confirm
+			error
 				user.enabled = true
 			else
 				@themes = Theme.all
@@ -121,7 +122,7 @@ class UsersController < ApplicationController
 			end
 		
 			if user.save
-				format.html { redirect_to login_path, notice: 'User was successfully created. Check your email to verify the account.'}
+				format.html { redirect_to login_path, notice: 'User was enabled.'}
 			else
 				@themes = Theme.all
 				format.html { redirect_to login_path, layout:"login", notice: 'Unable to save the user.' }
