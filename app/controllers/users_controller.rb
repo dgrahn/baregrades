@@ -114,7 +114,6 @@ class UsersController < ApplicationController
 		
 		respond_to do |format|
 			if user.confirmation_code == confirm
-			error
 				user.enabled = true
 			else
 				@themes = Theme.all
