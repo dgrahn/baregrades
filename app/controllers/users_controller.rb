@@ -139,16 +139,10 @@ class UsersController < ApplicationController
 		
 		respond_to do |format|
 			if user.save
-				format.html { 
-					flash[:notice] = 'The user has been enabled.'
-					render json: @users 
-				}
+				format.html { redirect_to users_url, notice: 'The user was enabled successfully!'}
 			else
 				@themes = Theme.all
-				format.html { 
-					flash[:notice] = 'There was a problem enabling the user.'
-					render json: @users 
-				}
+				format.html { redirect_to users_url, notice: 'There was a problem enabling the user.'}
 			end
 		end
 	end
