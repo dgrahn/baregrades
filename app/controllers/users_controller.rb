@@ -51,6 +51,7 @@ class UsersController < ApplicationController
 		
 		# Generate Confirmation Code
 		@user.confirmation_code = generate_random_password
+		@user.enabled = false
 		
 		respond_to do |format|
 			if @user.save
@@ -124,6 +125,30 @@ class UsersController < ApplicationController
 			else
 				@themes = Theme.all
 				format.html { redirect_to login_path, layout:"login", notice: 'Unable to save the user.' }
+			end
+		end
+	end
+	
+	# GET /users/#/confirm/#
+	def admin_confirm
+		user = User.find(params[:id])
+		
+		if (not @current_user.blank?) && @current_user.is_administrator?
+			user.enabled = true
+		end
+		
+		respond_to do |format|
+			if user.save
+				format.html { 
+					flash[:notice] = 'The user has been enabled.'
+					render json: @users 
+				}
+			else
+				@themes = Theme.all
+				format.html { 
+					flash[:notice] = 'There was a problem enabling the user.'
+					render json: @users 
+				}
 			end
 		end
 	end

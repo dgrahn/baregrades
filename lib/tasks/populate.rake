@@ -247,6 +247,8 @@ namespace :db do
 					:password 		=> 'licorice',
 					:password_confirmation => 'licorice',
 					:email  		=> 'dgrahn@cedarville.edu')
+		a1.enabled = true
+		a1.save
 		
 		a2 = User.create(:first_name 	=> 'Justin',
 					:middle_name 	=> 'Tyler',
@@ -255,7 +257,9 @@ namespace :db do
 					:password 		=> 'accesscode',
 					:password_confirmation => 'accesscode',
 					:email  		=> 'jengel@cedarville.edu')
-					
+		a2.enabled = true
+		a2.save
+		
 		a3 = User.create(:first_name 	=> 'Matthew',
 					:middle_name 	=> 'John',
 					:last_name 		=> 'Brooker',
@@ -263,6 +267,8 @@ namespace :db do
 					:password 		=> 'pass1word',
 					:password_confirmation => 'pass1word',
 					:email  		=> 'mbrooker@cedarville.edu')
+		a3.enabled = true
+		a3.save
 		
 		# Role Sample Data
 		Role.create(:id => 1, :name => "Administrator")

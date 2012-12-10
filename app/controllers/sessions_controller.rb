@@ -7,14 +7,17 @@ class SessionsController < ApplicationController
 
 	def create
 		user = User.authenticate(params[:username], params[:password])
-
-		if user
+		
+		if user && user.enabled
 			session[:user_id] = user.id
 
 			# TODO: Send to homepage
 			redirect_to root_path, :flash => {:success => "Logged In"}
+		elsif user
+			flash.now[:error] = "Invalid Login. You must confirm your account through your email. If this problem persists email admin@baregrades.com"
+			render "new"
 		else
-			flash.now[:error] = "Invalid Login"
+			flash.now[:error] = "Invalid Login."
 			render "new"
 		end
 	end
