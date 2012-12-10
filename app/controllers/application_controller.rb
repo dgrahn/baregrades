@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
 		render :template => "errors/500"
 	end
-	
+
 	before_filter :require_login
 	private
 	def require_login
@@ -22,5 +22,15 @@ class ApplicationController < ActionController::Base
 	private
 	def current_user
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
+	end
+	
+	before_filter :get_theme
+	private
+	def get_theme
+		if @current_user and @current_user.theme
+			@current_theme = @current_user.theme.css_class
+		else
+			@current_theme = "pond"
+		end
 	end
 end

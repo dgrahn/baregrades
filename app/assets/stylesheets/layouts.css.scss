@@ -38,20 +38,16 @@ div.dropdown-menu {
 	vertical-align: middle;}
 	
 #content-head {	
-	/* box-shadow: 0 0 20px #000 inset; */
+	.hero-unit { background: transparent; }
+	h1, h2 { color: #FFF; font-weight: 200; }
+	h1 { font-size: 4em; line-height: 1em; margin: 0;}
+	h2 { margin: 0; opacity: 0.75; }
+	
 	color: #FFF;
-	padding: 40px;
-	margin-bottom: 40px;}
-	#content-head .hero-unit {
-		background: transparent;}
-	#content-head h1, #content-head h2 {
-		color: #FFF;
-		font-weight: 200;}
-		#content-head h1 {
-			border: 0;
-			font-size: 4em;
-			line-height: 1em;
-			margin: 0;}
+	padding: 40px 0;
+	margin-bottom: 40px;
+	
+}
 
 
 .container-fluid {
@@ -147,6 +143,9 @@ aside > ul {
 		border-bottom: 1px solid $tableBorder;
 		margin-bottom: 5px;
 		text-shadow: none;
+		
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
 	}
 
 	.active > a {
@@ -223,7 +222,7 @@ aside h2 {
 .gamerboxes {
 	ul { @extend .thumbnails; }
 	ul > li { @extend .span4; margin: 0 5px 0 0; }
-	div { @extend .thumbnail; background: #333; }
+	div { @extend .thumbnail; background: #222; border: 0; }
 	li div h2 { @extend .caption; color: #FFF; font-size: 60px; font-weight: normal; margin-bottom: 0; }
 	span { display: block; font-size: 30px; line-height: 40px; }
 
@@ -318,6 +317,12 @@ $na-color: #222222;
 	h1:first-child { margin-top: 0; }
 	h1 span { @extend .grade; font-size: 15px; float: left; line-height: 1em; margin-top: 3px; margin-right: 10px; padding: 10px; }
 	h2 span, ul span { display: inline-block; width: 20px; }	
+}
+
+.main-content {
+	float: left;
+	margin-left: 5%;
+	width: 71%;
 }
 
 

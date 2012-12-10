@@ -1,82 +1,143 @@
-.snowpurple {
-	background-image: linear-gradient(left , #180942 22%, #73166D 81%);
-	background-image: -o-linear-gradient(left , #180942 22%, #73166D 81%);
-	background-image: -moz-linear-gradient(left , #180942 22%, #73166D 81%);
-	background-image: -webkit-linear-gradient(left , #180942 22%, #73166D 81%);
-	background-image: -ms-linear-gradient(left , #180942 22%, #73166D 81%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #180942), color-stop(0.81, #73166D));
-	}
+.darkwood {
+	#content-head {
+		background-image: url(/assets/themes/darkwood.jpg);
+		font-family: Rockwell;
 
-.cheerupemokid {
-	background-image: linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
-	background-image: -o-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
-	background-image: -moz-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
-	background-image: -webkit-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
-	background-image: -ms-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.20, #4ECDC4), color-stop(0.50, #C7F464), color-stop(0.80, #FF6B6B));
-	}
-
-.pond {
-	background-image: linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+		//-webkit-box-shadow: inset 5px 5px 5px 5px #000;
+		box-shadow: inset 0 0 50px 0 #000;
 	}
 	
-.goldfish {
-	background-image: url(/assets/themes/goldfish.png), linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: url(/assets/themes/goldfish.png), -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: url(/assets/themes/goldfish.png), -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: url(/assets/themes/goldfish.png), -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: url(/assets/themes/goldfish.png), -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
-	background-image: url(/assets/themes/goldfish.png), -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
-	background-position: top right;
-	background-repeat: no-repeat;
+	h1, h2, h3, h4, h5, h6 { font-family: Rockwell; }
+	aside > ul { background: #EEE; }
+	aside > ul li:first-child { background: #222; color: #FFF; }
+	aside > ul li a:hover { background: #FFF; }
+}
+
+.canvas {
+	#content-head {
+		background-image: url(/assets/themes/canvas.jpg);
+		
+		h1, h2 { color: #1D1305; }
 	}
+	
+	h1, h2, h3, h4, h5, h6 { color: #1D1305; font-family: Stencil, serif; }
+	aside > ul li:first-child { background: #E9E3D5; color: #1D1305; font-family: Stencil, serif; font-size: 150%;}
+	.gamerboxes span { font-size: 26px; }
+	.gamerboxes div { background:  #E9E3D5; }
+	.gamerboxes h2 { color: #1D1305; }
+}
+
+.snowpurple {
+	#content-head {
+		background: #180942;
+		background-image: linear-gradient(left , #180942 22%, #73166D 81%);
+		background-image: -o-linear-gradient(left , #180942 22%, #73166D 81%);
+		background-image: -moz-linear-gradient(left , #180942 22%, #73166D 81%);
+		background-image: -webkit-linear-gradient(left , #180942 22%, #73166D 81%);
+		background-image: -ms-linear-gradient(left , #180942 22%, #73166D 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #180942), color-stop(0.81, #73166D));
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: Lato;
+		font-weight: 300;
+	}
+}
+
+.pond {
+	#content-head {
+		background: #69D2E7;
+		background-image: linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+	}
+}
+
+.goldfish {
+	#content-head {
+		background: #69D2E7;
+		background-image: url(/assets/themes/goldfish.png), linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: url(/assets/themes/goldfish.png), -o-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: url(/assets/themes/goldfish.png), -moz-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: url(/assets/themes/goldfish.png), -webkit-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: url(/assets/themes/goldfish.png), -ms-linear-gradient(left , #69D2E7 22%, #A7DBD8 81%);
+		background-image: url(/assets/themes/goldfish.png), -webkit-gradient(linear, left, right, color-stop(0.22, #69D2E7), color-stop(0.81, #A7DBD8));
+		background-position: top right;
+		background-repeat: no-repeat;
+	}
+}
+
+.condensed {
+	#content-head {
+		height: 1px;
+		overflow: hidden;
+		opacity: 0;
+		padding: 0;
+	}
+}
+
+.whiteness {
+	#content-head {
+		h1 { color: #333; }
+		h2 { color: #AAA; }
+
+		background: inherit;
+		margin-bottom: 0;
+	}
+}
+
+// ========================================== Marked for Removal
+.cheerupemokid {
+	#content-head {
+		background: #4ECDC4;
+		background-image: linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -o-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -moz-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -webkit-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -ms-linear-gradient(left , #4ECDC4 20%, #C7F464 50%, #FF6B6B 80%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.20, #4ECDC4), color-stop(0.50, #C7F464), color-stop(0.80, #FF6B6B));
+	}
+}
 
 .wasabisuicide {
-	background-image: linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
-	background-image: -o-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
-	background-image: -moz-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
-	background-image: -webkit-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
-	background-image: -ms-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #D4EE5E), color-stop(0.81, #FF4242));
+	#content-head {
+		background: #D4EE5E;
+		background-image: linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -o-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -moz-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -webkit-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -ms-linear-gradient(left , #D4EE5E 22%, #FF4242 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #D4EE5E), color-stop(0.81, #FF4242));
 	}
-
-.wordless {
-	background-image: linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
-	background-image: -o-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
-	background-image: -moz-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
-	background-image: -webkit-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
-	background-image: -ms-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
-	background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #F2E9E1));
-	}
+}
 
 .atomicbikini {
-	background-image: url(/assets/themes/atomicbikini.png), linear-gradient(left , #8FBE00 22%, #AEE239 81%);
-	background-image: url(/assets/themes/atomicbikini.png), -o-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
-	background-image: url(/assets/themes/atomicbikini.png), -moz-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
-	background-image: url(/assets/themes/atomicbikini.png), -webkit-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
-	background-image: url(/assets/themes/atomicbikini.png), -ms-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
-	background-image: url(/assets/themes/atomicbikini.png), -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #AEE239));
-	background-position: center left;
-	background-repeat: no-repeat;
+	#content-head {
+		h1, h2 { color: #333; }
+
+		background: #8FBE00;
+		background-image: url(/assets/themes/atomicbikini.png), linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+		background-image: url(/assets/themes/atomicbikini.png), -o-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+		background-image: url(/assets/themes/atomicbikini.png), -moz-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+		background-image: url(/assets/themes/atomicbikini.png), -webkit-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+		background-image: url(/assets/themes/atomicbikini.png), -ms-linear-gradient(left , #8FBE00 22%, #AEE239 81%);
+		background-image: url(/assets/themes/atomicbikini.png), -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #AEE239));
+		background-position: center left;
+		background-repeat: no-repeat;
 	}
-	#content-head.atomicbikini h1, #content-head.atomicbikini h2 {
-		color: #333;}
+}
 
-#content-head.condensed {
-	height: 1px;
-	overflow: hidden;
-	opacity: 0;
-	padding: 0;}
-
-#content-head.whiteness {
-	background: inherit;
-	margin-bottom: 0;}
-	#content-head.whiteness h1 {
-		color: #333;}
-	#content-head.whiteness h2 {
-		color: #AAA;}
+.wordless {
+	#content-head {
+		background: #8FBE00;
+		background-image: linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
+		background-image: -o-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
+		background-image: -moz-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
+		background-image: -webkit-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
+		background-image: -ms-linear-gradient(left , #8FBE00 22%, #F2E9E1 81%);
+		background-image: -webkit-gradient(linear, left, right, color-stop(0.22, #8FBE00), color-stop(0.81, #F2E9E1));
+	}
+}

@@ -67,6 +67,7 @@ module ApplicationHelper
 		end
 	end
 
+	# Add a bootstrap popover to a form element
 	def popover(title, content, example = nil, placement = "right")
 		if example
 			if example.is_a? String
@@ -88,12 +89,21 @@ module ApplicationHelper
 			}
 		}
 	end
-	
+
+	# Get the options for a grade path, either add or edit
 	def manage_grade_path(assignment)
 		if assignment.user_grade(@current_user).blank?
 			["Add Grade", new_assignment_grade_path(assignment)]
 		else
 			["Edit Grade", edit_assignment_grade_path(assignment)]
+		end
+	end
+
+	# Get the fonts for a specified theme (if there are any)
+	def css_theme(theme)
+		case theme
+			when "snowpurple"
+				return "http://fonts.googleapis.com/css?family=Lato:300,400,700,900"
 		end
 	end
 end

@@ -1,50 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>BareGrades</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<% content_for :user_menu do %>
+	<a class="btn" href="<%= account_path %>"><i class="icon-user"></i> <%= @current_user.first_name %></a>
+	<a class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+	<ul>
+		<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
+		<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
+		
+		<% if @current_user.is_administrator? %>
+			<li><a href="<%= admin_path %>"><i class="icon-briefcase"></i> Admin</a></li>
+		<% end %>
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<li class="divider"></li>
+		<li><a href="<%= logout_path %>"><i class="icon-hand-left"></i> Log Out</a></li>
+	</ul>
+<% end %>
 
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
-</head>
-<body>
-
-<header class="main">
-	<div>
-		<div>
-			<%= link_to "BareGrades", root_path, class:"brand" %>
-			<%= link_to "v 1.0.3", changelog_path, class:"brand version" %>
-			
-			<div class="user-menu">
-				<a class="btn" href="<%= account_path %>"><i class="icon-user"></i> <%= @current_user.first_name %></a>
-				<a class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-				<ul>
-					<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
-					<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
-					
-					<% if @current_user.is_administrator? %>
-						<li><a href="<%= admin_path %>"><i class="icon-briefcase"></i> Admin</a></li>
-					<% end %>
-
-					<li class="divider"></li>
-					<li><a href="<%= logout_path %>"><i class="icon-hand-left"></i> Log Out</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</header>
-
-<header id="content-head" class="<%= @current_user.theme ? @current_user.theme.css_class : "pond" %>">
-	<div>
-		<%= yield :head %>
-	</div>
-</header>
-
-<div id="content">
+<% content_for :content do %>
 	<div class="row-fluid">
 		<aside class="span3">
 			<%=
@@ -83,7 +53,7 @@
 
 			<%= link_to "Add Course", courses_path(), class:"btn" %>
 		</aside>
-		<div class="main-content span8 offset1">
+		<div class="main-content">
 			<% flash.each do |name, msg| %>
 				<div class="alert alert-<%= name %>">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -94,13 +64,6 @@
 			<%= yield %>
 		</div>
 	</div>
+<% end %>
 
-	<footer>
-		&copy; 2013 | <%= link_to "Privacy", privacy_path() %>
-		<% if @current_user.is_administrator? %>
-		<% end %>
-	</footer>
-</div>
-
-</body>
-</html>
+<%= render "layouts/primary" %>
