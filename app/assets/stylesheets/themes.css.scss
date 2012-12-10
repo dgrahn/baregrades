@@ -64,6 +64,16 @@
 	}
 }
 
+.darkness {
+	#content-head {
+		background: #000;
+		background-image: url(/assets/themes/darkness.png);
+	}
+	
+	h1, h2, h3, h4, h5, h6 { font-family: Old Standard TT; }
+	aside > ul li:first-child { background: #111; color: #FFF; }
+	.gamerboxes div { background: #111; }
+}
 
 .pond {
 	#content-head {
