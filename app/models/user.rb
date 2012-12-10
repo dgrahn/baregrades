@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
 	validates :username,	:presence => true,	:uniqueness => true
 	validates :password,	:presence => true, :length => {:minimum => 5}, :confirmation => true, :on => "create"
-	validates :email, 		:presence => true
+	validates :email, 		:presence => true, :uniqueness => true
 	validates :first_name,	:presence => true
 	validates :last_name,	:presence => true
 	
