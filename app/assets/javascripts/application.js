@@ -21,6 +21,10 @@ $(document).ready(function() {
 			$(this).html('-');
 		}
 	});
+	
+	$('.dropdown-menu input').click(function(e) {
+		e.stopPropagation();
+	});
 
 	$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
 	$('a[rel="tooltip"]').tooltip({placement:"right"});
