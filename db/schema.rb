@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20121211155714) do
     t.boolean  "points_based"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "school"
     t.integer  "professor_id"
   end
 
@@ -108,13 +107,13 @@ ActiveRecord::Schema.define(:version => 20121211155714) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.text     "password_hash"
     t.text     "password_salt"
     t.integer  "theme_id"
     t.string   "confirmation_code"
-    t.boolean  "enabled"
+    t.boolean  "enabled",           :default => true, :null => false
   end
 
 end

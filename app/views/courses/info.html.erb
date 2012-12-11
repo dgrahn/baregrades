@@ -12,7 +12,7 @@
 <p><%= @course.description %></p>
 
 <p>
-	<b>Professor:</b> <%= @course.professor %><br/>
+	<b>Professor:</b> <%= @course.professor ? @course.professor.name : ""%><br/>
 	<b>Credits:</b> <%= @course.credits %><br/>
 	<%if @course.points_based%>
 		<b>Points based</b>

@@ -1,5 +1,3 @@
 class School < ActiveRecord::Base
-  attr_accessible :name
-  
-  has_many :courses
+	attr_accessible :name
 end

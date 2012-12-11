@@ -66,9 +66,26 @@ class CoursesController < ApplicationController
 
 	def create
 		types = @@common_types
-
-		# Create and save course
+		
+		# Create the course
 		@course = Course.new(params[:course])
+		
+		# Move the professor into the professors table.
+		Professor.all.each do |p|
+			p.destroy
+		end
+
+		professor_name = params[:professor]
+		prof = Professor.find_by_name(professor_name)
+		
+		if not prof
+			prof = Professor.create(name:professor_name)
+		end
+		
+		@course.professor = prof
+
+
+		# Save the course
 		if not @course.save
 			respond_to do |format|
 				format.html { render action: "new" }
@@ -121,6 +138,15 @@ class CoursesController < ApplicationController
 	end
 
 	def update
+		professor_name = params[:professor]
+		prof = Professor.find_by_name(professor_name)
+		
+		if not prof
+			prof = Professor.create(name:professor_name)
+		end
+		
+		@course.professor = prof
+
 		respond_to do |format|
 			if @course.update_attributes(params[:course])
 				format.html { redirect_to @course, notice: 'Course was successfully updated.' }
