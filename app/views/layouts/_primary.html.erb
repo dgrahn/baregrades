@@ -17,7 +17,9 @@
 	<header class="main">
 		<div>
 			<div>
-				<%= link_to "BareGrades", root_path, class:"brand" %>
+				<%= link_to root_path, class:"brand" do %>
+					<span>BareGrades</span>
+				<% end %>
 				<%= link_to "v 1.0.4", changelog_path, class:"brand version" %>
 				
 				<div class="user-menu">
