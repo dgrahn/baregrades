@@ -50,7 +50,6 @@ namespace :db do
 			cr.pin 				= rand(0..100000)
 			cr.points_based 	= rand(0..1)
 			cr.section 			= rand(1..10)
-			cr.professor 			= Populator.words(1).titleize
 			cr.student_managed 	= rand(0..1)
 			
 			cr.identifier 	= ''
@@ -60,7 +59,7 @@ namespace :db do
 			end
 			
 			cr.identifier 	= cr.identifier + "-" +
-							  rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s
+							  rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s + rand(0..9).to_s			
 			
 			# GradeScale Generated Sample Data
 			gs = GradeScale.new()
