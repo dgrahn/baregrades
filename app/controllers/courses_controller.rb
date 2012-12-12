@@ -65,7 +65,7 @@ class CoursesController < ApplicationController
 	end
 
 	def create
-		types = @@common_types
+		@common_types = @@common_types
 		
 		# Create the course
 		@course = Course.new(params[:course])
@@ -85,53 +85,51 @@ class CoursesController < ApplicationController
 		@course.professor = prof
 
 
-		# Save the course
-		if not @course.save
-			respond_to do |format|
+		respond_to do |format|
+			# Save the course
+			if not @course.save
 				format.html { render action: "new" }
 				format.json { render json: @course.errors, status: :unprocessable_entity }
-			end
-		end	
+			end	
 
-		# Create grade scale
-		gs = GradeScale.new(course_id: @course.id)
-		gs.save!
+			# Create grade scale
+			gs = GradeScale.new(course_id: @course.id)
+			gs.save!
+			
+
+			@common_types.each do |type|
+				# Grab the hash from the params
+				hash = params[type]
+
+				if hash[:active] == 'true'
+					# Create the assignment type
+					at = AssignmentType.create(
+							 name: type.titleize,
+							worth: hash[:total].to_f,
+						course_id: @course.id
+						)
+
+					at.save!
+
+					# Create the assignments
+					numberOfAssignments = hash[:number].to_f
+					(1..numberOfAssignments).each do |i|
+						a = Assignment.new()
+						a.name = "#{type.titleize} #{i}"
+						a.worth = hash[:worth].to_f
+						a.assignment_type = at
+						a.save!
+					end #assignments
+				end #if active
+			end #assignment types
+			
+			# Have the user join the course
+			access = Access.new()
+			access.role = Role.find_by_name("Student")
+			access.course = @course
+			access.user = @current_user
+			access.save
 		
-
-		types.each do |type|
-			# Grab the hash from the params
-			hash = params[type]
-
-			if hash[:active] == 'true'
-				# Create the assignment type
-				at = AssignmentType.create(
-						 name: type.titleize,
-						worth: hash[:total].to_f,
-					course_id: @course.id
-					)
-
-				at.save!
-
-				# Create the assignments
-				numberOfAssignments = hash[:number].to_f
-				(1..numberOfAssignments).each do |i|
-					a = Assignment.new()
-					a.name = "#{type.titleize} #{i}"
-					a.worth = hash[:worth].to_f
-					a.assignment_type = at
-					a.save!
-				end #assignments
-			end #if active
-		end #assignment types
-		
-		# Have the user join the course
-		access = Access.new()
-		access.role = Role.find_by_name("Student")
-		access.course = @course
-		access.user = @current_user
-		access.save
-		
-		respond_to do |format|
 			format.html { redirect_to @course, notice: 'Course was successfully created.' }
 			format.json { render json: @course, status: :created, location: @course }
 		end

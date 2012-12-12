@@ -21,6 +21,10 @@ class Course < ActiveRecord::Base
 	has_many :assignment_types, :dependent => :destroy
 	has_many :assignments, :through => :assignment_types, :dependent => :destroy
 	
+	validates :name, 		:presence => true
+	validates :identifier, 	:presence => true
+	validates :credits, 	:presence => true
+	
 	# Get the user's grade for a specific assignment type.
 	def user_grade(user)
 		totalGrade = 0

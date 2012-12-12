@@ -22,7 +22,7 @@
 				<td class="span3"><%= course.name %></td>
 				<td><%= course.identifier %></td>
 				<td><%= course.section %></td>
-				<td><%= course.professor %></td>
+				<td><%= course.professor ? course.professor.name : "" %></td>
 				<td><%= course.credits %></td>
 				<% if @current_user.is_administrator? %>
 					<td>
