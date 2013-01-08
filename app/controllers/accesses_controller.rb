@@ -44,7 +44,7 @@ class AccessesController < ApplicationController
 		@course = Course.find(params[:id])
 		@access = Access.where(:course_id => @course.id, :user_id => @current_user.id).first
 		
-		if @access.destroy
+		if @access and @access.destroy
 			redirect_to root_path, :flash => {:success => "You have left %s" % @course.name}
 		end
 	end
