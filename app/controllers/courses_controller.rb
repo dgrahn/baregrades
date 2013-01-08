@@ -111,7 +111,7 @@ class CoursesController < ApplicationController
 					numberOfAssignments = hash[:number].to_f
 					(1..numberOfAssignments).each do |i|
 						a = Assignment.new()
-						a.name = "#{type.titleize} #{i}"
+						a.name = "#{type.singularize.titleize} #{i}"
 						a.worth = hash[:worth].to_f
 						a.assignment_type = at
 						a.save!
