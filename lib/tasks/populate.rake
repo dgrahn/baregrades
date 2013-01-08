@@ -112,7 +112,13 @@ namespace :db do
 	task :erase => :environment do
 		puts "Erasing..."
 		
-		[Access, Assignment, AssignmentType, Course, Grade, GradeScale, Role, User].each(&:delete_all)
+		[Assignment, AssignmentType, Course, Grade, GradeScale].each(&:delete_all)
+		
+		Access.all.each do |a|
+			if not a.role.name == "Administrator"
+				a.destroy
+			end
+		end
 		
 		puts "Done!"
 	end
