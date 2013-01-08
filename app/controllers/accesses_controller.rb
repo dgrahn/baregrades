@@ -46,6 +46,8 @@ class AccessesController < ApplicationController
 		
 		if @access and @access.destroy
 			redirect_to root_path, :flash => {:success => "You have left %s" % @course.name}
+		else
+			redirect_to root_path, :flash => {:success => "You were never in %s" % @course.name}
 		end
 	end
 
