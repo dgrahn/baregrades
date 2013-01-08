@@ -71,10 +71,6 @@ class CoursesController < ApplicationController
 		@course = Course.new(params[:course])
 		
 		# Move the professor into the professors table.
-		Professor.all.each do |p|
-			p.destroy
-		end
-
 		professor_name = params[:professor]
 		prof = Professor.find_by_name(professor_name)
 		
