@@ -2,4 +2,31 @@
 	<h1>Admin</h1>
 <% end %>
 
+<h2>Statistics</h2>
+
+<table class="table colspan4">
+	<tbody>
+		<tr>
+			<th>Users</th>
+			<td><%= @number_of_users %></td>
+		</tr>
+		<tr>
+			<th>Courses</th>
+			<td><%= @number_of_courses %></td>
+		</tr>
+		<tr>
+			<th>Assignments</th>
+			<td><%= @number_of_assignments %></td>
+		</tr>
+		<tr>
+			<th>Grades</th>
+			<td><%= @number_of_grades %></td>
+		</tr>
+		<tr>
+			<th>Users Per Course</th>
+			<td><%= @users_per_course %></td>
+		</tr>
+	</tbody>
+</table>
+
 <% render "admin/navigation" %>
