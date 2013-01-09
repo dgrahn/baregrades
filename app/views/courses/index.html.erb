@@ -1,4 +1,4 @@
-<% content_for :head do %>
+z<% content_for :head do %>
 	<h1>Courses</h1>
 <% end %>
 <% content_for :nav do %>
@@ -13,6 +13,11 @@
 			<th>Section</th>
 			<th>Professor</th>
 			<th>Credits</th>
+			<%=
+				if @current_user.is_administrator?
+					content_tag(:th, "# Users")
+				end
+			%>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,6 +30,9 @@
 				<td><%= course.professor ? course.professor.name : "" %></td>
 				<td><%= course.credits %></td>
 				<% if @current_user.is_administrator? %>
+					<td>
+						<%= course.users.length %>
+					</td>
 					<td>
 						<div class="dropdown">
 							<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
