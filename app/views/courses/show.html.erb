@@ -80,6 +80,7 @@
 						<td>
 							<div <div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
+								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
 						</td>
 					</tr>
@@ -91,6 +92,7 @@
 						<td>
 							<div <div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
+								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
 						</td>
 					</tr>

@@ -25,9 +25,11 @@ $(document).ready(function() {
 	$('.dropdown-menu input').click(function(e) {
 		e.stopPropagation();
 	});
+	$('.datepicker').datepicker('destroy');
+	$('.datepicker').removeClass("hasDatepicker").removeAttr('id')
 	$('.datepicker').datepicker({dateFormat: "yy-mm-dd"});
-	$('a[rel="tooltip"]').tooltip({placement:"right"});
 	
+	$('a[rel="tooltip"]').tooltip({placement:"right"});
 	$("input[rel*=popover]").popover({'trigger':'focus'});
 	$("textarea[rel*=popover]").popover({'trigger':'focus'});
 	$("select[rel*=popover]").popover({'trigger':'focus'});
