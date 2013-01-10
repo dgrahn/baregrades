@@ -4,16 +4,6 @@
 <% content_for :nav do %>
 <% end %>
 
-<h2>Schools</h2>
-<ul>
-<%
-	School.all.each do |school|
-		concat content_tag(:li, school.name)
-	end
-%>
-	<li>End</li>
-</ul>
-
 <table class="table table-middle">
 	<thead>
 		<tr>

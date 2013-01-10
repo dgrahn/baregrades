@@ -81,7 +81,6 @@ class CoursesController < ApplicationController
 		@course.professor = prof
 		
 		# Move the school into the schools table.
-		School.destroy_all
 		school_name = params[:school]
 		sch = School.find_by_name(school_name)
 		
