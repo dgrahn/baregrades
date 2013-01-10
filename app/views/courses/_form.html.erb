@@ -19,11 +19,17 @@
 	<%= text_field_tag("professor", @course.professor ? @course.professor.name : "", popover("Professor", "The full name for your professor.", ["Charles Clevenger", "Stephen Golmer"])) %>
 	<%= f.text_field :credits, popover("Credits", "The number of credits you receive for the course.", ["3.0", "4.5"]) %>
 	<%= f.text_area :description, popover("Description", "A brief description of the class. Keep this relevant, helpful, and concise.") %>
-
+		<div class="question">
+			<div class="answer btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn">Yes</button>
+				<button type="button" class="btn">No</button>
+				<%= hidden_field("course", "points_based", value:@course.points_based) %>
+			</div>
+			<p>Does this course calculate grades based on <strong>points</strong> rather than percentages? </p>
+	</div>
 	
 	<div class="hide">
-		<%= f.label :points_based %>
-		<%= f.check_box :points_based %>
+		
 
 		<%= f.label :pin %>
 		<%= f.number_field :pin %>

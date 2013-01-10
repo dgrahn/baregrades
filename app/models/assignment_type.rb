@@ -20,6 +20,15 @@ class AssignmentType < ActiveRecord::Base
 	belongs_to :course
 	has_many :assignments, :dependent => :destroy
 
+	# Total number of points under a given assignment type
+	def points
+		points = 0
+		assignments.each do |assignment|
+			points += assignment.worth
+		end
+		return points
+	end
+	
 	# Get assignments for this assignment type sorted by due date.
 	def sorted_assignments
 		return self.assignments.order("due_date")

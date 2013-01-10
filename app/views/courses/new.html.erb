@@ -22,6 +22,14 @@
 	<%= text_field_tag("professor", @course.professor ? @course.professor.name : "", popover("Professor", "The full name for your professor.", ["Charles Clevenger", "Stephen Golmer"])) %>
 	<%= f.text_field :credits, popover("Credits", "The number of credits you receive for the course.", ["3.0", "4.5"]) %>
 	<%= f.text_area :description, popover("Description", "A brief description of the class. Keep this relevant, helpful, and concise.") %>
+	<div class="question">
+			<div class="answer btn-group" data-toggle="buttons-radio">
+				<button type="button" class="btn">Yes</button>
+				<button type="button" class="btn active">No</button>
+				<%= hidden_field("course", "points_based", value:"false") %>
+			</div>
+			<p>Does this course calculate grades based on <strong>points</strong> rather than percentages? </p>
+	</div>
 	
 	<% @common_types.each do |t| %>
 		<div class="question">
@@ -44,7 +52,7 @@
 					<div class="answer">
 						<%= number_field(t, "total", class:"small") %>
 					</div>
-					<p>How much is the category worth?</p>
+					<p>How much is the category weighted?</p>
 				</div>
 
 				<div class="question">
