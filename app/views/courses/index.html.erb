@@ -39,7 +39,7 @@
 				<td><%= course.professor ? course.professor.name : "" %></td>
 				<% if @current_user.is_administrator? %>
 					<td>
-						<%= course.users.length %>
+						<%= link_to course.users.length, course_users_path(course) %>
 					</td>
 					<td>
 						<div class="dropdown">

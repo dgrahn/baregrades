@@ -5,9 +5,11 @@
 	<%= render :partial => "courses/navigation" %>
 <% end %>
 
-<h1>Current Course Memebers</h1>
+<h1>Current Users</h1>
 <ul>
-	<% @course.users.each do |user| %>
-		<li><%= user.name %></li>
-	<%end %>
+	<% 
+		@course.users.each do |user| 
+			concat content_tag(:li, user.name)
+		end
+	%>
 </ul>

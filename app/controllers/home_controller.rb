@@ -12,6 +12,7 @@ class HomeController < ApplicationController
 		@versions = {
 				"1.0.5" 	=> ["<strong>Fixed login dropdown so that it does not dissappear on the mobile site</strong>",
 								"<strong>Added search to courses page.</strong>",
+								"<em>Updated privacy policy.</em>",
 								"Added professor to course attributes.",
 								"Added school to course attributes"],
 
