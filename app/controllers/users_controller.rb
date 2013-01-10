@@ -50,21 +50,21 @@ class UsersController < ApplicationController
 		@user = User.new(params[:user])
 		policy = params[:policy]
 		
+		# Generate Confirmation Code
+		@user.confirmation_code = generate_random_password
+		@user.enabled = false
+			
 		respond_to do |format|
 		
-			if policy.blank? or not policy == 1
+			# Checkboxes in rails will only return a variable if checked
+			if policy.blank?
 				@themes = Theme.all
 				format.html { 
 					flash[:notice] = 'You must agree to the privacy policy.'
 					render action: "new", layout:"login" 
 				}
-			end
-		
-			# Generate Confirmation Code
-			@user.confirmation_code = generate_random_password
-			@user.enabled = false
 			
-			if @user.save
+			elsif @user.save
 				begin
 					UserMailer.registration_confirmation(@user).deliver
 					
