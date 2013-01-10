@@ -12,7 +12,11 @@
 # -----------------------------------------------------------
 
 class AssignmentType < ActiveRecord::Base
-	attr_accessible :description, :name, :worth, :course_id
+	attr_accessible :description
+	attr_accessible :name
+	attr_accessible :worth
+	attr_accessible :course_id
+	attr_accessible :drop_lowest
 
 	validates :name, :presence => true
 	validates :worth, :numericality => true, :allow_nil => true
@@ -40,11 +44,36 @@ class AssignmentType < ActiveRecord::Base
 		totalWorth = 0
 
 		grades = Grade.joins(:assignment).where('assignments.assignment_type_id' => self.id, :user_id => user)
-		grade = grades.sum(:grade).to_f
-		worth = grades.sum(:worth).to_f
 
-		if worth != 0
-			return (grade / worth) * 100
+		if drop_lowest
+			# If we are dropping the lowest score, we have to calculate the grades individually
+			scores = []
+	
+			# Calculate each score
+			grades.each do |g|
+				if g.assignment.worth != 0
+					scores.push(g.grade / g.assignment.worth)
+				end
+			end
+			
+			# Sort and remove lowest score
+			scores = scores.sort
+			scores.delete_at(0)
+		
+			# Calculate grade using remainder
+			if scores.length != 0
+				return scores.sum / scores.length * 100
+			end
+
+		else
+			# Calculate the grades in bulk
+			grade = grades.sum(:grade).to_f
+			worth = grades.sum(:worth).to_f
+
+			if worth != 0
+				return (grade / worth) * 100
+			end
+
 		end
 	end
 	

@@ -4,13 +4,18 @@
 	
 	<%= f.text_area :description, popover("Description", "Information about the assignment type.", ["Projects help students practice what they have learned."]) %>
 	
-	<%if @course.points_based%>
+	<% if @course.points_based %>
 		<div class="hide">
-	<%end%>
+	<% end %>
 		<%= f.text_field :worth, popover("Weight", "How the value is distributed throughout the course (in percentage).", ["Exams 25", "Homework 15"]) %>
-	<%if @course.points_based%>
+	<% if @course.points_based %>
 		</div>
-	<%end%>
+	<% end %>
+	
+	<div class="checkbox">
+		<%= f.check_box :drop_lowest %>
+		Drop the lowest grade?
+	</div>
 	
 	<%= f.submit %>
 <% end %>

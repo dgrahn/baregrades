@@ -40,6 +40,8 @@
 				<th>Weighting</th>
 			<%end%>
 			
+			<th>Drop Lowest?</th>
+			
 			<th></th>
 		</tr>
 	</thead>
@@ -55,6 +57,8 @@
 				<%else%>
 				<td><%= assignment_type.worth %></td>
 				<%end%>
+				
+				<td><%= assignment_type.drop_lowest ? "Yes" : "No" %></td>
 				
 				<td>
 					<div class="btn-group pull-right">
