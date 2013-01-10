@@ -33,4 +33,22 @@
 	</tbody>
 </table>
 
+<h2>Themes</h2>
+<table class="table colspan4">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th># of Users</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% Theme.all.each do |theme| %>
+			<tr>
+				<td><%= theme.name %></td>
+				<td><%= theme.users.length %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
 <% render "admin/navigation" %>
