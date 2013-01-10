@@ -48,12 +48,22 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
-		
-		# Generate Confirmation Code
-		@user.confirmation_code = generate_random_password
-		@user.enabled = false
+		policy = params[:policy]
 		
 		respond_to do |format|
+		
+			if policy.blank? or not policy == 1
+				@themes = Theme.all
+				format.html { 
+					flash[:notice] = 'You must agree to the privacy policy.'
+					render action: "new", layout:"login" 
+				}
+			end
+		
+			# Generate Confirmation Code
+			@user.confirmation_code = generate_random_password
+			@user.enabled = false
+			
 			if @user.save
 				begin
 					UserMailer.registration_confirmation(@user).deliver

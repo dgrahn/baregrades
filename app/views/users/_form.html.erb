@@ -28,7 +28,10 @@
 			<%= f.text_field :last_name, popover("Last Name", "Your last name.", ["Smith", "Doe"]) %>
 		</div>
 	</div>
-
+	
+	<%= check_box_tag("policy") %>
+	<%= link_to("I have read and agree to the BareGrades privacy policy", privacy_path) %>
+	
 	<br/>
 	<%= f.submit "Submit", class:"btn btn-primary" %>
 <% end %>
