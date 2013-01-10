@@ -12,5 +12,16 @@ class AdminController < ApplicationController
 		end
 		
 		@users_per_course = @users_per_course.to_f / @number_of_courses.to_f
+		
+		
+		@most_popular_theme = ""
+		max_users = 0
+		Theme.all.each do |theme|
+			if max_users < theme.users.length
+				max_users = theme.users.length
+				@most_popular_theme = theme.name
+			end
+		end
+		
 	end
 end
