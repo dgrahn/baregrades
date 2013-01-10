@@ -5,103 +5,25 @@
 <% render "home/navigation" %>
 
 <div class="accordion" id="accordion1">
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a href="#five" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
-				Version 1.0.4
-			</a>
-		</div>
-		<div id="five" class="accordion-body collapse in">
-			<div class="accordion-inner">
-				<ul>
-					<li><strong>Added registration confirmation check.</strong></li>
-					<li>Remove the less exciting themes (Wasabi Suicide, Cheer Up Emo Kid, Atomic Bikini, Wordless)</li>
-					<li>Made font changes to some themes.</li>
-					<li>Created a few new themes (Dark Wood, Canvas, Citrus, Darkness).</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<% @versions.each_with_index do |(version, changes), i| %>
 
 	<div class="accordion-group">
 		<div class="accordion-heading">
-			<a href="#four" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
-				Version 1.0.3
+			<a href="#slider-<%= i %>" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
+				Version <%= version %>
 			</a>
 		</div>
-		<div id="four" class="accordion-body collapse">
+		<div id="slider-<%= i %>" class="accordion-body collapse <%= i != 0 ? "out" : "in" %>">
 			<div class="accordion-inner">
 				<ul>
-					<li><strong>Added rough prioritizer tool.</strong></li>
-					<li>Added dropdown for assignment types on course information page.</li>
+					<%
+						changes.each do |change|
+							concat content_tag(:li, raw(change))
+						end
+					%>
 				</ul>
 			</div>
 		</div>
 	</div>
-
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a href="#three" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
-				Version 1.0.2
-			</a>
-		</div>
-		<div id="three" class="accordion-body collapse">
-			<div class="accordion-inner">
-				<ul>
-					<li>Removed Course Name from Calendar</li>
-					<li>Added Course Name tooltip to Calendar</li>
-					<li>Removed labels and added popovers to all Forms</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a href="#two" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
-				Version 1.0.1
-			</a>
-		</div>
-		<div id="two" class="accordion-body collapse">
-			<div class="accordion-inner">
-				<ul>
-					<li><strong>Added Grade Report with printable styles</strong></li>
-					<li><strong>Added GPA Prediction</strong></li>
-					<li><strong>Course Page Changes</strong>
-						<ul>
-							<li>Added a date picker option for assignments!</li>
-							<li>Added a dropdown menu for assignments!</li>
-						</ul>
-					</li>
-					<li>Improved mobile theme.</li>
-					<li>Added two themes: Condensed Milk, Whiteness.</li>
-					<li>Optimized "Assignment Type" grade (no effect on output).</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a href="#one" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" >
-				Version 1.0
-			</a>
-		</div>
-		<div id="one" class="accordion-body collapse">
-			<div class="accordion-inner">
-				<ul>
-					<li>Register user</li>
-					<li>Manage courses</li>
-					<li>Manage grades</li>
-					<li>Class progress</li>
-					<li>Statistical analysis</li>
-					<li>Class targetting</li>
-					<li>Calendar view</li>
-					<li>Password reset</li>
-					<li>Submit feedback</li>
-					<li>User themes</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+<% end %>
 </div>

@@ -1,8 +1,18 @@
-z<% content_for :head do %>
+<% content_for :head do %>
 	<h1>Courses</h1>
 <% end %>
 <% content_for :nav do %>
 <% end %>
+
+<h2>Schools</h2>
+<ul>
+<%
+	School.all.each do |school|
+		concat content_tag(:li, school.name)
+	end
+%>
+	<li>End</li>
+</ul>
 
 <table class="table table-middle">
 	<thead>
@@ -11,6 +21,7 @@ z<% content_for :head do %>
 			<th>Name</th>
 			<th>Identifier</th>
 			<th>Section</th>
+			<th>School</th>
 			<th>Professor</th>
 			<th>Credits</th>
 			<%=
@@ -27,6 +38,7 @@ z<% content_for :head do %>
 				<td class="span3"><%= course.name %></td>
 				<td><%= course.identifier %></td>
 				<td><%= course.section %></td>
+				<td><%= course.school ? course.school.name : "" %></thd>
 				<td><%= course.professor ? course.professor.name : "" %></td>
 				<td><%= course.credits %></td>
 				<% if @current_user.is_administrator? %>

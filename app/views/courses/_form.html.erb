@@ -15,6 +15,7 @@
 	<%= f.text_field :name, popover("Title", "The full human-readable name for the course.", ["Introduction to Humanities", "General Physics I"]) %>
 	<%= f.text_field :identifier, popover("Identifier", "The name the registrar uses for the course.", ["CS-1210", "LIT-2030"]) %>
 	<%= f.number_field :section, popover("Section", "The numerical section for your class. (Often used to distinguish between times and labs)", ["1", "5"]) %>
+	<%= text_field_tag("school", @course.school ? @course.school.name : "", popover("School", "The school where the course is being taught.", ["Cedarville University", "Wright State University"])) %>
 	<%= text_field_tag("professor", @course.professor ? @course.professor.name : "", popover("Professor", "The full name for your professor.", ["Charles Clevenger", "Stephen Golmer"])) %>
 	<%= f.text_field :credits, popover("Credits", "The number of credits you receive for the course.", ["3.0", "4.5"]) %>
 	<%= f.text_area :description, popover("Description", "A brief description of the class. Keep this relevant, helpful, and concise.") %>

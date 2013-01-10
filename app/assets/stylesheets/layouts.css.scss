@@ -331,6 +331,8 @@ $na-color: #222222;
 
 // ====================== Mobile CSS
 @media (max-width: 480px) {
+	header.main .version { display: none; }
+
 	#content > div {
 		aside {
 			max-width: 100%;

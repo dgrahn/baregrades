@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 	before_filter :find_course, :except => [:index, :new, :create]
 	
-	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation"]
+	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation", "midterms/finals"]
 	
 	def find_course
 		@course = Course.find(params[:id])
@@ -79,6 +79,17 @@ class CoursesController < ApplicationController
 		end
 		
 		@course.professor = prof
+		
+		# Move the school into the schools table.
+		School.destroy_all
+		school_name = params[:school]
+		sch = School.find_by_name(school_name)
+		
+		if not sch
+			sch = School.create(name:school_name)
+		end
+
+		@course.school = sch
 
 
 		respond_to do |format|
@@ -132,6 +143,7 @@ class CoursesController < ApplicationController
 	end
 
 	def update
+		# Move professor to seperate table
 		professor_name = params[:professor]
 		prof = Professor.find_by_name(professor_name)
 		
@@ -140,6 +152,16 @@ class CoursesController < ApplicationController
 		end
 		
 		@course.professor = prof
+		
+		# Move school to seperate table
+		school_name = params[:school]
+		sch = School.find_by_name(school_name)
+		
+		if not sch
+			sch = School.create(name:school_name)
+		end
+		
+		@course.school = sch
 
 		respond_to do |format|
 			if @course.update_attributes(params[:course])
