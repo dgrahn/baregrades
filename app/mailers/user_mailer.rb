@@ -2,11 +2,11 @@ class UserMailer < ActionMailer::Base
 	default from: "admin@baregrades.com"
 	
 	def feedback(email, topic, description)
-		mail(from: 		email,
+		mail(reply_to: 		email,
 			 to: 		"admin@baregrades.com",
 			 cc: 		["jengel@cedarville.edu", "dgrahn@cedarville.edu", "mbrooker@cedarville.edu"],
 			 subject: 	"[BareGrades Feedback] " + topic,
-			 body: 		["From: " + email + " - " + description])
+			 body: 		description)
 	end
 	
 	def resetPassword(email, name, password)
