@@ -59,6 +59,10 @@ div.dropdown-menu {
 	display: none;
 }
 
+.nowrap, .nowrap td {
+	white-space: nowrap;
+}
+
 input[type="submit"] {
 	display: block;
 	@extend .btn;

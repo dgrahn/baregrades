@@ -11,6 +11,7 @@ class HomeController < ApplicationController
 	def changelog
 		@versions = {
 				"1.0.5" 	=> ["<strong>Fixed login dropdown so that it does not dissappear on the mobile site</strong>",
+								"<strong>Added search to courses page.</strong>",
 								"Added professor to course attributes.",
 								"Added school to course attributes"],
 

@@ -4,33 +4,39 @@
 <% content_for :nav do %>
 <% end %>
 
+
+<form>
+	<strong>Search: </strong><br/>
+	<input type="text" name="search" id="search"/>
+</form>
+
 <table class="table table-middle">
 	<thead>
 		<tr>
 			<th></th>
 			<th>Name</th>
-			<th>Identifier</th>
-			<th>Section</th>
+			<th>ID</th>
+			<th></th>
+			<th>Credits</th>
 			<th>School</th>
 			<th>Professor</th>
-			<th>Credits</th>
 			<%=
 				if @current_user.is_administrator?
-					content_tag(:th, "# Users")
+					content_tag(:th, "Users")
 				end
 			%>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody  class="nowrap">
 		<% @courses.each do |course| %>
 			<tr>
 				<td><%= link_to "Join", course_join_path(course), class:"btn btn-primary" %></td>
-				<td class="span3"><%= course.name %></td>
+				<td><%= course.name %></td>
 				<td><%= course.identifier %></td>
 				<td><%= course.section %></td>
+				<td><%= course.credits %></td>
 				<td><%= course.school ? course.school.name : "" %></thd>
 				<td><%= course.professor ? course.professor.name : "" %></td>
-				<td><%= course.credits %></td>
 				<% if @current_user.is_administrator? %>
 					<td>
 						<%= course.users.length %>
@@ -54,6 +60,36 @@
 	</tbody>
 </table>
 
-<br />
+<script>
+	$(document).ready(function() {
+		$.expr[':'].containsIgnoreCase = function(n,i,m){
+			return jQuery(n).text().toUpperCase().indexOf(m[3].toUpperCase())>=0;
+		};
+
+
+		$("#search").keyup(function(){
+			var data = this.value.split(" ");
+			var rows = $("tbody").find("tr");
+			
+			if(this.value == "") {
+				rows.show();
+				return;
+			}
+
+			rows.hide();
+
+			$.each(data, function(i, v){
+				//Use the new containsIgnoreCase function instead
+				rows = rows.filter("*:containsIgnoreCase('"+ v +"')");
+			});
+
+			rows.show();
+
+		}).focus(function(){
+			this.value = "";
+			$(this).unbind('focus');
+		});
+	});
+</script>
 
 <%= link_to "Create New Course", new_course_path, :class => "button" %>
