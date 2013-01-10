@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+	skip_before_filter :require_login, :only => [:changelog]
+
 	def index
 		@user = @current_user
 		@assignments = @user.assignments.where("due_date")
@@ -51,5 +53,7 @@ class HomeController < ApplicationController
 								"User themes"]
 
 				}
+
+		render layout:"login"
 	end
 end
