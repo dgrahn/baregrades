@@ -136,6 +136,12 @@ class CoursesController < ApplicationController
 			access.user = @current_user
 			access.save
 		
+			# Add log
+			log = Log.new
+			log.course = @course
+			log.comments = "#{@current_user.name} created course '#{@course.name}'."
+			log.save
+
 			format.html { redirect_to @course, notice: 'Course was successfully created.' }
 			format.json { render json: @course, status: :created, location: @course }
 		end
@@ -164,6 +170,12 @@ class CoursesController < ApplicationController
 
 		respond_to do |format|
 			if @course.update_attributes(params[:course])
+				# Add log
+				log = Log.new
+				log.course = @course
+				log.comments = "#{@current_user.name} updated course '#{@course.name}'."
+				log.save
+
 				format.html { redirect_to @course, notice: 'Course was successfully updated.' }
 				format.json { head :no_content }
 			else
@@ -177,6 +189,12 @@ class CoursesController < ApplicationController
 		if not @current_user.is_administrator?
 			redirect_to root_path
 		end
+		
+		# Add log
+		log = Log.new
+		log.course = @course
+		log.comments = "#{@current_user.name} deleted course '#{@course.name}'."
+		log.save
 		
 		@course.destroy
 

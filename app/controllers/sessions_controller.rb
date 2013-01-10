@@ -10,6 +10,12 @@ class SessionsController < ApplicationController
 		
 		if user && user.enabled
 			session[:user_id] = user.id
+			
+			# Add log
+			log = Log.new
+			log.user = user
+			log.comments = "#{user.name} logged in."
+			log.save
 
 			# TODO: Send to homepage
 			redirect_to root_path, :flash => {:success => "Logged In"}
@@ -24,6 +30,12 @@ class SessionsController < ApplicationController
 
 	def destroy
 		session[:user_id] = nil
+		
+		# Add log
+		log = Log.new
+		log.user = user
+		log.comments = "#{user.name} logged out."
+		log.save
 		
 		flash.now[:success] = "Logged Out"
 		render "new"

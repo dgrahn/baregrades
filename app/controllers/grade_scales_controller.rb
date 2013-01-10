@@ -48,6 +48,12 @@ class GradeScalesController < ApplicationController
 	
     respond_to do |format|
       if @grade_scale.save
+		# Add log
+		log = Log.new
+		log.course = @course
+		log.comments = "#{@current_user.name} added grade scale to course '#{@course.name}'"
+		log.save
+
         format.html { redirect_to @course, notice: 'Grade scale was successfully created.' }
         format.json { render json: @grade_scale, status: :created, location: @grade_scale }
       else
@@ -79,6 +85,12 @@ class GradeScalesController < ApplicationController
   def destroy
     @grade_scale = GradeScale.find(params[:id])
     @grade_scale.destroy
+	
+	# Add log
+	log = Log.new
+	log.course = @course
+	log.comments = "#{@current_user.name} deleted grade scale to course '#{@course.name}'"
+	log.save
 
     respond_to do |format|
       format.html { redirect_to grade_scales_url }

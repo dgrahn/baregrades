@@ -37,12 +37,24 @@ class AccessesController < ApplicationController
 		access.user = @current_user
 		access.save
 
+		# Add Log
+		log = Log.new
+		log.course = @course
+		log.comments = "#{@current_user.name} joined the course '#{@course.name}'"
+		log.save
+
 		redirect_to @course
 	end
 
 	def leave
 		@course = Course.find(params[:id])
 		@access = Access.where(:course_id => @course.id, :user_id => @current_user.id).first
+		
+		# Add Log
+		log = Log.new
+		log.course = @course
+		log.comments = "#{@current_user.name} left the course '#{@course.name}'"
+		log.save
 		
 		if @access and @access.destroy
 			redirect_to root_path, :flash => {:success => "You have left %s" % @course.name}

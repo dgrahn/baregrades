@@ -42,6 +42,12 @@ class GradesController < ApplicationController
 		@grade = Grade.new(params[:grade])
 		@grade.assignment_id = params[:assignment_id]
 		@grade.user_id = @current_user.id
+		
+		# Add log
+		log = Log.new
+		log.grade = @grade
+		log.comments = "#{@current_user.name} added grade to assignment '#{@grade.assignment.name}'"
+		log.save
 
 		respond_to do |format|
 			# For fast grades (:commit == "Save") redirect to the course page
@@ -61,6 +67,12 @@ class GradesController < ApplicationController
 		respond_to do |format|
 			# For fast grades (:commit == "Save") redirect to the course page
 			if params[:commit] == "Save" && @grade.update_attributes(params[:grade])
+				# Add log
+				log = Log.new
+				log.grade = @grade
+				log.comments = "#{@current_user.name} edited grade to assignment '#{@grade.assignment.name}'"
+				log.save
+
 				format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully updated.' }
 			elsif @grade.update_attributes(params[:grade])
 				format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully updated.' }
@@ -72,7 +84,14 @@ class GradesController < ApplicationController
 
 	def destroy
 		grade = Grade.find_by_assignment_id_and_user_id(params[:assignment_id], @current_user.id)
+		assignment = grade.assignment
 		grade.destroy
+		
+		# Add log
+		log = Log.new
+		log.grade = @grade
+		log.comments = "#{@current_user.name} deleted grade to assignment '#{assignment.name}'"
+		log.save
 
 		respond_to do |format|
 			if params[:page] == "Course"

@@ -24,4 +24,8 @@ class AdminController < ApplicationController
 		end
 		
 	end
+
+	def logs
+		@logs = Log.limit(params[:number]).all
+	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110164217) do
+ActiveRecord::Schema.define(:version => 20130110193521) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -24,9 +24,8 @@ ActiveRecord::Schema.define(:version => 20130110164217) do
     t.string   "name"
     t.text     "description"
     t.decimal  "worth"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.boolean  "drop_lowest", :default => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "assignments", :force => true do |t|
@@ -76,6 +75,17 @@ ActiveRecord::Schema.define(:version => 20130110164217) do
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "assignment_type_id"
+    t.integer  "assignment_id"
+    t.integer  "grade_id"
+    t.string   "comments"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "professors", :force => true do |t|

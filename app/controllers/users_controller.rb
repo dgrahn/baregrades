@@ -68,6 +68,12 @@ class UsersController < ApplicationController
 				begin
 					UserMailer.registration_confirmation(@user).deliver
 					
+					# Add log
+					log = Log.new
+					log.user = @user
+					log.comments = "#{@user.name} registered."
+					log.save
+					
 					format.html { redirect_to login_path, notice: 'User was successfully created. Check your email to verify the account.'}
 				rescue Net::SMTPFatalError # Mailer delivery error
 					@user.destroy
@@ -93,6 +99,12 @@ class UsersController < ApplicationController
 				format.html {redirect_to root_path, notice: 'Access Denied.'}
 				
 			elsif @user.update_attributes(params[:user])
+				# Add log
+				log = Log.new
+				log.user = @user
+				log.comments = "#{@user.name} updated info."
+				log.save
+
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { head :no_content }
 			else
@@ -108,6 +120,12 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 		
+		# Add log
+		log = Log.new
+		log.user = @user
+		log.comments = "#{@user.name} deleted."
+		log.save
+
 		@user = User.find(params[:id])
 		@user.destroy
 
@@ -131,6 +149,12 @@ class UsersController < ApplicationController
 			end
 		
 			if user.save
+				# Add log
+				log = Log.new
+				log.user = @user
+				log.comments = "#{@user.name} confirmed."
+				log.save
+
 				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
 			else
 				@themes = Theme.all

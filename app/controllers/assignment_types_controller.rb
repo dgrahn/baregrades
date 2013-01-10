@@ -20,6 +20,13 @@ class AssignmentTypesController < ApplicationController
 
 		respond_to do |format|
 			if @assignment_type.save
+				# Add log
+				log = Log.new
+				log.assignment_type = @assignment_type
+				log.course = @course
+				log.comments = "#{@current_user.name} created assignment type '#{@assignment_type.name}'."
+				log.save
+
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
 			else
 				format.html { render action: "new" }
@@ -33,6 +40,13 @@ class AssignmentTypesController < ApplicationController
 
 		respond_to do |format|
 			if @assignment_type.update_attributes(params[:assignment_type])
+				# Add log
+				log = Log.new
+				log.assignment_type = @assignment_type
+				log.course = @course
+				log.comments = "#{@current_user.name} updated assignment type '#{@assignment_type.name}'."
+				log.save
+
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment Type was successfully updated."}}
 			else
 				format.html { render action: "edit" }
@@ -46,6 +60,14 @@ class AssignmentTypesController < ApplicationController
 		@assignment_type.assignments.each do |assignment|
 			assignment.destroy
 		end
+		
+		# Add log
+		log = Log.new
+		log.assignment_type = @assignment_type
+		log.course = @course
+		log.comments = "#{@current_user.name} deleted assignment type '#{@assignment_type.name}'."
+		log.save
+
 		@assignment_type.destroy
 
 		respond_to do |format|

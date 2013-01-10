@@ -42,6 +42,12 @@ class AssignmentsController < ApplicationController
 
 		respond_to do |format|
 			if @assignment.save
+				# Add log
+				log = Log.new
+				log.assignment = @assignment
+				log.comments = "#{@current_user.name} created assignment '#{@assignment.name}'."
+				log.save
+
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully created."}}
 			else
 				format.html { render action: "new" }
@@ -55,6 +61,12 @@ class AssignmentsController < ApplicationController
 
 		respond_to do |format|
 			if @assignment.update_attributes(params[:assignment])
+				# Add log
+				log = Log.new
+				log.assignment = @assignment
+				log.comments = "#{@current_user.name} updated assignment '#{@assignment.name}'."
+				log.save
+
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully updated."}}
 				format.json { head :no_content }
 			else
@@ -66,6 +78,13 @@ class AssignmentsController < ApplicationController
 
 	def destroy
 		@assignment = Assignment.find(params[:id])
+		
+		# Add log
+		log = Log.new
+		log.assignment = @assignment
+		log.comments = "#{@current_user.name} deleted assignment '#{@assignment.name}'."
+		log.save
+
 		@assignment.destroy
 
 		respond_to do |format|
