@@ -34,9 +34,9 @@ class UserMailerController < ApplicationController
 			rescue Net::SMTPAuthenticationError
 				# Problem email service
 				format.html {render "errors/500", flash[:error] = "Email support is currently down. We are sorry for any inconvenience this may have caused."}
-			rescue OpenSSL::SSL::SSLError
+			#rescue OpenSSL::SSL::SSLError
 				# Problem email service
-				format.html {render "errors/500", flash[:error] = "Email support is currently down. We are sorry for any inconvenience this may have caused."}
+			#	format.html {render "errors/500", flash[:error] = "Email support is currently down. We are sorry for any inconvenience this may have caused."}
 			end
 		end # respond_to
 	end # def submitFeedback
