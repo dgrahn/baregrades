@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130110193521) do
     t.string   "name"
     t.text     "description"
     t.decimal  "worth"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "drop_lowest", :default => false
   end
 
   create_table "assignments", :force => true do |t|

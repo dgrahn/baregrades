@@ -24,15 +24,17 @@ class UserMailerController < ApplicationController
 		@topic = params[:topic]
 		@description = params[:description]
 		
-		begin
-			UserMailer.feedback(@email, @topic, @description).deliver
-		rescue Net::SMTPFatalError # Mailer delivery error
-			@email = "admin@baregrades.com"
-			UserMailer.feedback(@email, @topic, @description).deliver
-		end
-			
 		respond_to do |format|
-			format.html { redirect_to root_path, notice: "Feedback was sent successfully!" }
+			begin
+				UserMailer.feedback(@email, @topic, @description).deliver
+				format.html { redirect_to root_path, notice: "Feedback was sent successfully!" }
+			rescue Net::SMTPFatalError # Mailer delivery error
+				@email = "admin@baregrades.com"
+				UserMailer.feedback(@email, @topic, @description).deliver
+			rescue Net::SMTPAuthenticationError
+				# Problem saving the password
+				format.html {redirect_to root_path, notice: "Email support is currently down. We are sorry for any inconvenience this may have caused."}
+			end			
 		end # respond_to
 	end # def submitFeedback
 	
@@ -47,7 +49,7 @@ class UserMailerController < ApplicationController
 		respond_to do |format|
 			if user.blank?
 				# No user for the given email
-				format.html { redirect_to login_path, notice: 'No user found.'}
+				format.html { redirect_to login_path, notice: 'No user found.', layout:"login"}
 				
 			else
 				# Generate a random password
@@ -73,11 +75,11 @@ class UserMailerController < ApplicationController
 						user.save
 						
 						# Problem delivering the email
-						format.html {redirect_to login_path, notice: "There was a problem delivering the password to " + user.email}
+						format.html {redirect_to root_path, notice: "There was a problem delivering the password to " + user.email, layout:"login"}
 					end	# begin
 				else
 					# Problem saving the password
-					format.html {redirect_to login_path, notice: "There was a problem with reseting your password. I am really, seriously sorry."}
+					format.html {redirect_to root_path, notice: "There was a problem with reseting your password. I am really, seriously sorry.", layout:"login"}
 				end # if
 			end # if
 		end # respond_to

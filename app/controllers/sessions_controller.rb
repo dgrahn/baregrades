@@ -31,12 +31,6 @@ class SessionsController < ApplicationController
 	def destroy
 		session[:user_id] = nil
 		
-		# Add log
-		log = Log.new
-		log.user = user
-		log.comments = "#{user.name} logged out."
-		log.save
-		
 		flash.now[:success] = "Logged Out"
 		render "new"
 	end
