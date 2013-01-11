@@ -120,13 +120,14 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 		
+		@user = User.find(params[:id])
+
 		# Add log
 		log = Log.new
 		log.user = @user
 		log.comments = "#{@user.name} deleted."
 		log.save
 
-		@user = User.find(params[:id])
 		@user.destroy
 
 		respond_to do |format|
