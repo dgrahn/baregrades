@@ -20,7 +20,7 @@
 			value = @assignment.assignment_type
 		end
 		
-		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), popover("Assignment Types", "Assignment types help distribute the weight of the assignments", ["Homework", "Exams"])
+		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), {}, popover("Assignment Type", "Helps distribute the weight of the assignment", ["Homework", "Exams"])
 	%>
 	<br></br>
 	
