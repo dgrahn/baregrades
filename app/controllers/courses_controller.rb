@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
 	before_filter :find_course, :except => [:index, :new, :create]
 	
-	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation", "midterms/finals"]
+	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation", "midterms", "finals"]
 	
 	def find_course
 		@course = Course.find(params[:id])
