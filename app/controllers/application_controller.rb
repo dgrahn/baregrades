@@ -6,8 +6,12 @@ class ApplicationController < ActionController::Base
 			return
 			@exception = exception
 		end
-
-		render :template => "errors/500"
+		
+		if current_user
+			render template: "errors/500"
+		else
+			render template: "errors/500", layout:"login"
+		end
 	end
 
 	before_filter :require_login
