@@ -152,8 +152,8 @@ class UsersController < ApplicationController
 			if user.save
 				# Add log
 				log = Log.new
-				log.user = @user
-				log.comments = "#{@user.name} confirmed."
+				log.user = user
+				log.comments = "#{user.name} confirmed."
 				log.save
 
 				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
