@@ -18,9 +18,10 @@ class User < ActiveRecord::Base
 	has_many :courses, :through => :accesses
 	has_many :assignments, :through => :courses
 	has_many :roles, :through => :accesses, :dependent => :destroy
+	has_many :grades, :dependent => :destroy
 	belongs_to :theme
 
-	validates :username,	:presence => true,	:uniqueness => true
+	validates :username,	:presence => true, :uniqueness => true
 	validates :password,	:presence => true, :length => {:minimum => 5}, :confirmation => true, :on => "create"
 	validates :email, 		:presence => true, :uniqueness => true
 	validates :first_name,	:presence => true
