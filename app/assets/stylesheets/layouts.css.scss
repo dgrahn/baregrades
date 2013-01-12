@@ -17,17 +17,6 @@ footer {
 	margin-top: 30px;
 }
 
-.calendar {
-	ul li {
-		text-align: left;
-		white-space: nowrap;
-	}
-	
-	.tooltip {
-		color: $blue;
-	}
-}
-
 .input-prepend {
 	margin-bottom: 10px;}
 
@@ -331,6 +320,28 @@ $na-color: #222222;
 	width: 71%;
 }
 
+// ====================== Calendar
+.calendar {
+	ul li {
+		text-align: left;
+		white-space: nowrap;
+	}
+	
+	.tooltip {
+		color: $blue;
+	}
+
+	
+	table {
+		table-layout: fixed;
+	}
+
+	table td {
+		overflow: hidden;
+		width: 14.3%;
+	}
+}
+
 
 
 // ====================== Mobile CSS
@@ -366,6 +377,23 @@ $na-color: #222222;
 	
 	.table-hover .btn {
 		opacity: 1;
+	}
+	
+	.calendar {
+		thead { display: none; }
+		tbody, tr, table td { display: block; height: auto; width: 100%; }
+		td { border: 0; border-radius: 4px; padding: 0; }
+		td > div { border: 1px solid #DDD; padding: 6px; }
+		td .empty { display: none; }
+		.day { display: inline-block; float: right; }
+		
+		td header {
+			background: #EEE;
+			font: bold 11px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			margin: -6px -6px 0px -6px;
+			padding: 6px 15px;
+			text-transform: uppercase;
+		}
 	}
 }
 

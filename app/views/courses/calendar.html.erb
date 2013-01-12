@@ -14,14 +14,22 @@
 	<%= calendar_for(@assignments, :year => @date.year, :month => @date.month) do |calendar| %>
 		<%= calendar.head("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday") %>
 		<% calendar.day(:day_method => :due_date) do |day, assignments| %>
-			<%= day.day %>
-			<ul>
-				<% for assignment in assignments %>
-					<li>
-						<%= assignment.course.name %>: <%= link_to assignment.name, assignment_path(assignment)%>
-					</li>
-				<% end %>
-			</ul>
+			<div class="<%= assignments.length == 0 ? "empty" : "not-empty"%>">
+				<header>
+					<%= day.day %>
+					<span class="day"><%= day.strftime("%A") %></span>
+				</header>
+				<ul>
+					<%
+						for assignment in assignments
+							concat li_to assignment.name,
+										 assignment_path(assignment),
+										 rel:"tooltip",
+										 :title => assignment.course.name
+						end 
+					%>
+				</ul>
+			</div>
 		<% end %>
 	<% end %>
 </div>  
