@@ -1,38 +1,62 @@
 <%= form_for([@course, @grade_scale]) do |f| %>
-
-    <%= f.label :a %>
-    <%= f.text_field :a, popover("A", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :a_minus %>
-    <%= f.text_field :a_minus, popover("A-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :b_plus %>
-    <%= f.text_field :b_plus, popover("B+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :b %>
-    <%= f.text_field :b, popover("B", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :b_minus %>
-    <%= f.text_field :b_minus, popover("B-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :c_plus %>
-    <%= f.text_field :c_plus, popover("C+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :c %>
-    <%= f.text_field :c, popover("C", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :c_minus %>
-    <%= f.text_field :c_minus, popover("C-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :d_plus %>
-    <%= f.text_field :d_plus, popover("D+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :d %>
-    <%= f.text_field :d, popover("D", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.label :d_minus %>
-    <%= f.text_field :d_minus, popover("D-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %>
-
-    <%= f.submit %>
+	<div class="scale">
+		<div class="grade spacer">
+		</div>
+		<div class="grade b plus">
+			<div class="letter">B+</div>
+			<div class="percentage"><%= f.text_field :b_plus, popover("B+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade c plus">
+			<div class="letter">C+</div>
+			<div class="percentage"><%= f.text_field :c_plus, popover("C+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade d plus">
+			<div class="letter">D+</div>
+			<div class="percentage"><%= f.text_field :d_plus, popover("D+", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		
+		<div class="clearfix"></div>
+		
+		<div class="grade a">
+			<div class="letter">A</div>
+			<div class="percentage"><%= f.text_field :a, popover("A", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade b">
+			<div class="letter">B</div>
+			<div class="percentage"><%= f.text_field :b, popover("B", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade c">
+			<div class="letter">C</div>
+			<div class="percentage"><%= f.text_field :c, popover("C", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade d">
+			<div class="letter">D</div>
+			<div class="percentage"><%= f.text_field :d, popover("D", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		
+		<a href="#" class="btn btn-primary">+</a>
+		
+		<div class="clearfix"></div>
+		
+		<div class="grade a minus">
+			<div class="letter">A-</div>
+			<div class="percentage"><%= f.text_field :a_minus, popover("A-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade b minus">
+			<div class="letter">B-</div>
+			<div class="percentage"><%= f.text_field :b_minus, popover("B-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade c minus">
+			<div class="letter">C-</div>
+			<div class="percentage"><%= f.text_field :c_minus, popover("C-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+		<div class="grade d minus">
+			<div class="letter">D-</div>
+			<div class="percentage"><%= f.text_field :d_minus, popover("D-", "Minimum value required to receive a certain letter grade.", ["92", "80"]) %></div>
+		</div>
+	</div>
+	
+	<%= f.submit %>
+	
 <% end %>
 
