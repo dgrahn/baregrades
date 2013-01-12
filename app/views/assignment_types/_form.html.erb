@@ -1,5 +1,16 @@
 <%= form_for([@course, @assignment_type]) do |f| %>
+	<% if @assignment_type.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@assignment_type.errors.count, "error") %> prohibited this assignment from being saved:</h2>
 
+		  <ul>
+			  <% @assignment_type.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			  <% end %>
+		  </ul>
+		</div>
+	<% end %>
+  
 	<%= f.text_field :name, popover("Name", "A way of identifying and differentiating assignment types.", ["Homework 1", "Term Paper"]) %>
 	
 	<%= f.text_area :description, popover("Description", "Information about the assignment type.", ["Projects help students practice what they have learned."]) %>

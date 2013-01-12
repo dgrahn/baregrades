@@ -1,5 +1,6 @@
 <%
 	content_for :pages do
+		concat li_to "Statistics", admin_path()
 		concat li_to "Users", users_path()
 		concat li_to "Logs", logs_path(100)
 	end

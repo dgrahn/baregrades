@@ -1,34 +1,34 @@
 <%= form_for(@assignment) do |f| %>
-  <% if @assignment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
+	<% if @assignment.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
 
-      <ul>
-      <% @assignment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<% @assignment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-    <%= f.text_field :name, popover("Name", "The name of your assignment.", ["Homework 1", "Term Paper"]) %>
-	
+	<%= f.text_field :name, popover("Name", "The name of your assignment.", ["Homework 1", "Term Paper"]) %>
+
 	<%=
 		if @assignment.assignment_type
 			value = @assignment.assignment_type.id
 		else
 			value = @assignment.assignment_type
 		end
-		
+
 		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), {}, popover("Assignment Type", "Helps distribute the weight of the assignment", ["Homework", "Exams"])
 	%>
 	<br></br>
-	
-    <%= f.text_area :description, popover("Description", "Information about the assignment.", ["Do problems 1,2,3 ..."]) %>
 
-    <%= f.text_field :worth, popover("Worth", "Number of points the assignment is out of.", ["10", "100"]) %>
-  
-    <%= f.text_field :due_date, :placeholder => "Due Date", :class => "datepicker" %>
-	
-    <%= f.submit %>
+	<%= f.text_area :description, popover("Description", "Information about the assignment.", ["Do problems 1,2,3 ..."]) %>
+
+	<%= f.text_field :worth, popover("Worth", "Number of points the assignment is out of.", ["10", "100"]) %>
+
+	<%= f.text_field :due_date, :placeholder => "Due Date", :class => "datepicker" %>
+
+	<%= f.submit %>
 <% end %>

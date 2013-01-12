@@ -55,6 +55,6 @@ class HomeController < ApplicationController
 
 				}
 
-		render layout:"login"
+		render
 	end
 end

@@ -4,7 +4,11 @@
 <% content_for :nav do %>
 <% end %>
 
-
+<div>
+	<p>BareGrades is an online collaborative gradebook, so you can join courses that others create and manage. This means less work and more information.</p>
+	<p>Get started by searching for your courses (someone may have already created them). If you cannot find a course <%= link_to "Create New Course", new_course_path, :class => "button" %> using our course creation wizard.</p>
+</div>
+<br />
 <form>
 	<strong>Search: </strong><br/>
 	<input type="text" name="search" id="search"/>
