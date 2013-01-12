@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
 			 to: 		"admin@baregrades.com",
 			 cc: 		["jengel@cedarville.edu", "dgrahn@cedarville.edu", "mbrooker@cedarville.edu"],
 			 subject: 	"[BareGrades Feedback] " + topic,
-			 body: 		description)
+			 body: 		["From: " + email + " - " + description])
 	end
 	
 	def resetPassword(email, name, password)
