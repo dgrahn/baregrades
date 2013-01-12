@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	skip_before_filter :require_login, :only => [:changelog]
+	skip_before_filter :require_login, :only => [:changelog, :privacy]
 
 	def index
 		@user = @current_user
@@ -8,6 +8,11 @@ class HomeController < ApplicationController
 	end
 
 	def privacy
+		if current_user
+			render layout:"application"
+		else
+			render layout:"login"	
+		end
 	end
 	
 	def changelog
@@ -54,7 +59,10 @@ class HomeController < ApplicationController
 								"User themes"]
 
 				}
-
-		render
+		if current_user
+			render layout:"application"
+		else
+			render layout:"login"	
+		end
 	end
 end
