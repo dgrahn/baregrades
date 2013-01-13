@@ -49,6 +49,10 @@ class CoursesController < ApplicationController
 	end
 
 	def users
+		if not @current_user.is_administrator?
+			redirect_to root_path
+			return
+		end
 	end	
 
 	def new

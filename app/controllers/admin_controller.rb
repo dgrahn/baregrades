@@ -1,5 +1,10 @@
 class AdminController < ApplicationController
 	def index
+		if not @current_user.is_administrator?
+			redirect_to root_path
+			return
+		end
+		
 		@number_of_users = User.count
 		@number_of_courses = Course.count
 		@number_of_assignments = Assignment.count
@@ -26,6 +31,11 @@ class AdminController < ApplicationController
 	end
 
 	def logs
+		if not @current_user.is_administrator?
+			redirect_to root_path
+			return
+		end
+		
 		@logs = Log.limit(params[:number]).all
 	end
 end

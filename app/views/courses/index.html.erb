@@ -35,7 +35,7 @@
 		<% @courses.each do |course| %>
 			<tr>
 				<td><%= link_to "Join", course_join_path(course), class:"btn btn-primary" %></td>
-				<td><%= course.name %></td>
+				<td><%= link_to course.name, course %></td>
 				<td><%= course.identifier %></td>
 				<td><%= course.section %></td>
 				<td><%= course.credits %></td>
