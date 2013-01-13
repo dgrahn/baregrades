@@ -12,6 +12,7 @@ BareGrades::Application.routes.draw do
 	get "grade_report"					=> "tools#grade_report",	as:"grade_report"
 	get "gpa_prediction"				=> "tools#gpa_prediction",	as:"gpa_prediction"
 	get "prioritizer"					=> "tools#prioritizer",		as:"prioritizer"
+	get "users/:id/courses" 			=> "users#courses", 		as:"users_courses"
 	get "courses/:id/join" 				=> "accesses#join", 		as:"course_join"
 	get "courses/:id/leave" 			=> "accesses#leave", 		as:"course_leave"
 	get "courses/:id/users" 			=> "courses#users", 		as:"course_users"

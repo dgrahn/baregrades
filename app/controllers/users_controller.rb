@@ -30,6 +30,15 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def courses
+		if not @current_user.is_administrator?
+			redirect_to root_path
+			return
+		end
+		
+		@user = User.find(params[:id])
+	end	
+	
 	def new
 		@user = User.new
 		@user.theme = Theme.find_by_name("Pond")

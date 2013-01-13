@@ -1,0 +1,32 @@
+<% content_for :head do %>
+	<h1><%= @user.name %> :: Courses </h1>
+<% end %>
+
+<h1>Current Courses</h1>
+
+<table class="table table-middle">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Name</th>
+			<th>ID</th>
+			<th></th>
+			<th>Credits</th>
+			<th>School</th>
+			<th>Professor</th>
+		</tr>
+	</thead>
+	<tbody  class="nowrap">
+		<% @user.courses.each do |course| %>
+			<tr>
+				<td></td>
+				<td><%= course.name %></td>
+				<td><%= course.identifier %></td>
+				<td><%= course.section %></td>
+				<td><%= course.credits %></td>
+				<td><%= course.school ? course.school.name : "" %></thd>
+				<td><%= course.professor ? course.professor.name : "" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
