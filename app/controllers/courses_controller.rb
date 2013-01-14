@@ -1,12 +1,30 @@
 class CoursesController < ApplicationController
-	before_filter :find_course, :except => [:index, :new, :create]
+	before_filter :find_course, 		:except => [:index, :new, :create]
+	before_filter :check_admin_only,	:only 	=> [:users, :destroy]
+	before_filter :check_courses, 		:only 	=> [:edit, :update]
 	
 	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation", "midterms", "finals"]
 	
 	def find_course
 		@course = Course.find(params[:id])
 	end
+	
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
 
+	def check_courses
+		# Check permissions
+		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
 	def index
 		@courses = Course.all
 		respond_to do |format|
@@ -49,10 +67,7 @@ class CoursesController < ApplicationController
 	end
 
 	def users
-		if not @current_user.is_administrator?
-			redirect_to root_path
-			return
-		end
+		# must have admin access
 	end	
 
 	def new
@@ -66,6 +81,7 @@ class CoursesController < ApplicationController
 	end
 
 	def edit
+		# must have admin access or be in the course
 	end
 
 	def create
@@ -152,6 +168,8 @@ class CoursesController < ApplicationController
 	end
 
 	def update
+		# must have admin access or be in the course
+		
 		# Move professor to seperate table
 		professor_name = params[:professor]
 		prof = Professor.find_by_name(professor_name)
@@ -190,9 +208,7 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
-		if not @current_user.is_administrator?
-			redirect_to root_path
-		end
+		# must have admin access
 		
 		# Add log
 		log = Log.new

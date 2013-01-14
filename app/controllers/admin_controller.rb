@@ -1,10 +1,15 @@
 class AdminController < ApplicationController
-	def index
-		if not @current_user.is_administrator?
-			redirect_to root_path
+	before_filter :check_admin_only
+	
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
 			return
 		end
-		
+	end
+	
+	def index
 		@number_of_users = User.count
 		@number_of_courses = Course.count
 		@number_of_assignments = Assignment.count
@@ -31,11 +36,6 @@ class AdminController < ApplicationController
 	end
 
 	def logs
-		if not @current_user.is_administrator?
-			redirect_to root_path
-			return
-		end
-		
 		@logs = Log.limit(params[:number]).all
 	end
 end

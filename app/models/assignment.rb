@@ -23,6 +23,7 @@ class Assignment < ActiveRecord::Base
 
 	# Get the current users grade for the assignment (points)
 	def user_grade(user)
+		
 		grade = Grade.where(:assignment_id => self.id, :user_id => user.id).first
 		
 		if grade
@@ -31,6 +32,7 @@ class Assignment < ActiveRecord::Base
 	end
 	
 	def user_grade_class(user)
+		
 		grade = Grade.where(:assignment_id => self.id, :user_id => user.id).first
 		
 		if grade.blank?

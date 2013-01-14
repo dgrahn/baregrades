@@ -12,6 +12,7 @@ class Grade < ActiveRecord::Base
 	attr_accessible :grade
 	
 	has_one :assignment
+	has_one :user
 	
 	validates :grade, :numericality => true
 

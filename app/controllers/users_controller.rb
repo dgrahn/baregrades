@@ -1,14 +1,26 @@
 class UsersController < ApplicationController
 	include UsersHelper
-	skip_before_filter :require_login, :only => [:new, :create, :confirm]
+	skip_before_filter :require_login, 	:only => [:new, :create, :confirm]
+	before_filter :check_admin_only, 	:only => [:index, :courses, :destroy, :admin_confirm]
+	before_filter :check_user, 			:only => [:edit, :update, :add_role]
 
-	def index
-		# This option should only be usable by the administrators
-		if not @current_user.is_administrator?
-			redirect_to root_path
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
 			return
 		end
-
+	end
+	
+	def check_user
+		# Check permissions
+		if (not @current_user.is_administrator?) && (not @current_user == @user)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
+	def index
 		@users = User.all
 
 		respond_to do |format|
@@ -20,6 +32,7 @@ class UsersController < ApplicationController
 	def show
 		@user = @current_user
 
+		# Check permissions
 		if @user.is_administrator? and params.has_key?(:id)
 			@user = User.find(params[:id])
 		end
@@ -30,12 +43,8 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# Shows all of the courses that a single user is in
 	def courses
-		if not @current_user.is_administrator?
-			redirect_to root_path
-			return
-		end
-		
 		@user = User.find(params[:id])
 	end	
 	
@@ -125,10 +134,6 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		if not @current_user.is_administrator?
-			redirect_to root_path
-		end
-		
 		@user = User.find(params[:id])
 
 		# Add log
@@ -176,10 +181,7 @@ class UsersController < ApplicationController
 	# GET /users/#/confirm/#
 	def admin_confirm
 		user = User.find(params[:id])
-		
-		if (not @current_user.blank?) && @current_user.is_administrator?
-			user.enabled = true
-		end
+		user.enabled = true
 		
 		respond_to do |format|
 			if user.save

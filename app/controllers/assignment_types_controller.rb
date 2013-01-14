@@ -1,8 +1,22 @@
 class AssignmentTypesController < ApplicationController
-	def new
-		@course = Course.find(params[:course_id])
-		@assignment_type = AssignmentType.new
+	before_filter :find_course, :only => [:new, :edit, :create, :update, :destroy]
+	before_filter :check_courses, :only => [:new, :edit, :create, :update, :destroy]
 
+	def find_course
+		@course = Course.find(params[:course_id])
+	end
+	
+	def check_courses
+		# Check permissions
+		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
+	def new
+		@assignment_type = AssignmentType.new
+		
 		respond_to do |format|
 			format.html
 		end
@@ -10,14 +24,12 @@ class AssignmentTypesController < ApplicationController
 
 	def edit
 		@assignment_type = AssignmentType.find(params[:id])
-		@course = Course.find(params[:course_id])
 	end
 
 	def create
 		@assignment_type = AssignmentType.new(params[:assignment_type])
-		@course = Course.find(params[:course_id])
 		@assignment_type.course = @course
-
+		
 		respond_to do |format|
 			if @assignment_type.save
 				# Add log
@@ -36,8 +48,7 @@ class AssignmentTypesController < ApplicationController
 
 	def update
 		@assignment_type = AssignmentType.find(params[:id])
-		@course = Course.find(params[:course_id])
-
+		
 		respond_to do |format|
 			if @assignment_type.update_attributes(params[:assignment_type])
 				# Add log
@@ -55,7 +66,6 @@ class AssignmentTypesController < ApplicationController
 	end
 
 	def destroy
-		@course = Course.find(params[:course_id])
 		@assignment_type = AssignmentType.find(params[:id])
 		@assignment_type.assignments.each do |assignment|
 			assignment.destroy

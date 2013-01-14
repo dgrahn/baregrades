@@ -1,36 +1,40 @@
 class GradesController < ApplicationController
 	before_filter :get_variables
+	before_filter :check_user, 		:only => [:edit]
+	before_filter :check_courses, 	:only => [:create]
 
 	def get_variables
 		@assignment = Assignment.find(params[:assignment_id])
 		@assignment_type = @assignment.assignment_type
 		@course = @assignment_type.course
 	end
-
-	def index
-		@grades = Grade.all
-
-		respond_to do |format|
-			format.html # index.html.erb
-			format.json { render json: @grades }
+	
+	def check_user
+		# Check permissions
+		if not @current_user == @grade.user
+			redirect_to root_path, notice: "Access Denied"
+			return
 		end
 	end
-
-	def show
-		@grade = Grade.find(params[:id])
-
-		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: @grade }
+	
+	def check_courses
+		# Check permissions
+		if not @current_user.courses.include?(@course)
+			redirect_to root_path, notice: "Access Denied"
+			return
 		end
 	end
 
 	def new
 		@grade = Grade.new
-
+		
 		respond_to do |format|
-			format.html # new.html.erb
-			format.json { render json: @grade }
+			if @current_user.courses.include?(@course)
+				format.html # new.html.erb
+				format.json { render json: @grade }
+			else
+				format.html {redirect_to root_path, notice: "Access Denied"}
+			end
 		end
 	end
 
@@ -63,7 +67,7 @@ class GradesController < ApplicationController
 
 	def update
 		@grade = Grade.find(params[:id])
-
+		
 		respond_to do |format|
 			# For fast grades (:commit == "Save") redirect to the course page
 			if params[:commit] == "Save" && @grade.update_attributes(params[:grade])
@@ -83,6 +87,7 @@ class GradesController < ApplicationController
 	end
 
 	def destroy
+		# no need to check if current user is the owner of the grade because we find the grade by the current user
 		grade = Grade.find_by_assignment_id_and_user_id(params[:assignment_id], @current_user.id)
 		assignment = grade.assignment
 		grade.destroy

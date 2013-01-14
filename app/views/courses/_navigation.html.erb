@@ -5,22 +5,26 @@
 		concat li_to "Info", course_info_path(@course)
 	end
 
-	content_for :tools do
-		concat li_to "Analysis", course_analysis_path(@course)
-		concat li_to "Target Grade", target_grade_path(@course)
-	end
-	
-	content_for :actions do
-		concat li_to "Edit", edit_course_path(@course)
-		concat li_to "Add Assignment Type", new_course_assignment_type_path(@course)
-		concat li_to "Add Assignment", new_assignment_path(@course)
-		
-		if @course.grade_scale
-			concat li_to "Edit Grade Scale", edit_grade_scale_path(@course)
-		else
-			concat li_to "Add Grade Scale", new_grade_scale_path(@course)
+	if @current_user.courses.include?(@course) || @current_user.is_administrator?
+		content_for :tools do
+			concat li_to "Analysis", course_analysis_path(@course)
+			concat li_to "Target Grade", target_grade_path(@course)
 		end
+	
+		content_for :actions do
+			concat li_to "Edit", edit_course_path(@course)
+			concat li_to "Add Assignment Type", new_course_assignment_type_path(@course)
+			concat li_to "Add Assignment", new_assignment_path(@course)
+			
+			if @course.grade_scale
+				concat li_to "Edit Grade Scale", edit_grade_scale_path(@course)
+			else
+				concat li_to "Add Grade Scale", new_grade_scale_path(@course)
+			end
 
-		concat li_to "Leave", course_leave_path(@course)
+			if @current_user.courses.include?(@course)
+				concat li_to "Leave", course_leave_path(@course)
+			end
+		end
 	end
 %>

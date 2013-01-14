@@ -1,83 +1,93 @@
 class RolesController < ApplicationController
-  # GET /roles
-  # GET /roles.json
-  def index
-    @roles = Role.all
+	before_filter :check_admin_only
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @roles }
-    end
-  end
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
+	# GET /roles
+	# GET /roles.json
+	def index
+		@roles = Role.all
 
-  # GET /roles/1
-  # GET /roles/1.json
-  def show
-    @role = Role.find(params[:id])
+		respond_to do |format|
+		format.html # index.html.erb
+		format.json { render json: @roles }
+		end
+	end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @role }
-    end
-  end
+	# GET /roles/1
+	# GET /roles/1.json
+	def show
+		@role = Role.find(params[:id])
 
-  # GET /roles/new
-  # GET /roles/new.json
-  def new
-    @role = Role.new
+		respond_to do |format|
+		format.html # show.html.erb
+		format.json { render json: @role }
+		end
+	end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @role }
-    end
-  end
+	# GET /roles/new
+	# GET /roles/new.json
+	def new
+		@role = Role.new
 
-  # GET /roles/1/edit
-  def edit
-    @role = Role.find(params[:id])
-  end
+		respond_to do |format|
+		format.html # new.html.erb
+		format.json { render json: @role }
+		end
+	end
 
-  # POST /roles
-  # POST /roles.json
-  def create
-    @role = Role.new(params[:role])
+	# GET /roles/1/edit
+	def edit
+		@role = Role.find(params[:id])
+	end
 
-    respond_to do |format|
-      if @role.save
-        format.html { redirect_to @role, notice: 'Role was successfully created.' }
-        format.json { render json: @role, status: :created, location: @role }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# POST /roles
+	# POST /roles.json
+	def create
+		@role = Role.new(params[:role])
 
-  # PUT /roles/1
-  # PUT /roles/1.json
-  def update
-    @role = Role.find(params[:id])
+		respond_to do |format|
+			if @role.save
+				format.html { redirect_to @role, notice: 'Role was successfully created.' }
+				format.json { render json: @role, status: :created, location: @role }
+			else
+				format.html { render action: "new" }
+				format.json { render json: @role.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
-    respond_to do |format|
-      if @role.update_attributes(params[:role])
-        format.html { redirect_to @role, notice: 'Role was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+	# PUT /roles/1
+	# PUT /roles/1.json
+	def update
+		@role = Role.find(params[:id])
 
-  # DELETE /roles/1
-  # DELETE /roles/1.json
-  def destroy
-    @role = Role.find(params[:id])
-    @role.destroy
+		respond_to do |format|
+			if @role.update_attributes(params[:role])
+				format.html { redirect_to @role, notice: 'Role was successfully updated.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: "edit" }
+				format.json { render json: @role.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
-    respond_to do |format|
-      format.html { redirect_to roles_url }
-      format.json { head :no_content }
-    end
-  end
+	# DELETE /roles/1
+	# DELETE /roles/1.json
+	def destroy
+		@role = Role.find(params[:id])
+		@role.destroy
+
+		respond_to do |format|
+			format.html { redirect_to roles_url }
+			format.json { head :no_content }
+		end
+	end
 end

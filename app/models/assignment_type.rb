@@ -42,7 +42,7 @@ class AssignmentType < ActiveRecord::Base
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
-
+	
 		grades = Grade.joins(:assignment).where('assignments.assignment_type_id' => self.id, :user_id => user)
 
 		if drop_lowest

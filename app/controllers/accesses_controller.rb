@@ -1,10 +1,22 @@
 class AccessesController < ApplicationController
-	def index
-		@user = User.find(params[:user_id])
-		@roles = @user.roles
-		@all_access = Access.all
+	before_filter :check_admin_only, :except => [:join, :leave, :destroy]
+	
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
 	end
 
+	def check_admin_only
+		# Check permissions
+		if (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
 	def new
 		@user = User.find(params[:user_id])
 		@access = Access.new
@@ -66,8 +78,14 @@ class AccessesController < ApplicationController
 	def destroy
 		@user = User.find(params[:user_id])
 		@access = Access.find(params[:id])
+		
+		# Check permissions
+		if (not @current_user.is_administrator?) && (not @current_user == @user)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+		
 		@access.destroy
-
 		redirect_to @user, notice: 'Role was successfully removed.'
 	end
 end

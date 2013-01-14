@@ -1,4 +1,26 @@
 class AssignmentsController < ApplicationController
+	before_filter :find_course, 	:only => [:new]
+	before_filter :get_variables, 	:only => [:edit, :show, :update, :destroy]
+	before_filter :check_courses, 	:only => [:new, :show, :edit, :update, :destroy]
+
+	def find_course
+		@course = Course.find(params[:id])
+	end
+	
+	def get_variables
+		@assignment = Assignment.find(params[:id])
+		@course = @assignment.course
+		@assignment_types = @course.assignment_types
+	end
+	
+	def check_courses
+		# Check permissions
+		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+	end
+	
 	def index
 		@assignments = Assignment.all
 
@@ -9,8 +31,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def show
-		@assignment = Assignment.find(params[:id])
-		@course = @assignment.course
 		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 		
 		respond_to do |format|
@@ -20,7 +40,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def new
-		@course = Course.find(params[:id])
 		@assignment = Assignment.new
 		@assignment_types = @course.assignment_types
 
@@ -31,15 +50,18 @@ class AssignmentsController < ApplicationController
 	end
 
 	def edit
-		@assignment = Assignment.find(params[:id])
-		@course = @assignment.course
-		@assignment_types = @course.assignment_types
 	end
 
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		@course = @assignment.course
-
+		
+		# Check permissions
+		if (not @current_user.courses.include?(@course)) && (not @current_user.is_administrator?)
+			redirect_to root_path, notice: "Access Denied"
+			return
+		end
+		
 		respond_to do |format|
 			if @assignment.save
 				# Add log
@@ -56,9 +78,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def update
-		@assignment = Assignment.find(params[:id])
-		@course = @assignment.course
-
 		respond_to do |format|
 			if @assignment.update_attributes(params[:assignment])
 				# Add log
@@ -77,8 +96,6 @@ class AssignmentsController < ApplicationController
 	end
 
 	def destroy
-		@assignment = Assignment.find(params[:id])
-		
 		# Add log
 		log = Log.new
 		log.assignment = @assignment
