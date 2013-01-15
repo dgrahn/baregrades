@@ -39,3 +39,19 @@
 	<br/>
 	<%= f.submit "Submit", class:"btn btn-primary" %>
 <% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var theme = {};
+
+		<% @themes.each do |t| %>
+			theme[<%= t.id %>] = '<%= t.css_class %>';
+		<% end %>
+		
+		$('#user_theme_id').change(function() {
+			var id = $(this).val();
+			var css = theme[id];
+			$('body').attr('class', css);
+		});
+	});
+</script>
