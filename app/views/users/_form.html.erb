@@ -23,6 +23,7 @@
 		<div class="span4 offset1">
 			<h2>Contact</h2>
 			<%= f.text_field :email, popover("Email", "BareGrades requires a correct email address for user confirmation, reset password, and submit feedback operations.", ["BareGrades@gmail.com", "student@BareGrades.com"]) %>
+			<%= f.text_field :email_confirmation, popover("Email Confirmation", "Just a check to make sure you entered the correct email address", ["BareGrades@gmail.com", "student@BareGrades.com"]) %>
 			<%= f.text_field :first_name, popover("First Name", "Your first name. BareGrades uses first names to help users know who is logged on.", ["John", "Jane"]) %>
 			<%= f.text_field :middle_name, popover("Middle Name", "Your middle name or middle initial.", ["Leonard", "Marie"]) %>
 			<%= f.text_field :last_name, popover("Last Name", "Your last name.", ["Smith", "Doe"]) %>
