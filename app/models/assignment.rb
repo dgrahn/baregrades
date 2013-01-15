@@ -47,7 +47,7 @@ class Assignment < ActiveRecord::Base
 		worth 		= self.worth
 		grade 		= self.user_grade(user)
 		
-		if !grade.blank? && !worth.blank?
+		if !grade.blank? && !worth.blank? && worth != 0
 			percent 	= (grade.to_f / worth.to_f) * 100
 			return percent
 		end
