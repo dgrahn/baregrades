@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
 	include UsersHelper
 	skip_before_filter :require_login, 	:only => [:new, :create, :confirm]
-	before_filter :check_admin_only, 	:only => [:index, :courses, :destroy, :admin_confirm]
+	before_filter :find_user, 			:only => [:courses, :edit, :update, :destroy, :confirm, :admin_confirm, :add_role]
+	before_filter :check_admin_only, 	:only => [:index, :courses, :destroy, :admin_confirm, :possess]
 	before_filter :check_user, 			:only => [:edit, :update, :add_role]
 
+	def find_user
+		@user = User.find(params[:id])
+	end
+	
 	def check_admin_only
 		# Check permissions
 		if (not @current_user.is_administrator?)
@@ -45,7 +50,6 @@ class UsersController < ApplicationController
 
 	# Shows all of the courses that a single user is in
 	def courses
-		@user = User.find(params[:id])
 	end	
 	
 	def new
@@ -60,7 +64,6 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@user = User.find(params[:id])
 		@themes = Theme.all
 	end
 
@@ -110,8 +113,6 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user = User.find(params[:id])
-		
 		respond_to do |format|
 			if (not @current_user.id == @user.id) && (not @current_user.is_administrator?)
 				format.html {redirect_to root_path, notice: 'Access Denied.'}
@@ -134,8 +135,6 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(params[:id])
-
 		# Add log
 		log = Log.new
 		log.user = @user
@@ -152,22 +151,21 @@ class UsersController < ApplicationController
 
 	# GET /users/#/confirm/#
 	def confirm
-		user = User.find(params[:id])
 		confirm = params[:confirm]
 		
 		respond_to do |format|
-			if user.confirmation_code == confirm
-				user.enabled = true
+			if @user.confirmation_code == confirm
+				@user.enabled = true
 			else
 				@themes = Theme.all
 				format.html { redirect_to login_path, layout:"login", notice: 'Incorrect confirmation code.' }
 			end
 		
-			if user.save
+			if @user.save
 				# Add log
 				log = Log.new
-				log.user = user
-				log.comments = "#{user.name} confirmed."
+				log.user = @user
+				log.comments = "#{@user.name} confirmed."
 				log.save
 
 				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
@@ -180,11 +178,10 @@ class UsersController < ApplicationController
 	
 	# GET /users/#/confirm/#
 	def admin_confirm
-		user = User.find(params[:id])
-		user.enabled = true
+		@user.enabled = true
 		
 		respond_to do |format|
-			if user.save
+			if @user.save
 				format.html { redirect_to users_url, notice: 'The user was enabled successfully!'}
 			else
 				@themes = Theme.all
@@ -195,7 +192,6 @@ class UsersController < ApplicationController
 	
 	# POST /users/add_role/1
 	def add_role
-		@user = User.find(params[:id])
 		@roles = Role.all
 
 		respond_to do |format|
@@ -204,10 +200,6 @@ class UsersController < ApplicationController
 	end
 
 	def possess
-		if not @current_user.is_administrator?
-			return
-		end
-
 		session[:user_id] = params[:id]
 		
 		redirect_to root_path
