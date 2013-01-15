@@ -9,6 +9,7 @@ BareGrades::Application.routes.draw do
 	get "logout" 						=> "sessions#destroy",		as:"logout"
 	get "admin"							=> "admin#index",			as:"admin"
 	get "admin/logs/:number"			=> "admin#logs",			as:"logs"
+	get "admin/possess/:id"				=> "users#possess",			as:"possess"
 	get "grade_report"					=> "tools#grade_report",	as:"grade_report"
 	get "gpa_prediction"				=> "tools#gpa_prediction",	as:"gpa_prediction"
 	get "prioritizer"					=> "tools#prioritizer",		as:"prioritizer"

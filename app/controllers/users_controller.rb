@@ -202,4 +202,14 @@ class UsersController < ApplicationController
 			format.html
 		end
 	end
+
+	def possess
+		if not @current_user.is_administrator?
+			return
+		end
+
+		session[:user_id] = params[:id]
+		
+		redirect_to root_path
+	end
 end

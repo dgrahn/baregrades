@@ -47,6 +47,7 @@
 							<%= li_to "Show", user %>
 							<%= li_to "Edit", edit_user_path(user) %>
 							<%= li_to "Enable", admin_confirm_path(user) %>
+							<%= li_to "Possess", possess_path(user) %>
 							<li class="divider"></li>
 							<%= li_to "Destroy", user, method: :delete, data: { confirm: "Are you sure?" } %>
 						</ul>
