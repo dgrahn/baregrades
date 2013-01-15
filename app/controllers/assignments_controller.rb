@@ -72,6 +72,7 @@ class AssignmentsController < ApplicationController
 
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully created."}}
 			else
+				@assignment_types = @course.assignment_types
 				format.html { render action: "new" }
 			end
 		end
