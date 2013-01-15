@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
 		if(self.points_based)
 			self.assignments.each do |assignment|
 				grade = assignment.user_grade(user)
-				if grade
+				if grade and assignment.worth
 					totalGrade += grade * 100
 					totalWorth += assignment.worth
 				end
