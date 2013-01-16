@@ -51,11 +51,11 @@ class AssignmentTypesController < ApplicationController
 						a.save!
 				end
 				
-				if(assignment_page)
-					format.html { redirect_to new_assignment_path(@course), :flash => {:success => "Assignment type was successfully created."} }
-				else
+				#if(assignment_page)
+				#	format.html { redirect_to new_assignment_path(@course), :flash => {:success => "Assignment type was successfully created."} }
+				#else
 					format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
-				end
+				#end
 			else
 				format.html { render action: "new" }
 			end
