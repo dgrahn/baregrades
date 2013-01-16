@@ -39,6 +39,18 @@ class AssignmentTypesController < ApplicationController
 				log.course = @course
 				log.comments = "#{@current_user.name} created assignment type '#{@assignment_type.name}'."
 				log.save
+				
+				#Generate Assignments
+				hash = params["gen"]
+				numberOfAssignments = hash[:number].to_f
+				(1..numberOfAssignments).each do |i|
+						a = Assignment.new()
+						a.name = "#{@assignment_type.name}  #{i}"
+						a.worth = hash[:assignmentworth].to_f
+						a.assignment_type = @assignment_type
+						a.save!
+				end
+				
 				if(assignment_page)
 					format.html { redirect_to new_assignment_path(@course), :flash => {:success => "Assignment type was successfully created."} }
 				else

@@ -15,6 +15,11 @@
 	
 	<%= f.text_area :description, popover("Description", "Information about the assignment type.", ["Projects help students practice what they have learned."]) %>
 	
+	<%if(f.object.new_record?)%>
+			<%= number_field("gen", "number", popover("Number to Generate", "The number of assignments to be automatically generated.", ["10, 20"])) %>
+			<%= number_field("gen", "assignmentworth", popover("Worth", "Number of points the assignment is out of.", ["50, 100"])) %>
+	<%end%>
+	
 	<% if not @course.points_based %>
 		<%= f.text_field :worth, popover("Weight", "How the value is distributed throughout the course (in percentage).", ["Exams 25", "Homework 15"]) %>
 		<div class="checkbox">
