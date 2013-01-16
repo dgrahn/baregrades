@@ -27,6 +27,7 @@ class AssignmentTypesController < ApplicationController
 	end
 
 	def create
+		assignment_page = params[:assignment_page]
 		@assignment_type = AssignmentType.new(params[:assignment_type])
 		@assignment_type.course = @course
 		
@@ -38,8 +39,11 @@ class AssignmentTypesController < ApplicationController
 				log.course = @course
 				log.comments = "#{@current_user.name} created assignment type '#{@assignment_type.name}'."
 				log.save
-
-				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
+				if(assignment_page)
+					format.html { redirect_to new_assignment_path(@course), :flash => {:success => "Assignment type was successfully created."} }
+				else
+					format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
+				end
 			else
 				format.html { render action: "new" }
 			end

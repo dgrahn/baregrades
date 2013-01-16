@@ -22,6 +22,10 @@
 
 		f.select :assignment_type_id, options_from_collection_for_select(@assignment_types, :id, :name, value), {}, popover("Assignment Type", "Helps distribute the weight of the assignment", ["Homework", "Exams"])
 	%>
+	<br>
+	<!-- Button to trigger modal -->
+	<a href="#myModal" role="button" data-toggle="modal">Add Assignment Type</a>
+ 
 	<br></br>
 
 	<%= f.text_area :description, popover("Description", "Information about the assignment.", ["Do problems 1,2,3 ..."]) %>
@@ -32,3 +36,18 @@
 
 	<%= f.submit %>
 <% end %>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="myModalLabel">Create Assignment Type</h3>
+  </div>
+  <div class="modal-body">
+	<% 
+		@assignment_type = @assignment_types.new()
+		@assignment_page = true
+	%>
+    <%= render "assignment_types/form" %>
+  </div>
+</div>
