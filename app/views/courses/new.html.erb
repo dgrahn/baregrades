@@ -30,37 +30,39 @@
 			</div>
 			<p>Does this course calculate grades based on <strong>points</strong> rather than percentages? </p>
 	</div>
-	
-	<% @common_types.each do |t| %>
-		<div class="question">
-			<div class="answer btn-group" data-toggle="buttons-radio">
-				<button type="button" class="btn">Yes</button>
-				<button type="button" class="btn active">No</button>
-				<%= hidden_field(t, "active", value:"No") %>
-			</div>
-			<p>Does this course have <strong><%= t %></strong>?</p>
-			
-			<div class="expand">
-				<div class="question">
-					<div class="answer">
-						<%= number_field(t, "number", class:"small") %>
-					</div>
-					<p>How many?</p>
-				</div>
-				
-				<div class="question">
-					<div class="answer">
-						<%= number_field(t, "total", class:"small") %>
-					</div>
-					<p>How much is the category weighted?</p>
-				</div>
 
-				<div class="question">
-					<div class="answer">
-						<%= number_field(t, "worth", class:"small") %>
-					</div>
-					<p>How many points is each worth?</p>
+	<hr/>
+	
+	<h2>Assignment Types</h2>
+	<p>Assignment types are the grading categories within a class. They are things like <em>Homework, Quizzes</em> and <em>Tests</em>. Below you can set up the assignment types for your class.</p>
+
+	<% 10.times do |t| %>
+		<div class="assignment-type" id="<%= t %>">
+			<div class="question">
+				<div class="answer">
+					<%= text_field(t, "name", placeholder:"Title", class:"title") %>
 				</div>
+			</div>
+
+			<div class="question">
+				<div class="answer">
+					<%= number_field(t, "number", class:"small") %>
+				</div>
+				<p>How many assignments are inside the type?</p>
+			</div>
+
+			<div class="question">
+				<div class="answer">
+					<%= number_field(t, "total", class:"small") %>
+				</div>
+				<p>How much is the category worth?</p>
+			</div>
+
+			<div class="question">
+				<div class="answer">
+					<%= number_field(t, "worth", class:"small") %>
+				</div>
+				<p>How many points is each assignment in the cateogry worth?</p>
 			</div>
 		</div>
 	<% end %>

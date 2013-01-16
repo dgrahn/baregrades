@@ -123,14 +123,20 @@ class CoursesController < ApplicationController
 			gs.save!
 			
 
-			@common_types.each do |type|
+			10.times do |type|
 				# Grab the hash from the params
-				hash = params[type]
+				hash = params[type.to_s]
+				name = hash[:name].titleize
+				
+				puts "=========================================="
+				puts type
+				puts name
+				puts "=========================================="
 
-				if hash[:active] == 'true'
+				if name != ""
 					# Create the assignment type
 					at = AssignmentType.create(
-							 name: type.titleize,
+							 name: name.pluralize,
 							worth: hash[:total].to_f,
 						course_id: @course.id
 						)
@@ -141,7 +147,7 @@ class CoursesController < ApplicationController
 					numberOfAssignments = hash[:number].to_f
 					(1..numberOfAssignments).each do |i|
 						a = Assignment.new()
-						a.name = "#{type.singularize.titleize} #{i}"
+						a.name = "#{name.singularize} #{i}"
 						a.worth = hash[:worth].to_f
 						a.assignment_type = at
 						a.save!

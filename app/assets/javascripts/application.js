@@ -47,4 +47,19 @@ $(document).ready(function() {
 			$(this).siblings('input').attr('value', true);
 		}
 	});
+
+	$(".assignment-type").hide();
+	$(".assignment-type#0").show();
+	$(".assignment-type .title").change(function() {
+		var parent = $(this).parent().parent().parent();
+		var id = parent.attr("id");
+		var nextId = parseFloat(id) + 1;
+		var nextType = $("#"+ nextId);
+		
+		if($(this).val() == "") {
+			parent.hide();
+		} else {
+			nextType.show();
+		}		
+	});
 });
