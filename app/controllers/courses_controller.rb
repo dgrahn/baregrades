@@ -127,11 +127,6 @@ class CoursesController < ApplicationController
 				# Grab the hash from the params
 				hash = params[type.to_s]
 				name = hash[:name].titleize
-				
-				puts "=========================================="
-				puts type
-				puts name
-				puts "=========================================="
 
 				if name != ""
 					# Create the assignment type
