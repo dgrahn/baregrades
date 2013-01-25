@@ -17,6 +17,14 @@ class HomeController < ApplicationController
 	
 	def changelog
 		@versions = {
+				"1.0.7"		=> ["<strong>New course wizard.</strong>",
+								"<strong>Added ability to create multiple assignments through add assignment type.</strong>",
+								"Themes now change when the user selects them in the dropdown. They are not permanently applied until the user is saved.",
+								"Added ability to have fractional grades.",
+								"Added reputation system as a precursor for commmunity management and deleting of assignments.",
+								"Added ability to create assignment type from assignment page.",
+								"Registering users must now confirm there email."],
+
 				"1.0.6"		=> ["Added ability to drop the lowest grade. Accessible from the assignment type edit page.",
 								"Fixed privacy policy agreement requirements.",
 								"Added ability to manage points-based course."],
