@@ -1,20 +1,11 @@
 class GradesController < ApplicationController
 	before_filter :get_variables
-	before_filter :check_user, 		:only => [:edit]
 	before_filter :check_courses, 	:only => [:create]
 
 	def get_variables
 		@assignment = Assignment.find(params[:assignment_id])
 		@assignment_type = @assignment.assignment_type
 		@course = @assignment_type.course
-	end
-	
-	def check_user
-		# Check permissions
-		if not @current_user == @grade.user
-			redirect_to root_path, notice: "Access Denied"
-			return
-		end
 	end
 	
 	def check_courses
