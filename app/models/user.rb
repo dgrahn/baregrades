@@ -9,7 +9,17 @@
 # -----------------------------------------------------------
 
 class User < ActiveRecord::Base
-	attr_accessible :email, :email_confirmation, :first_name, :last_name, :middle_name, :username, :password, :password_confirmation, :theme_id
+	attr_accessible :email
+	attr_accessible :email_confirmation
+	attr_accessible :first_name
+	attr_accessible :last_name
+	attr_accessible :middle_name
+	attr_accessible :username
+	attr_accessible :password
+	attr_accessible :password_confirmation
+	attr_accessible :theme_id
+	attr_accessible :reputation
+	
 	attr_accessor :password
 
 	before_save :encrypt_password
@@ -38,8 +48,19 @@ class User < ActiveRecord::Base
 		end
 	end
 	
+	# Get full name in one stroke
 	def name
 		"#{first_name} #{last_name}"
+	end
+
+	def add_reputation(points)
+		if self.reputation 
+			self.reputation += points
+		else
+			self.reputation = points
+		end
+
+		self.save
 	end
 
 	# Encrypt a password

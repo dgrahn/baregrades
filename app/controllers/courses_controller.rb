@@ -156,12 +156,8 @@ class CoursesController < ApplicationController
 			access.course = @course
 			access.user = @current_user
 			access.save
-		
-			# Add log
-			log = Log.new
-			log.course = @course
-			log.comments = "#{@current_user.name} created course '#{@course.name}'."
-			log.save
+
+			LogsController.addCourse(@current_user, @course)
 
 			format.html { redirect_to @course, notice: 'Course was successfully created.' }
 			format.json { render json: @course, status: :created, location: @course }
@@ -193,11 +189,7 @@ class CoursesController < ApplicationController
 
 		respond_to do |format|
 			if @course.update_attributes(params[:course])
-				# Add log
-				log = Log.new
-				log.course = @course
-				log.comments = "#{@current_user.name} updated course '#{@course.name}'."
-				log.save
+				LogsController.updateCourse(@current_user, @course)
 
 				format.html { redirect_to @course, notice: 'Course was successfully updated.' }
 				format.json { head :no_content }
@@ -212,10 +204,7 @@ class CoursesController < ApplicationController
 		# must have admin access
 		
 		# Add log
-		log = Log.new
-		log.course = @course
-		log.comments = "#{@current_user.name} deleted course '#{@course.name}'."
-		log.save
+		LogsController.destroyCourse(@current_user, @course)
 		
 		@course.destroy
 

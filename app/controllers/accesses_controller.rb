@@ -8,14 +8,6 @@ class AccessesController < ApplicationController
 			return
 		end
 	end
-
-	def check_admin_only
-		# Check permissions
-		if (not @current_user.is_administrator?)
-			redirect_to root_path, notice: "Access Denied"
-			return
-		end
-	end
 	
 	def new
 		@user = User.find(params[:user_id])
@@ -49,11 +41,7 @@ class AccessesController < ApplicationController
 		access.user = @current_user
 		access.save
 
-		# Add Log
-		log = Log.new
-		log.course = @course
-		log.comments = "#{@current_user.name} joined the course '#{@course.name}'"
-		log.save
+		LogsController.joinCourse(@current_user, @course)
 
 		redirect_to @course
 	end
@@ -61,12 +49,8 @@ class AccessesController < ApplicationController
 	def leave
 		@course = Course.find(params[:id])
 		@access = Access.where(:course_id => @course.id, :user_id => @current_user.id).first
-		
-		# Add Log
-		log = Log.new
-		log.course = @course
-		log.comments = "#{@current_user.name} left the course '#{@course.name}'"
-		log.save
+
+		LogsController.leaveCourse(@current_user, @course)
 		
 		if @access and @access.destroy
 			redirect_to root_path, :flash => {:success => "You have left %s" % @course.name}

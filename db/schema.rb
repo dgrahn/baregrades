@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110193521) do
+ActiveRecord::Schema.define(:version => 20130124221438) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20130110193521) do
   end
 
   create_table "grades", :force => true do |t|
-    t.decimal  "grade"
+    t.float    "grade"
     t.integer  "assignment_id"
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20130110193521) do
     t.integer  "theme_id"
     t.string   "confirmation_code"
     t.boolean  "enabled",           :default => true, :null => false
+    t.integer  "reputation"
   end
 
 end

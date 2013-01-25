@@ -64,11 +64,7 @@ class AssignmentsController < ApplicationController
 		
 		respond_to do |format|
 			if @assignment.save
-				# Add log
-				log = Log.new
-				log.assignment = @assignment
-				log.comments = "#{@current_user.name} created assignment '#{@assignment.name}'."
-				log.save
+				LogsController.createAssignment(@current_user, @assignment)
 
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully created."}}
 			else
@@ -81,11 +77,7 @@ class AssignmentsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @assignment.update_attributes(params[:assignment])
-				# Add log
-				log = Log.new
-				log.assignment = @assignment
-				log.comments = "#{@current_user.name} updated assignment '#{@assignment.name}'."
-				log.save
+				LogsController.updateAssignment(@current_user, @assignment)
 
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully updated."}}
 				format.json { head :no_content }
@@ -97,11 +89,7 @@ class AssignmentsController < ApplicationController
 	end
 
 	def destroy
-		# Add log
-		log = Log.new
-		log.assignment = @assignment
-		log.comments = "#{@current_user.name} deleted assignment '#{@assignment.name}'."
-		log.save
+		LogsController.destroyAssignment(@current_user, @assignment)
 
 		@assignment.destroy
 

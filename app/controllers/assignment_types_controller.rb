@@ -33,12 +33,7 @@ class AssignmentTypesController < ApplicationController
 		
 		respond_to do |format|
 			if @assignment_type.save
-				# Add log
-				log = Log.new
-				log.assignment_type = @assignment_type
-				log.course = @course
-				log.comments = "#{@current_user.name} created assignment type '#{@assignment_type.name}'."
-				log.save
+				LogsController.createAssignmentType(@current_user, @assignment_type)
 				
 				#Generate Assignments
 				hash = params["gen"]
@@ -51,11 +46,7 @@ class AssignmentTypesController < ApplicationController
 						a.save!
 				end
 				
-				#if(assignment_page)
-				#	format.html { redirect_to new_assignment_path(@course), :flash => {:success => "Assignment type was successfully created."} }
-				#else
-					format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
-				#end
+				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment type was successfully created."} }
 			else
 				format.html { render action: "new" }
 			end
@@ -67,12 +58,7 @@ class AssignmentTypesController < ApplicationController
 		
 		respond_to do |format|
 			if @assignment_type.update_attributes(params[:assignment_type])
-				# Add log
-				log = Log.new
-				log.assignment_type = @assignment_type
-				log.course = @course
-				log.comments = "#{@current_user.name} updated assignment type '#{@assignment_type.name}'."
-				log.save
+				LogsController.updateAssignmentType(@current_user, @assignment_type)
 
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment Type was successfully updated."}}
 			else
@@ -87,12 +73,7 @@ class AssignmentTypesController < ApplicationController
 			assignment.destroy
 		end
 		
-		# Add log
-		log = Log.new
-		log.assignment_type = @assignment_type
-		log.course = @course
-		log.comments = "#{@current_user.name} deleted assignment type '#{@assignment_type.name}'."
-		log.save
+		LogsController.destroyAssignmentType(@current_user, @assignment_type)
 
 		@assignment_type.destroy
 

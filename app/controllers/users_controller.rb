@@ -88,12 +88,8 @@ class UsersController < ApplicationController
 			elsif @user.save
 				begin
 					UserMailer.registration_confirmation(@user).deliver
-					
-					# Add log
-					log = Log.new
-					log.user = @user
-					log.comments = "#{@user.name} registered."
-					log.save
+
+					LogsController.createUser(@user)
 					
 					format.html { redirect_to login_path, notice: 'User was successfully created. Check your email to verify the account.'}
 				rescue Net::SMTPFatalError # Mailer delivery error
@@ -118,11 +114,7 @@ class UsersController < ApplicationController
 				format.html {redirect_to root_path, notice: 'Access Denied.'}
 				
 			elsif @user.update_attributes(params[:user])
-				# Add log
-				log = Log.new
-				log.user = @user
-				log.comments = "#{@user.name} updated info."
-				log.save
+				LogsController.updateUser(@user)
 
 				format.html { redirect_to @user, notice: 'User was successfully updated.' }
 				format.json { head :no_content }
@@ -135,11 +127,7 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		# Add log
-		log = Log.new
-		log.user = @user
-		log.comments = "#{@user.name} deleted."
-		log.save
+		LogsController.destroyUser(@user)
 
 		@user.destroy
 
@@ -163,10 +151,7 @@ class UsersController < ApplicationController
 		
 			if @user.save
 				# Add log
-				log = Log.new
-				log.user = @user
-				log.comments = "#{@user.name} confirmed."
-				log.save
+				LogsController.activateUser(user)
 
 				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
 			else

@@ -18,8 +18,6 @@ class ThemesController < ApplicationController
 	end
 
 	def new
-		puts "Theme".pluralize
-		puts "Theme".singularize
 		@theme = Theme.new
 
 		respond_to do |format|
