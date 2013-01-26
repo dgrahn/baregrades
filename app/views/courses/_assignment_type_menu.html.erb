@@ -1,0 +1,35 @@
+<div class="btn-group">
+	<div class="pull-right dropdown">
+			<a href="#"  class="btn dropdown-toggle" data-toggle="dropdown">
+				<span class="caret"></span>
+			</a>
+		
+		<div class="dropdown-menu">
+			<%= link_to "Edit Info", edit_course_assignment_type_path(@course, assignment_type), :class => "btn" %>
+			<%= link_to assignment_type.is_disabled(@current_user) ? "Enable" : "Disable", assignment_type.is_disabled(@current_user) ? course_assignment_type_enable_path(@course, assignment_type) : course_assignment_type_disable_path(@course, assignment_type), confirm:"Are you sure you want to disable this assignment type?", :class => "btn btn-warning" %>
+			
+			<br></br>
+			<%= form_for([course, assignment_type]) do |f| %>
+				<% if assignment_type.errors.any? %>
+					<div id="error_explanation">
+						<h2><%= pluralize(assignment_type.errors.count, "error") %> prohibited this grade from being saved:</h2>
+
+						<ul>
+							<% assignment_type.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+					<%if course.points_based%>
+						<div class="hide">
+					<%end%>
+						<%= f.text_field :worth, popover("Weight", "How the value is distributed throughout the course (in percentage).", ["Exams 25", "Homework 15"]) %>
+					<%if course.points_based%>
+					<%end%>
+
+				<%= submit_tag "Save", class:"btn btn-primary btn-block" %>
+			<% end %>
+		</div>
+	</div>
+</div>

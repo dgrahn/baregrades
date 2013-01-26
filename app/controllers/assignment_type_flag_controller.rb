@@ -1,0 +1,2 @@
+class AssignmentTypeFlagController < ApplicationController
+end
