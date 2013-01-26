@@ -24,11 +24,13 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
-	has_many :accesses, :dependent => :destroy
-	has_many :courses, :through => :accesses
-	has_many :assignments, :through => :courses
-	has_many :roles, :through => :accesses, :dependent => :destroy
-	has_many :grades, :dependent => :destroy
+	has_many :courses, 		:through => :accesses
+	has_many :assignments, 	:through => :courses
+	has_many :roles, 		:through => :accesses, 		:dependent => :destroy
+	has_many :accesses, 								:dependent => :destroy
+	has_many :grades, 									:dependent => :destroy
+	has_many :notifications,							:dependent => :destroy
+
 	belongs_to :theme
 
 	validates :username,	:presence => true, :uniqueness => true
@@ -53,6 +55,7 @@ class User < ActiveRecord::Base
 		"#{first_name} #{last_name}"
 	end
 
+	# Add points to the reputation, positive or negative
 	def add_reputation(points)
 		if self.reputation 
 			self.reputation += points
@@ -61,6 +64,10 @@ class User < ActiveRecord::Base
 		end
 
 		self.save
+	end
+	
+	def has_notifications?()
+		return (0 < self.notifications.where(read: false).count)
 	end
 
 	# Encrypt a password

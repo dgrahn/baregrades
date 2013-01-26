@@ -24,6 +24,7 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/new_scale" 		=> "grade_scales#new", 		as:"new_grade_scale"
 	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
 	get "notifications"					=> "notifications#index", 	as:"notifications"
+	get "notifications/:id/destroy"		=> "notifications#destroy",	as:"notification_destroy"
 	
 	resources :sessions
 	resources :roles

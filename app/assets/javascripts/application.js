@@ -62,4 +62,8 @@ $(document).ready(function() {
 			nextType.show();
 		}		
 	});
+
+	$("#notifications").click(function() {
+		$(this).attr("class", "btn");
+	});
 });

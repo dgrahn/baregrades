@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124221438) do
+ActiveRecord::Schema.define(:version => 20130126151115) do
 
   create_table "accesses", :force => true do |t|
     t.integer "user_id"
@@ -87,6 +87,18 @@ ActiveRecord::Schema.define(:version => 20130124221438) do
     t.string   "comments"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_type_flag_id"
+    t.integer  "assignment_type_id"
+    t.integer  "assignment_flag_id"
+    t.integer  "assignment_id"
+    t.string   "comments"
+    t.boolean  "read",                    :default => false, :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "professors", :force => true do |t|

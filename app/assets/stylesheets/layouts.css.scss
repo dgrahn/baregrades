@@ -82,36 +82,21 @@ input[type="submit"] {
 }
 
 .notifications {
-	section {
-		border-bottom: 1px solid #DDD;
-		padding: 10px 20px 20px;
-	}
-	
-	header {
-	}
-	
-	header a {
-		@extend .pull-right;
-		display: none;
-		margin: 8px 00 0;
-	}
-	
-	h1 {
-		font-size: 15px;
-		margin: 0;
-	}
-	
-	p {
-		margin: 0;
-	}
-	
-	.btn-group {
-		float: right;
-		padding: 0 0 0 20px;
-	}
-	
+	section { border-bottom: 1px solid #DDD; padding: 10px 20px 20px; }
 	section:hover { background: #FFF; }
-	section:hover header a { display: block; }
+	section:hover header a.remove { display: block; }
+	
+	section.none { display: none; }
+	section.none:first-child { display: block; }
+	
+	.deleting, .read { opacity: 0.5; }
+	.read:hover { opacity: 1; }
+	
+	header a.remove{ @extend .pull-right; display: none; margin: 8px 00 0; }
+	.btn-group { float: right; padding: 0 0 0 20px; }
+	
+	h1 { font-size: 15px; margin: 0; }
+	p { margin: 0; }
 	
 	margin: -15px;
 }

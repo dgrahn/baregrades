@@ -4,8 +4,9 @@
 	<a href="<%= notifications_path() %>"
 		role="button"
 		data-toggle="modal"
+		id="notifications"
 		data-target="#myModal"
-		class="btn btn-warning">
+		class="btn <%= @current_user.has_notifications? ? "btn-warning" : "" %>">
 			<i class="icon icon-warning-sign"></i>
 	</a>
 

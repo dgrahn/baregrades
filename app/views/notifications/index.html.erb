@@ -1,26 +1,89 @@
 <div class="notifications">
-	<section>
-		<header>
-			<a href="#"><i class="icon icon-remove"></i></a>
-			<h1>Assignment Disabled?</h1>
-		</header>
-		<div>
-			<div class="btn-group">
-				<a href="#" class="btn">Yes</a>
-				<a href="#" class="btn btn-danger">No</a>
-			</div>
+	<% @user_notifications.each do |notif| %>
 
-			<p>A lot of your friends have disabled <strong>"Homework 1"</strong> from <strong>"Parallel Computing"</strong>. Is this correct?</p>		
-		</div>
-	</section>
+		<section class="<%= notif.read ? "read" : "unread" %>">
+			<header>
+				<a href="<%= notification_destroy_path(notif) %>" class="remove"><i class="icon icon-remove"></i></a>
+				<h1>
+					<%
+						if notif.assignment
+							concat "Assignment Updated"
+						elsif notif.assignment_type
+							concat "Assignment Type Updated"
+						elsif notif.assignment_flag
+							concat "Assignment Disabled?"
+						elsif notif.assignment_type_flag
+							concat "Assignment Type Disabled?"
+						else
+							concat "Unknown"
+						end
+					%>
+				</h1>
+				<div>					
+					<div class="btn-group">
+						<%
+							if notif.assignment
+								concat link_to "View", assignment_path(notif.assignment), class:"btn"
+							elsif notif.assignment_type
+								concat link_to "View", assignment_type_path(notif.assignment_type), class:"btn"
+							elsif notif.assignment_flag
+								concat link_to "Yes", assignment_vote_path(notif.assignment_flag, true), class:"btn"
+								concat link_to "No", assignment_vote_path(notif.assignment_flag, false), class:"btn btn-danger"
+							elsif notif.assignment_type_flag
+								concat link_to "Yes", assignment_type_vote_path(notif.assignment_flag, true), class:"btn"
+								concat link_to "No", assignment_type_vote_path(notif.assignment_flag, false), class:"btn btn-danger"
+							end
+						%>
+					</div>
 
-	<section>
+					
+					<p><%= raw notif.comments %></p>
+				</div>
+			</header>
+
+		</section>
+
+	<% end %>
+
+	<!-- Mark all notifications as read -->
+	<% @user_notifications.update_all(read: true) %>
+
+
+	<!--------------- No Notifications --------------->
+	<section class="none">
 		<header>
-			<a href="#"><i class="icon icon-remove"></i></a>
-			<h1>Assignment Updated</h1>
+			<h1>No notifications</h1>
 		</header>
-		<div>
-			<p>Another student has updated the worth to <strong>"Homework 1"</strong> from <strong>"Parallel Computing"</strong>. The assignment is now worth <strong>5.0 points</strong>.</p>
-		</div>
 	</section>
 </div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$(".remove").click(function(e) {
+		// Prevent following link
+		e.preventDefault();
+
+		// Get the parent
+		var notif = $(this).parent('header').parent('section');
+		
+		// Get the url
+		var url = $(this).attr('href');
+		
+		// Start the ajax call
+		$.get(url, function() {
+			// Start the deleting animation
+			notif.addClass('deleting');
+		})
+		.done(function() {
+			notif.slideUp(function() {
+				$(this).remove();
+			});
+		}).fail(function() {
+			alert("Error ");
+		});
+		
+	});
+});
+
+</script>
