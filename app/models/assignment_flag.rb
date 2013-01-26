@@ -1,5 +1,5 @@
 class AssignmentFlag < ActiveRecord::Base
-	attr_accessible :assignment_id, :disabled, :user_id
+	attr_accessible :disabled
 
 	validates :user_id, :presence => true, :numericality => true
 	validates :assignment_id, :presence => true, :numericality => true

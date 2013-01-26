@@ -157,12 +157,21 @@ class Course < ActiveRecord::Base
 						.order("due_date")
 		end
 		
+		indexes_to_get = Array.new
+		
 		upcoming_assignments.each do |assignment|
-			if(assignment.is_disabled(user))
-				upcoming_assignments.delete_at(upcoming_assignments.index(assignment))
+			if(!assignment.is_disabled(user))
+				indexes_to_get.push (upcoming_assignments.index(assignment))
 			end
 		end
-		return upcoming_assignments
+		
+		undisabled_upcoming_assignments = Array.new
+		
+		indexes_to_get.each do |i|
+			undisabled_upcoming_assignments.push upcoming_assignments[i]
+		end	
+		
+		return undisabled_upcoming_assignments
 	end
 
 	# Get past assignments
@@ -175,12 +184,21 @@ class Course < ActiveRecord::Base
 										grade IS NOT NULL
 								)", Date.today)
 		
+		indexes_to_get = Array.new
+		
 		past_assignments.each do |assignment|
-			if(assignment.is_disabled(user))
-				past_assignments.delete_at(past_assignments.index(assignment))
+			if(!assignment.is_disabled(user))
+				indexes_to_get.push (past_assignments.index(assignment))
 			end
 		end
-		return past_assignments
+		
+		undisabled_past_assignments = Array.new
+		
+		indexes_to_get.each do |i|
+			undisabled_past_assignments.push past_assignments[i]
+		end	
+		
+		return undisabled_past_assignments
 	end
 	
 	# Get disabled assignments
@@ -202,12 +220,21 @@ class Course < ActiveRecord::Base
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)")
+		indexes_to_get = Array.new
+		
 		graded_assignments.each do |assignment|
-			if(assignment.is_disabled(user))
-				graded_assignments.delete_at(graded_assignments.index(assignment))
+			if(!assignment.is_disabled(user))
+				indexes_to_get.push (graded_assignments.index(assignment))
 			end
 		end
-		return graded_assignments
+		
+		undisabled_graded_assignments = Array.new
+		
+		indexes_to_get.each do |i|
+			undisabled_graded_assignments.push graded_assignments[i]
+		end	
+		
+		return undisabled_graded_assignments
 	end
 
 	# Get undated assignments
@@ -219,11 +246,21 @@ class Course < ActiveRecord::Base
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)")
+		
+		indexes_to_get = Array.new
+		
 		undated_assignments.each do |assignment|
-			if(assignment.is_disabled(user))
-				undated_assignments.delete_at(undated_assignments.index(assignment))
+			if(!assignment.is_disabled(user))
+				indexes_to_get.push (undated_assignments.index(assignment))
 			end
 		end
-		return undated_assignments
+		
+		undisabled_undated_assignments = Array.new
+		
+		indexes_to_get.each do |i|
+			undisabled_undated_assignments.push undated_assignments[i]
+		end	
+		
+		return undisabled_undated_assignments
 	end
 end

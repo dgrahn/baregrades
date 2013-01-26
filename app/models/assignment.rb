@@ -91,10 +91,10 @@ class Assignment < ActiveRecord::Base
 	
 	def is_disabled(user)
 		flag = AssignmentFlag.find_by_assignment_id_and_user_id(self.id, user.id)
-		if(flag)
-			return flag.disabled
-		else
+		if(flag.blank?)
 			return self.disabled
+		else
+			return flag.disabled
 		end
 	end
 	
