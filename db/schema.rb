@@ -11,7 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126151115) do
 ActiveRecord::Schema.define(:version => 20130126152515) do
 
   create_table "accesses", :force => true do |t|
@@ -28,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20130126152515) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "assignment_type_flags", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "assignment_type_id"
+    t.boolean  "disabled"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "assignment_types", :force => true do |t|
     t.integer  "course_id"
     t.string   "name"
@@ -36,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130126152515) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.boolean  "drop_lowest", :default => false
+    t.boolean  "disabled",    :default => false
   end
 
   create_table "assignments", :force => true do |t|
