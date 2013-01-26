@@ -17,12 +17,15 @@ class AssignmentType < ActiveRecord::Base
 	attr_accessible :worth
 	attr_accessible :course_id
 	attr_accessible :drop_lowest
+	attr_accessible :disabled
 
 	validates :name, :presence => true
 	validates :worth, :numericality => true, :allow_nil => true
 
 	belongs_to :course
 	has_many :assignments, :dependent => :destroy
+	
+	has_many :assignment_type_flags, :dependent => :destroy
 
 	# Total number of points under a given assignment type
 	def points
@@ -91,6 +94,19 @@ class AssignmentType < ActiveRecord::Base
 		
 		if totalWorth != 0
 			return completedWorth / totalWorth
+		end
+	end
+	
+	def is_disabled(user)
+		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(self.id, user.id)
+		
+		# check for flag
+		if flag.blank?
+			# use assignment type disabled
+			return self.disabled 
+		else
+			# use flag disabled
+			return flag.disabled
 		end
 	end
 end

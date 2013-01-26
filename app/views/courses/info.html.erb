@@ -49,7 +49,7 @@
 		<% @course.assignment_types.each do |assignment_type| %>
 			<% grade = assignment_type.user_grade(@current_user) %>	
 			
-			<tr>
+			<tr class=<%= assignment_type.is_disabled(@current_user) ? "disabled" : "" %>>
 				<td><%= assignment_type.name %></td>
 				
 				<%if @course.points_based%>
@@ -62,7 +62,7 @@
 				
 				<td>
 					<div class="btn-group pull-right">
-						<%= render :partial => "assignment_type_worth", :locals => {:course => @course, :assignment_type => assignment_type} %>
+						<%= render :partial => "assignment_type_menu", :locals => {:course => @course, :assignment_type => assignment_type} %>
 					</div>
 				</td>
 			</tr>

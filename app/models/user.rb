@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
 
 	has_many :assignment_flags, :dependent => :destroy
 	
+	
+	has_many :assignment_type_flags, :dependent => :destroy
 	belongs_to :theme
 
 	validates :username,	:presence => true, :uniqueness => true

@@ -293,6 +293,11 @@ ul.thumbnails {
 	@extend .nav, .nav-pills;
 }
 
+// ====================== Disabled
+.disabled {
+	opacity: 0.5;
+}
+
 // ====================== Course Assignments
 .tab-content{
 	overflow:visible;}
