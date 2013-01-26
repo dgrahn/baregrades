@@ -19,6 +19,7 @@
 <ul class="nav nav-tabs">
 	<li class="active"><a href="#upcoming" data-toggle="tab">Upcoming</a></li>
 	<li><a href="#past" data-toggle="tab">Past</a></li>
+	<li><a href="#disabled" data-toggle="tab">Disabled</a></li>
 </ul>
 
 <div class="tab-content">
@@ -88,6 +89,25 @@
 				<% @graded.each_with_index do |assignment, i| %>
 					<tr>
 						<td class="span1"><%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %></td>
+						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
+						<td>
+							<div <div class="btn-group">
+								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
+								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="tab-pane" id="disabled">
+		<table class="table table-hover table-middle">
+			<tbody>
+				<% @disabled.each_with_index do |assignment, i| %>
+					<tr>
+						<td></td>
+						
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
 							<div <div class="btn-group">

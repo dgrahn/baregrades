@@ -1,7 +1,7 @@
 class AssignmentsController < ApplicationController
 	before_filter :find_course, 	:only => [:new]
-	before_filter :get_variables, 	:only => [:edit, :show, :update, :destroy]
-	before_filter :check_courses, 	:only => [:new, :show, :edit, :update, :destroy]
+	before_filter :get_variables, 	:only => [:edit, :show, :update, :destroy, :disable, :enable]
+	before_filter :check_courses, 	:only => [:new, :show, :edit, :update, :destroy, :disable, :enable]
 
 	def find_course
 		@course = Course.find(params[:id])
@@ -96,6 +96,51 @@ class AssignmentsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to assignments_url }
 			format.json { head :no_content }
+		end
+	end
+	
+	def disable
+		
+		#@assignment.disabled = true
+		
+		#respond_to do |format|
+		#	if(@assignment.save)
+				# format.html { redirect_to course_path(@assignment.course), notice: 'Assignment disabled.' }
+			# else
+				# format.html { redirect_to course_path(@assignment.course), error: 'Disable failed.' }
+			# end
+		# end
+		
+		@assignment_flag = AssignmentFlag.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
+		
+		if(@assignment_flag)
+			@assignment_flag.disabled = true
+		else
+			@assignment_flag = AssignmentFlag.new(:user_id => @current_user.id, :assignment_id => @assignment.id, :disabled => true )
+		end
+		respond_to do |format|
+			if(@assignment_flag.save)
+				format.html { redirect_to course_path(@assignment.course), notice: 'Assignment disabled.' }
+			else
+				format.html { redirect_to course_path(@assignment.course), error: 'Disable failed.' }
+			end
+		end
+	end
+	
+	def enable
+		@assignment_flag = AssignmentFlag.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
+		
+		if(@assignment_flag)
+			@assignment_flag.disabled = false
+		else
+			@assignment_flag = AssignmentFlag.new(:user_id => @current_user.id, :assignment_id => @assignment.id, :disabled => false )
+		end
+		respond_to do |format|
+			if(@assignment_flag.save)
+				format.html { redirect_to course_path(@assignment.course), notice: 'Assignment enabled.' }
+			else
+				format.html { redirect_to course_path(@assignment.course), error: 'Enable failed.' }
+			end
 		end
 	end
 end

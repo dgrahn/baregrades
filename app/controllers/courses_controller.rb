@@ -34,6 +34,7 @@ class CoursesController < ApplicationController
 	end
 
 	def show
+		@disabled	= @course.disabled_assignments(@current_user)
 		@upcoming 	= @course.upcoming_assignments(@current_user)
 		@undated 	= @course.undated_assignments(@current_user)
 		@past 		= @course.past_assignments(@current_user)

@@ -137,7 +137,7 @@ class Course < ActiveRecord::Base
 	# Get upcoming assignments.
 	def upcoming_assignments(user, num_assignments = nil)
 		if num_assignments
-			return self.assignments
+			upcoming_assignments = self.assignments
 						.where("due_date >= ? AND 
 								assignments.id NOT IN (
 									SELECT DISTINCT(assignment_id) FROM grades WHERE
@@ -147,7 +147,7 @@ class Course < ActiveRecord::Base
 						.order("due_date")
 						.limit(num_assignments)
 		else
-			return self.assignments
+			upcoming_assignments = self.assignments
 						.where("due_date >= ? AND 
 								assignments.id NOT IN (
 									SELECT DISTINCT(assignment_id) FROM grades WHERE
@@ -156,37 +156,74 @@ class Course < ActiveRecord::Base
 								)", Date.today)
 						.order("due_date")
 		end
+		
+		upcoming_assignments.each do |assignment|
+			if(assignment.is_disabled(user))
+				upcoming_assignments.delete_at(upcoming_assignments.index(assignment))
+			end
+		end
+		return upcoming_assignments
 	end
 
 	# Get past assignments
 	def past_assignments(user)
-		return self.assignments
+		past_assignments = self.assignments
 						.where("due_date <= ? AND 
 								assignments.id NOT IN (
 									SELECT DISTINCT(assignment_id) FROM grades WHERE
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)", Date.today)
+		
+		past_assignments.each do |assignment|
+			if(assignment.is_disabled(user))
+				past_assignments.delete_at(past_assignments.index(assignment))
+			end
+		end
+		return past_assignments
+	end
+	
+	# Get disabled assignments
+	def disabled_assignments(user)
+		disabled_assignments = Array.new
+		self.assignments.each do |assignment|		
+			if(assignment.is_disabled(user))
+				disabled_assignments.push assignment
+			end
+		end
+		return disabled_assignments
 	end
 	
 	# Get graded assignments
 	def graded_assignments(user)
-		return self.assignments
+		graded_assignments = self.assignments
 						.where("assignments.id IN (
 									SELECT DISTINCT(assignment_id) FROM grades WHERE
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)")
+		graded_assignments.each do |assignment|
+			if(assignment.is_disabled(user))
+				graded_assignments.delete_at(graded_assignments.index(assignment))
+			end
+		end
+		return graded_assignments
 	end
 
 	# Get undated assignments
 	def undated_assignments(user)
-		return self.assignments
+		undated_assignments = self.assignments
 						.where("due_date IS NULL AND 
 								assignments.id NOT IN (
 									SELECT DISTINCT(assignment_id) FROM grades WHERE
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)")
+		undated_assignments.each do |assignment|
+			if(assignment.is_disabled(user))
+				undated_assignments.delete_at(undated_assignments.index(assignment))
+			end
+		end
+		return undated_assignments
 	end
 end

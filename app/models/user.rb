@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
 	has_many :grades, 									:dependent => :destroy
 	has_many :notifications,							:dependent => :destroy
 
+	has_many :assignment_flags, :dependent => :destroy
+	
 	belongs_to :theme
 
 	validates :username,	:presence => true, :uniqueness => true

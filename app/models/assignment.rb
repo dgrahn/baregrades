@@ -10,7 +10,7 @@
 # -----------------------------------------------------------
 
 class Assignment < ActiveRecord::Base
-	attr_accessible :description, :name, :worth, :assignment_type_id, :due_date
+	attr_accessible :description, :name, :worth, :assignment_type_id, :due_date, :disabled
 
 	validates :name, :presence => true
 	validates :worth, :presence => true, :numericality => true
@@ -19,6 +19,7 @@ class Assignment < ActiveRecord::Base
 	belongs_to :assignment_type
 	
 	has_many :grades, :dependent => :destroy
+	has_many :assignment_flags, :dependent => :destroy
 	
 
 	# Get the current users grade for the assignment (points)
@@ -87,4 +88,14 @@ class Assignment < ActiveRecord::Base
 			return (grades.minimum(:grade).to_f / worth) * 100
 		end
 	end
+	
+	def is_disabled(user)
+		flag = AssignmentFlag.find_by_assignment_id_and_user_id(self.id, user.id)
+		if(flag)
+			return flag.disabled
+		else
+			return self.disabled
+		end
+	end
+	
 end
