@@ -23,6 +23,7 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/edit_scale" 		=> "grade_scales#edit", 	as:"edit_grade_scale"
 	get "courses/:id/new_scale" 		=> "grade_scales#new", 		as:"new_grade_scale"
 	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
+	get "notifications"					=> "notifications#index", 	as:"notifications"
 	
 	resources :sessions
 	resources :roles

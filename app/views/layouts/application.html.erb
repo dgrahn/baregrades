@@ -1,6 +1,16 @@
 <% content_for :user_menu do %>
 	<a class="btn" href="<%= account_path %>"><i class="icon-user"></i> <%= @current_user.first_name %></a>
+	
+	<a href="<%= notifications_path() %>"
+		role="button"
+		data-toggle="modal"
+		data-target="#myModal"
+		class="btn btn-warning">
+			<i class="icon icon-warning-sign"></i>
+	</a>
+
 	<a class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+
 	<ul>
 		<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
 		<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
@@ -67,3 +77,13 @@
 <% end %>
 
 <%= render "layouts/primary" %>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3>Notifications</h3>
+	</div>
+	<div class="modal-body">
+		<img src="/assets/loader.gif" alt="Loading..."/>
+	</div>
+</div>

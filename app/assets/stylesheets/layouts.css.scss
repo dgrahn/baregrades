@@ -72,6 +72,52 @@ input[type="submit"] {
 }
 
 
+// ====================== Notification
+.modal {
+	outline: none !important;
+}
+
+.modal-header {
+	border-color: #DDD;
+}
+
+.notifications {
+	section {
+		border-bottom: 1px solid #DDD;
+		padding: 10px 20px 20px;
+	}
+	
+	header {
+	}
+	
+	header a {
+		@extend .pull-right;
+		display: none;
+		margin: 8px 00 0;
+	}
+	
+	h1 {
+		font-size: 15px;
+		margin: 0;
+	}
+	
+	p {
+		margin: 0;
+	}
+	
+	.btn-group {
+		float: right;
+		padding: 0 0 0 20px;
+	}
+	
+	section:hover { background: #FFF; }
+	section:hover header a { display: block; }
+	
+	margin: -15px;
+}
+
+
+
 // ====================== Bootstrap
 
 #content-head {
