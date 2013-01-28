@@ -296,11 +296,6 @@ ul.thumbnails {
 	@extend .nav, .nav-pills;
 }
 
-// ====================== Disabled
-.disabled {
-	opacity: 0.5;
-}
-
 // ====================== Course Assignments
 .tab-content{
 	overflow:visible;}
@@ -477,4 +472,12 @@ $na-color: #222222;
 	.c:after { content: " (C)"; }
 	.d:after { content: " (D)"; }
 	.f:after { content: " (F)"; }
+}
+
+// ====================== Disabled and Enabled
+.enabled {
+	opacity: 1;
+}
+.disabled {
+	opacity: 0.5;
 }

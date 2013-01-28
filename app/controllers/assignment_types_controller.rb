@@ -1,5 +1,6 @@
 class AssignmentTypesController < ApplicationController
 	include AssignmentTypesHelper
+	include AssignmentsHelper
 	before_filter :find_course, :only => [:new, :edit, :create, :update, :destroy, :disable, :enable]
 	before_filter :check_courses, :only => [:new, :edit, :create, :update, :destroy, :disable, :enable]
 
@@ -88,8 +89,15 @@ class AssignmentTypesController < ApplicationController
 		assignment_type = AssignmentType.find(params[:id])
 		
 		respond_to do |format|
+			# disable the assignments in the assignment type for the user
+			assignment_type.assignments.each do |assignment|
+				if not disableAssignment(assignment, @current_user)
+					format.html { redirect_to course_info_path(@course), :flash => {:notice => "There was a problem disabling the assignment type"}}
+				end
+			end
+		
 			# Disable the assignment type for the user
-			if disableAssignmentType(assignment_type.id, @current_user.id)
+			if disableAssignmentType(assignment_type, @current_user)
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "The assignment type was successfully disabled"}}
 			else
 				format.html { redirect_to course_info_path(@course), :flash => {:notice => "There was a problem disabling the assignment type"}}
@@ -101,8 +109,15 @@ class AssignmentTypesController < ApplicationController
 		assignment_type = AssignmentType.find(params[:id]);
 		
 		respond_to do |format|
+			# enable the assignments in the assignment type for the user
+			assignment_type.assignments.each do |assignment|
+				if not enableAssignment(assignment, @current_user)
+					format.html { redirect_to course_info_path(@course), :flash => {:notice => "There was a problem enabling the assignment type"}}
+				end
+			end
+			
 			# enable the assignment type for the user
-			if enableAssignmentType(assignment_type.id, @current_user.id)
+			if enableAssignmentType(assignment_type, @current_user)
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "The assignment type was successfully enabled"}}
 			else
 				format.html { redirect_to course_info_path(@course), :flash => {:notice => "There was a problem enabling the assignment type"}}

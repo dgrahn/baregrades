@@ -49,7 +49,8 @@
 		<% @course.assignment_types.each do |assignment_type| %>
 			<% grade = assignment_type.user_grade(@current_user) %>	
 			
-			<tr class=<%= assignment_type.is_disabled(@current_user) ? "disabled" : "" %>>
+			<% css = assignment_type.is_disabled(@current_user) ? "disabled" : "enabled" %>
+			<tr class=<%= css %> >
 				<td><%= assignment_type.name %></td>
 				
 				<%if @course.points_based%>
@@ -62,7 +63,11 @@
 				
 				<td>
 					<div class="btn-group pull-right">
-						<%= render :partial => "assignment_type_menu", :locals => {:course => @course, :assignment_type => assignment_type} %>
+						<% if assignment_type.is_disabled(@current_user) %>
+							<%= link_to "Enable", course_assignment_type_enable_path(@course, assignment_type), confirm:"Are you sure you want to enable this assignment type? All of the assignments in the assignment type will be enabled.", :class => "btn btn-warning enabled" %>
+						<% else %>
+							<%= render :partial => "assignment_type_menu", :locals => {:course => @course, :assignment_type => assignment_type} %>
+						<% end %>
 					</div>
 				</td>
 			</tr>

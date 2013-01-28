@@ -1,14 +1,14 @@
 module AssignmentTypesHelper
 
-	def disableAssignmentType(assignmentTypeId, userId)
-		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentTypeId, userId);
+	def disableAssignmentType(assignmentType, user)
+		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentType.id, user.id);
 		
 		# check flag
 		if flag.blank?
 			# create a flag to disable
 			flag = AssignmentTypeFlag.new();
-			flag.assignment_type = AssignmentType.find(assignmentTypeId);
-			flag.user = User.find(userId);
+			flag.assignment_type = assignmentType;
+			flag.user = user;
 			flag.disabled = true;
 			
 		else
@@ -19,15 +19,15 @@ module AssignmentTypesHelper
 		return flag.save
 	end
 	
-	def enableAssignmentType(assignmentTypeId, userId)
-		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentTypeId, userId);
+	def enableAssignmentType(assignmentType, user)
+		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentType.id, user.id);
 		
 		# check flag
 		if flag.blank?
 			# create a flag to disable
 			flag = AssignmentTypeFlag.new();
-			flag.assignment_type = AssignmentType.find(assignmentTypeId);
-			flag.user = User.find(userId);
+			flag.assignment_type = assignmentType;
+			flag.user = user;
 			flag.disabled = false;
 			
 		else
