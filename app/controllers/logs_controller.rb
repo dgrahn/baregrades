@@ -136,11 +136,33 @@ class LogsController < ApplicationController
 	end
 	
 	def self.updateAssignment(user, assignment)
+		comment = "Another student has changed <strong>#{assignment.name}</strong> in <strong>#{assignment.course.name}</strong>."
+
+		if assignment.worth_changed?
+			comment += " It is now worth <strong>#{assignment.worth} points</strong>."
+		end
+
+		if assignment.due_date_changed?
+			comment += " It is now due on <strong>#{assignment.due_date}</strong>."
+		end
+
+		puts comment
+		assignment.course.users.each do |use|
+			if use != user
+				notif = Notification.new
+				notif.user = use
+				notif.assignment = assignment
+				notif.comments = comment
+				notif.save
+			end
+		end
+
 		log = createAssignmentLog(user, assignment)
 		log.comments = "#{user.name} updated assignment '#{assignment.name}' in '#{log.course.name}'"
 		log.save
 
 		user.add_reputation(@@updateAssignment)
+
 	end
 	
 	def self.destroyAssignment(user, assignment)

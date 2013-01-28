@@ -77,9 +77,13 @@ class AssignmentsController < ApplicationController
 	end
 
 	def update
+		@assignment.assign_attributes(params[:assignment])
+
 		respond_to do |format|
-			if @assignment.update_attributes(params[:assignment])
+			if @assignment.valid?
 				LogsController.updateAssignment(@current_user, @assignment)
+				@assignment.save
+				
 
 				format.html { redirect_to course_path(@course), :flash => {:success => "Assignment was successfully updated."}}
 				format.json { head :no_content }
