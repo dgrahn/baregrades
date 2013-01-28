@@ -6,35 +6,33 @@
 	
 	<div class="dropdown-menu input">
 		<div class="btn-group" >
-			<%= link_to "Edit", edit_assignment_path(assignment), :class => "btn" %>
+			<%= link_to "Edit Info", edit_assignment_path(assignment), :class => "btn" %>
 			
-			<% if assignment.is_disabled(@current_user)%>
-				<%= link_to "Enable", enable_assignment_path(assignment), :class => "btn btn-warning" %>
-			<% else %>
-				<%= link_to "Disable", disable_assignment_path(assignment), :class => "btn btn-warning", confirm:"Are you sure you want to disable this assignment? Your grade will be deleted." %>
-			<% end %>
+			<%= link_to "Disable", disable_assignment_path(assignment), :class => "btn btn-warning", confirm:"Are you sure you want to disable this assignment? Your grade will be deleted." %>
 			
 			<% if not grade.grade.blank? %>
 				<%= link_to "Delete Grade", assignment_grade_path(assignment, :page => "Course"), confirm:"Are you sure you want to delete your grade?", method: :delete, :class => "btn btn-danger" %>
 			<% end %>
 		</div>
-		<%= form_for([assignment, grade]) do |f| %>
-			<% if grade.errors.any? %>
-				<div id="error_explanation">
-					<h2><%= pluralize(grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+		<% if !assignment.is_disabled(@current_user)%>
+			<%= form_for([assignment, grade]) do |f| %>
+				<% if grade.errors.any? %>
+					<div id="error_explanation">
+						<h2><%= pluralize(grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
 
-					<ul>
-						<% grade.errors.full_messages.each do |msg| %>
-							<li><%= msg %></li>
-						<% end %>
-					</ul>
-				</div>
+						<ul>
+							<% grade.errors.full_messages.each do |msg| %>
+								<li><%= msg %></li>
+							<% end %>
+						</ul>
+					</div>
+				<% end %>
+					<br />
+					<%= f.text_field :grade, popover("Grade", "The grade you received on this assignment", ["40", "100"]) %>
+					<%= label_tag "out of " +  assignment.worth.to_s + " points" %>
+
+				<%= submit_tag "Save", class:"btn btn-primary btn-block" %>
 			<% end %>
-				<br />
-				<%= f.text_field :grade, popover("Grade", "The grade you received on this assignment", ["40", "100"]) %>
-				<%= label_tag "out of " +  assignment.worth.to_s + " points" %>
-
-			<%= submit_tag "Save", class:"btn btn-primary btn-block" %>
 		<% end %>
 	</div>
 </div>

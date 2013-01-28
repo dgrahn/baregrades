@@ -45,7 +45,7 @@
 							
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
-							<div <div class="btn-group">
+							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
 								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
@@ -60,7 +60,7 @@
 						
 						<td class="span5"><%= link_to assignment.name,assignment_path(assignment) %></td>
 						<td>
-							<div <div class="btn-group">
+							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
 								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
@@ -79,7 +79,7 @@
 						
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
-							<div <div class="btn-group">
+							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
 								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
@@ -91,7 +91,7 @@
 						<td class="span1"><%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %></td>
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
 						<td>
-							<div <div class="btn-group">
+							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
 								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
 							</div>
@@ -109,10 +109,10 @@
 						<td></td>
 						
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
+						<td></td>
 						<td>
-							<div <div class="btn-group">
-								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
-								<%= render :partial => "assignment_due_date", :locals => {:assignment => assignment} %>
+							<div class="btn-group pull-right">
+								<%= link_to "Enable", enable_assignment_path(assignment), :class => "btn btn-warning" %>
 							</div>
 						</td>
 					</tr>
