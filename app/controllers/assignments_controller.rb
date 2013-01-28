@@ -1,4 +1,6 @@
 class AssignmentsController < ApplicationController
+	include AssignmentsHelper
+
 	before_filter :find_course, 	:only => [:new]
 	before_filter :get_variables, 	:only => [:edit, :show, :update, :destroy, :disable, :enable]
 	before_filter :check_courses, 	:only => [:new, :show, :edit, :update, :destroy, :disable, :enable]
@@ -101,23 +103,10 @@ class AssignmentsController < ApplicationController
 	
 	def disable
 	
-		#update Assignment flag
-		@assignment_flag = AssignmentFlag.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
-		if(@assignment_flag.blank?)
-			@assignment_flag = AssignmentFlag.new
-			@assignment_flag.user = @current_user
-			@assignment_flag.assignment = @assignment
-		end
-		@assignment_flag.disabled = true
-		
-		#Delete grade
-		grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
-		if(!grade.blank?)
-			grade.destroy
-		end
-		
+		flagSaved = disableAssignment(@assignment, @current_user)
+	
 		respond_to do |format|
-			if(@assignment_flag.save)
+			if(flagSaved)
 				format.html { redirect_to course_path(@assignment.course), notice: 'Assignment disabled' }
 			else
 				format.html { redirect_to course_path(@assignment.course), error: 'Disable failed' }
@@ -126,17 +115,10 @@ class AssignmentsController < ApplicationController
 	end
 	
 	def enable
-		@assignment_flag = AssignmentFlag.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
-		
-		if(@assignment_flag.blank?)
-			@assignment_flag = AssignmentFlag.new
-			@assignment_flag.user = @current_user
-			@assignment_flag.assignment = @assignment
-		end
-		@assignment_flag.disabled = false
+		flagSaved = enableAssignment(@assignment, @current_user)
 		
 		respond_to do |format|
-			if(@assignment_flag.save)
+			if(flagSaved)
 				format.html { redirect_to course_path(@assignment.course), notice: 'Assignment enabled' }
 			else
 				format.html { redirect_to course_path(@assignment.course), error: 'Enable failed' }
