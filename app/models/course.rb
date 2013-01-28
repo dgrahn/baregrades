@@ -157,19 +157,13 @@ class Course < ActiveRecord::Base
 						.order("due_date")
 		end
 		
-		indexes_to_get = Array.new
+		undisabled_upcoming_assignments = Array.new
 		
 		upcoming_assignments.each do |assignment|
 			if(!assignment.is_disabled(user))
-				indexes_to_get.push (upcoming_assignments.index(assignment))
+				undisabled_upcoming_assignments.push assignment
 			end
 		end
-		
-		undisabled_upcoming_assignments = Array.new
-		
-		indexes_to_get.each do |i|
-			undisabled_upcoming_assignments.push upcoming_assignments[i]
-		end	
 		
 		return undisabled_upcoming_assignments
 	end
@@ -184,19 +178,13 @@ class Course < ActiveRecord::Base
 										grade IS NOT NULL
 								)", Date.today)
 		
-		indexes_to_get = Array.new
+		undisabled_past_assignments = Array.new
 		
 		past_assignments.each do |assignment|
 			if(!assignment.is_disabled(user))
-				indexes_to_get.push (past_assignments.index(assignment))
+				undisabled_past_assignments.push assignment
 			end
 		end
-		
-		undisabled_past_assignments = Array.new
-		
-		indexes_to_get.each do |i|
-			undisabled_past_assignments.push past_assignments[i]
-		end	
 		
 		return undisabled_past_assignments
 	end
@@ -220,19 +208,14 @@ class Course < ActiveRecord::Base
 										user_id = #{user.id} AND
 										grade IS NOT NULL
 								)")
-		indexes_to_get = Array.new
-		
-		graded_assignments.each do |assignment|
-			if(!assignment.is_disabled(user))
-				indexes_to_get.push (graded_assignments.index(assignment))
-			end
-		end
 		
 		undisabled_graded_assignments = Array.new
 		
-		indexes_to_get.each do |i|
-			undisabled_graded_assignments.push graded_assignments[i]
-		end	
+		graded_assignments.each do |assignment|
+			if(!assignment.is_disabled(user))
+				undisabled_graded_assignments.push assignment
+			end
+		end
 		
 		return undisabled_graded_assignments
 	end
@@ -247,19 +230,13 @@ class Course < ActiveRecord::Base
 										grade IS NOT NULL
 								)")
 		
-		indexes_to_get = Array.new
+		undisabled_undated_assignments = Array.new
 		
 		undated_assignments.each do |assignment|
 			if(!assignment.is_disabled(user))
-				indexes_to_get.push (undated_assignments.index(assignment))
+				undisabled_undated_assignments.push assignment
 			end
 		end
-		
-		undisabled_undated_assignments = Array.new
-		
-		indexes_to_get.each do |i|
-			undisabled_undated_assignments.push undated_assignments[i]
-		end	
 		
 		return undisabled_undated_assignments
 	end
