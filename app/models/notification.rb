@@ -13,6 +13,7 @@ class Notification < ActiveRecord::Base
 	attr_accessible :read
 	
 	belongs_to :user
+	belongs_to :course
 	belongs_to :assignment_type_flag
 	belongs_to :assignment_type
 	belongs_to :assignment_flag

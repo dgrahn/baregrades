@@ -6,7 +6,9 @@
 				<a href="<%= notification_destroy_path(notif) %>" class="remove"><i class="icon icon-remove"></i></a>
 				<h1>
 					<%
-						if notif.assignment
+						if notif.course
+							concat "Course Updated"
+						elsif notif.assignment
 							concat "Assignment Updated"
 						elsif notif.assignment_type
 							concat "Assignment Type Updated"
@@ -22,10 +24,12 @@
 				<div>					
 					<div class="btn-group">
 						<%
-							if notif.assignment
+							if notif.course
+								concat link_to "View", course_info_path(notif.course), class:"btn"
+							elsif notif.assignment
 								concat link_to "View", assignment_path(notif.assignment), class:"btn"
 							elsif notif.assignment_type
-								concat link_to "View", assignment_type_path(notif.assignment_type), class:"btn"
+								concat link_to "View", course_assignment_types_path(notif.assignment_type.course, notif.assignment_type), class:"btn"
 							elsif notif.assignment_flag
 								concat link_to "Yes", assignment_vote_path(notif.assignment_flag, true), class:"btn"
 								concat link_to "No", assignment_vote_path(notif.assignment_flag, false), class:"btn btn-danger"

@@ -88,6 +88,44 @@ class LogsController < ApplicationController
 	end
 
 	def self.updateCourse(user, course)
+		comment = "Another student has changed <strong>#{course.name}</strong>."
+		
+		if course.name_changed?
+		error
+			comment += " <strong>The course's name was changed</strong>."
+		end
+		
+		if course.identifier_changed? || course.section_changed?
+			comment += " The course identifier was changed to <strong>#{course.identifier} - #{course.section}</strong>."
+		end
+		
+		if course.credits_changed?
+			comment += " It is now worth <strong>#{course.credits} credits</strong>."
+		end
+		
+		if course.points_based_changed?
+			comment += " The course is now points based."
+		end
+		
+		if course.professor.name_changed?
+			comment += " The professor was changed to <strong>#{course.professor.name} credits</strong>."
+		end
+		
+		if course.school.name_changed?
+			comment += " The school was changed to <strong>#{course.school.name} credits</strong>."
+		end
+
+		puts comment
+		course.users.each do |use|
+			if use != user
+				notif = Notification.new
+				notif.user = use
+				notif.course = course
+				notif.comments = comment
+				notif.save
+			end
+		end
+		
 		log = createCourseLog(user, course)
 		log.comments = "#{user.name} updated course '#{course.name}'"
 		log.save
@@ -104,6 +142,19 @@ class LogsController < ApplicationController
 	end
 
 	def self.createAssignmentType(user, assignment_type)
+		comment = "Another student has added the assignment type <strong>#{assignment_type.name}</strong> in <strong>#{assignment_type.course.name}</strong>."
+
+		puts comment
+		assignment_type.course.users.each do |use|
+			if use != user
+				notif = Notification.new
+				notif.user = use
+				notif.assignment_type = assignment_type
+				notif.comments = comment
+				notif.save
+			end
+		end
+		
 		log = createAssignmentTypeLog(user, assignment_type)
 		log.comments = "#{user.name} created assignment type '#{assignment_type.name}' in '#{log.course.name}'"
 		log.save
@@ -112,6 +163,34 @@ class LogsController < ApplicationController
 	end
 
 	def self.updateAssignmentType(user, assignment_type)
+		comment = "";
+		
+		if assignment_type.name_changed?
+		error
+			comment += "In <strong>#{assignment_type.course.name}</strong> an assignment type's name was changed to <strong>#{assignment_type.name}</strong>."
+		else
+			comment += "Another student has changed <strong>#{assignment_type.name}</strong> in <strong>#{assignment_type.course.name}</strong>."
+		end
+		
+		if assignment_type.worth_changed?
+			comment += " It is now worth <strong>#{assignment_type.worth} points</strong>."
+		end
+		
+		if assignment_type.drop_lowest_changed?
+			comment += " This assignment type will now drop the lowest grade."
+		end
+
+		puts comment
+		assignment_type.course.users.each do |use|
+			if use != user
+				notif = Notification.new
+				notif.user = use
+				notif.assignment_type = assignment_type
+				notif.comments = comment
+				notif.save
+			end
+		end
+
 		log = createAssignmentTypeLog(user, assignment_type)
 		log.comments = "#{user.name} updated assignment type '#{assignment_type.name}' in '#{log.course.name}'"
 		log.save
@@ -128,6 +207,19 @@ class LogsController < ApplicationController
 	end
 
 	def self.createAssignment(user, assignment)
+		comment = "Another student has added the assignment <strong>#{assignment.name}</strong> in <strong>#{assignment.course.name}</strong>."
+
+		puts comment
+		assignment.course.users.each do |use|
+			if use != user
+				notif = Notification.new
+				notif.user = use
+				notif.assignment = assignment
+				notif.comments = comment
+				notif.save
+			end
+		end
+		
 		log = createAssignmentLog(user, assignment)
 		log.comments = "#{user.name} created assignment '#{assignment.name}' in '#{log.course.name}'"
 		log.save
@@ -136,8 +228,18 @@ class LogsController < ApplicationController
 	end
 	
 	def self.updateAssignment(user, assignment)
-		comment = "Another student has changed <strong>#{assignment.name}</strong> in <strong>#{assignment.course.name}</strong>."
-
+		comment = "";
+		
+		if assignment.name_changed?
+			comment += "In <strong>#{assignment.course.name}</strong> an assignment's name was changed to <strong>#{assignment.name}</strong>."
+		else
+			comment += "Another student has changed <strong>#{assignment.name}</strong> in <strong>#{assignment.course.name}</strong>."
+		end
+		
+		if assignment.assignment_type_changed?
+			comment += " The assignment type is now <strong>#{assignment.assignment_type.name} points</strong>."
+		end
+		
 		if assignment.worth_changed?
 			comment += " It is now worth <strong>#{assignment.worth} points</strong>."
 		end
