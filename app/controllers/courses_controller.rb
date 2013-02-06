@@ -187,10 +187,13 @@ class CoursesController < ApplicationController
 		end
 		
 		@course.school = sch
+		
+		@course.assign_attributes(params[:course])
 
 		respond_to do |format|
-			if @course.update_attributes(params[:course])
+			if @course.valid?
 				LogsController.updateCourse(@current_user, @course)
+				@course.save
 
 				format.html { redirect_to @course, notice: 'Course was successfully updated.' }
 				format.json { head :no_content }

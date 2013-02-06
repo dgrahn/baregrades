@@ -57,10 +57,12 @@ class AssignmentTypesController < ApplicationController
 
 	def update
 		@assignment_type = AssignmentType.find(params[:id])
+		@assignment_type.assign_attributes(params[:assignment_type])
 		
 		respond_to do |format|
-			if @assignment_type.update_attributes(params[:assignment_type])
+			if @assignment_type.valid?
 				LogsController.updateAssignmentType(@current_user, @assignment_type)
+				@assignment_type.save
 
 				format.html { redirect_to course_info_path(@course), :flash => {:success => "Assignment Type was successfully updated."}}
 			else
