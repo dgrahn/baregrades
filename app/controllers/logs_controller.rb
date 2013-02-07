@@ -236,7 +236,7 @@ class LogsController < ApplicationController
 			comment += "Another student has changed <strong>#{assignment.name}</strong> in <strong>#{assignment.course.name}</strong>."
 		end
 		
-		if assignment.assignment_type_changed?
+		if assignment.assignment_type_id_changed?
 			comment += " The assignment type is now <strong>#{assignment.assignment_type.name} points</strong>."
 		end
 		
