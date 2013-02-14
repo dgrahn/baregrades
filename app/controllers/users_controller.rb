@@ -151,7 +151,7 @@ class UsersController < ApplicationController
 		
 			if @user.save
 				# Add log
-				LogsController.activateUser(user)
+				LogsController.activateUser(@user)
 
 				format.html { redirect_to login_path, layout:"login", notice: 'User was enabled.'}
 			else
