@@ -481,3 +481,13 @@ $na-color: #222222;
 .disabled {
 	opacity: 0.5;
 }
+
+// ======================= Course Date
+.courseDate {
+	width: 90px;
+}
+
+// ======================= Force Jquery Ui Datepicker to be on top
+#ui-datepicker-div {
+  z-index: 999!important;
+}

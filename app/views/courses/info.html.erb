@@ -18,6 +18,7 @@
 	<%if @course.points_based%>
 		<b>Points based</b>
 	<%end%>
+	<b>From:</b> <%= @course.start_date %> <b> - </b> <%= @course.end_date %> <br/>
 </p>
 
 <%= render :partial => "gradeScale", :locals => {:course => @course, :grade_scale => @course.grade_scale} %>

@@ -24,16 +24,14 @@ class User < ActiveRecord::Base
 
 	before_save :encrypt_password
 
-	has_many :courses, 		:through => :accesses
-	has_many :assignments, 	:through => :courses
-	has_many :roles, 		:through => :accesses, 		:dependent => :destroy
-	has_many :accesses, 								:dependent => :destroy
 	has_many :grades, 									:dependent => :destroy
 	has_many :notifications,							:dependent => :destroy
+	has_many :accesses, 								:dependent => :destroy
+	has_many :roles, 		:through => :accesses, 		:dependent => :destroy
+	has_many :courses, 		:through => :accesses
+	has_many :assignments, 	:through => :courses
 
 	has_many :assignment_flags, :dependent => :destroy
-	
-	
 	has_many :assignment_type_flags, :dependent => :destroy
 	belongs_to :theme
 

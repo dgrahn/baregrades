@@ -21,6 +21,8 @@
 	<%= text_field_tag("school", @course.school ? @course.school.name : "", popover("School", "The school where the course is being taught.", ["Cedarville University", "Wright State University"])) %>
 	<%= text_field_tag("professor", @course.professor ? @course.professor.name : "", popover("Professor", "The full name for your professor.", ["Charles Clevenger", "Stephen Golmer"])) %>
 	<%= f.text_field :credits, popover("Credits", "The number of credits you receive for the course.", ["3.0", "4.5"]) %>
+	<%= f.text_field :start_date, :placeholder => "Start", :class => "courseDate datepicker"%><b> - </b> 
+	<%= f.text_field :end_date, :placeholder => "End", :class => "courseDate datepicker"%> <br/>
 	<%= f.text_area :description, popover("Description", "A brief description of the class. Keep this relevant, helpful, and concise.") %>
 	<div class="question">
 			<div class="answer btn-group" data-toggle="buttons-radio">

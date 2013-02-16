@@ -10,7 +10,7 @@
 # -----------------------------------------------------------
 
 class Course < ActiveRecord::Base
-	attr_accessible :credits, :description, :identifier, :name, :pin, :points_based, :section, :student_managed
+	attr_accessible :credits, :description, :identifier, :name, :pin, :points_based, :section, :student_managed, :start_date, :end_date
 
 	belongs_to :professor
 	belongs_to :school
