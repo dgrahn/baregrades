@@ -17,6 +17,8 @@ class HomeController < ApplicationController
 	
 	def changelog
 		@versions = {
+				"1.0.8"		=> ["<strong>Course start and end Date.</strong>"],
+								
 				"1.0.7"		=> ["<strong>New course wizard.</strong>",
 								"<strong>Added ability to create multiple assignments through add assignment type.</strong>",
 								"Themes now change when the user selects them in the dropdown. They are not permanently applied until the user is saved.",
