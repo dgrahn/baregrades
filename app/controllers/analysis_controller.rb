@@ -8,4 +8,28 @@ class AnalysisController < ApplicationController
 			return
 		end
 	end
+
+	def assignment_types
+		@course = Course.find(params[:id])
+		
+		respond_to do |format|
+			format.json
+		end
+	end
+
+	def assignments
+		@course = Course.find(params[:id])
+		
+		respond_to do |format|
+			format.json
+		end
+	end
+
+	def course
+		@course = Course.find(params[:id])
+
+		respond_to do |format|
+			format.json
+		end
+	end
 end

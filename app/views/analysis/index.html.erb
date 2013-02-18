@@ -4,41 +4,51 @@
 
 <%= render "courses/navigation" %>
 
-<div id="warning_div">
+<form>
+	<select name="charts">
+		<option value="summary">Summary</option>
+		<option value="assignment_types">Assignment Types</option>
+		<option value="assignments">Assignments over Time</option>
+	</select>
+</form>
+
+<div id="chart">
+	<img src="/assets/loader.gif" alt=""/>
 </div>
-<div id="chart_div" style="width:500px; height:500px;">
-	<img src="/assets/loader.gif"/>
-</div>
-	
 
 <script type="text/javascript">
 	google.load("visualization", "1", {packages:["corechart"]});
 	google.setOnLoadCallback(drawChart);
+	
+	var charts = {};
 
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Assignment', 'Grade', 'Average', 'Minimum', 'Maximum'],
-			<% @course.assignments.each do |a| %>
-				<% grade = a.user_percentage(@current_user) %>
-				<% if grade && a.average %>
-					['<%= a.name %>', <%= grade %>, <%= a.average %>, <%= a.minimum %>, <%= a.maximum %>], 
-				<% end %>
-			<% end %>
-		]);
+	$(document).ready(function() {
+		var chart = new Chart("<%= course_analysis_path(@course, format:"json") %>");
+		chart.setType("column");
+		chart.setHTitle("Course Summary");
+		charts["summary"] = chart;
 
-		var options = {
-			title: 'Grades',
-			vAxis: {title: 'Assignment'}
-		};
-		if(data.getNumberOfRows()==0){
-			$('#chart_div').html("");
-			$('#warning_div').addClass("alert alert-info");
-			$('#warning_div').html('<strong>Heads up!</strong> There are not enough students in the class for statistics. Tell your friends to get with it!');
-		}
-		else{
-			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-		}
+		var chart = new Chart("<%= assignment_types_analysis_path(@course, format:"json") %>");
+		chart.setType("column");
+		chart.setHTitle("Assignment Types");
+		charts["assignment_types"] = chart;
+
+		var chart = new Chart("<%= assignments_analysis_path(@course, format:"json") %>");
+		chart.setType("line");
+		chart.setHTitle("Assignments over Time");
+		charts["assignments"] = chart;
 		
+		updateChart();
+
+		$('select[name="charts"]').change(function() {
+			updateChart();
+		});
+	});
+	
+	function updateChart() {
+		var value = $('select[name="charts"] option:selected').val();
+
+		var chart = charts[value];
+		chart.draw("chart");
 	}
 </script>

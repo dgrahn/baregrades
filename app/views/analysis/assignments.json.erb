@@ -1,0 +1,20 @@
+{
+	"cols": [
+			{"id":"", "label":"Assignment", 	"pattern":"", "type":"string"},
+			{"id":"", "label":"Grade", 				"pattern":"", "type":"number"},
+			{"id":"", "label":"Average",			"pattern":"", "type":"number"},
+		],
+
+	"rows": [
+		<% @course.assignments.each do |a| %>
+			<% grade = a.user_percentage(@current_user) %>
+			<% if grade && a.average %>		
+				{"c":[
+					{"v": "<%= a.name %>"},
+					{"v": <%= grade %>},
+					{"v": <%= a.average %>},
+				]},
+			<% end %>
+		<% end %>
+	],
+}

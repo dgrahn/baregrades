@@ -21,6 +21,8 @@ class Assignment < ActiveRecord::Base
 	has_many :grades, :dependent => :destroy
 	has_many :assignment_flags, :dependent => :destroy
 	
+	default_scope order("due_date DESC")
+	
 
 	# Get the current users grade for the assignment (points)
 	def user_grade(user)
@@ -64,7 +66,7 @@ class Assignment < ActiveRecord::Base
 	# return the average if there are more than 2 students in
 	# the course (for privacy reasons).
 	def average
-		if course.users.length > 2 and grades.length > 0 and worth > 0
+		if 2 < course.users.length and 0 < grades.length and 0 < worth
 			average = (grades.sum(:grade) / grades.length);
 			average = (average.to_f / worth) * 100;
 			return average

@@ -1,0 +1,24 @@
+{
+	"cols": [
+			{"id":"", "label":"Assignment Type", 	"pattern":"", "type":"string"},
+			{"id":"", "label":"Grade", 				"pattern":"", "type":"number"},
+			{"id":"", "label":"Average",			"pattern":"", "type":"number"},
+			{"id":"", "label":"Minimum",			"pattern":"", "type":"number"},
+			{"id":"", "label":"Maximum",			"pattern":"", "type":"number"}
+		],
+
+	"rows": [
+		<% @course.assignment_types.each do |a| %>
+			<% grade = a.user_grade(@current_user) %>
+			<% if grade && a.average %>		
+				{"c":[
+					{"v": "<%= a.name %>"},
+					{"v": <%= grade %>},
+					{"v": <%= a.average %>},
+					{"v": <%= a.minimum %>},
+					{"v": <%= a.maximum %>}
+				]},
+			<% end %>
+		<% end %>
+	],
+}

@@ -19,7 +19,6 @@ BareGrades::Application.routes.draw do
 	get "courses/:id/info" 				=> "courses#info", 			as:"course_info"
 	get "courses/:id/calendar" 			=> "courses#calendar", 		as:"course_calendar"
 	get "courses/:id/assignment/new" 	=> "assignments#new", 		as:"new_assignment"
-	get "courses/:id/analysis" 			=> "analysis#index", 		as:"course_analysis"
 	get "courses/:id/edit_scale" 		=> "grade_scales#edit", 	as:"edit_grade_scale"
 	get "courses/:id/new_scale" 		=> "grade_scales#new", 		as:"new_grade_scale"
 	get "courses/:id/target"			=> "tools#target_grade", 	as:"target_grade"
@@ -29,6 +28,11 @@ BareGrades::Application.routes.draw do
 	get "assignments/:id/enable"		=> "assignments#enable",	as:"enable_assignment"
 	get "courses/:course_id/assignment_types/:id/enable" 	=> "assignment_types#enable", as:"course_assignment_type_enable"
 	get "courses/:course_id/assignment_types/:id/disable" 	=> "assignment_types#disable", as:"course_assignment_type_disable"
+
+	get "courses/:id/analysis" 				=> "analysis#index", 				as:"analysis"
+	get "courses/:id/analysis/types"		=> "analysis#assignment_types", 	as:"assignment_types_analysis"
+	get "courses/:id/analysis/assignments" 	=> "analysis#assignments",			as:"assignments_analysis"
+	get "courses/:id/analysis/course"		=> "analysis#course",				as:"course_analysis"
 
 	resources :sessions
 	resources :roles

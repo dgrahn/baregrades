@@ -25,6 +25,7 @@ class AssignmentType < ActiveRecord::Base
 	belongs_to :course
 	has_many :assignments, :dependent => :destroy
 	
+	has_many :grades, :through => :assignments
 	has_many :assignment_type_flags, :dependent => :destroy
 
 	# Total number of points under a given assignment type
@@ -79,7 +80,7 @@ class AssignmentType < ActiveRecord::Base
 
 		end
 	end
-	
+
 	def percent_complete(user)
 		completedWorth = 0.0
 		totalWorth = 0.0
@@ -97,6 +98,11 @@ class AssignmentType < ActiveRecord::Base
 		end
 	end
 	
+	# Check whether or not the assignment type has been disabled
+	# by the user. If there is not an assignment type flag, then
+	# the assignment type defaults to the current value of the
+	# assignment type. This allows users to express a dissent in
+	# their view of enabled assignments.
 	def is_disabled(user)
 		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(self.id, user.id)
 		
@@ -107,6 +113,67 @@ class AssignmentType < ActiveRecord::Base
 		else
 			# use flag disabled
 			return flag.disabled
+		end
+	end
+
+	# Get the average grade for the assignment type. This will only
+	# return the average if there are more than 2 sutdents (privacy
+	# reasons), if there is a grade, and if the worth is above 0.
+	def average
+		if 2 < course.users.length and 0 < grades.length and 0 < worth
+			average = 0
+			grades  = 0
+
+			course.users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade
+					average = average + grade
+					grades  = grades + 1
+				end
+			end
+
+			return average / grades
+		end
+	end
+
+	# Get the maximum grade percentage for this assignment type. This
+	# will only return the maximum if there are more than two
+	# students in the course (privacy reasons) and the worth is
+	# above 0 .
+	def maximum
+		if 2 < course.users.length and 0 < worth
+			maximum = 0
+			
+			course.users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade and maximum < grade
+					maximum = grade
+				end
+			end
+
+			return maximum
+		end
+	end
+
+	# Get the minimum grade percentage for this assignment type.
+	# This will only return the minimum if there are more than
+	# two students in the course (privacy reasons) and the
+	# worth is above 0.
+	def minimum
+		if 2 < course.users.length and 0 < worth
+			minimum = 999
+			
+			course.users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade and grade < minimum
+					minimum = grade
+				end
+			end
+
+			return minimum
 		end
 	end
 end

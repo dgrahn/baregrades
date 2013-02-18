@@ -240,4 +240,65 @@ class Course < ActiveRecord::Base
 		
 		return undisabled_undated_assignments
 	end
+
+	# Get the average grade for the course. This will only return
+	# the average if there are more than 2 students (privacy
+	# reasons), if there is a grade, and if the worth is above 0.
+	def average
+		if 2 < users.length
+			average = 0
+			grades  = 0
+
+			users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade
+					average = average + grade
+					grades  = grades + 1
+				end
+			end
+
+			return average / grades
+		end
+	end
+
+	# Get the maximum grade percentage for this course. This will
+	# only return the maximum if there are more than two students
+	# in the course (privacy reasons) and the worth is above 0.
+	def maximum
+		if 2 < users.length
+			maximum = 0
+			
+			users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade and maximum < grade
+					maximum = grade
+				end
+			end
+
+			return maximum
+		end
+	end
+
+	# Get the minimum grade percentage for this course. This
+	# will only return the minimum if there are more than two
+	# students in the course (privacy reasons) and the worth
+	# is above 0.
+	def minimum
+		if 2 < users.length
+			minimum = 999
+			
+			users.each do |user|
+				grade = self.user_grade(user)
+				
+				if grade and grade < minimum
+					minimum = grade
+				end
+			end
+
+			return minimum
+		end
+	end
+	
 end

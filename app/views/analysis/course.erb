@@ -1,0 +1,19 @@
+{
+	"cols": [
+			{"id":"", "label":"Assignment Type", 	"pattern":"", "type":"string"},
+			{"id":"", "label":"Grade", 				"pattern":"", "type":"number"},
+			{"id":"", "label":"Average",			"pattern":"", "type":"number"},
+			{"id":"", "label":"Minimum",			"pattern":"", "type":"number"},
+			{"id":"", "label":"Maximum",			"pattern":"", "type":"number"}
+		],
+
+	"rows": [
+		{"c":[
+			{"v": "<%= @course.name %>"},
+			{"v":  <%= @course.user_grade(@current_user) %>},
+			{"v":  <%= @course.average %>},
+			{"v":  <%= @course.minimum %>},
+			{"v":  <%= @course.maximum %>}
+		]},
+	],
+}

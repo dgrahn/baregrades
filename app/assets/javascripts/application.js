@@ -67,3 +67,6 @@ $(document).ready(function() {
 		$(this).attr("class", "btn");
 	});
 });
+
+function drawChart() {
+}

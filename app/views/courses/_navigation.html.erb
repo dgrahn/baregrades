@@ -7,7 +7,7 @@
 
 	if @current_user.courses.include?(@course) || @current_user.is_administrator?
 		content_for :tools do
-			concat li_to "Analysis", course_analysis_path(@course)
+			concat li_to "Analysis", analysis_path(@course)
 			concat li_to "Target Grade", target_grade_path(@course)
 		end
 	
