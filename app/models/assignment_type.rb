@@ -29,6 +29,7 @@ class AssignmentType < ActiveRecord::Base
 	has_many :assignment_type_flags, :dependent => :destroy
 
 	# Total number of points under a given assignment type
+	# @return [decimal] The sum of all assignments' worth.
 	def points
 		points = 0
 		assignments.each do |assignment|
@@ -38,11 +39,16 @@ class AssignmentType < ActiveRecord::Base
 	end
 	
 	# Get assignments for this assignment type sorted by due date.
+	#
+	# @return [Array<Assignment>] Sorted assignments
 	def sorted_assignments
 		return self.assignments.order("due_date")
 	end
 	
-	# Get the user's (argument) grade for this assignment type
+	# Gets the user's grade for this assignment type
+	#
+	# @param user [User] A User who's grade for the AssignmentType will be calculated.
+	# @return [int] the user's grade
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
@@ -80,7 +86,11 @@ class AssignmentType < ActiveRecord::Base
 
 		end
 	end
-
+	
+	# Gets the percent of assignments the user has completed.
+	#
+	# @param user [User] User who's completed assignments will be used to determine how much of the AssignmentType is completed.
+	# @return [int] The percent of assignments completed.
 	def percent_complete(user)
 		completedWorth = 0.0
 		totalWorth = 0.0
@@ -98,11 +108,20 @@ class AssignmentType < ActiveRecord::Base
 		end
 	end
 	
+
+	
+	# Determines whether or not the user has disabled this AssignmentType.
 	# Check whether or not the assignment type has been disabled
 	# by the user. If there is not an assignment type flag, then
 	# the assignment type defaults to the current value of the
 	# assignment type. This allows users to express a dissent in
 	# their view of enabled assignments.
+	#
+	# @param user [User] User who may or may not have disabled the AssignmentType.
+	# @return [boolean] Returns true if the assignment is disabled and false if it is not.
+	# ==== Examples
+	#
+	#   is_disabled(user) => true	
 	def is_disabled(user)
 		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(self.id, user.id)
 		
@@ -115,10 +134,15 @@ class AssignmentType < ActiveRecord::Base
 			return flag.disabled
 		end
 	end
-
-	# Get the average grade for the assignment type. This will only
-	# return the average if there are more than 2 sutdents (privacy
+	
+	# Calculates the average grade accross all students in the assignment type.
+	# This will only return the average if there are more than 2 sutdents (privacy
 	# reasons), if there is a grade, and if the worth is above 0.
+	# @param user [User] User who may or may not have disabled the AssignmentType.
+	# @return [decimal] average
+	# ==== Examples
+	#
+	#   average => 86
 	def average
 		if 2 < course.users.length and 0 < grades.length and 0 < worth
 			average = 0
@@ -141,6 +165,8 @@ class AssignmentType < ActiveRecord::Base
 	# will only return the maximum if there are more than two
 	# students in the course (privacy reasons) and the worth is
 	# above 0 .
+	#
+	# @return [decimal] maximum grade.
 	def maximum
 		if 2 < course.users.length and 0 < worth
 			maximum = 0
@@ -161,6 +187,8 @@ class AssignmentType < ActiveRecord::Base
 	# This will only return the minimum if there are more than
 	# two students in the course (privacy reasons) and the
 	# worth is above 0.
+	#
+	# @return [decimal] Minimum grade.
 	def minimum
 		if 2 < course.users.length and 0 < worth
 			minimum = 999
