@@ -21,7 +21,7 @@ class Assignment < ActiveRecord::Base
 	has_many :grades, :dependent => :destroy
 	has_many :assignment_flags, :dependent => :destroy
 	
-	default_scope order("due_date DESC")
+	default_scope order("due_date ASC")
 	
 
 	# Get the current users grade for the assignment (points)
