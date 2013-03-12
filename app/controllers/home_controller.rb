@@ -75,4 +75,8 @@ class HomeController < ApplicationController
 			render layout:"login"	
 		end
 	end
+
+	def help
+		render layout:"help"
+	end
 end

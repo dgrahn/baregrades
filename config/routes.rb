@@ -5,6 +5,7 @@ BareGrades::Application.routes.draw do
 
 	get "privacy" 						=> "home#privacy", 			as:"privacy"
 	get "changelog"						=> "home#changelog",		as:"changelog"
+	get "help"							=> "home#help",				as:"help"
 	get "login" 						=> "sessions#new", 			as:"login"
 	get "logout" 						=> "sessions#destroy",		as:"logout"
 	get "admin"							=> "admin#index",			as:"admin"

@@ -1,11 +1,24 @@
-<nav id="user">
-	<% if current_user %>
-		<%= link_to "Home", root_path %>
-		<%= link_to current_user.first_name, account_path %>
-		<%= link_to "Feedback", feedback_path %>
-		<%= link_to "Log Out", logout_path %>
-	<% else %>
-		<%= link_to "Register", register_path %>
-		<%= link_to "Log In", login_path %>
+<a class="btn" href="<%= account_path %>"><i class="icon-user"></i> <%= @current_user.first_name %></a>
+
+<a href="<%= notifications_path() %>"
+	role="button"
+	data-toggle="modal"
+	id="notifications"
+	data-target="#myModal"
+	class="btn <%= @current_user.has_notifications? ? "btn-warning" : "" %>">
+		<i class="icon icon-warning-sign"></i>
+</a>
+
+<a class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+
+<ul>
+	<li><a href="<%= edit_user_path(@current_user) %>"><i class="icon-pencil"></i> Edit</a></li>
+	<li><a href="<%= feedback_path %>"><i class="icon-comment"></i> Send Feedback</a></li>
+	
+	<% if @current_user.is_administrator? %>
+		<li><a href="<%= admin_path %>"><i class="icon-briefcase"></i> Admin</a></li>
 	<% end %>
-</nav>
+
+	<li class="divider"></li>
+	<li><a href="<%= logout_path %>"><i class="icon-hand-left"></i> Log Out</a></li>
+</ul>
