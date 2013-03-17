@@ -1,6 +1,8 @@
 <%
 	content_for :actions do
-		concat li_to *manage_grade_path(@assignment)
+		if not @assignment.is_disabled(@current_user)
+			concat li_to *manage_grade_path(@assignment)
+		end
 
 		if not @assignment.user_grade(@current_user).blank?
 			concat li_to "Delete Grade", assignment_grade_path(@assignment), confirm:"Are you sure you want to delete your grade?", method: :delete

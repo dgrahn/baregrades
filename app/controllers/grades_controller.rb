@@ -20,7 +20,12 @@ class GradesController < ApplicationController
 		@grade = Grade.new
 		
 		respond_to do |format|
-			if @current_user.courses.include?(@course)
+			# Prevent the user from creating grades for disabled assignments
+			if @assignment.isDisabled(@current_user)
+				format.html {redirect_to root_path, notice: "Cannot create a grade for a disabled assignment."}
+				
+			# Users must be in the course to add a grade
+			elsif @current_user.courses.include?(@course)
 				format.html # new.html.erb
 				format.json { render json: @grade }
 			else
@@ -43,7 +48,7 @@ class GradesController < ApplicationController
 		respond_to do |format|
 			# For fast grades (:commit == "Save") redirect to the course page
 			if params[:commit] == "Save" && @grade.save
-					format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully created.' }
+				format.html { redirect_to course_path(@assignment.course), notice: 'Grade was successfully created.' }
 			elsif @grade.save
 				format.html { redirect_to assignment_path(@assignment), notice: 'Grade was successfully created.' }
 			else
