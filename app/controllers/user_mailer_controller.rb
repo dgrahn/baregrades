@@ -13,8 +13,13 @@ class UserMailerController < ApplicationController
 	
 	# Redirects the user to the forgotPassword form
 	def forgotPassword
+		@current_user = current_user
 		respond_to do |format|
-			format.html {render layout:"login"}
+			if @current_user
+				format.html {render layout:"application"}
+			else
+				format.html {render layout:"login"}
+			end
 		end # respond_to
 	end # def forgotPassword
 	
