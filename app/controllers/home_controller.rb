@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	skip_before_filter :require_login, :only => [:changelog, :privacy]
+	skip_before_filter :require_login, :only => [:changelog, :privacy, :help]
 
 	def index
 		@user = @current_user
@@ -77,6 +77,7 @@ class HomeController < ApplicationController
 	end
 
 	def help
+		@current_user = current_user
 		render layout:"help"
 	end
 end

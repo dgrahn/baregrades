@@ -4,17 +4,23 @@
 
 <% content_for :tutorials do %>
 	<li><a href="#join_course">Join a Course</a></li>
-	<li><a href="#add_course">Add a Course</a></li>
+	<li><a href="#add_course">Create a Course</a></li>
 	<li><a href="#edit_course">Edit a Course</a></li>
+	<li><a href="#edit_grade_scale">Edit the Grade Scale</a></li>
 	<li><a href="#grade_assignment">Grade an Assignment</a></li>
 	<li><a href="#add_assignment">Add an Assignment</a></li>
 	<li><a href="#edit_assignment">Edit an Assignment</a></li>
+	<li><a href="#disable_assignment">Disable an Assignment</a></li>
+	<li><a href="#enable_assignment">Enable an Assignment</a></li>
 	<li><a href="#add_assignment_type">Add an Assignment Type</a></li>
 	<li><a href="#edit_assignment_type">Edit an Assignment Type</a></li>
 	<li><a href="#disable_assignment_type">Disable an Assignment Type</a></li>
+	<li><a href="#enable_assignment_type">Enable an Assignment Type</a></li>
 	<li><a href="#edit_personal_information">Edit Personal Information</a></li>
 	<li><a href="#change_password">Change Your Password</a></li>
+	<li><a name="forgot_Password">Forgot Your Password</a></li>
 	<li><a href="#change_theme">Change Your Theme</a></li>
+	<li><a href="#submit_feedback">Submit Feedback</a></li>
 <% end %>
 
 <% content_for :reference do %>
@@ -36,30 +42,191 @@
 			<li>Click the "Join" button to the left of the desired course.</li>
 		</ul>
 	
-	<h2><a name="add_course"></a>Add a Course</h2>
+	<h2><a name="add_course"></a>Create a Course</h2>
 		<ul class="steps">
 			<li>Click the "Add Course" button from the navigational menu.</li>
-			<li class="optional">Check if your class already exists by searching using the search bar.</li>
+			<li class="optional">Check if your class already exists by using the search bar.</li>
 			<li>Click the "Create New Course" link at the bottom of the page.</li>
-			<li>Enter your course's information into the creation form. For help with the fields, see the reference section of the manual.</li>
+			<li>Enter your course's information into the creation form.</li>
+			<ul>
+				<li class="required">Title, Identifier, and Credits for the Course.</li>
+				<li class="optional">Section, School, Professor, Description, and the start/end dates help others join the correct course.</li>
+			</ul>
+			<li>Add Assignment Types to quickly generate Homework, Quizzes, Exams ...</li>
 			<li>Click "Create Course" at the bottom of the page.</li>
 		</ul>
 
 	<h2><a name="edit_course"></a>Edit a Course</h2>
 		<ul class="steps">
-			<li></li>
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>After a Course has been selected click the "Edit" link in the "Actions" section of the naviagtion menu.</li>
+			<li>Change the fields you wish to edit and click the "Update Course" button when you are finished.</li>
 		</ul>
 
+	<h2><a name="edit_grade_scale"></a>Edit the Grade Scale</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>After a Course has been selected click the "Edit Grade Scale" link in the "Actions" section of the naviagtion menu.</li>
+			<li>Expand the grade scale and edit the information.</li>
+			<li>Click the "Update Grade Scale" button when finished.</li>
+		</ul>
+		
 	<h2><a name="grade_assignment"></a>Grade an Assignment</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Find the Assignment you wish to grade in the "Upcomming" or "Past" tab.</li>
+			<li>Option 1 (short way)</li>
+			<ul>
+				<li>Click the dropdown arrow for the corresponding assignemnt.</li>
+				<li>Enter your grade and click "Save".</li>
+			</ul>
+			<li>Option 2 (long way)</li>
+			<ul>
+				<li>Select the Assignment.</li>
+				<li>Click "Add Grade"/"Edit Grade" in the "Actions" section of the navigation menu.</li>
+				<li>Enter your grade and click "Create Grade"/"Update Grade" when finished.</li>
+			</ul>
+		</ul>
+	
 	<h2><a name="add_assignment"></a>Add an Assignment</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Click the "Add Assignment" link in the "Actions" section of the naviagtion menu.</li>
+			<li>Edit the information you wish to change and click the "Create Assignment" button when finished.</li>
+			<ul>
+				<li class="required">Name, Assignment Type, and Worth must be a number for the Assignment.</li>
+				<li class="optional">Description and Due Date can aid in course management.</li>
+			</ul>
+			<li class="optional">Multiple Assignments can be quickly generated when creating a new Assignment Type.</li>
+		</ul>
+	
 	<h2><a name="edit_assignment"></a>Edit an Assignment</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Find the Assignment you wish to edit in the "Upcomming" or "Past" tab.</li>
+			<li>Option 1 (short way)</li>
+			<ul>
+				<li>Click the dropdown arrow for the corresponding assignemnt.</li>
+				<li>Click the "Edit Info" button.</li>
+				
+			</ul>
+			<li>Option 2 (long way)</li>
+			<ul>
+				<li>Select the Assignment.</li>
+				<li>Click the "Edit" link in the "Actions" section of the navigation menu.</li>
+			</ul>
+			<li>Edit the information you wish to change and click the "Update Assignment" button when finished.</li>
+			<ul>
+				<li class="required">Name, Assignment Type, and Worth for the Assignment, and the Worth must be a number.</li>
+				<li class="optional">Description and Due Date can aid in course management.</li>
+			</ul>
+		</ul>
+		
+	<h2><a name="disable_assignment"></a>Disable an Assignment</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Find the Assignment you wish to edit in the "Upcomming" or "Past" tab.</li>
+			<li>Click on the dropdown arrow corresponding to the correct Assignment Type.</li>
+			<li>Click the "Disable" button. This option will only affect you, but it will <strong>DELETE</strong> the grade for that assignment.</li>
+		</ul>
+		
+	<h2><a name="enable_assignment"></a>Enable an Assignment</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Find the Assignment you wish to edit in the "Upcomming" or "Past" tab.</li>
+			<li>Click the "Enable" button. This option will only enable the assignment for you. This option does not retrieve grades that were previously deleted from disabling the Assignment.</li>
+		</ul>
+		
 	<h2><a name="add_assignment_type"></a>Add an Assignment Type</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Click the "Add Assignment Type" link in the "Actions" section of the naviagtion menu.</li>
+			<li>Edit the information you wish to change and click the "Create Assignment Type" button when finished.</li>
+			<ul>
+				<li class="required">Name is the only required field, but a Worth should be given if the Course is not points based.</li>
+				<li class="optional">Description can aid in course management.</li>
+				<li class="optional">Generate multiple assignments by selecting "Number to Generate". You can also add a worth to all of the generated assignments.
+									The assignments will be named Hw 1, Hw 2 ... based on the Assignment Type Name.</li>
+			</ul>
+		</ul>
+		
 	<h2><a name="edit_assignment_type"></a>Edit an Assignment Type</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Click the "Info" link in the "Pages" section of the naviagtion menu.</li>
+			<li>Click on the dropdown arrow corresponding to the correct Assignment Type.</li>
+			<li class="optional">Edit the Worth and click the "Save" button to quickly change the worth of the Assignment Type.</li>
+			<li>Click the "Edit Info" button.</li>
+			<li>Edit the information you wish to change and click the "Update Assignment Type" button when finished.</li>
+			<ul>
+				<li class="required">Name is the only required field, but a Worth should be given if the Course is not points based.</li>
+				<li class="optional">Description can aid in course management.</li>
+			</ul>
+		</ul>
+		
 	<h2><a name="disable_assignment_type"></a>Disable an Assignment Type</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Click the "Info" link in the "Pages" section of the naviagtion menu.</li>
+			<li>Click on the dropdown arrow corresponding to the correct Assignment Type.</li>
+			<li>Click the "Disable" button. This option will only affect you, but it will <strong>DELETE</strong> every grade for every assignment categorized by that Assignment Type.</li>
+		</ul>
+		
+	<h2><a name="enable_assignment_type"></a>Enable an Assignment Type</h2>
+		<ul class="steps">
+			<li>Select a Course that you have joined located in the left side navigational menu.</li>
+			<li>Click the "Info" link in the "Pages" section of the naviagtion menu.</li>
+			<li>Click the "Enable" button. This option will only enable the assignment type and all assignments under that Assignment Type for you. 
+				This option does not retrieve grades that were previously deleted from disabling the Assignment Type.</li>
+		</ul>
+		
 	<h2><a name="edit_personal_information"></a>Edit Personal Information</h2>
+		<ul class="steps">
+			<li>Option 1 (short way)</li>
+			<ul>
+				<li>Click on the dropdown arrow next to your name in the upper right hand corner of the web page.</li>
+			</ul>
+			<li>Option 2 (long way)</li>
+				<li>Click on your name in the upper right hand corner of the web page.</li>
+				<li>Click the "Edit User Info" link in the "Actions" section of the navigation menu.</li>
+			<ul>
+			<li>Edit the information you wish to change and click the "Submit" button when finished.</li>
+			</ul>
+		</ul>
+		
 	<h2><a name="change_password"></a>Change Your Password</h2>
+		<ul class="steps">
+			<li>See <a href="#edit_personal_information">Edit Personal Information.</a></li>
+			<li>Change the Password and Confirm Password fields and click the "Submit" button when finished.</li>
+		</ul>
+		
+	<h2><a name="forgot_Password"></a>Forgot Your Password</h2>
+		<ul class="steps">
+			<li>Select the "Forgot Password" button in the Login dropdown.</li>
+			<li>Enter your username or email address and click "Reset Password".</li>
+			<li>This function will generate a random password and email it to the user. 
+			It is suggested that you change your password to something you will remember shortly after you use this funciton.</li>
+		</ul>
+		
 	<h2><a name="change_theme"></a>Change Your Theme</h2>
-
+		<ul class="steps">
+			<li>See <a href="#edit_personal_information">Edit Personal Information.</a></li>
+			<li>Select on of the themes in the drop down list and click the "Submit" button when finished.</li>
+		</ul>
+		
+	<h2><a name="submit_feedback"></a>Submit Feedback</h2>
+		<ul class="steps">
+			<li>Click on the dropdown arrow next to your name in the upper right hand corner of the web page.</li>
+			<li>Select the "Submit Feedback" link.</li>
+			<li>Add the information and click the "Send Feedback" button when finished.</li>
+			<ul>
+				<li class="optional">Leave the email field blank if you wish to submit an annonymous report.</li>
+				<li>Please clearly identify the area of your concern with the "Topic" field.</li>
+				<li>Be as descriptive as possible. The more description the easier it is for us to understand your concern.</li>
+			</ul>
+			<li>If this functionality does not work email us at admin@baregrades.com.</li>
+		</ul>
+		
 <div class="page-header">
 	<h1>Reference</h1>
 </div>
