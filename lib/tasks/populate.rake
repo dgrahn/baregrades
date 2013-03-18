@@ -226,10 +226,6 @@ namespace :db do
 					 :css_class 	=> "goldfish")
 		Theme.create(:name 		=> "Snow Purple",
 					 :css_class 	=> "snowpurple")
-		Theme.create(:name 		=> "Cheer Up Emo Kid",
-					 :css_class 	=> "cheerupemokid")
-		Theme.create(:name 		=> "Wasabi Suicide",
-					 :css_class 	=> "wasabisuicide")
 		Theme.create(:name 		=> "Wordless",
 					 :css_class 	=> "wordless")
 		Theme.create(:name 		=> "Atomic Bikini",
