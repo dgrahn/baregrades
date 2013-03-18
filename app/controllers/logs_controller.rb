@@ -27,6 +27,7 @@ class LogsController < ApplicationController
 
 	@@login					= 0
 	@@logout				= 0
+	
 
 	private
 	def self.createLog(user)

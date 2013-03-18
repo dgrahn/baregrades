@@ -25,7 +25,9 @@ class Course < ActiveRecord::Base
 	validates :identifier, 	:presence => true
 	validates :credits, 	:presence => true
 	
-	# Get the user's grade for a specific assignment type.
+	# Get the user's grade for the course.
+	# @param user [User]
+	# @return [float] User grade in the course
 	def user_grade(user)
 		totalGrade = 0
 		totalWorth = 0
@@ -51,7 +53,9 @@ class Course < ActiveRecord::Base
 			return  totalGrade / totalWorth
 		end
 	end
-
+	# Get the user's percent of the course completed.
+	# @param user [User]
+	# @return [float] Percent complete
 	def percent_complete(user)
 		completedWorth = 0.0
 		totalWorth = 0.0
@@ -81,6 +85,8 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get the CSS class for the grade letter.
+	# @param user [User]
+	# @return [String] CSS class
 	def grade_letter_class(grade)		
 		if !grade_scale || !grade
 			return 'na'
@@ -112,6 +118,8 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get the GPA points for the grade
+	# @param user [User]
+	# @return [float] GPA Points
 	def grade_points(user)
 		grade = user_grade(user)
 		grade = grade_letter_class(grade)
@@ -135,6 +143,8 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get upcoming assignments.
+	# @param user [User]
+	# @return [Array<Assignment>] Upcoming assignments
 	def upcoming_assignments(user, num_assignments = nil)
 		if num_assignments
 			upcoming_assignments = self.assignments
@@ -169,6 +179,8 @@ class Course < ActiveRecord::Base
 	end
 
 	# Get past assignments
+	# @param user [User]
+	# @return [Array<Assignment>] Past assignments
 	def past_assignments(user)
 		past_assignments = self.assignments
 						.where("due_date <= ? AND 
@@ -190,6 +202,8 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get disabled assignments
+	# @param user [User]
+	# @return [Array<Assignment>] Disabled assignments
 	def disabled_assignments(user)
 		disabled_assignments = Array.new
 		self.assignments.each do |assignment|		
@@ -201,6 +215,8 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get graded assignments
+	# @param user [User]
+	# @return [Array<Assignment>] Graded assignments
 	def graded_assignments(user)
 		graded_assignments = self.assignments
 						.where("assignments.id IN (
@@ -221,6 +237,8 @@ class Course < ActiveRecord::Base
 	end
 
 	# Get undated assignments
+	# @param user [User]
+	# @return [Array<Assignment>] Undated assignments
 	def undated_assignments(user)
 		undated_assignments = self.assignments
 						.where("due_date IS NULL AND 
@@ -244,6 +262,7 @@ class Course < ActiveRecord::Base
 	# Get the average grade for the course. This will only return
 	# the average if there are more than 2 students (privacy
 	# reasons), if there is a grade, and if the worth is above 0.
+	# @return [decimal] average grade.
 	def average
 		if 2 < users.length
 			average = 0
@@ -265,6 +284,7 @@ class Course < ActiveRecord::Base
 	# Get the maximum grade percentage for this course. This will
 	# only return the maximum if there are more than two students
 	# in the course (privacy reasons) and the worth is above 0.
+	# @return [decimal] maximum grade.
 	def maximum
 		if 2 < users.length
 			maximum = 0
@@ -285,6 +305,7 @@ class Course < ActiveRecord::Base
 	# will only return the minimum if there are more than two
 	# students in the course (privacy reasons) and the worth
 	# is above 0.
+	# @return [decimal] minimum grade.
 	def minimum
 		if 2 < users.length
 			minimum = 999

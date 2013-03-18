@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+	#Sets up index page
 	def index
 		# Get all notifications
 		@user_notifications = Notification.where(user_id: @current_user.id).order("created_at DESC")

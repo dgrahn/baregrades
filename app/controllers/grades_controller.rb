@@ -1,13 +1,14 @@
 class GradesController < ApplicationController
 	before_filter :get_variables
 	before_filter :check_courses, 	:only => [:create]
-
+	#Gets assignment, assignment_type, and course.
 	def get_variables
 		@assignment = Assignment.find(params[:assignment_id])
 		@assignment_type = @assignment.assignment_type
 		@course = @assignment_type.course
 	end
 	
+	#Checks permissions.
 	def check_courses
 		# Check permissions
 		if not @current_user.courses.include?(@course)
@@ -16,6 +17,7 @@ class GradesController < ApplicationController
 		end
 	end
 
+	#Renders new grade page.
 	def new
 		@grade = Grade.new
 		
@@ -34,10 +36,12 @@ class GradesController < ApplicationController
 		end
 	end
 
+	#Renders edit grade page.
 	def edit
 		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 	end
-
+	
+	#Creates and saves new grade
 	def create
 		@grade = Grade.new(params[:grade])
 		@grade.assignment_id = params[:assignment_id]
@@ -56,7 +60,8 @@ class GradesController < ApplicationController
 			end
 		end
 	end
-
+	
+	#Edits and saves grade
 	def update
 		@grade = Grade.find(params[:id])
 		
@@ -73,7 +78,8 @@ class GradesController < ApplicationController
 			end
 		end
 	end
-
+	
+	#Destroys grade
 	def destroy
 		# no need to check if current user is the owner of the grade because we find the grade by the current user
 		grade = Grade.find_by_assignment_id_and_user_id(params[:assignment_id], @current_user.id)

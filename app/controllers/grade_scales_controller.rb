@@ -19,7 +19,7 @@ class GradeScalesController < ApplicationController
 		end
 	end
 
-	
+	#Renders new GradeScale page.
 	def new
 		@course 		= Course.find(params[:id])
 		@grade_scale 	= GradeScale.new
@@ -30,11 +30,13 @@ class GradeScalesController < ApplicationController
 		end
 	end
 
+	#Renders edit GradeScale page.
 	def edit
 		@course 		= Course.find(params[:id])
 		@grade_scale 	= @course.grade_scale
 	end
 
+	#Creates and saves new GradeScale
 	def create
 		@course 		= Course.find(params[:course_id])
 		@grade_scale 	= GradeScale.new(params[:grade_scale])
@@ -52,6 +54,7 @@ class GradeScalesController < ApplicationController
 		end
 	end
 
+	#Updates and saves GradeScale
 	def update
 		@course 		= Course.find(params[:course_id])
 		@grade_scale 	= GradeScale.find(params[:id])
@@ -68,7 +71,7 @@ class GradeScalesController < ApplicationController
 			end
 		end
 	end
-
+	#Destroys GradeScale
 	def destroy
 		@grade_scale = GradeScale.find(params[:id])
 		@grade_scale.destroy

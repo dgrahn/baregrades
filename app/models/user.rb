@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
 	validates :last_name,	:presence => true
 	
 	# "Login" a user
+	# @param username [String]
+	# @param password [String]
+	# @return [User]
 	def self.authenticate(username, password)
 		user = find_by_username(username)
 		
@@ -58,6 +61,7 @@ class User < ActiveRecord::Base
 	end
 
 	# Add points to the reputation, positive or negative
+	# @param points [integer]
 	def add_reputation(points)
 		if self.reputation 
 			self.reputation += points
@@ -68,6 +72,7 @@ class User < ActiveRecord::Base
 		self.save
 	end
 	
+	# @return [boolean] User has unread notifications.
 	def has_notifications?()
 		return (0 < self.notifications.where(read: false).count)
 	end
@@ -81,6 +86,8 @@ class User < ActiveRecord::Base
 	end
 
 	# Dynamically create is_role? methods
+	# @param methodid [integer]
+	# @return [boolean]
 	def method_missing(method_id, *args)
 		if match = matches_dynamic_role_check?(method_id)
 			tokenize_roles(match.captures.first).each do |check|
@@ -98,11 +105,13 @@ class User < ActiveRecord::Base
 	private
 
 	# Helper method to check if the string matches the is_role? type
+	# @param methodid [integer]
 	def matches_dynamic_role_check?(method_id)
 		/^is_([a-zA-Z]\w*)\?$/.match(method_id.to_s)
 	end
 
 	# Tokenize strings for is_role_or_role?
+	# @param methodid [String]
 	def tokenize_roles(string_to_split)
 		string_to_split.split(/_or_/)
 	end

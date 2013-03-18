@@ -27,7 +27,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 	
-	#Sets up assignments index page.
+	#Renders assignments index page.
 	def index
 		@assignments = Assignment.all
 
@@ -37,7 +37,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
-	#Sets up show assignments page.
+	#Renders show assignments page.
 	def show
 		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 		
@@ -47,7 +47,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
-	#Creates new assignment
+	#Renders new assignment page.
 	def new
 		@assignment = Assignment.new
 		@assignment_types = @course.assignment_types
@@ -58,6 +58,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	#Renders edit assignment page.
 	def edit
 	end
 	

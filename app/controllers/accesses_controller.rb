@@ -11,7 +11,7 @@ class AccessesController < ApplicationController
 		end
 	end
 	
-	# Creates new AcessesController.
+	# Renders new AcessesController page.
 	def new
 		@user = User.find(params[:user_id])
 		@access = Access.new

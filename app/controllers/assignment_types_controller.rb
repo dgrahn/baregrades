@@ -18,7 +18,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 	
-	#Creates new Assignment_Type.
+	#Renders new assignment type page.
 	def new
 		@assignment_type = AssignmentType.new
 		
@@ -27,7 +27,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 
-	#Edits assignment type.
+	#Renders edit assignment type page.
 	def edit
 		@assignment_type = AssignmentType.find(params[:id])
 	end

@@ -1,4 +1,5 @@
 class ToolsController < ApplicationController
+	#Renders the target grade page.
 	def target_grade
 		@course = Course.find(params[:id])
 		@percent_completed = @course.percent_complete(@current_user)
@@ -10,6 +11,7 @@ class ToolsController < ApplicationController
 		end
 	end
 
+	#Renders the grade report.
 	def grade_report
 		@courses = @current_user.courses
 		
@@ -20,7 +22,8 @@ class ToolsController < ApplicationController
 	def gpa_prediction
 		@courses = @current_user.courses
 	end
-
+	
+	#Renders prioritizer page.
 	def prioritizer
 		courses = @current_user.courses
 		

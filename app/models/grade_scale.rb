@@ -14,6 +14,7 @@ class GradeScale < ActiveRecord::Base
   
 	belongs_to :course
 
+	#Sets default values.
 	def default_values
 		self.b_plus = 87
 		self.c_plus = 77

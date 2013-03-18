@@ -1,3 +1,13 @@
+#   File: assignment_flag.rb
+#  Class: AssignmentFlag
+#   Type: Model
+# Author: Dan Grahn, Matt Brooker, Justin Engel
+#
+# Description:
+# This class holds information for assignment flags.
+# Assignment flags hold user specific information for assignments.
+# -----------------------------------------------------------
+
 class AssignmentFlag < ActiveRecord::Base
 	attr_accessible :disabled
 

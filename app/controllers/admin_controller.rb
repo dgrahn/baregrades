@@ -10,7 +10,7 @@ class AdminController < ApplicationController
 		end
 	end
 	
-	# Sets up Admin index page.
+	# Renders Admin index page.
 	def index
 		@number_of_users = User.count
 		@number_of_courses = Course.count
@@ -37,7 +37,7 @@ class AdminController < ApplicationController
 		
 	end
 
-	# Sets up logs variable.
+	# Renders logs variable.
 	def logs
 		@logs = Log.limit(params[:number]).all
 	end

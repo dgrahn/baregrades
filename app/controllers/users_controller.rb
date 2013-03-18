@@ -5,10 +5,12 @@ class UsersController < ApplicationController
 	before_filter :check_admin_only, 	:only => [:index, :courses, :destroy, :admin_confirm, :possess]
 	before_filter :check_user, 			:only => [:edit, :update, :add_role]
 
+	#Finds user.
 	def find_user
 		@user = User.find(params[:id])
 	end
 	
+	#Checks that user is admin.
 	def check_admin_only
 		# Check permissions
 		if (not @current_user.is_administrator?)
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	#Checks user permissions.
 	def check_user
 		# Check permissions
 		if (not @current_user.is_administrator?) && (not @current_user == @user)
@@ -25,6 +28,7 @@ class UsersController < ApplicationController
 		end
 	end
 	
+	#Renders user page.
 	def index
 		@users = User.all
 
@@ -34,6 +38,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Renders show page.
 	def show
 		@user = @current_user
 
@@ -51,7 +56,7 @@ class UsersController < ApplicationController
 	# Shows all of the courses that a single user is in
 	def courses
 	end	
-	
+	#Renders page for creating a new user.
 	def new
 		@user = User.new
 		@user.theme = Theme.find_by_name("Pond")
@@ -63,10 +68,12 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Renders edit page.
 	def edit
 		@themes = Theme.all
 	end
 
+	#Saves user.
 	def create
 		@user = User.new(params[:user])
 		policy = params[:policy]
@@ -108,6 +115,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Updates user.
 	def update
 		respond_to do |format|
 			if (not @current_user.id == @user.id) && (not @current_user.is_administrator?)
@@ -126,6 +134,7 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Destroys user.
 	def destroy
 		LogsController.destroyUser(@user)
 
@@ -138,6 +147,7 @@ class UsersController < ApplicationController
 	end
 
 	# GET /users/#/confirm/#
+	#Confirms the confirmation code sent in the email.
 	def confirm
 		confirm = params[:confirm]
 		
@@ -162,6 +172,7 @@ class UsersController < ApplicationController
 	end
 	
 	# GET /users/#/confirm/#
+	#Confirms admin confirmation code.
 	def admin_confirm
 		@user.enabled = true
 		
@@ -176,6 +187,7 @@ class UsersController < ApplicationController
 	end
 	
 	# POST /users/add_role/1
+	#Renders add role page.
 	def add_role
 		@roles = Role.all
 
@@ -184,6 +196,8 @@ class UsersController < ApplicationController
 		end
 	end
 
+	#Sets current session's user id to the id in the params.
+	#User will now see everything as if he were the specified user.
 	def possess
 		session[:user_id] = params[:id]
 		

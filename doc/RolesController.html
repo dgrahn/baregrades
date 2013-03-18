@@ -135,7 +135,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the user is an admin.</p>
+</div></span>
   
 </li>
 
@@ -158,7 +160,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>POST /roles POST /roles.json.</p>
+<p>POST /roles POST /roles.json Saves new role.</p>
 </div></span>
   
 </li>
@@ -182,7 +184,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>DELETE /roles/1 DELETE /roles/1.json.</p>
+<p>DELETE /roles/1 DELETE /roles/1.json Destroys role.</p>
 </div></span>
   
 </li>
@@ -206,7 +208,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /roles/1/edit.</p>
+<p>GET /roles/1/edit Renders edit page.</p>
 </div></span>
   
 </li>
@@ -230,7 +232,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /roles GET /roles.json.</p>
+<p>GET /roles GET /roles.json Renders up index page.</p>
 </div></span>
   
 </li>
@@ -254,7 +256,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /roles/new GET /roles/new.json.</p>
+<p>GET /roles/new GET /roles/new.json Renders new role page.</p>
 </div></span>
   
 </li>
@@ -278,7 +280,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>GET /roles/1 GET /roles/1.json.</p>
+<p>GET /roles/1 GET /roles/1.json Renders up show page.</p>
 </div></span>
   
 </li>
@@ -302,7 +304,7 @@
 
   
     <span class="summary_desc"><div class='inline'>
-<p>PUT /roles/1 PUT /roles/1.json.</p>
+<p>PUT /roles/1 PUT /roles/1.json Updates role in the database.</p>
 </div></span>
   
 </li>
@@ -338,22 +340,34 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if the user is an admin. If not, redirect to root_path with access
+denied message.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
 5
 6
 7
 8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_admin_only'>check_admin_only</span>
 	<span class='comment'># Check permissions
@@ -379,7 +393,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>POST /roles POST /roles.json</p>
+<p>POST /roles POST /roles.json Saves new role.</p>
 
 
   </div>
@@ -393,22 +407,22 @@
       <pre class="lines">
 
 
-52
-53
-54
-55
-56
-57
 58
 59
 60
 61
 62
 63
-64</pre>
+64
+65
+66
+67
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:role</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -440,7 +454,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>DELETE /roles/1 DELETE /roles/1.json</p>
+<p>DELETE /roles/1 DELETE /roles/1.json Destroys role.</p>
 
 
   </div>
@@ -454,18 +468,18 @@
       <pre class="lines">
 
 
-84
-85
-86
-87
-88
-89
-90
-91
-92</pre>
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -493,7 +507,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /roles/1/edit</p>
+<p>GET /roles/1/edit Renders edit page.</p>
 
 
   </div>
@@ -507,12 +521,12 @@
       <pre class="lines">
 
 
-46
-47
-48</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_edit'>edit</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -534,7 +548,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /roles GET /roles.json</p>
+<p>GET /roles GET /roles.json Renders up index page.</p>
 
 
   </div>
@@ -548,17 +562,17 @@
       <pre class="lines">
 
 
-14
-15
 16
 17
 18
 19
 20
-21</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
 	<span class='ivar'>@roles</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -585,7 +599,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /roles/new GET /roles/new.json</p>
+<p>GET /roles/new GET /roles/new.json Renders new role page.</p>
 
 
   </div>
@@ -599,17 +613,17 @@
       <pre class="lines">
 
 
-36
-37
-38
-39
 40
 41
 42
-43</pre>
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -636,7 +650,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>GET /roles/1 GET /roles/1.json</p>
+<p>GET /roles/1 GET /roles/1.json Renders up show page.</p>
 
 
   </div>
@@ -650,17 +664,17 @@
       <pre class="lines">
 
 
-25
-26
-27
 28
 29
 30
 31
-32</pre>
+32
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_show'>show</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -687,7 +701,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>PUT /roles/1 PUT /roles/1.json</p>
+<p>PUT /roles/1 PUT /roles/1.json Updates role in the database.</p>
 
 
   </div>
@@ -701,22 +715,22 @@
       <pre class="lines">
 
 
-68
-69
-70
-71
-72
-73
-74
 75
 76
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/roles_controller.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
 	<span class='ivar'>@role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -741,7 +755,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Mar 12 11:43:36 2013 by
+  Generated on Mon Mar 18 14:49:21 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

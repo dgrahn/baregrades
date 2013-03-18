@@ -139,7 +139,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#average-instance_method" title="#average (instance method)">- (Object) <strong>average</strong> </a>
+      <a href="#average-instance_method" title="#average (instance method)">- (float) <strong>average</strong> </a>
     
 
     
@@ -163,7 +163,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#course-instance_method" title="#course (instance method)">- (Object) <strong>course</strong> </a>
+      <a href="#course-instance_method" title="#course (instance method)">- (Course) <strong>course</strong> </a>
     
 
     
@@ -187,7 +187,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#is_disabled-instance_method" title="#is_disabled (instance method)">- (Object) <strong>is_disabled</strong>(user) </a>
+      <a href="#is_disabled-instance_method" title="#is_disabled (instance method)">- (boolean) <strong>is_disabled</strong>(user) </a>
     
 
     
@@ -201,7 +201,9 @@ manipulates the data to give grades, percentages, and averages.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if the assignment is disabled for the given user.</p>
+</div></span>
   
 </li>
 
@@ -209,7 +211,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#maximum-instance_method" title="#maximum (instance method)">- (Object) <strong>maximum</strong> </a>
+      <a href="#maximum-instance_method" title="#maximum (instance method)">- (float) <strong>maximum</strong> </a>
     
 
     
@@ -233,7 +235,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#minimum-instance_method" title="#minimum (instance method)">- (Object) <strong>minimum</strong> </a>
+      <a href="#minimum-instance_method" title="#minimum (instance method)">- (float) <strong>minimum</strong> </a>
     
 
     
@@ -257,7 +259,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#user_grade-instance_method" title="#user_grade (instance method)">- (Object) <strong>user_grade</strong>(user) </a>
+      <a href="#user_grade-instance_method" title="#user_grade (instance method)">- (decimal) <strong>user_grade</strong>(user) </a>
     
 
     
@@ -281,7 +283,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#user_grade_class-instance_method" title="#user_grade_class (instance method)">- (Object) <strong>user_grade_class</strong>(user) </a>
+      <a href="#user_grade_class-instance_method" title="#user_grade_class (instance method)">- (Grade) <strong>user_grade_class</strong>(user) </a>
     
 
     
@@ -295,7 +297,9 @@ manipulates the data to give grades, percentages, and averages.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Get the current users grade for the assignment.</p>
+</div></span>
   
 </li>
 
@@ -303,7 +307,7 @@ manipulates the data to give grades, percentages, and averages.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#user_percentage-instance_method" title="#user_percentage (instance method)">- (Object) <strong>user_percentage</strong>(user) </a>
+      <a href="#user_percentage-instance_method" title="#user_percentage (instance method)">- (Float) <strong>user_percentage</strong>(user) </a>
     
 
     
@@ -337,7 +341,7 @@ manipulates the data to give grades, percentages, and averages.</p>
       <div class="method_details first">
   <h3 class="signature first" id="average-instance_method">
   
-    - (<tt>Object</tt>) <strong>average</strong> 
+    - (<tt>float</tt>) <strong>average</strong> 
   
 
   
@@ -355,6 +359,24 @@ reasons).</p>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The average.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -362,16 +384,16 @@ reasons).</p>
       <pre class="lines">
 
 
-68
-69
-70
-71
-72
-73
-74</pre>
+77
+78
+79
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_average'>average</span>
 	<span class='kw'>if</span> <span class='int'>2</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_course'>course</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='kw'>and</span> <span class='int'>0</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_grades'>grades</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='kw'>and</span> <span class='int'>0</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_worth'>worth</span>
@@ -388,7 +410,7 @@ reasons).</p>
       <div class="method_details ">
   <h3 class="signature " id="course-instance_method">
   
-    - (<tt>Object</tt>) <strong>course</strong> 
+    - (<tt><span class='object_link'><a href="Course.html" title="Course (class)">Course</a></span></tt>) <strong>course</strong> 
   
 
   
@@ -405,6 +427,24 @@ cannot have a through.</p>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Course.html" title="Course (class)">Course</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The course.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -412,12 +452,12 @@ cannot have a through.</p>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_course'>course</span>
 	<span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_assignment_type'>assignment_type</span><span class='period'>.</span><span class='id identifier rubyid_course'>course</span>
@@ -430,29 +470,73 @@ cannot have a through.</p>
       <div class="method_details ">
   <h3 class="signature " id="is_disabled-instance_method">
   
-    - (<tt>Object</tt>) <strong>is_disabled</strong>(user) 
+    - (<tt>boolean</tt>) <strong>is_disabled</strong>(user) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if the assignment is disabled for the given user.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Assignment is disabled for this user or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-94
-95
-96
-97
-98
-99
-100
-101</pre>
+108
+109
+110
+111
+112
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_disabled'>is_disabled</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_flag'>flag</span> <span class='op'>=</span> <span class='const'>AssignmentFlag</span><span class='period'>.</span><span class='id identifier rubyid_find_by_assignment_id_and_user_id'>find_by_assignment_id_and_user_id</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
@@ -470,7 +554,7 @@ cannot have a through.</p>
       <div class="method_details ">
   <h3 class="signature " id="maximum-instance_method">
   
-    - (<tt>Object</tt>) <strong>maximum</strong> 
+    - (<tt>float</tt>) <strong>maximum</strong> 
   
 
   
@@ -488,6 +572,24 @@ reasons).</p>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>maximum</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -495,14 +597,14 @@ reasons).</p>
       <pre class="lines">
 
 
-79
-80
-81
-82
-83</pre>
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_maximum'>maximum</span>
 	<span class='kw'>if</span> <span class='id identifier rubyid_course'>course</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span> <span class='kw'>and</span> <span class='id identifier rubyid_worth'>worth</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -517,7 +619,7 @@ reasons).</p>
       <div class="method_details ">
   <h3 class="signature " id="minimum-instance_method">
   
-    - (<tt>Object</tt>) <strong>minimum</strong> 
+    - (<tt>float</tt>) <strong>minimum</strong> 
   
 
   
@@ -535,6 +637,24 @@ reasons).</p>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>minimum</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -542,14 +662,14 @@ reasons).</p>
       <pre class="lines">
 
 
-88
-89
-90
-91
-92</pre>
+99
+100
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_minimum'>minimum</span>
 	<span class='kw'>if</span> <span class='id identifier rubyid_course'>course</span><span class='period'>.</span><span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>2</span> <span class='kw'>and</span> <span class='id identifier rubyid_worth'>worth</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -564,7 +684,7 @@ reasons).</p>
       <div class="method_details ">
   <h3 class="signature " id="user_grade-instance_method">
   
-    - (<tt>Object</tt>) <strong>user_grade</strong>(user) 
+    - (<tt>decimal</tt>) <strong>user_grade</strong>(user) 
   
 
   
@@ -579,7 +699,45 @@ reasons).</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User whose grade will be retrieved.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>decimal</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Grade.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -587,17 +745,17 @@ reasons).</p>
       <pre class="lines">
 
 
-28
-29
 30
 31
 32
 33
 34
-35</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_grade'>user_grade</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	
@@ -615,31 +773,80 @@ reasons).</p>
       <div class="method_details ">
   <h3 class="signature " id="user_grade_class-instance_method">
   
-    - (<tt>Object</tt>) <strong>user_grade_class</strong>(user) 
+    - (<tt><span class='object_link'><a href="Grade.html" title="Grade (class)">Grade</a></span></tt>) <strong>user_grade_class</strong>(user) 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get the current users grade for the assignment</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User whose grade will be retrieved.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Grade.html" title="Grade (class)">Grade</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Grade.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-37
-38
-39
-40
-41
 42
 43
 44
 45
-46</pre>
+46
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_grade_class'>user_grade_class</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	
@@ -659,7 +866,7 @@ reasons).</p>
       <div class="method_details ">
   <h3 class="signature " id="user_percentage-instance_method">
   
-    - (<tt>Object</tt>) <strong>user_percentage</strong>(user) 
+    - (<tt>Float</tt>) <strong>user_percentage</strong>(user) 
   
 
   
@@ -674,7 +881,45 @@ reasons).</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>user</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>User whose grade will be retrieved.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Float</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Grade.</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -682,18 +927,18 @@ reasons).</p>
       <pre class="lines">
 
 
-49
-50
-51
-52
-53
-54
-55
 56
-57</pre>
+57
+58
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'app/models/assignment.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_percentage'>user_percentage</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_worth'>worth</span> 		<span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_worth'>worth</span>
@@ -714,7 +959,7 @@ reasons).</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Mar 12 11:43:36 2013 by
+  Generated on Mon Mar 18 14:49:20 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

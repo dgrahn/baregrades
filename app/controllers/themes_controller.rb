@@ -1,4 +1,5 @@
 class ThemesController < ApplicationController
+	#Renders index page.
 	def index
 		@themes = Theme.all
 
@@ -7,7 +8,7 @@ class ThemesController < ApplicationController
 			format.json { render json: @themes }
 		end
 	end
-
+	#Renders show page.
 	def show
 		@theme = Theme.find(params[:id])
 
@@ -16,7 +17,7 @@ class ThemesController < ApplicationController
 			format.json { render json: @theme }
 		end
 	end
-
+	#Renders new page.
 	def new
 		@theme = Theme.new
 
@@ -25,11 +26,11 @@ class ThemesController < ApplicationController
 			format.json { render json: @theme }
 		end
 	end
-
+	#Renders edit page.
 	def edit
 		@theme = Theme.find(params[:id])
 	end
-
+	#Creates theme.
 	def create
 		@theme = Theme.new(params[:theme])
 
@@ -44,6 +45,7 @@ class ThemesController < ApplicationController
 		end
 	end
 
+	#Updates theme.
 	def update
 		@theme = Theme.find(params[:id])
 
@@ -58,6 +60,7 @@ class ThemesController < ApplicationController
 		end
 	end
 
+	#Deletes theme.
 	def destroy
 		@theme = Theme.find(params[:id])
 		@theme.destroy

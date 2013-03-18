@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 	layout "login"
 	skip_before_filter :require_login
 
+	#Saves new session.
 	def create
 		user = User.authenticate(params[:username], params[:password])
 		
@@ -21,6 +22,7 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	#Destroys session.
 	def destroy
 		# Can't user @current_user here for some reason
 		user = User.find(session[:user_id])

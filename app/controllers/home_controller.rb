@@ -1,12 +1,14 @@
 class HomeController < ApplicationController
 	skip_before_filter :require_login, :only => [:changelog, :privacy, :help]
 
+	#Renders index page.
 	def index
 		@user = @current_user
 		@assignments = @user.assignments.where("due_date")
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today
 	end
 
+	#Checks if someone is logged in.
 	def privacy
 		if current_user
 			render layout:"application"
@@ -15,6 +17,7 @@ class HomeController < ApplicationController
 		end
 	end
 	
+	#Renders change log.
 	def changelog
 		@versions = {
 				"1.0.8"		=> ["<strong>Course start and end Date.</strong>"],
@@ -76,6 +79,7 @@ class HomeController < ApplicationController
 		end
 	end
 
+	#Renders help page.
 	def help
 		@current_user = current_user
 		render layout:"help"

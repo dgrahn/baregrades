@@ -1,6 +1,7 @@
 class RolesController < ApplicationController
 	before_filter :check_admin_only
-
+	#Checks if the user is an admin.
+	#If not, redirect to root_path with access denied message.
 	def check_admin_only
 		# Check permissions
 		if (not @current_user.is_administrator?)
@@ -11,6 +12,7 @@ class RolesController < ApplicationController
 	
 	# GET /roles
 	# GET /roles.json
+	#Renders up index page.
 	def index
 		@roles = Role.all
 
@@ -22,6 +24,7 @@ class RolesController < ApplicationController
 
 	# GET /roles/1
 	# GET /roles/1.json
+	#Renders up show page.
 	def show
 		@role = Role.find(params[:id])
 
@@ -33,6 +36,7 @@ class RolesController < ApplicationController
 
 	# GET /roles/new
 	# GET /roles/new.json
+	#Renders new role page.
 	def new
 		@role = Role.new
 
@@ -43,12 +47,14 @@ class RolesController < ApplicationController
 	end
 
 	# GET /roles/1/edit
+	#Renders edit page.
 	def edit
 		@role = Role.find(params[:id])
 	end
 
 	# POST /roles
 	# POST /roles.json
+	#Saves new role.
 	def create
 		@role = Role.new(params[:role])
 
@@ -65,6 +71,7 @@ class RolesController < ApplicationController
 
 	# PUT /roles/1
 	# PUT /roles/1.json
+	#Updates role in the database.
 	def update
 		@role = Role.find(params[:id])
 
@@ -81,6 +88,7 @@ class RolesController < ApplicationController
 
 	# DELETE /roles/1
 	# DELETE /roles/1.json
+	#Destroys role.
 	def destroy
 		@role = Role.find(params[:id])
 		@role.destroy
