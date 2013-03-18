@@ -4,11 +4,12 @@ class CoursesController < ApplicationController
 	before_filter :check_courses, 		:only 	=> [:edit, :update]
 	
 	@@common_types = ["homework", "projects", "quizzes", "exams", "papers", "labs", "participation", "midterms", "finals"]
-	
+	#Finds course.
 	def find_course
 		@course = Course.find(params[:id])
 	end
 	
+	#Checks if the current user is an admin.
 	def check_admin_only
 		# Check permissions
 		if (not @current_user.is_administrator?)
@@ -17,6 +18,7 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	#Checks current user's course permission
 	def check_courses
 		# Check permissions
 		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
@@ -25,6 +27,7 @@ class CoursesController < ApplicationController
 		end
 	end
 	
+	#Sets up the course index page.
 	def index
 		@courses = Course.all
 		respond_to do |format|
@@ -33,6 +36,7 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	#Shows the course.
 	def show
 		@disabled	= @course.disabled_assignments(@current_user)
 		@upcoming 	= @course.upcoming_assignments(@current_user)
@@ -58,6 +62,7 @@ class CoursesController < ApplicationController
 		end
 	end
 	
+	#Sets up the calendar.
 	def calendar
 		@course = Course.find(params[:id])
 		@date = params[:month] ? Date.parse(params[:month]) : Date.today
@@ -71,6 +76,7 @@ class CoursesController < ApplicationController
 		# must have admin access
 	end	
 
+	#Creates new course.
 	def new
 		@course = Course.new
 		@common_types = @@common_types
@@ -85,6 +91,7 @@ class CoursesController < ApplicationController
 		# must have admin access or be in the course
 	end
 
+	#Creates and saves new course.
 	def create
 		@common_types = @@common_types
 		
@@ -165,6 +172,7 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	#Updates course.
 	def update
 		# must have admin access or be in the course
 		
@@ -204,6 +212,7 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	#Destroys course.
 	def destroy
 		# must have admin access
 		

@@ -135,7 +135,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks permissions.</p>
+</div></span>
   
 </li>
 
@@ -157,7 +159,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates new AcessesController.</p>
+</div></span>
   
 </li>
 
@@ -201,7 +205,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Joins current user to course.</p>
+</div></span>
   
 </li>
 
@@ -223,7 +229,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Removes current user from course.</p>
+</div></span>
   
 </li>
 
@@ -245,7 +253,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates new AcessesController.</p>
+</div></span>
   
 </li>
 
@@ -302,26 +312,38 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks permissions. Redirects to root path with an access denied message if
+not admin</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
-5
 6
 7
 8
 9
-10</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_admin_only'>check_admin_only</span>
-	<span class='comment'># Check permissions
-</span>	<span class='kw'>if</span> <span class='lparen'>(</span><span class='kw'>not</span> <span class='ivar'>@current_user</span><span class='period'>.</span><span class='id identifier rubyid_is_administrator?'>is_administrator?</span><span class='rparen'>)</span>
+	
+	<span class='kw'>if</span> <span class='lparen'>(</span><span class='kw'>not</span> <span class='ivar'>@current_user</span><span class='period'>.</span><span class='id identifier rubyid_is_administrator?'>is_administrator?</span><span class='rparen'>)</span>
 		<span class='id identifier rubyid_redirect_to'>redirect_to</span> <span class='id identifier rubyid_root_path'>root_path</span><span class='comma'>,</span> <span class='label'>notice:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Access Denied</span><span class='tstring_end'>&quot;</span></span>
 		<span class='kw'>return</span>
 	<span class='kw'>end</span>
@@ -340,16 +362,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates new AcessesController.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-19
-20
-21
-22
 23
 24
 25
@@ -357,10 +386,14 @@
 27
 28
 29
-30</pre>
+30
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span>
 	<span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -394,22 +427,22 @@
       <pre class="lines">
 
 
-62
-63
-64
-65
-66
-67
 68
 69
 70
 71
 72
 73
-74</pre>
+74
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
 	<span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -438,17 +471,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Joins current user to course.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
 40
 41
 42
@@ -456,10 +495,15 @@
 44
 45
 46
-47</pre>
+47
+48
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_join'>join</span>	
 	<span class='ivar'>@course</span> <span class='op'>=</span> <span class='const'>Course</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -488,27 +532,38 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes current user from course.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-49
-50
-51
-52
-53
-54
 55
 56
 57
 58
 59
-60</pre>
+60
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_leave'>leave</span>
 	<span class='ivar'>@course</span> <span class='op'>=</span> <span class='const'>Course</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -536,21 +591,32 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates new AcessesController.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
-14
 15
 16
-17</pre>
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new'>new</span>
 	<span class='ivar'>@user</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user_id</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -578,11 +644,11 @@
       <pre class="lines">
 
 
-32
-33</pre>
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/accesses_controller.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
 <span class='kw'>end</span></pre>
@@ -596,7 +662,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 19 13:45:19 2013 by
+  Generated on Tue Mar 12 11:43:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

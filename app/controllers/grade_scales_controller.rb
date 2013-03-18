@@ -1,4 +1,5 @@
 class GradeScalesController < ApplicationController
+	#Displays grade scale index page.
 	def index
 		@grade_scales = GradeScale.all
 
@@ -8,6 +9,7 @@ class GradeScalesController < ApplicationController
 		end
 	end
 
+	#Shows grade scales.
 	def show
 		@grade_scale = GradeScale.find(params[:id])
 
@@ -17,6 +19,7 @@ class GradeScalesController < ApplicationController
 		end
 	end
 
+	
 	def new
 		@course 		= Course.find(params[:id])
 		@grade_scale 	= GradeScale.new

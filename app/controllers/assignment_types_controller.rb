@@ -4,10 +4,12 @@ class AssignmentTypesController < ApplicationController
 	before_filter :find_course, :only => [:new, :edit, :create, :update, :destroy, :disable, :enable]
 	before_filter :check_courses, :only => [:new, :edit, :create, :update, :destroy, :disable, :enable]
 
+	#Assigns course.
 	def find_course
 		@course = Course.find(params[:course_id])
 	end
 	
+	#Checks current users permission with regard to course.
 	def check_courses
 		# Check permissions
 		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
@@ -16,6 +18,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 	
+	#Creates new Assignment_Type.
 	def new
 		@assignment_type = AssignmentType.new
 		
@@ -24,10 +27,12 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 
+	#Edits assignment type.
 	def edit
 		@assignment_type = AssignmentType.find(params[:id])
 	end
 
+	#Creates new Assignment_Type.
 	def create
 		assignment_page = params[:assignment_page]
 		@assignment_type = AssignmentType.new(params[:assignment_type])
@@ -55,6 +60,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 
+	#Updates assignment type.
 	def update
 		@assignment_type = AssignmentType.find(params[:id])
 		@assignment_type.assign_attributes(params[:assignment_type])
@@ -71,6 +77,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 
+	#Destroys assignment type.
 	def destroy
 		@assignment_type = AssignmentType.find(params[:id])
 		@assignment_type.assignments.each do |assignment|
@@ -86,6 +93,7 @@ class AssignmentTypesController < ApplicationController
 		end
 	end
 	
+	#Disables assignment type.
 	def disable
 		# find flag for assignment type and user
 		assignment_type = AssignmentType.find(params[:id])
@@ -107,6 +115,7 @@ class AssignmentTypesController < ApplicationController
 		end # do
 	end # disable
 	
+	#Enables assignment type.
 	def enable
 		assignment_type = AssignmentType.find(params[:id]);
 		

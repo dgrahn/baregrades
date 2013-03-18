@@ -137,7 +137,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Displays exception if admin and error page if not.</p>
+</div></span>
   
 </li>
 
@@ -161,14 +163,43 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Displays exception if admin and error page if not.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>exception</span>
+      
+      
+        <span class='type'>(<tt>Exception</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The exception thrown.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
-5
 6
 7
 8
@@ -178,10 +209,12 @@
 12
 13
 14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/application_controller.rb', line 6</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rescue_with_handler'>rescue_with_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_exception'>exception</span><span class='rparen'>)</span>
 	<span class='kw'>if</span> <span class='id identifier rubyid_current_user'>current_user</span> <span class='comment'>#and current_user.is_administrator?
@@ -205,7 +238,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 19 13:45:20 2013 by
+  Generated on Tue Mar 12 11:43:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

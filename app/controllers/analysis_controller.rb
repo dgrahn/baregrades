@@ -1,4 +1,5 @@
 class AnalysisController < ApplicationController
+	# Sets up Analysis index page.
 	def index
 		@course = Course.find(params[:id])
 		
@@ -9,6 +10,7 @@ class AnalysisController < ApplicationController
 		end
 	end
 
+	#Sets up course.
 	def assignment_types
 		@course = Course.find(params[:id])
 		
@@ -16,7 +18,8 @@ class AnalysisController < ApplicationController
 			format.json
 		end
 	end
-
+	
+	#Sets up course.
 	def assignments
 		@course = Course.find(params[:id])
 		
@@ -24,7 +27,8 @@ class AnalysisController < ApplicationController
 			format.json
 		end
 	end
-
+	
+	#Sets up course.
 	def course
 		@course = Course.find(params[:id])
 

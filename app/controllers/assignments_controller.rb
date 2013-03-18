@@ -5,16 +5,20 @@ class AssignmentsController < ApplicationController
 	before_filter :get_variables, 	:only => [:edit, :show, :update, :destroy, :disable, :enable]
 	before_filter :check_courses, 	:only => [:new, :show, :edit, :update, :destroy, :disable, :enable]
 
+	#Finds course.
 	def find_course
 		@course = Course.find(params[:id])
 	end
 	
+	#Gets variables.
 	def get_variables
 		@assignment = Assignment.find(params[:id])
 		@course = @assignment.course
 		@assignment_types = @course.assignment_types
 	end
 	
+	
+	#Checks current user's permission for the course.
 	def check_courses
 		# Check permissions
 		if (not @current_user.is_administrator?) && (not @current_user.courses.include?(@course))
@@ -23,6 +27,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 	
+	#Sets up assignments index page.
 	def index
 		@assignments = Assignment.all
 
@@ -32,6 +37,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	#Sets up show assignments page.
 	def show
 		@grade = Grade.find_by_assignment_id_and_user_id(@assignment.id, @current_user.id)
 		
@@ -41,6 +47,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	#Creates new assignment
 	def new
 		@assignment = Assignment.new
 		@assignment_types = @course.assignment_types
@@ -53,7 +60,8 @@ class AssignmentsController < ApplicationController
 
 	def edit
 	end
-
+	
+	#Creates and saves new assignment
 	def create
 		@assignment = Assignment.new(params[:assignment])
 		@course = @assignment.course
@@ -76,6 +84,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	#Updates assignment.
 	def update
 		@assignment.assign_attributes(params[:assignment])
 
@@ -94,6 +103,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	#Destroys assignment.
 	def destroy
 		LogsController.destroyAssignment(@current_user, @assignment)
 
@@ -105,6 +115,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 	
+	#Disables assignment.
 	def disable
 	
 		flagSaved = disableAssignment(@assignment, @current_user)
@@ -118,6 +129,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 	
+	#Enables assignment.
 	def enable
 		flagSaved = enableAssignment(@assignment, @current_user)
 		

@@ -135,7 +135,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Checks if current user is Admin.</p>
+</div></span>
   
 </li>
 
@@ -157,7 +159,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Sets up Admin index page.</p>
+</div></span>
   
 </li>
 
@@ -179,7 +183,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+<p>Sets up logs variable.</p>
+</div></span>
   
 </li>
 
@@ -214,22 +220,33 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Checks if current user is Admin.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4
 5
 6
 7
 8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 5</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_admin_only'>check_admin_only</span>
 	<span class='comment'># Check permissions
@@ -252,14 +269,23 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets up Admin index page.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
 14
 15
 16
@@ -282,10 +308,12 @@
 33
 34
 35
-36</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
 	<span class='ivar'>@number_of_users</span> <span class='op'>=</span> <span class='const'>User</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
@@ -326,18 +354,29 @@
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets up logs variable.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-38
-39
-40</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'app/controllers/admin_controller.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_logs'>logs</span>
 	<span class='ivar'>@logs</span> <span class='op'>=</span> <span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_limit'>limit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:number</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_all'>all</span>
@@ -352,7 +391,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Feb 19 13:45:19 2013 by
+  Generated on Tue Mar 12 11:43:36 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

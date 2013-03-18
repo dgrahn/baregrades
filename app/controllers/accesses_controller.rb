@@ -1,14 +1,17 @@
 class AccessesController < ApplicationController
 	before_filter :check_admin_only, :except => [:join, :leave, :destroy]
 	
+	# Checks permissions.
+	# Redirects to root path with an access denied message if not admin
 	def check_admin_only
-		# Check permissions
+		
 		if (not @current_user.is_administrator?)
 			redirect_to root_path, notice: "Access Denied"
 			return
 		end
 	end
 	
+	# Creates new AcessesController.
 	def new
 		@user = User.find(params[:user_id])
 		@access = Access.new
@@ -16,6 +19,7 @@ class AccessesController < ApplicationController
 		@all_courses = Course.all
 	end
 
+	# Creates new AcessesController.
 	def create
 		@user = User.find(params[:user_id])
 		@access = Access.new(params[:access])
@@ -32,6 +36,7 @@ class AccessesController < ApplicationController
 	def update
 	end
 	
+	# Joins current user to course.
 	def join	
 		@course = Course.find(params[:id])
 
@@ -46,6 +51,7 @@ class AccessesController < ApplicationController
 		redirect_to @course
 	end
 
+	# Removes current user from course.
 	def leave
 		@course = Course.find(params[:id])
 		@access = Access.where(:course_id => @course.id, :user_id => @current_user.id).first
@@ -59,6 +65,7 @@ class AccessesController < ApplicationController
 		end
 	end
 
+	#Destroys access.
 	def destroy
 		@user = User.find(params[:user_id])
 		@access = Access.find(params[:id])

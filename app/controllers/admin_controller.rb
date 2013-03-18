@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
 	before_filter :check_admin_only
 	
+	# Checks if current user is Admin.
 	def check_admin_only
 		# Check permissions
 		if (not @current_user.is_administrator?)
@@ -9,6 +10,7 @@ class AdminController < ApplicationController
 		end
 	end
 	
+	# Sets up Admin index page.
 	def index
 		@number_of_users = User.count
 		@number_of_courses = Course.count
@@ -35,6 +37,7 @@ class AdminController < ApplicationController
 		
 	end
 
+	# Sets up logs variable.
 	def logs
 		@logs = Log.limit(params[:number]).all
 	end
