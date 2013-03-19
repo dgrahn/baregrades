@@ -24,6 +24,8 @@ class Course < ActiveRecord::Base
 	validates :name, 		:presence => true
 	validates :identifier, 	:presence => true
 	validates :credits, 	:presence => true
+	validates :start_date,  :presence => true
+	validates :end_date,    :presence => true
 	
 	# Get the user's grade for the course.
 	# @param user [User]

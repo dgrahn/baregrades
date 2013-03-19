@@ -524,3 +524,9 @@ $na-color: #222222;
 #ui-datepicker-div {
   z-index: 999!important;
 }
+ 
+ // ====================== Highlight Form Fields that contained errors
+ .field_with_errors  input {
+	border-color: #F00000;
+ }
+ 
