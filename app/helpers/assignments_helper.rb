@@ -1,5 +1,8 @@
 module AssignmentsHelper
-
+	#Disables assignment.
+	#@param assignment [Assignment]
+	#@param current_user [User]
+	#@return [boolean] successfully disabled
 	def disableAssignment(assignment, current_user)
 	
 		#update Assignment flag
@@ -19,7 +22,10 @@ module AssignmentsHelper
 		
 		return assignment_flag.save
 	end
-	
+	#Enables assignment.
+	#@param assignment [Assignment]
+	#@param current_user [User]
+	#@return [boolean] successfully disabled
 	def enableAssignment(assignment, current_user)
 		assignment_flag = AssignmentFlag.find_by_assignment_id_and_user_id(assignment.id, current_user.id)
 		

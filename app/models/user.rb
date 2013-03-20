@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
 	end
 
 	# Dynamically create is_role? methods
-	# @param methodid [integer]
+	# @param method_id [integer]
 	# @return [boolean]
 	def method_missing(method_id, *args)
 		if match = matches_dynamic_role_check?(method_id)
@@ -105,13 +105,13 @@ class User < ActiveRecord::Base
 	private
 
 	# Helper method to check if the string matches the is_role? type
-	# @param methodid [integer]
+	# @param method_id [integer]
 	def matches_dynamic_role_check?(method_id)
 		/^is_([a-zA-Z]\w*)\?$/.match(method_id.to_s)
 	end
 
 	# Tokenize strings for is_role_or_role?
-	# @param methodid [String]
+	# @param string_to_split [String]
 	def tokenize_roles(string_to_split)
 		string_to_split.split(/_or_/)
 	end

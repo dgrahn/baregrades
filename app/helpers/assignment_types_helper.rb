@@ -1,5 +1,9 @@
 module AssignmentTypesHelper
 
+	#Disables assignmentType.
+	#@param assignmentType [AssignmentType]
+	#@param user [User]
+	#@return [boolean] successfully disabled
 	def disableAssignmentType(assignmentType, user)
 		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentType.id, user.id);
 		
@@ -18,7 +22,10 @@ module AssignmentTypesHelper
 		
 		return flag.save
 	end
-	
+	#Enables assignmentType.
+	#@param assignmentType [AssignmentType]
+	#@param user [User]
+	#@return [boolean] successfully enabled	
 	def enableAssignmentType(assignmentType, user)
 		flag = AssignmentTypeFlag.find_by_assignment_type_id_and_user_id(assignmentType.id, user.id);
 		

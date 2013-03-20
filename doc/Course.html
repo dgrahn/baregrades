@@ -480,8 +480,6 @@ if the worth is above 0.</p>
       <pre class="lines">
 
 
-266
-267
 268
 269
 270
@@ -496,10 +494,12 @@ if the worth is above 0.</p>
 279
 280
 281
-282</pre>
+282
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 266</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 268</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_average'>average</span>
 	<span class='kw'>if</span> <span class='int'>2</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -582,18 +582,18 @@ if the worth is above 0.</p>
       <pre class="lines">
 
 
-207
-208
 209
 210
 211
 212
 213
 214
-215</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disabled_assignments'>disabled_assignments</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_disabled_assignments'>disabled_assignments</span> <span class='op'>=</span> <span class='const'>Array</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -632,10 +632,10 @@ if the worth is above 0.</p>
   
     <li>
       
-        <span class='name'>user</span>
+        <span class='name'>grade</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="User.html" title="User (class)">User</a></span></tt>)</span>
+        <span class='type'>(<tt>Integer</tt>)</span>
       
       
       
@@ -668,8 +668,6 @@ if the worth is above 0.</p>
       <pre class="lines">
 
 
-90
-91
 92
 93
 94
@@ -696,10 +694,12 @@ if the worth is above 0.</p>
 115
 116
 117
-118</pre>
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_grade_letter_class'>grade_letter_class</span><span class='lparen'>(</span><span class='id identifier rubyid_grade'>grade</span><span class='rparen'>)</span>		
 	<span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_grade_scale'>grade_scale</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_grade'>grade</span>
@@ -794,8 +794,6 @@ if the worth is above 0.</p>
       <pre class="lines">
 
 
-123
-124
 125
 126
 127
@@ -814,10 +812,12 @@ if the worth is above 0.</p>
 140
 141
 142
-143</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_grade_points'>grade_points</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_grade'>grade</span> <span class='op'>=</span> <span class='id identifier rubyid_user_grade'>user_grade</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
@@ -904,8 +904,6 @@ if the worth is above 0.</p>
       <pre class="lines">
 
 
-220
-221
 222
 223
 224
@@ -921,10 +919,12 @@ if the worth is above 0.</p>
 234
 235
 236
-237</pre>
+237
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 220</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 222</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_graded_assignments'>graded_assignments</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_graded_assignments'>graded_assignments</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_assignments'>assignments</span><span class='period'>
@@ -995,8 +995,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-288
-289
 290
 291
 292
@@ -1009,10 +1007,12 @@ and the worth is above 0.</p>
 299
 300
 301
-302</pre>
+302
+303
+304</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 288</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 290</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_maximum'>maximum</span>
 	<span class='kw'>if</span> <span class='int'>2</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -1080,8 +1080,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-309
-310
 311
 312
 313
@@ -1094,10 +1092,12 @@ and the worth is above 0.</p>
 320
 321
 322
-323</pre>
+323
+324
+325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 309</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 311</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_minimum'>minimum</span>
 	<span class='kw'>if</span> <span class='int'>2</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_users'>users</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -1178,8 +1178,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-184
-185
 186
 187
 188
@@ -1196,10 +1194,12 @@ and the worth is above 0.</p>
 199
 200
 201
-202</pre>
+202
+203
+204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_past_assignments'>past_assignments</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_past_assignments'>past_assignments</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_assignments'>assignments</span><span class='period'>
@@ -1284,8 +1284,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-59
-60
 61
 62
 63
@@ -1310,10 +1308,12 @@ and the worth is above 0.</p>
 82
 83
 84
-85</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_percent_complete'>percent_complete</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_completedWorth'>completedWorth</span> <span class='op'>=</span> <span class='float'>0.0</span>
@@ -1406,8 +1406,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-242
-243
 244
 245
 246
@@ -1424,10 +1422,12 @@ and the worth is above 0.</p>
 257
 258
 259
-260</pre>
+260
+261
+262</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 242</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_undated_assignments'>undated_assignments</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_undated_assignments'>undated_assignments</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_assignments'>assignments</span><span class='period'>
@@ -1512,8 +1512,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-148
-149
 150
 151
 152
@@ -1543,10 +1541,12 @@ and the worth is above 0.</p>
 176
 177
 178
-179</pre>
+179
+180
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_upcoming_assignments'>upcoming_assignments</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='comma'>,</span> <span class='id identifier rubyid_num_assignments'>num_assignments</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
 	<span class='kw'>if</span> <span class='id identifier rubyid_num_assignments'>num_assignments</span>
@@ -1644,8 +1644,6 @@ and the worth is above 0.</p>
       <pre class="lines">
 
 
-31
-32
 33
 34
 35
@@ -1668,10 +1666,12 @@ and the worth is above 0.</p>
 52
 53
 54
-55</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'app/models/course.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_user_grade'>user_grade</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
 	<span class='id identifier rubyid_totalGrade'>totalGrade</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -1708,7 +1708,7 @@ and the worth is above 0.</p>
 </div>
 
     <div id="footer">
-  Generated on Mon Mar 18 14:49:20 2013 by
+  Generated on Wed Mar 20 14:55:44 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.4.1 (ruby-1.9.3).
 </div>

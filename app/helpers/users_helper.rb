@@ -1,4 +1,6 @@
 module UsersHelper
+	#Generates random password
+	#@return [String] password
 	def generate_random_password
 		chars = ("a".."z").to_a + ("A".."Z").to_a
 		password = chars[rand(chars.size-1)]

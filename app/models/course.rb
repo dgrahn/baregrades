@@ -87,7 +87,7 @@ class Course < ActiveRecord::Base
 	end
 	
 	# Get the CSS class for the grade letter.
-	# @param user [User]
+	# @param grade [Integer]
 	# @return [String] CSS class
 	def grade_letter_class(grade)		
 		if !grade_scale || !grade

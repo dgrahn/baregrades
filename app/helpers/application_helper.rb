@@ -1,12 +1,17 @@
 module ApplicationHelper
 	# If the path matches the current page, return the css
 	# class "active"
+	# @return [String] css class
 	def cp(path)
 		current_page?(path) ? "active" : ""
 	end
 	
 	# Extend the link_to method so that an "active" class is
 	# automatically applied if this is the current page
+	# @param body [String]
+	# @param url [String]
+	# @param html_options [Hash]
+	# @return [String] link
 	def link_to(body, url, html_options = {})	
 		if html_options[:class]
 			html_options[:class] += " " + cp(url)
@@ -19,6 +24,8 @@ module ApplicationHelper
 	
 	# Create a menu block used along the sidebar. Only
 	# displays the menu if there is content passed in.
+	# @param args [Array] title [String], content [String], and html_options [Hash]
+	# @return [String] The side menu.
 	def side_menu(*args, &block)
 		if block_given?
 			title 		 = args[0]
@@ -42,6 +49,8 @@ module ApplicationHelper
 	
 	# Used for creating a <li> with an <a> inside of it. This is
 	# specifically helpful when creating a bootstrap menu.
+	# @param args [Array] body [String], content [String], and html_options [Hash]
+	# @return [String] The <li> with an <a>.
 	def li_to(*args, &block)
 		if block_given?
 			url 		 = args[0] || {}
@@ -61,6 +70,9 @@ module ApplicationHelper
 
 	
 	# Create the following: <span class="grade-class">grade</span>
+	# @param grade [String]
+	# @param course [String]
+	# @return [String] The grade span.
 	def grade_span(grade, course)
 		content_tag(:span, class:course.grade_letter_class(grade)) do
 			grade ? "%02d" % grade : ""
@@ -68,6 +80,11 @@ module ApplicationHelper
 	end
 
 	# Add a bootstrap popover to a form element
+	# @param title [String]
+	# @param content [String]
+	# @param example [ArrayList<String>]
+	# @param placement [String]
+	# @return [Hash] popover
 	def popover(title, content, example = nil, placement = "right")
 		if example
 			if example.is_a? String
@@ -91,6 +108,8 @@ module ApplicationHelper
 	end
 
 	# Get the options for a grade path, either add or edit
+	# @param assignment [assignment]
+	# @return [Array] title, path
 	def manage_grade_path(assignment)
 		if assignment.user_grade(@current_user).blank?
 			["Add Grade", new_assignment_grade_path(assignment)]
@@ -100,6 +119,8 @@ module ApplicationHelper
 	end
 
 	# Get the fonts for a specified theme (if there are any)
+	# @param theme [String]
+	# @return [String] fonts
 	def css_font(theme)
 		case theme
 			when "snowpurple"
