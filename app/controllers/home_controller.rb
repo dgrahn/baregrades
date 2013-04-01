@@ -20,7 +20,9 @@ class HomeController < ApplicationController
 	#Renders change log.
 	def changelog
 		@versions = {
-				"1.0.8"		=> ["<strong>Course start and end Date.</strong>"],
+				"1.0.8"		=> ["<strong>Course start and end Date.</strong>",
+								"<strong>Terms of Service and Privacy Policy updated.</strong>",
+								"<strong>Help Page added</strong>"],
 								
 				"1.0.7"		=> ["<strong>New course wizard.</strong>",
 								"<strong>Added ability to create multiple assignments through add assignment type.</strong>",

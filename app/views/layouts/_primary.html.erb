@@ -20,7 +20,8 @@
 				<%= link_to root_path, class:"brand" do %>
 					<span>BareGrades</span>
 				<% end %>
-				<%= link_to "v 1.0.7", changelog_path, class:"brand version" %>
+				<%= link_to "v 1.0.8", changelog_path, class:"brand version" %>
+				<%= link_to "Help", help_path, class:"brand version"%>
 				
 				<div class="user-menu dropdown">
 					<%= yield :user_menu %>
@@ -39,7 +40,7 @@
 		<%= yield :content %>
 
 		<footer>
-			&copy; 2013 | <%= link_to "Privacy", privacy_path() %>
+			&copy; 2013 | <%= link_to "Terms of Service and Privacy Policy", privacy_path() %>
 		</footer>
 	</div>
 
