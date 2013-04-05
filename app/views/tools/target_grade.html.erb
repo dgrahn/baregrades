@@ -41,7 +41,7 @@
 		grade     = <%= @grade %>
 		
 		function calculateTarget() {
-			target = $("#target").attr('value')
+			target = $("#target").val()
 			needed = (target - grade * completed) / (1 - completed);
 			
 			if(100 < needed) {

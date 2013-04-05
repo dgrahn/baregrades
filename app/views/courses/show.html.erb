@@ -44,6 +44,7 @@
 						<td><%= assignment.due_date.day %></td>
 							
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
+						<td><%= assignment.assignment_type.name %></td>
 						<td>
 							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
@@ -59,6 +60,7 @@
 						<td></td>
 						
 						<td class="span5"><%= link_to assignment.name,assignment_path(assignment) %></td>
+						<td><%= assignment.assignment_type.name %></td>
 						<td>
 							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
@@ -78,6 +80,7 @@
 						<td></td>
 						
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
+						<td><%= assignment.assignment_type.name %></td>
 						<td>
 							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>
@@ -90,6 +93,7 @@
 					<tr>
 						<td class="span1"><%= render "courses/gradeBlock", :grade => assignment.user_percentage(@current_user), :course => @course %></td>
 						<td class="span5"><%= link_to assignment.name, assignment_path(assignment) %></td>
+						<td><%= assignment.assignment_type.name %></td>
 						<td>
 							<div class="btn-group">
 								<%= render :partial => "assignment_menu", :locals => {:assignment => assignment, :grade => assignment.user_grade_class(@current_user)} %>

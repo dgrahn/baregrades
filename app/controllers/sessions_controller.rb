@@ -21,6 +21,13 @@ class SessionsController < ApplicationController
 			render "new"
 		end
 	end
+	
+	def swap
+		if current_user.is_administrator?
+			session[:user_id] = params[:id]	
+			redirect_to root_path, :flash => {:sucess => "User Swapped!"}
+		end
+	end
 
 	#Destroys session.
 	def destroy

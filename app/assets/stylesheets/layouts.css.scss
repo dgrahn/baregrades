@@ -101,39 +101,6 @@ input[type="submit"] {
 	margin: -15px;
 }
 
-.steps{
-	:after {
-		content: "Steps";
-		position: absolute;
-		top: -1px;
-		left: -1px;
-		padding: 3px 7px;
-		font-size: 12px;
-		font-weight: bold;
-		background-color: #F5F5F5;
-		border: 1px solid #DDD;
-		color: #9DA0A4;
-		border-radius: 4px 0 4px 0;
-	}
-	
-	li {
-		margin-left: 15px;
-		list-style-type: circle;
-	}
-
-	.optional { opacity: 0.6; }
-	.optional:before { content: "(Optional) "; }
-	
-	.required { color: red; }
-	.required:before { content: "(Required) "; }
-
-	position: relative;
-	margin: 15px 0;
-	padding: 39px 19px 14px;
-	border: 1px solid #DDD;
-	border-radius: 4px;
-}
-
 
 
 // ====================== Bootstrap
@@ -198,48 +165,67 @@ tbody tr th:first-child {
 	text-align: right;
 }
 
-.nav span {
-	@extend .pull-right;
-}
-
-aside > ul {
-	@extend .nav;
-	@extend .nav-list;
-	
-	li:first-child {
-		@extend .nav-header;
+aside {
+	ul {
+		@extend .nav;
+		@extend .nav-list;
 		
-		background: #EEE;
-		border-bottom: 1px solid $tableBorder;
-		margin-bottom: 5px;
-		text-shadow: none;
-		
-		border-top-left-radius: 4px;
-		border-top-right-radius: 4px;
-	}
+		li:first-child {
+			@extend .nav-header;
+			
+			background: #EEE;
+			border-bottom: 1px solid $tableBorder;
+			margin-bottom: 5px;
+			text-shadow: none;
+			
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+		}
 
-	.active > a {
-		background-color: inherit;
-		color: $blue;
-		font-weight: bold;
-		text-shadow: none;
+		.active > a {
+			background-color: inherit;
+			color: $blue;
+			font-weight: bold;
+			text-shadow: none;
+		}
+		
+		.active > a:hover {
+			background-color: #EEE;
+			color: #005580;
+			text-shadow: none;
+		}
+
+		background: 0;
+		border: 1px solid $tableBorder;
+		border-radius: 4px;
+		margin-bottom: $gridGutterWidth768;
+		padding-bottom: 5px;
 	}
 	
-	.active > a:hover {
-		background-color: #EEE;
-		color: #005580;
-		text-shadow: none;
+	.courses {
+		.active { font-weight: inherit;}
+		
+		span {
+			@extend .pull-left;
+			display: block;
+			height: 1px;
+			width: 25px;
+		}
+
+		a {
+			overflow: hidden;
+			padding-left: 10px;
+			text-overflow: ellipsis;
+			width: 193px;
+			white-space: nowrap;
+		}
+		
+		a:hover {
+			overflow: visible;
+			position: relative;
+			width: 500;
+		}
 	}
-
-	background: 0;
-	border: 1px solid $tableBorder;
-	border-radius: 4px;
-	margin-bottom: $gridGutterWidth768;
-	padding-bottom: 5px;
-}
-
-aside .courses .active {
-	font-weight: inherit;
 }
 
 .table-hover {
@@ -524,9 +510,3 @@ $na-color: #222222;
 #ui-datepicker-div {
   z-index: 999!important;
 }
- 
- // ====================== Highlight Form Fields that contained errors
- .field_with_errors  input {
-	border-color: #F00000;
- }
- 

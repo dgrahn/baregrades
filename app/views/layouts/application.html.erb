@@ -36,23 +36,21 @@
 
 							concat(
 								li_to(course_path(course)) do
-									concat course.name
 									concat grade_span(grade, course)
+									concat course.name
 								end
 							)
 
 							if @course and course.id == @course.id
 								course.assignment_types.each do |assignment_type|
-									if not assignment_type.is_disabled(@current_user)
-										grade = assignment_type.user_grade(@current_user)
+									grade = assignment_type.user_grade(@current_user)
 
-										concat(
-											content_tag(:li, class:"subtext") do
-												concat assignment_type.name
-												concat grade_span(grade, course)
-											end
-										)
-									end
+									concat(
+										content_tag(:li, class:"subtext") do
+											concat grade_span(grade, course)
+											concat assignment_type.name
+										end
+									)
 								end
 							end
 						end
