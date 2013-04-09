@@ -24,14 +24,13 @@
 		<li><a href="<%= logout_path %>"><i class="icon-hand-left"></i> Log Out</a></li>
 	</ul>
 <% end %>
-
 <% content_for :content do %>
 	<div class="row-fluid">
 		<aside class="span3">
 			<%=
 				side_menu("Courses", class:"courses") do
 					if @current_user
-						@current_user.courses.each do |course|
+						@current_user.current_courses.each do |course|
 							grade = course.user_grade(@current_user)
 
 							concat(

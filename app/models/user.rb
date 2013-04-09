@@ -59,6 +59,14 @@ class User < ActiveRecord::Base
 	def name
 		"#{first_name} #{last_name}"
 	end
+	
+	#Shows all courses for which the end date is not past
+	def current_courses
+		return self.courses.where(["end_date > ?", DateTime.now-2.weeks])
+	end
+	
+	def past_courses
+	end
 
 	# Add points to the reputation, positive or negative
 	# @param points [integer]
