@@ -70,7 +70,7 @@ class UserMailerController < ApplicationController
 				if user.save
 					# Password saved correctly
 					begin # Try catch block for mail delivery error
-						UserMailer.resetPassword(user.email, user.first_name, password).deliver # Send the email
+						UserMailer.resetPassword(user.email, user, password).deliver # Send the email
 						
 						# Email was successfully delivered
 						format.html {redirect_to login_path, notice: "Your password was reset. Checke da email."}

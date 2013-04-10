@@ -9,9 +9,10 @@ class UserMailer < ActionMailer::Base
 			 body: 		["From: " + email + " - " + description])
 	end
 	
-	def resetPassword(email, name, password)
-		@users_name = name
+	def resetPassword(email, user, password)
+		@users_name = user.first_name
 		@password = password
+		@username = user.username
 		
 		mail(to: 		email,
 			 from: 		"admin@baregrades.com",
