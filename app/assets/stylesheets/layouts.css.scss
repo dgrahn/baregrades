@@ -315,6 +315,15 @@ ul.thumbnails {
 	@extend .nav, .nav-pills;
 }
 
+// ====================== Title Box
+.title-box {
+	@extend .hero-unit;
+	padding: 15px;
+	font-size: 18px;
+	
+	span { margin-right: 15px; }
+}
+
 // ====================== Course Assignments
 .tab-content{
 	overflow:visible;}

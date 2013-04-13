@@ -6,48 +6,32 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
+<h1><%= @user.first_name %> <%= @user.middle_name %> <%= @user.last_name %></h1>
 
-<p>
-  <b>First name:</b>
-  <%= @user.first_name %>
-</p>
+<% if @user.is_administrator? %>
+	<h3>You are an administrator.</h3>
+<% end %>
 
-<p>
-  <b>Middle name:</b>
-  <%= @user.middle_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-	<b>Theme:</b>
-	<%= @user.theme ? @user.theme.name : "Not Set" %>
-<p>
-
-<p><b>Roles:</b></p>
 <table>
 	<tr>
-		<th>Role</th>
-		<th>Course</th>
-		<th></th>
+		<th>Username:</th>
+		<td><%= @user.username %></td>
 	</tr>
-	<% @user.accesses.each do |access| %>
-		<tr>
-			<td><%= access.role.name %></td>
-			<td><%= access.course.name if access.course %></td>
-			<td><%= link_to "Delete", user_access_path(@user, access), :confirm => "Are you sure?", :method => :delete %></td>
-		</tr>
-	<% end %>
+	<tr>
+		<th>Email:</th>
+		<td><%= @user.email %></td>
+	</tr>
+	<tr>
+		<th>Themes:</th>
+		<td><%= @user.theme ? @user.theme.name : "Not Set" %></td>
+	</tr>
 </table>
+
+<h2>Past Courses</h2>
+<% @user.past_courses.each do |course| %>
+	<div class="title-box">
+		<% grade = course.user_grade(@current_user) %>
+		<%= grade_span(grade, course) %>
+		<%= link_to course.name, course %>
+	</div>
+<% end %>

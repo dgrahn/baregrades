@@ -20,6 +20,12 @@ class HomeController < ApplicationController
 	#Renders change log.
 	def changelog
 		@versions = {
+				"1.1.0"		=> ["<strong>Major Release</strong>",
+								"<strong>Past courses now display on account page.</strong>",
+								"Many small design changes.",
+								"Forgot password will now send username.",
+								"Added more analysis options."],
+
 				"1.0.8"		=> ["<strong>Course start and end Date.</strong>",
 								"<strong>Terms of Service and Privacy Policy updated.</strong>",
 								"<strong>Help Page added</strong>"],
