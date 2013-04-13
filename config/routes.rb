@@ -27,6 +27,7 @@ BareGrades::Application.routes.draw do
 	get "notifications/:id/destroy"		=> "notifications#destroy",	as:"notification_destroy"	
 	get "assignments/:id/disable"		=> "assignments#disable",	as:"disable_assignment"
 	get "assignments/:id/enable"		=> "assignments#enable",	as:"enable_assignment"
+	get "courses/:id/download_calendar" 	=> "courses#download_calendar", 	as:"course_download_calendar"
 	get "courses/:course_id/assignment_types/:id/enable" 	=> "assignment_types#enable", as:"course_assignment_type_enable"
 	get "courses/:course_id/assignment_types/:id/disable" 	=> "assignment_types#disable", as:"course_assignment_type_disable"
 
