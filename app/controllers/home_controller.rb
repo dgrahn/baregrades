@@ -22,6 +22,7 @@ class HomeController < ApplicationController
 		@versions = {
 				"1.1.0"		=> ["<strong>Major Release</strong>",
 								"<strong>Past courses now display on account page.</strong>",
+								"<strong>Added an ics downloadable calendar option.</strong>",
 								"Many small design changes.",
 								"Forgot password will now send username.",
 								"Added more analysis options."],

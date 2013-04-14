@@ -1,0 +1,15 @@
+<% content_for :head do %>
+	<h1>Home : Calendars</h1>
+<% end %>
+
+<%= render "home/navigation" %>
+
+<h2>Current Courses</h2>
+
+<% @current_user.current_courses.each do |course| %>
+		<div class="title-box">
+			<%= link_to course.name, course %>
+			&nbsp&nbsp&nbsp&nbsp<%= "#{course.identifier} - #{course.section}" %>
+			<span class="floatRight"><%= link_to "Download Calender", course_download_calendar_path(course), class:"btn pull-right" %></span>
+		</div>
+<% end %>

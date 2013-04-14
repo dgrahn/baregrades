@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	include UsersHelper
+	include CoursesHelper
 	skip_before_filter :require_login, 	:only => [:new, :create, :confirm]
 	before_filter :find_user, 			:only => [:courses, :edit, :update, :destroy, :confirm, :admin_confirm, :add_role]
 	before_filter :check_admin_only, 	:only => [:index, :courses, :destroy, :admin_confirm, :possess]
@@ -203,4 +204,8 @@ class UsersController < ApplicationController
 		
 		redirect_to root_path
 	end
+	
+	# Download all of the current course calendars for the user
+	def download_calendars
+	end # download_calender
 end
