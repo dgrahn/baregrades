@@ -92,7 +92,6 @@ class LogsController < ApplicationController
 		comment = "Another student has changed <strong>#{course.name}</strong>."
 		
 		if course.name_changed?
-		error
 			comment += " <strong>The course's name was changed</strong>."
 		end
 		
@@ -167,7 +166,6 @@ class LogsController < ApplicationController
 		comment = "";
 		
 		if assignment_type.name_changed?
-		error
 			comment += "In <strong>#{assignment_type.course.name}</strong> an assignment type's name was changed to <strong>#{assignment_type.name}</strong>."
 		else
 			comment += "Another student has changed <strong>#{assignment_type.name}</strong> in <strong>#{assignment_type.course.name}</strong>."
