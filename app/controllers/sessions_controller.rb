@@ -32,9 +32,11 @@ class SessionsController < ApplicationController
 	#Destroys session.
 	def destroy
 		# Can't user @current_user here for some reason
-		user = User.find(session[:user_id])
+		if User.exists?(:id => session[:user_id])
+			user = User.find(session[:user_id])
 
-		LogsController.logout(user)
+			LogsController.logout(user)
+		end
 
 		# Delete the session
 		session[:user_id] = nil	
