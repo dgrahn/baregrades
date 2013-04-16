@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
 		end
 
 		if @upcoming.last
-			@days_left = (@upcoming.last.due_date - Date.today).to_i;
+			@days_left = (@course.end_date - Date.today).to_i;
 		end
 
 		respond_to do |format|
