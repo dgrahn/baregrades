@@ -122,6 +122,16 @@ class Course < ActiveRecord::Base
 		end
 	end
 	
+	# Get grade letter
+	def user_grade_letter(user)
+		grade = user_grade(user)
+		letter = grade_letter_class(grade)
+		letter.gsub(" minus", "-")
+		letter.gsub(" plus", "+")
+		
+		return letter.upcase()
+	end
+	
 	# Get the GPA points for the grade
 	def grade_points(user)
 		grade = user_grade(user)
@@ -130,12 +140,22 @@ class Course < ActiveRecord::Base
 		letter = grade[0..0]
 		points = 0
 		case letter
-			when 'a', points = 4.0
-			when 'b', points = 3.0
-			when 'c', points = 2.0
-			when 'd', points = 1.0
-			when 'f', points = 0.0
+			when 'a'
+				points = 4.0
+			when 'b'
+				points = 3.0
+			when 'c'
+				points = 2.0
+			when 'd'
+				points = 1.0
+			when 'f'
+				points = 0.0
 		end
+		
+		puts "=============================================="
+		puts letter
+		puts points
+		puts "=============================================="
 		
 		if grade.include?('plus')
 			points += 0.3
@@ -312,5 +332,4 @@ class Course < ActiveRecord::Base
 			return minimum
 		end
 	end
-	
 end
