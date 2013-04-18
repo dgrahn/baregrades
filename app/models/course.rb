@@ -126,8 +126,8 @@ class Course < ActiveRecord::Base
 	def user_grade_letter(user)
 		grade = user_grade(user)
 		letter = grade_letter_class(grade)
-		letter.gsub(" minus", "-")
-		letter.gsub(" plus", "+")
+		letter = letter.gsub(" minus", "-")
+		letter = letter.gsub(" plus", "+")
 		
 		return letter.upcase()
 	end
