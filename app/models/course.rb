@@ -79,7 +79,7 @@ class Course < ActiveRecord::Base
 			self.assignment_types.each do |type|
 				completed = type.percent_complete(user)
 				
-				if completed != nil
+				if completed != nil && type.worth != nil
 					completedWorth += completed * type.worth
 					totalWorth += type.worth
 				end
@@ -126,8 +126,8 @@ class Course < ActiveRecord::Base
 	def user_grade_letter(user)
 		grade = user_grade(user)
 		letter = grade_letter_class(grade)
-		letter = letter.gsub(" minus", "-")
-		letter = letter.gsub(" plus", "+")
+		letter.gsub(" minus", "-")
+		letter.gsub(" plus", "+")
 		
 		return letter.upcase()
 	end
