@@ -25,6 +25,17 @@ class Course < ActiveRecord::Base
 	validates :identifier, 	:presence => true
 	validates :credits, 	:presence => true
 	
+	# Check to make sure a user has a grade
+	def has_user_grade?(user)
+		self.assignments.each do |assignment|
+			if assignment.user_grade(user)
+				return true
+			end
+		end
+		
+		return false
+	end
+
 	# Get the user's grade for a specific assignment type.
 	def user_grade(user)
 		totalGrade = 0
