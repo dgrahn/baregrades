@@ -15,6 +15,7 @@
 	<thead>
 		<tr>
 			<th></th>
+			<th></th>
 			<th>Username</th>
 			<th>Rep</th>
 			<th>First name</th>
@@ -28,6 +29,11 @@
 	<tbody>
 		<% @users.each do |user| %>
 			<tr>
+				<td>
+					<% if user.is_administrator? %>
+						<i class="icon-wrench"></i>
+					<% end %>
+				</td>
 				<td>
 					<% if user.enabled %>
 						<i class="icon-ok"></i>
