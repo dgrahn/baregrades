@@ -23,6 +23,12 @@ class AccessesController < ApplicationController
 	def create
 		@user = User.find(params[:user_id])
 		@access = Access.new(params[:access])
+		@all_roles = Role.all
+		@all_courses = Course.all
+		
+		if @access.role_id = Role.find_by_name("Administrator").id
+			@access.course_id = nil
+		end
 
 		respond_to do |format|
 		  if @access.save
