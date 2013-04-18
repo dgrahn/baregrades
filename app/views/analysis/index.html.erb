@@ -4,51 +4,63 @@
 
 <%= render "courses/navigation" %>
 
-<form>
-	<select name="charts">
-		<option value="summary">Summary</option>
-		<option value="assignment_types">Assignment Types</option>
-		<option value="assignments">Assignments over Time</option>
-	</select>
-</form>
+<% if @course.users.length <= 2 %>
+	<div class="alert">
+		<strong>Warning!</strong>
+		Analysis is only available for classes with more than 2 users.
+	</div>
+<% elsif not @course.has_user_grade?(@current_user) %>
+	<div class="alert">
+		<strong>Warning!</strong>
+		You must have a grade to view analysis.
+	</div>
+<% else %>
+	<form>
+		<select name="charts">
+			<option value="summary">Summary</option>
+			<option value="assignment_types">Assignment Types</option>
+			<option value="assignments">Assignments over Time</option>
+		</select>
+	</form>
 
-<div id="chart">
-	<img src="/assets/loader.gif" alt=""/>
-</div>
+	<div id="chart">
+		<img src="/assets/loader.gif" alt=""/>
+	</div>
 
-<script type="text/javascript">
-	google.load("visualization", "1", {packages:["corechart"]});
-	google.setOnLoadCallback(drawChart);
-	
-	var charts = {};
-
-	$(document).ready(function() {
-		var chart = new Chart("<%= course_analysis_path(@course, format:"json") %>");
-		chart.setType("column");
-		chart.setHTitle("Course Summary");
-		charts["summary"] = chart;
-
-		var chart = new Chart("<%= assignment_types_analysis_path(@course, format:"json") %>");
-		chart.setType("column");
-		chart.setHTitle("Assignment Types");
-		charts["assignment_types"] = chart;
-
-		var chart = new Chart("<%= assignments_analysis_path(@course, format:"json") %>");
-		chart.setType("line");
-		chart.setHTitle("Assignments over Time");
-		charts["assignments"] = chart;
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawChart);
 		
-		updateChart();
+		var charts = {};
 
-		$('select[name="charts"]').change(function() {
+		$(document).ready(function() {
+			var chart = new Chart("<%= course_analysis_path(@course, format:"json") %>");
+			chart.setType("column");
+			chart.setHTitle("Course Summary");
+			charts["summary"] = chart;
+
+			var chart = new Chart("<%= assignment_types_analysis_path(@course, format:"json") %>");
+			chart.setType("column");
+			chart.setHTitle("Assignment Types");
+			charts["assignment_types"] = chart;
+
+			var chart = new Chart("<%= assignments_analysis_path(@course, format:"json") %>");
+			chart.setType("line");
+			chart.setHTitle("Assignments over Time");
+			charts["assignments"] = chart;
+			
 			updateChart();
-		});
-	});
-	
-	function updateChart() {
-		var value = $('select[name="charts"] option:selected').val();
 
-		var chart = charts[value];
-		chart.draw("chart");
-	}
-</script>
+			$('select[name="charts"]').change(function() {
+				updateChart();
+			});
+		});
+		
+		function updateChart() {
+			var value = $('select[name="charts"] option:selected').val();
+
+			var chart = charts[value];
+			chart.draw("chart");
+		}
+	</script>
+<% end %>
