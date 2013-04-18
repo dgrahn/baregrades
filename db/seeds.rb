@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'securerandom'
+
 Role.create(id: 1, name: "Administrator")
 Role.create(id: 2, name: "Advisor")
 Role.create(id: 3, name: "Professor")
@@ -22,12 +24,16 @@ Theme.create(name: "Canvas",			css_class: "canvas")
 Theme.create(name: "Citrus",			css_class: "citrus")
 Theme.create(name: "Darkness",			css_class: "darkness")
 
+password = SecureRandom.hex(10)
+
+puts "Root Password: "+ password
+
 root = User.create(first_name: "First",
 					middle_name: "Middle",
 					last_name: "Last",
-					username: "Root",
-					password: "root",
-					password_confirmation: "root"
+					username: "root",
+					password: password,
+					password_confirmation: password,
 					email: "defaultroot@baregrades.com")
 
 Access.create(user_id: root.id, role_id: 1)
