@@ -1,16 +1,19 @@
-<h1>New Access</h1>
-<h2>Assign a new role to <%= @user.first_name %></h2>
+<% content_for :head do %>
+	<h1>Roles</h1>
+<% end %>
+
+<h1>Assign Role</h1>
 
 <%= form_for([@user, @access]) do |f| %>
 	<% if @access.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(@access.errors.count, "error") %> prohibited this user from being saved:</h2>
+	<div class="alert alert-error">
+		<strong>Error!</strong>
 
-		<ul>
-			<% @access.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
+		<%=
+			@access.errors.full_messages.each do |msg|
+				concat msg
+			end
+		%>
 	</div>
 	<% end %>
 
